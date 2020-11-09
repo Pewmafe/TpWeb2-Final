@@ -43,7 +43,7 @@
     <div class="text-center p-4">
         <h2 class="text-center d-inline-block border-bottom text-center">Bienvenido a Camionardo</h2>
     </div>
-    <section class="row justify-content-center m-3 ancho">
+    <section class="row justify-content-center m-3 ancho ">
         <article class="col-12 col-md-6 border-right borde-login">
 
             <p class="p-1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis repellat perferendis
@@ -65,12 +65,11 @@
                 </div>
                 <div>
                     <input type="submit" class="btn btn-outline-primary" name="" value="Iniciar sesion" href="#">
-                    <a href="registrarse.php">Registrarse</a>
+                    <a href="/registro">Registrarse</a>
                 </div>
             </form>
 
         </article>
-
     </section>
 </main>
 {{> footer}}
