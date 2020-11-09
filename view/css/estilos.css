@@ -5,7 +5,6 @@ body {
 }
 
 header {
-    background-color: #d4dcdf !important;
     border-bottom: 1px solid #000;
 }
 
@@ -22,8 +21,9 @@ footer {
 }
 
 .ancho2 {
-    width: 50%;
+    width: 70%;
     margin: auto;
+
 }
 
 .login .form-control {
@@ -53,6 +53,7 @@ footer {
     color: #000 !important;
     border-bottom: 1px solid #242424 !important;
     transition: 0.50s;
+    width: 100%;
 }
 
 .login .btn-outline-primary:hover {
