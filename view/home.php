@@ -63,6 +63,6 @@
             </div>
         </article>
     </section>
-    
+
 </main>
 {{> footer}}

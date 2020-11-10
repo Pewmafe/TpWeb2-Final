@@ -1,6 +1,6 @@
 <?php
 include_once("helper/Configuracion.php");
-
+session_start();
 $configuracion = new Configuracion();
 
 $urlHelper = $configuracion->getUrlHelper();
