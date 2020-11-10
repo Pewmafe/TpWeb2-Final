@@ -58,8 +58,8 @@
 
         </article>
         <article class="col-12 col-md-6 justify-content-center">
-            <div class="shadow">
-                <img src="view/img/camion.jfif" alt="Camion" srcset="" class="img-fluid " style="width: 100%">
+            <div class="referencia">
+                <img src="view/img/camion.jfif" alt="Camion" srcset="" class="img-fluid" style="width: 100%">
             </div>
         </article>
     </section>
