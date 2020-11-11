@@ -8,6 +8,7 @@ include_once("controller/LoginController.php");
 include_once("controller/RegistroController.php");
 
 include_once("model/RegistroModel.php");
+include_once("model/LoginModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -51,6 +52,12 @@ class Configuracion
         return new RegistroModel($bd);
     }
 
+    public function getLoginModel()
+    {
+        $bd = $this->getDatabase();
+        return new LoginModel($bd);
+    }
+
     public function getHomeController()
     {
         return new HomeController($this->getRender());
@@ -58,7 +65,8 @@ class Configuracion
 
     public function getLoginController()
     {
-        return new LoginController($this->getRender());
+        $loginModel = $this->getLoginModel();
+        return new LoginController($this->getRender(), $loginModel);
     }
 
     public function getRegistroController()

@@ -23,12 +23,24 @@ class MySqlDataBase
     public function query($sql)
     {
         $result = $this->conneccion->query($sql);
-        //$resultado = mysqli_query($this->conneccion, $sql);
-        // return mysqli_fetch_all($result, MYSQLI_ASSOC);
+
     }
 
     public function executar($sql)
     {
         mysqli_query($this->conneccion, $sql);
+    }
+
+    public function devolverDatos($tablaAdevolcer)
+    {
+
+        $sql = "SELECT * FROM " . $tablaAdevolcer;
+        $resultadoQuery = $this->conneccion->query($sql);
+        $tabla = array();
+        while ($fila = $resultadoQuery->fetch_assoc()) {
+
+            $tabla[] = $fila;
+        }
+        return $tabla;
     }
 }

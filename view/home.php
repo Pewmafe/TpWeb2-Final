@@ -45,7 +45,7 @@
     </div>
     <section class="row justify-content-center m-3 ancho ">
         <article class="col-12 col-md-6 border-right borde-login">
-
+            
             <p class="p-1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis repellat perferendis
                 nesciunt laudantium non, at quisquam suscipit natus obcaecati autem necessitatibus ut a. Aliquid
                 fugit animi hic voluptatum reprehenderit amet!</p>
