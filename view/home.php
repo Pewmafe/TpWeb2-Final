@@ -45,7 +45,10 @@
     </div>
     <section class="row justify-content-center m-3 ancho ">
         <article class="col-12 col-md-6 border-right borde-login">
-
+            
+            <p class="p-1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis repellat perferendis
+                nesciunt laudantium non, at quisquam suscipit natus obcaecati autem necessitatibus ut a. Aliquid
+                fugit animi hic voluptatum reprehenderit amet!</p>
             <p class="p-1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis repellat perferendis
                 nesciunt laudantium non, at quisquam suscipit natus obcaecati autem necessitatibus ut a. Aliquid
                 fugit animi hic voluptatum reprehenderit amet!</p>
@@ -55,21 +58,11 @@
 
         </article>
         <article class="col-12 col-md-6 justify-content-center">
-            <h3 class="text-dark">Iniciar Sesion</h3>
-            <form action="#" class="login" name="form" id="form">
-                <div class="form-group justify-content-center">
-                    <input type="text" id="Usuario" name="Usuario" placeholder="Usuario" class="form-control mb-4">
-                </div>
-                <div class="form-group">
-                    <input type="password" id="Contraseña" name="Contraseña" placeholder="Contraseña" class="form-control mb-4">
-                </div>
-                <div>
-                    <input type="submit" class="btn btn-outline-primary" name="" value="Iniciar sesion" href="#">
-                    <a href="/registro">Registrarse</a>
-                </div>
-            </form>
-
+            <div class="referencia">
+                <img src="view/img/camion.jfif" alt="Camion" srcset="" class="img-fluid" style="width: 100%">
+            </div>
         </article>
     </section>
+
 </main>
 {{> footer}}
