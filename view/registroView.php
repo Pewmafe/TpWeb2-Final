@@ -9,21 +9,21 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="view/img/slider1.png" class="d-block w-100" alt="...">
+                    <img src="/public/img/slider1.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
                         <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="view/img/slider2.png" class="d-block w-100" alt="...">
+                    <img src="/public/img/slider2.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
                         <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="view/img/slider3.png" class="d-block w-100" alt="...">
+                    <img src="/public/img/slider3.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
                         <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
@@ -54,7 +54,7 @@
                 -->
 
             <div class="container">
-                <form class="form-horizontal" role="form" action="/TpWeb2-Final/index.php?module=registro&action=registroUsuario" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" action="/registro/registroUsuario" method="post" enctype="multipart/form-data">
                     <div class="intDatos">
                         <h2>Introduzca sus datos.</h2>
                     </div>

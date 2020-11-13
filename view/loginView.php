@@ -3,7 +3,7 @@
     <section class="row justify-content-center m-3 ancho">
         <article class=" justify-content-center mt-4 ancho2">
             <h3 class="text-dark mb-3">Iniciar Sesion</h3>
-            <form action="/TpWeb2-Final/index.php?module=login&action=login" class="login" name="form" id="form" method="post">
+            <form action="/login/login" class="login" name="form" id="form" method="post">
                 <div class="form-group justify-content-center input-group">
                     <div class="input-group-append">
                         <span class="input-group-text icono-login"><i class="fas fa-user"></i></span>
