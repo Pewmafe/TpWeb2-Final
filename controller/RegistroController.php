@@ -27,9 +27,17 @@ class RegistroController
         $NombreUsuario = $_POST["NombreUsuario"];
         /* $Dni = $_GET["Dni"];
          $licencia = $_GET["licencia"];*/
+        $rolUsuario = 2;
 
-        $this->registroModel->registrarUsuario($NombreUsuario, $contrasenia);
+        $nombreUsuarioExistente = $this->registroModel->verificarNombreUsuarioExistente($NombreUsuario);
+        if($nombreUsuarioExistente){
+            $data["nombreUsuarioError"] = true;
+            echo $this->render->render("view/registroView.php", $data);
+            exit();
+        }
 
-        echo $this->render->render("view/home.php");
+        $this->registroModel->registrarUsuario($NombreUsuario, $contrasenia, $rolUsuario);
+        $data["registroExitoso"] = true;
+        echo $this->render->render("view/home.php",$data);
     }
 }
