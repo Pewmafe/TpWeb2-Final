@@ -22,7 +22,8 @@ class MySqlDataBase
 
     public function query($sql)
     {
-        $this->conneccion->query($sql);
+        $resultadoQuery = $this->conneccion->query($sql);
+        return $resultadoQuery;
 
     }
 

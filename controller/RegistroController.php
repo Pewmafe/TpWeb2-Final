@@ -36,7 +36,13 @@ class RegistroController
             exit();
         }
 
-        $this->registroModel->registrarUsuario($NombreUsuario, $contrasenia, $rolUsuario);
+        $registroExitoso = $this->registroModel->registrarUsuario($NombreUsuario, $contrasenia, $rolUsuario);
+
+        if(!$registroExitoso){
+            $data["registroError"] = true;
+            echo $this->render->render("view/home.php",$data);
+        }
+
         $data["registroExitoso"] = true;
         echo $this->render->render("view/home.php",$data);
     }

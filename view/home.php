@@ -43,6 +43,9 @@
     {{#registroExitoso}}
     <h3 class="text-success text-center">Se registro con exito.</h3>
     {{/registroExitoso}}
+    {{#registroError}}
+    <h3 class="text-danger text-center">Ocurrio un error al registrar.</h3>
+    {{/registroError}}
     <div class="text-center p-4">
         <h2 class="text-center d-inline-block border-bottom text-center">Bienvenido a Camionardo</h2>
     </div>
