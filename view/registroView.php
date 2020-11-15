@@ -77,6 +77,15 @@
                         </div>
                     </div>-->
                     <div class="form-group">
+                        {{#nombreUsuarioError}}
+                        <p class="text-danger">Nombre de usuario ya existente</p>
+                        {{/nombreUsuarioError}}
+                        <label for="NombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
+                        <div class="col-12">
+                            <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="contrasenia" class="col-12 control-label">*Contraseña</label>
                         <div class="col-12">
                             <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" class="form-control">
@@ -95,12 +104,7 @@
                             <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control">
                         </div>
                     </div>-->
-                    <div class="form-group">
-                        <label for="NombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
-                        <div class="col-12">
-                            <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario" class="form-control">
-                        </div>
-                    </div>
+
                     <!--<div class="form-group">
                         <label for="Dni" class="col-12 control-label">*Dni</label>
                         <div class="col-12">
