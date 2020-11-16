@@ -78,7 +78,8 @@ class Configuracion
 
     public function getRegistroEmpleadoController()
     {
-        return new RegistroEmpleadoController($this->getRender());
+        $registroModel = $this->getRegistroModel();
+        return new RegistroEmpleadoController($this->getRender(),$registroModel);
     }
 
 }

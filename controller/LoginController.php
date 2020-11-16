@@ -30,7 +30,7 @@ class LoginController
         }
         $data["login"] = $loginExitoso;
 
-        if($_SESSION["rol"] == 1){
+        if($_SESSION["rol"] == "admin"){
             $data["usuarioAdmin"] = true;
         }
 

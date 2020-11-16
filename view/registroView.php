@@ -124,7 +124,7 @@
                     </div>-->
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
-                            <span class="help-block">*Campos requeridos</span>
+                            <span class="help-block alert alert-info">*Campos requeridos</span>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Registrar</button>

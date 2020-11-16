@@ -32,19 +32,10 @@ create table carga(
 	references tipo_carga(id_tipo_carga)
 );
 
-create table rol (
-	id_rol int primary key,
-	descripcion varchar(100)
-);
-
 create table usuario(
 	id int primary key auto_increment,
-	usuario varchar(100),
-	contrasenia varchar(100),
-	rol int,
-	constraint fk_usuario_rol 
-	foreign key (rol)
-	references rol(id_rol)
+	nombreUsuario varchar(100),
+	contrasenia varchar(100)
 );
 
 create table tipo_empleado(
@@ -246,13 +237,17 @@ create table seguimiento(
 	constraint fk_seguimiento_posicion foreign key (posicion_actual) references posicion(id)
 );
 
+insert into tipo_empleado(id_tipo_empleado, descripcion)
+values(1, "administrador"),
+(2, "supervisor"),
+(3, "encargado"),
+(4,"chofer"),
+(5,"mecanico");
 
+insert into usuario(id, nombreUsuario, contrasenia)
+values(1, 'admin','202cb962ac59075b964b07152d234b70');
 
+insert into empleado(dni, nombre, apellido, nacimiento, tipo_de_licencia, tipo, id_usuario)
+values(123, 'ABC', 'CBA', 19940918, 'camion', 1, 1);
 
-insert into rol(id_rol, descripcion)
-values(1, 'admin'),
-(2,'usuario');
-
-insert into usuario(id, usuario, contrasenia, rol)
-values(1, 'admin','202cb962ac59075b964b07152d234b70', 1);
 
