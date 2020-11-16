@@ -8,6 +8,7 @@ include_once("controller/LoginController.php");
 include_once("controller/RegistroController.php");
 include_once("controller/RegistroEmpleadoController.php");
 include_once("controller/AdministrarUsuarioController.php");
+include_once("controller/AdministrarEquiposController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
@@ -76,6 +77,12 @@ class Configuracion
     {
         $administrarUsuarioModel = $this->getAdministrarUsuarioModel();
         return new AdministrarUsuarioController($this->getRender(), $administrarUsuarioModel);
+    }
+
+    public function getAdministrarEquiposController()
+    {
+      //  $administrarUsuarioModel = $this->getAdministrarUsuarioModel();
+        return new AdministrarEquiposController($this->getRender());
     }
 
     public function getRegistroModel()
