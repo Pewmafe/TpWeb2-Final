@@ -9,21 +9,21 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="view/img/slider1.png" class="d-block w-100" alt="...">
+                    <img src="/public/img/slider1.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
                         <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="view/img/slider2.png" class="d-block w-100" alt="...">
+                    <img src="/public/img/slider2.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
                         <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="view/img/slider3.png" class="d-block w-100" alt="...">
+                    <img src="/public/img/slider3.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
                         <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
@@ -40,6 +40,9 @@
             </a>
         </div>
     </section>
+    {{#registroExitoso}}
+    <h3 class="text-success text-center">Se registro con exito.</h3>
+    {{/registroExitoso}}
     <div class="text-center p-4">
         <h2 class="text-center d-inline-block border-bottom text-center">Bienvenido a Camionardo</h2>
     </div>
@@ -59,7 +62,7 @@
         </article>
         <article class="col-12 col-md-6 justify-content-center">
             <div class="referencia">
-                <img src="view/img/camion.jfif" alt="Camion" srcset="" class="img-fluid" style="width: 100%">
+                <img src="/public/img/camion.jfif" alt="Camion" srcset="" class="img-fluid" style="width: 100%">
             </div>
         </article>
     </section>

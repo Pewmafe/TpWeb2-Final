@@ -6,9 +6,12 @@ include_once("helper/UrlHelper.php");
 include_once("controller/HomeController.php");
 include_once("controller/LoginController.php");
 include_once("controller/RegistroController.php");
+include_once("controller/RegistroEmpleadoController.php");
+include_once("controller/AdministrarUsuarioController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
+include_once("model/AdministrarUsuarioModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -46,18 +49,6 @@ class Configuracion
         return new UrlHelper();
     }
 
-    public function getRegistroModel()
-    {
-        $bd = $this->getDatabase();
-        return new RegistroModel($bd);
-    }
-
-    public function getLoginModel()
-    {
-        $bd = $this->getDatabase();
-        return new LoginModel($bd);
-    }
-
     public function getHomeController()
     {
         return new HomeController($this->getRender());
@@ -73,6 +64,36 @@ class Configuracion
     {
         $registroModel = $this->getRegistroModel();
         return new RegistroController($this->getRender(), $registroModel);
+    }
+
+    public function getRegistroEmpleadoController()
+    {
+        $registroModel = $this->getRegistroModel();
+        return new RegistroEmpleadoController($this->getRender(),$registroModel);
+    }
+
+    public function getAdministrarUsuarioController()
+    {
+        $administrarUsuarioModel = $this->getAdministrarUsuarioModel();
+        return new AdministrarUsuarioController($this->getRender(), $administrarUsuarioModel);
+    }
+
+    public function getRegistroModel()
+    {
+        $bd = $this->getDatabase();
+        return new RegistroModel($bd);
+    }
+
+    public function getLoginModel()
+    {
+        $bd = $this->getDatabase();
+        return new LoginModel($bd);
+    }
+
+    public function getAdministrarUsuarioModel()
+    {
+        $bd = $this->getDatabase();
+        return new AdministrarUsuarioModel($bd);
     }
 
 }

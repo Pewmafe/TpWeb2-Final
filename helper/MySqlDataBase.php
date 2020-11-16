@@ -22,20 +22,23 @@ class MySqlDataBase
 
     public function query($sql)
     {
-        $result = $this->conneccion->query($sql);
+        $resultadoQuery = $this->conneccion->query($sql);
+
+        if (!$resultadoQuery) {
+            echo("error al ejecutar query<br>");
+            echo $this->conneccion->error . "-" . $this->conneccion->error;
+            exit();
+        }
+        return $resultadoQuery;
 
     }
 
-    public function executar($sql)
-    {
-        mysqli_query($this->conneccion, $sql);
-    }
 
     public function devolverDatos($tablaAdevolcer)
     {
 
         $sql = "SELECT * FROM " . $tablaAdevolcer;
-        $resultadoQuery = $this->conneccion->query($sql);
+        $resultadoQuery = $this->query($sql);
         $tabla = array();
         while ($fila = $resultadoQuery->fetch_assoc()) {
 

@@ -9,21 +9,21 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="view/img/slider1.png" class="d-block w-100" alt="...">
+                    <img src="/public/img/slider1.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
                         <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="view/img/slider2.png" class="d-block w-100" alt="...">
+                    <img src="/public/img/slider2.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
                         <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="view/img/slider3.png" class="d-block w-100" alt="...">
+                    <img src="/public/img/slider3.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
                         <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
@@ -54,7 +54,7 @@
                 -->
 
             <div class="container">
-                <form class="form-horizontal" role="form" action="/TpWeb2-Final/index.php?module=registro&action=registroUsuario" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" action="/registro/registroUsuario" method="post" enctype="multipart/form-data">
                     <div class="intDatos">
                         <h2>Introduzca sus datos.</h2>
                     </div>
@@ -77,9 +77,18 @@
                         </div>
                     </div>-->
                     <div class="form-group">
+                        {{#nombreUsuarioError}}
+                        <p class="text-danger">Nombre de usuario ya existente</p>
+                        {{/nombreUsuarioError}}
+                        <label for="NombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
+                        <div class="col-12">
+                            <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="contrasenia" class="col-12 control-label">*Contraseña</label>
                         <div class="col-12">
-                            <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" class="form-control">
+                            <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" class="form-control" required>
                         </div>
                     </div>
                     <!--<div class="form-group">
@@ -95,12 +104,7 @@
                             <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control">
                         </div>
                     </div>-->
-                    <div class="form-group">
-                        <label for="NombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
-                        <div class="col-12">
-                            <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario" class="form-control">
-                        </div>
-                    </div>
+
                     <!--<div class="form-group">
                         <label for="Dni" class="col-12 control-label">*Dni</label>
                         <div class="col-12">
@@ -120,7 +124,7 @@
                     </div>-->
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
-                            <span class="help-block">*Campos requeridos</span>
+                            <span class="help-block alert alert-info">*Campos requeridos</span>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Registrar</button>
