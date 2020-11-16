@@ -6,6 +6,7 @@ include_once("helper/UrlHelper.php");
 include_once("controller/HomeController.php");
 include_once("controller/LoginController.php");
 include_once("controller/RegistroController.php");
+include_once("controller/RegistroEmpleadoController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
@@ -73,6 +74,11 @@ class Configuracion
     {
         $registroModel = $this->getRegistroModel();
         return new RegistroController($this->getRender(), $registroModel);
+    }
+
+    public function getRegistroEmpleadoController()
+    {
+        return new RegistroEmpleadoController($this->getRender());
     }
 
 }
