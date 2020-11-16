@@ -10,6 +10,7 @@
                 </div>
                 <div class="form-group">
                     <p class="text-danger">{{nombreUsuarioError}}</p>
+                    <p class="text-danger">{{dniUsuarioError}}</p>
                     <label for="nombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
                     <div class="col-12">
                         <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>

@@ -37,6 +37,18 @@ class RegistroModel
         return $resultado;
     }
 
+    public function verificarDNIUsuarioExistente($dni){
+        $resultado = false;
+
+        $table = $this->bd->devolverDatos("empleado");
+        for ($i = 0; $i < sizeof($table); $i++) {
+            if ($table[$i]["dni"] == $dni) {
+                $resultado = true;
+            }
+        }
+        return $resultado;
+    }
+
     public function obtenerIdUsuario($nombreUsuario){
         $sql = "SELECT id FROM usuario WHERE usuario.nombreUsuario = '".$nombreUsuario."'";
         $resultado = $this->bd->query($sql);

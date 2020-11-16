@@ -44,7 +44,18 @@ class RegistroEmpleadoController
             $nombreUsuario = $_POST["nombreUsuario"];
 
             $nombreUsuarioExistente = $this->registroEmpleadoModel->verificarNombreUsuarioExistente($nombreUsuario);
-            if(!$nombreUsuarioExistente){
+            $dniExistente = $this->registroEmpleadoModel->verificarDNIUsuarioExistente($dni);
+
+            if(!$nombreUsuarioExistente and $dniExistente){
+                $data["dniUsuarioError"] = "El dni de empleado ya existe";
+                $data["nombreUsuarioError"] = "El nombre de usuario no existe";
+                echo $this->render->render("view/registroEmpleadoView.php", $data);
+                exit();
+            }elseif ($dniExistente){
+            $data["dniUsuarioError"] = "El dni de empleado ya existe";
+            echo $this->render->render("view/registroEmpleadoView.php", $data);
+            exit();
+            }elseif (!$nombreUsuarioExistente){
                 $data["nombreUsuarioError"] = "El nombre de usuario no existe";
                 echo $this->render->render("view/registroEmpleadoView.php", $data);
                 exit();
