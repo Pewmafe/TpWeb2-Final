@@ -19,9 +19,11 @@ class LoginModel
             if ($table[$i]["usuario"] == $nombre && $table[$i]["contrasenia"] == $contraseniaEncriptada) {
                 $_SESSION["usuario"] = $nombre;
                 $_SESSION["logeado"] = 1;
+                $_SESSION["rol"] = $table[$i]["rol"];
                 return true;
             }
         }
         return false;
     }
+
 }

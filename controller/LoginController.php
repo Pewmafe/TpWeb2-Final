@@ -19,10 +19,21 @@ class LoginController
 
     public function login()
     {
-        $usuario = $_POST["Usuario"];
+        $nombreUsuario = $_POST["Usuario"];
         $password = $_POST["Contrasenia"];
-        $result = $this->loginModel->logearUsuario($usuario, $password);
-        $data["login"] = $result;
+        $loginExitoso = $this->loginModel->logearUsuario($nombreUsuario, $password);
+
+        if(!$loginExitoso){
+            $data["loginError"] = "usuario o contrasenia incorrecto";
+            echo $this->render->render("view/loginView.php", $data);
+            exit();
+        }
+        $data["login"] = $loginExitoso;
+
+        if($_SESSION["rol"] == 1){
+            $data["usuarioAdmin"] = true;
+        }
+
         echo $this->render->render("view/home.php", $data);
     }
 

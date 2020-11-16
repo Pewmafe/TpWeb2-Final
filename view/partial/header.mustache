@@ -29,8 +29,14 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav ">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/">Inicio </a>
+                    <a class="nav-link text-white" href="/home">Inicio </a>
                 </li>
+                {{#usuarioAdmin}}
+                    <li class="nav-item">
+                        <a class="nav-link text-white btn btn-outline-danger"
+                           href="/registroEmpleado">registrar empleado</a>
+                    </li>
+                {{/usuarioAdmin}}
                 {{#login}}
                     <li class="nav-item">
                         <a class="nav-link text-white btn btn-outline-danger"

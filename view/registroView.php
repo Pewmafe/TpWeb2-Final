@@ -82,13 +82,13 @@
                         {{/nombreUsuarioError}}
                         <label for="NombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
                         <div class="col-12">
-                            <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario" class="form-control">
+                            <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="contrasenia" class="col-12 control-label">*Contraseña</label>
                         <div class="col-12">
-                            <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" class="form-control">
+                            <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" class="form-control" required>
                         </div>
                     </div>
                     <!--<div class="form-group">

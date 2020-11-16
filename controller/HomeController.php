@@ -11,6 +11,6 @@ class HomeController
 
     public function ejecutar()
     {
-        echo $this->render->render("view/home.php");
+       echo $this->render->render("view/home.php");
     }
 }
