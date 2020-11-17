@@ -35,7 +35,8 @@
                             <span class="h5 font-weight-bold">Clendario de Service</span>: {{calendario_service}}
                         </p>
                         <a href="#" class="btn btn-primary">Modificar Camion</a>
-                        <a href="#" class="btn btn-danger mt-2">Dar de baja Camion</a>
+                        <a href="#" class="btn btn-secondary mt-2">Dar de baja Camion</a>
+                        <a type="button" class="btn btn-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
                     </div>
                 </div>
                 {{/tablaCamiones}}
@@ -58,7 +59,8 @@
                             <span class="h5 font-weight-bold">Tipo</span>: {{descripcion}}
                         </p>
                         <a href="#" class="btn btn-primary">Modificar Camion</a>
-                        <a href="" class="btn btn-danger mt-2">Dar de baja Camion</a>
+                        <a href="" class="btn btn-secondary mt-2">Dar de baja acoplado</a>
+                        <a type="button" class="btn btn-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
                     </div>
                 </div>
                 {{/tablaAcoplados}}
@@ -66,6 +68,50 @@
 
         </article>
 
+    </section>
+    <section>
+        <div class="modal fade" id="darDeBajaCamionModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" >
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Dar de baja camion</h5>
+                        <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-dark">
+                        ¿Seguro que desea dar de baja el camion?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                        <form  method="post" action="">
+                            <button class="btn btn-danger" id="botonDarDeBajaCamionModal" name="botonDarDeBajaCamionModal">Baja</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="darDeBajaAcopladoModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" >
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Dar de baja acoplado</h5>
+                        <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-dark">
+                        ¿Seguro que desea dar de baja el acoplado?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                        <form  method="post" action="">
+                            <button class="btn btn-danger" id="botonDarDeBajaAcopladoModal" name="botonDarDeBajaAcopladoModal">Baja</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
 {{/usuarioAdmin}}
