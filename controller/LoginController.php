@@ -24,7 +24,7 @@ class LoginController
         $loginExitoso = $this->loginModel->logearUsuario($nombreUsuario, $password);
 
         if(!$loginExitoso){
-            $data["loginError"] = "usuario o contrasenia incorrecto";
+            $data["loginError"] = "Usuario o contraseña incorrecta";
             echo $this->render->render("view/loginView.php", $data);
             exit();
         }
