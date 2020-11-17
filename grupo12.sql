@@ -245,10 +245,20 @@ values(1, "administrador"),
 (5,"mecanico");
 
 insert into usuario(id, nombreUsuario, contrasenia)
-values(1, 'admin','202cb962ac59075b964b07152d234b70');
+values(1, 'admin','202cb962ac59075b964b07152d234b70'),
+(2, 'segundo','202cb962ac59075b964b07152d234b70'),
+(3, 'tercero','202cb962ac59075b964b07152d234b70'),
+(4, 'cuarto','202cb962ac59075b964b07152d234b70'),
+(5, 'quinto','202cb962ac59075b964b07152d234b70'),
+(6, 'sexto','202cb962ac59075b964b07152d234b70'),
+(7, 'pew','202cb962ac59075b964b07152d234b70');
+
 
 insert into empleado(dni, nombre, apellido, nacimiento, tipo_de_licencia, tipo, id_usuario)
-values(123, 'ABC', 'CBA', 19940918, 'camion', 1, 1);
+values(123, 'ABC', 'CBA', 19940918, 'camion', 1, 1),
+(124, 'Pewmafe', 'Fefar', 19940918, 'auto', 3, 7),
+(125, 'Pedro', 'Roco', 19940918, 'auto', 4, 4);
+
 
 insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
 values('aa123bb', 10, 100, 20000, 20150505, 'Iveco', 'Scavenger', 20180209, null, null);
@@ -259,8 +269,10 @@ values('ab145bb', 11, 101, 15000, 20160608, 'Iveco', 'Scavenger', 20191011, null
 insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
 values('ba531aa', 12, 102, 18000, 20191108, 'Scania', 'g150', 20200201, null, null);
 
+
 insert into tipo_acoplado(id, descripcion)
 values (1, 'Araña'), (3, 'Jaula');
+
 
 insert into acoplado(patente, chasis, tipo)
 values('aa159yy', 123789, 1), ('ab456uu', 456789, 3);
