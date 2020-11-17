@@ -1,7 +1,7 @@
 <?php
 
 
-class AdministrarUsuarioModel
+class AdministrarUsuariosModel
 {
     private $bd;
 
@@ -38,5 +38,10 @@ class AdministrarUsuarioModel
         }
 
         return $tablaUsuarios;
+    }
+
+    public function eliminarEmpleado($dniEmpleadoAEliminar){
+        $sql = "DELETE FROM empleado WHERE empleado.dni = " . $dniEmpleadoAEliminar;
+        $this->bd->query($sql);
     }
 }

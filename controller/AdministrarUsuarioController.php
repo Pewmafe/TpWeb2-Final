@@ -37,6 +37,15 @@ class AdministrarUsuarioController
         echo $this->render->render("view/administrarUsuariosView.php");
     }
 
+    public function darDeBajaEmpleado(){
+        $dniEmpleadoAEliminar = $_POST["botonDarDeBajaEmpleado"];
+
+        $this->administrarUsuarioModel->eliminarEmpleado($dniEmpleadoAEliminar);
+
+        $this->ejecutar();
+
+    }
+
     public function verificarQueUsuarioEsteLogeado(){
         $logeado = isset( $_SESSION["logeado"]) ?  $_SESSION["logeado"] : null;
         if($logeado == 1){

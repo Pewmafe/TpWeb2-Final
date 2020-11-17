@@ -44,7 +44,9 @@
                         <p class="text-light">
                             <span class="h5 font-weight-bold">Rol </span>: {{descripcion}}
                         </p>
-                        <a href="" class="btn btn-danger mt-2">Dar de baja empleado</a>
+                        <form class="text-center" method="post" action="administrarUsuarios/darDeBajaEmpleado">
+                            <button type="submit" name="botonDarDeBajaEmpleado" class="btn btn-danger mt-2" value="{{dni}}" >Dar de baja empleado</button>
+                        </form>
                     </div>
                 </div>
                 {{/tablaUsuariosEmpleados}}
