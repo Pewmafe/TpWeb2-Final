@@ -19,6 +19,7 @@ class LoginModel
             if ($table[$i]["nombreUsuario"] == $nombre && $table[$i]["contrasenia"] == $contraseniaEncriptada) {
                 $_SESSION["nombreUsuario"] = $nombre;
                 $_SESSION["logeado"] = 1;
+                $_SESSION["contrasenia"] = $contrasenia;
                 $_SESSION["rol"] = $this->obtenerRolUsuario($nombre);
                 return true;
             }
@@ -26,13 +27,14 @@ class LoginModel
         return false;
     }
 
-    public  function obtenerRolUsuario($nombreUsuario){
-        $sql = "SELECT tipo FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '".$nombreUsuario."'";
+    public function obtenerRolUsuario($nombreUsuario)
+    {
+        $sql = "SELECT tipo FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
         $resultado = $this->bd->query($sql);
-        $arrayRol = $resultado-> fetch_assoc();
+        $arrayRol = $resultado->fetch_assoc();
         $rol = isset($arrayRol["tipo"]) ? $arrayRol["tipo"] : null;
 
-        switch ($rol){
+        switch ($rol) {
             case 1:
                 $rolString = "admin";
                 break;

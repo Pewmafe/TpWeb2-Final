@@ -22,10 +22,11 @@ class ModificarUsuarioController
                 $data["usuarioAdmin"] = true;
             }
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
-            echo $this->render->render("view/modificarUsuarioView.php", $data);
+            $data["contrasenia"] = $_SESSION["contrasenia"];
+            echo $this->render->render("view/configuracionView.php", $data);
             exit();
         }
-        echo $this->render->render("view/modificarUsuarioView.php");
+        echo $this->render->render("view/configuracionView.php");
     }
 
     public function verificarQueUsuarioEsteLogeado()
@@ -53,17 +54,38 @@ class ModificarUsuarioController
                 $this->ModificarUsuarioModel->modificarNombre($nombreUsuario);
                 $data["modificacionExitosa"] = "Actualizacion exitosa del nombre";
                 $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
-                echo $this->render->render("view/modificarUsuarioView.php", $data);
+                $data["contrasenia"] = $_SESSION["contrasenia"];
+
+                echo $this->render->render("view/configuracionView.php", $data);
                 exit();
             } else {
                 $data["nombreExistente"] = "El nombre de usuario ya existe";
-                echo $this->render->render("view/modificarUsuarioView.php", $data);
+                echo $this->render->render("view/configuracionView.php", $data);
                 exit();
             }
-            echo $this->render->render("view/modificarUsuarioView.php", $data);
+            echo $this->render->render("view/configuracionView.php", $data);
             exit();
         }
 
 
+    }
+
+    public function modificarPasswordUsuario()
+    {
+        $contrasenia = $_POST["pass"];
+        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        if ($logeado) {
+            $data["login"] = true;
+            if ($_SESSION["rol"] == "admin") {
+                $data["usuarioAdmin"] = true;
+            }
+            $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
+            $data["contrasenia"] = $_SESSION["contrasenia"];
+
+            $this->ModificarUsuarioModel->modificarContrasenia($contrasenia);
+            $data["modificacionExitosa"] = "Actualizacion exitosa contra";
+            echo $this->render->render("view/configuracionView.php", $data);
+            exit();
+        }
     }
 }

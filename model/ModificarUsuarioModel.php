@@ -31,4 +31,13 @@ class ModificarUsuarioModel
         $_SESSION["nombreUsuario"] = $nombreNuevo;
     }
 
+    public function modificarContrasenia($contrasenia)
+    {
+        $nombreViejo = $_SESSION["nombreUsuario"];
+        $contraseniaEncriptada = md5($contrasenia);
+
+        $sql = "UPDATE `grupo12`.`usuario` SET `contrasenia` = '" . $contraseniaEncriptada . "' WHERE (`nombreUsuario` = '" . $nombreViejo . "')";
+        $this->bd->query($sql);
+        $_SESSION["contrasenia"] = $contrasenia;
+    }
 }
