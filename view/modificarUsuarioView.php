@@ -93,7 +93,7 @@
             </div>
         </article>
     </section>
-    
+
     <hr style="width: 90%">
     <section class="ancho row p-3">
         <article class="col-12 col-md-3">
