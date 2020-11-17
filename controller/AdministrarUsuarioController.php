@@ -46,6 +46,15 @@ class AdministrarUsuarioController
 
     }
 
+    public function darDeBajaUsuario(){
+        $nombreUsuarioAEliminar = $_POST["botonDarDeBajaUsuario"];
+
+        $this->administrarUsuarioModel->eliminarUsuario($nombreUsuarioAEliminar);
+
+        $this->ejecutar();
+
+    }
+
     public function verificarQueUsuarioEsteLogeado(){
         $logeado = isset( $_SESSION["logeado"]) ?  $_SESSION["logeado"] : null;
         if($logeado == 1){

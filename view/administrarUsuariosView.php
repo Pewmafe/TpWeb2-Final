@@ -15,7 +15,9 @@
                                 <span class="h5 font-weight-bold">Nombre de Usuario</span>: {{nombreUsuario}}
                             </p>
                             <a href="registroEmpleado" class="btn btn-primary">Hacerlo empleado</a>
-                            <a href="" class="btn btn-danger mt-2">Dar de baja usuario</a>
+                            <form class="text-center" method="post" action="administrarUsuarios/darDeBajaUsuario">
+                                <button type="submit" name="botonDarDeBajaUsuario" class="btn btn-danger mt-2" value="{{nombreUsuario}}" >Dar de baja usuario</button>
+                            </form>
                         </div>
                     </div>
                 {{/tablaUsuarios}}

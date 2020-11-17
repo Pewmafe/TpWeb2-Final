@@ -44,4 +44,11 @@ class AdministrarUsuariosModel
         $sql = "DELETE FROM empleado WHERE empleado.dni = " . $dniEmpleadoAEliminar;
         $this->bd->query($sql);
     }
+
+    public function eliminarUsuario($nombreUsuarioAEliminar){
+        $sql = "DELETE FROM usuario WHERE usuario.nombreUsuario ='" . $nombreUsuarioAEliminar."'";
+        $this->bd->query($sql);
+    }
+
+
 }
