@@ -1,4 +1,5 @@
 {{> header}}
+{{#usuarioAdmin}}
 <main>
     <section class="row justify-content-center m-3 ancho">
         <article class=" justify-content-center mt-4 ancho2">
@@ -67,4 +68,11 @@
 
     </section>
 </main>
+{{/usuarioAdmin}}
+{{^usuarioAdmin}}
+<main class="text-center">
+    <h1>ERROR 404 PAGINA NO ENCONTRADA</h1>
+    <a class="btn btn-outline-danger" href="/home">Volver al Inicio</a>
+</main>
+{{/usuarioAdmin}}
 {{> footer}}

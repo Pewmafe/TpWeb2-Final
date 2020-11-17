@@ -90,8 +90,14 @@ class Configuracion
 
     public function getAgregarVehiculoController()
     {
-        $agregarVehiculoModel = $this->getAdministrarEquiposModel();
-        return new AgregarVehiculoControllerController($this->getRender(), $agregarVehiculoModel);
+        $agregarVehiculoModel = $this->getAgregarVehiculoModel();
+        return new AgregarVehiculoController($this->getRender(), $agregarVehiculoModel);
+    }
+
+    public function getAgregarVehiculoModel()
+    {
+        $bd = $this->getDatabase();
+        return new AgregarVehiculoModel($bd);
     }
 
     public function getRegistroModel()

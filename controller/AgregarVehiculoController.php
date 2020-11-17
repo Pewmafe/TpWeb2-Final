@@ -47,29 +47,23 @@ class AgregarVehiculoController
             $patenteExistente = $this->agregarVehiculoModel->verificarPatenteExistente($patente);
 
 
-            if(!$nombreUsuarioExistente and $dniExistente){
- //               $data["dniUsuarioError"] = "El vehículo con esa patente ya está agregado";
-                echo $this->render->render("view/registroEmpleadoView.php", $data);
-                exit();
-            }elseif ($dniExistente){
-                $data["dniUsuarioError"] = "El dni de empleado ya existe";
-                echo $this->render->render("view/registroEmpleadoView.php", $data);
-                exit();
-            }elseif (!$nombreUsuarioExistente){
-                $data["nombreUsuarioError"] = "El nombre de usuario no existe";
-                echo $this->render->render("view/registroEmpleadoView.php", $data);
+            if(!$patenteExistente){
+               $data["patenteVehError"] = "El vehículo con esa patente ya está agregado";
+                echo $this->render->render("view/agregarCamion.php", $data);
                 exit();
             }
 
-            $this->agregarVehiculoModel->registrarEmpleado($dni,
-                $nombre,
-                $apellido,
-                $fechaNacimiento,
-                $tipoLicencia,
-                $rolAsignar,
-                $nombreUsuario);
 
-            $data["registroExitoso"] = true;
+            $this->agregarVehiculoModel->registrarEmpleado($patente,
+                $nroChasis,
+                $nroMotor,
+                $kilometraje,
+                $fabricacion,
+                $marca,
+                $modelo,
+                $calendarioService);
+
+            $data["agregoVehExitosamente"] = true;
             echo $this->render->render("view/home.php", $data);
         }
 

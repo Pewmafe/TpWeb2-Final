@@ -4,7 +4,7 @@
     <section class="row justify-content-center m-3 ancho">
         <article class=" justify-content-center mt-4 ancho2">
             <h3 class="text-dark mb-3">Agregar Vehículo</h3>
-            <form class="form-horizontal" role="form" action="/registroEmpleado/registroEmpleado" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" role="form" action="/agregarVehiculo/agregarVehiculo" method="post" enctype="multipart/form-data">
                 <div class="intDatos">
                     <h2>Introduzca la descripcion del vehículo.</h2>
                 </div>
@@ -19,13 +19,13 @@
                 <div class="form-group">
                     <label for="nroChasis" class="col-12 control-label">*Número de Chasis</label>
                     <div class="col-12">
-                        <input type="text" id="nroChasis" name="nroChasis" placeholder="Número de Chasis" class="form-control" required>
+                        <input type="number" id="nroChasis" name="nroChasis" placeholder="Número de Chasis" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nroMotor" class="col-12 control-label">*Número de motor</label>
                     <div class="col-12">
-                        <input type="text" id="nroMotor" name="nroMotor" placeholder="Número de motor" class="form-control" required>
+                        <input type="number" id="nroMotor" name="nroMotor" placeholder="Número de motor" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -35,33 +35,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dni" class="col-12 control-label">*Dni</label>
+                    <label for="marca" class="col-12 control-label">*Marca</label>
                     <div class="col-12">
-                        <input type="number" id="dni" name="dni" placeholder="DNI" class="form-control" required>
+                        <input type="text" id="marca" name="marca" placeholder="Marca" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="tipoLicencia" class="col-12 control-label">*Tipo de licencia</label>
+                    <label for="modelo" class="col-12 control-label">*Modelo</label>
                     <div class="col-12">
-                        <select name="tipoLicencia" id="tipoLicencia" class="custom-select form-control">
-                            <option selected disabled>-</option>
-                            <option value="auto">Auto</option>
-                            <option value="camion">Camion</option>
-                            <option value="tractor">Tractor</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="rolAsignar" class="col-12 control-label">*Rol a asignar</label>
-                    <div class="col-12">
-                        <select name="rolAsignar" id="rolAsignar" class="custom-select form-control">
-                            <option selected disabled>-</option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Supervisor</option>
-                            <option value="3">Encargado</option>
-                            <option value="4">Chofer</option>
-                            <option value="5">Mecanico</option>
-                        </select>
+                        <input type="text" id="modelo" name="modelo" placeholder="Modelo" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
