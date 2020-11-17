@@ -13,7 +13,7 @@ include_once("controller/ModificarUsuarioController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
-include_once("model/AdministrarUsuarioModel.php");
+include_once("model/AdministrarUsuariosModel.php");
 include_once("model/ModificarUsuarioModel.php");
 include_once("model/AdministrarEquiposModel.php");
 
