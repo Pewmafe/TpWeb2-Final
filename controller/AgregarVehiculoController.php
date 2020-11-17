@@ -47,14 +47,14 @@ class AgregarVehiculoController
             $patenteExistente = $this->agregarVehiculoModel->verificarPatenteExistente($patente);
 
 
-            if(!$patenteExistente){
+            if($patenteExistente){
                $data["patenteVehError"] = "El vehículo con esa patente ya está agregado";
-                echo $this->render->render("view/agregarCamion.php", $data);
+                echo $this->render->render("view/agregarCamionView.php", $data);
                 exit();
             }
 
 
-            $this->agregarVehiculoModel->registrarEmpleado($patente,
+            $this->agregarVehiculoModel->agregarVehiculo($patente,
                 $nroChasis,
                 $nroMotor,
                 $kilometraje,

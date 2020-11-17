@@ -9,8 +9,7 @@
                     <h2>Introduzca la descripcion del vehículo.</h2>
                 </div>
                 <div class="form-group">
-                    <p class="text-danger">{{nombreUsuarioError}}</p>
-                    <p class="text-danger">{{dniUsuarioError}}</p>
+                    <p class="text-danger">{{patenteVehError}}</p>
                     <label for="patente" class="col-12 control-label">*Patente</label>
                     <div class="col-12">
                         <input type="text" id="patente" name="patente" placeholder="Patente" class="form-control" required>
@@ -26,6 +25,12 @@
                     <label for="nroMotor" class="col-12 control-label">*Número de motor</label>
                     <div class="col-12">
                         <input type="number" id="nroMotor" name="nroMotor" placeholder="Número de motor" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="kilometraje" class="col-12 control-label">*Kilometraje</label>
+                    <div class="col-12">
+                        <input type="number" id="kilometraje" name="kilometraje" placeholder="Kilometraje" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -47,11 +52,17 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="calendarioService" class="col-12 control-label">*Calendario de Service</label>
+                    <div class="col-12">
+                        <input type="date" id="calendarioService" name="calendarioService" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="col-sm-9 col-sm-offset-3">
                         <span class="help-block alert alert-info">*Campos requeridos</span>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                <button type="submit" class="btn btn-primary btn-block">Agregar Vehículo</button>
             </form>
         </article>
 
