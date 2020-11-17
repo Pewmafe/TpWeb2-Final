@@ -2,11 +2,11 @@
 <main>
     <section class="ancho p-3 row">
         <article class="col-12 col-md-3">
-            <h4 class=""><i class="fas fa-caret-right"></i> Configuracion de Usuario</h4>
+            <h4><i class="fas fa-caret-right"></i> Configuracion de Usuario</h4>
             <h6 class="text-danger">{{nombreExistente}}</h6>
             <h6 class="text-success">{{modificacionExitosa}}</h6>
         </article>
-        <article class="col-12 col-md-9 pt-4  justify-content-between">
+        <article class="col-12 col-md-9 pt-4">
             <div class="row border-bottom">
                 <h5 class="col-4">Nombre de Usuario: </h5>
                 <h5 class="col-4">{{nombreUsuario}}</h5>
@@ -91,6 +91,16 @@
                     </div>
                 </div>
             </div>
+        </article>
+    </section>
+    
+    <hr style="width: 90%">
+    <section class="ancho row p-3">
+        <article class="col-12 col-md-3">
+            <h4><i class="fas fa-caret-right"></i> Configuracion de Empleado</h4>
+        </article>
+        <article class="col-12 col-md-9 pt-4">
+
         </article>
     </section>
 </main>
