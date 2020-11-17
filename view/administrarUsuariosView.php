@@ -15,9 +15,7 @@
                                 <span class="h5 font-weight-bold">Nombre de Usuario</span>: {{nombreUsuario}}
                             </p>
                             <a href="registroEmpleado" class="btn btn-primary">Hacerlo empleado</a>
-                            <form class="text-center" method="post" action="administrarUsuarios/darDeBajaUsuario">
-                                <button type="submit" name="botonDarDeBajaUsuario" class="btn btn-danger mt-2" value="{{id}}" >Dar de baja usuario</button>
-                            </form>
+                            <a type="button" class="btn btn-danger mt-2 botonDarDeBajaUsuario" data-toggle="modal" data-target="#darDeBajaUsuarioModal" data-id="'{{id}}'">Dar de baja usuario</a>
                         </div>
                     </div>
                 {{/tablaUsuarios}}
@@ -29,13 +27,13 @@
                     <div class="card mb-4 p-3 bg-dark">
                         <h3 class="text-center border-bottom border-secondary text-light">Descripcion</h3>
                         <p class="text-light">
+                            <span class="h5 font-weight-bold">Nombre de usuario </span>: {{nombreUsuario}}
+                        </p>
+                        <p class="text-light">
                             <span class="h5 font-weight-bold">Nombre </span>: {{nombre}}
                         </p>
                         <p class="text-light">
                             <span class="h5 font-weight-bold">Apellido </span>: {{apellido}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Nombre de usuario </span>: {{nombreUsuario}}
                         </p>
                         <p class="text-light">
                             <span class="h5 font-weight-bold">DNI </span>: {{dni}}
@@ -46,15 +44,56 @@
                         <p class="text-light">
                             <span class="h5 font-weight-bold">Rol </span>: {{descripcion}}
                         </p>
-                        <form class="text-center" method="post" action="administrarUsuarios/darDeBajaEmpleado">
-                            <button type="submit" name="botonDarDeBajaEmpleado" class="btn btn-danger mt-2" value="{{dni}}" >Dar de baja empleado</button>
-                        </form>
+                        <a type="button" class="btn btn-danger mt-2 botonDarDeBajaEmpleado" data-toggle="modal" data-target="#darDeBajaEmpleadoModal" data-id="'{{dni}}'">Dar de baja empleado</a>
                     </div>
                 </div>
                 {{/tablaUsuariosEmpleados}}
             </div>
         </article>
-
+    </section>
+    <section>
+        <div class="modal fade" id="darDeBajaUsuarioModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" >
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Dar de baja usuario</h5>
+                        <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-dark">
+                        ¿Seguro que desea dar de baja al usuario?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                        <form  method="post" action="administrarUsuarios/darDeBajaUsuario">
+                            <button class="btn btn-danger" id="botonDarDeBajaUsuarioModal" name="botonDarDeBajaUsuarioModal">Baja</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="darDeBajaEmpleadoModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" >
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Dar de baja empleado</h5>
+                        <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-dark">
+                        ¿Seguro que desea dar de baja al empleado?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                        <form  method="post" action="administrarUsuarios/darDeBajaEmpleado">
+                            <button class="btn btn-danger" id="botonDarDeBajaEmpleadoModal" name="botonDarDeBajaEmpleadoModal">Baja</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
 {{/usuarioAdmin}}
