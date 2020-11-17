@@ -10,12 +10,14 @@ include_once("controller/RegistroEmpleadoController.php");
 include_once("controller/AdministrarUsuarioController.php");
 include_once("controller/AdministrarEquiposController.php");
 include_once("controller/ModificarUsuarioController.php");
+include_once("controller/AgregarVehiculoController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
 include_once("model/AdministrarUsuariosModel.php");
 include_once("model/ModificarUsuarioModel.php");
 include_once("model/AdministrarEquiposModel.php");
+include_once("model/AgregarVehiculoModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");

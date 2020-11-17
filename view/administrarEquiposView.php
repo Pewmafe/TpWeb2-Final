@@ -4,7 +4,7 @@
     <section class="row justify-content-center m-3 ancho">
         <article class=" justify-content-center mt-4 ancho2">
             <h1>admin tractores</h1>
-            <a href="#" class="btn btn-primary">Agregar Vehículo</a>
+            <a href="/agregarVehiculo" class="btn btn-primary">Agregar Vehículo</a>
             <div class="row">
                 {{#tablaCamiones}}
                 <div class="col-12 col-md-6 col-lg-4 p-2">

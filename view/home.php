@@ -43,6 +43,9 @@
     {{#registroExitoso}}
     <h3 class="text-success text-center">Se registro con exito.</h3>
     {{/registroExitoso}}
+    {{#agregoVehExitosamente}}
+    <h3 class="text-success text-center">Se agregó el vehículo exitosamente.</h3>
+    {{/agregoVehExitosamente}}
     <div class="text-center p-4">
         <h2 class="text-center d-inline-block border-bottom text-center">Bienvenido a Camionardo</h2>
     </div>
