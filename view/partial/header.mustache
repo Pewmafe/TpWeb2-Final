@@ -23,7 +23,7 @@
         <button class="navbar-toggler text-white" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <i class="fas fa-bars"></i>
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -33,10 +33,14 @@
                 </li>
                 {{#usuarioAdmin}}
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/administrarUsuario">administrar usuarios</a>
+                        <a class="nav-link text-white" href="/administrarUsuario">Administraci&oacute;n Usuarios</a>
                     </li>
                 {{/usuarioAdmin}}
                 {{#login}}
+                    <li class="nav-item">
+                        <a class="nav-link text-white "
+                           href="/modificarUsuario">Configuracion</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-white btn btn-outline-danger"
                            href="/login/deslogearse">Cerrar Sesion</a>

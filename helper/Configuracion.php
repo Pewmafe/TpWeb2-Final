@@ -8,10 +8,12 @@ include_once("controller/LoginController.php");
 include_once("controller/RegistroController.php");
 include_once("controller/RegistroEmpleadoController.php");
 include_once("controller/AdministrarUsuarioController.php");
+include_once("controller/ModificarUsuarioController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
 include_once("model/AdministrarUsuarioModel.php");
+include_once("model/ModificarUsuarioModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -69,13 +71,19 @@ class Configuracion
     public function getRegistroEmpleadoController()
     {
         $registroModel = $this->getRegistroModel();
-        return new RegistroEmpleadoController($this->getRender(),$registroModel);
+        return new RegistroEmpleadoController($this->getRender(), $registroModel);
     }
 
     public function getAdministrarUsuarioController()
     {
         $administrarUsuarioModel = $this->getAdministrarUsuarioModel();
         return new AdministrarUsuarioController($this->getRender(), $administrarUsuarioModel);
+    }
+
+    public function getModificarUsuarioController()
+    {
+        $modificarUsuarioModel = $this->getModificarUsuarioModel();
+        return new ModificarUsuarioController($this->getRender(), $modificarUsuarioModel);
     }
 
     public function getRegistroModel()
@@ -94,6 +102,12 @@ class Configuracion
     {
         $bd = $this->getDatabase();
         return new AdministrarUsuarioModel($bd);
+    }
+
+    private function getModificarUsuarioModel()
+    {
+        $bd = $this->getDatabase();
+        return new ModificarUsuarioModel($bd);
     }
 
 }
