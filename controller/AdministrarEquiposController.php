@@ -4,10 +4,12 @@
 class AdministrarEquiposController
 {
     private $render;
+    private $administrarEquiposModel;
 
-    public function __construct($render)
+    public function __construct($render, $administrarEquiposModel)
     {
         $this->render = $render;
+        $this->administrarEquiposModel = $administrarEquiposModel;
     }
 
     public function ejecutar()
@@ -18,6 +20,11 @@ class AdministrarEquiposController
             if($_SESSION["rol"] == "admin"){
                 $data["usuarioAdmin"] = true;
             }
+            $tablaCamiones = $this->administrarEquiposModel->obtenerCamiones();
+            $tablaAcoplados = $this->administrarEquiposModel->obtenerAcoplados();
+
+            $data['tablaCamiones'] = $tablaCamiones;
+            $data['tablaAcoplados'] = $tablaAcoplados;
             echo $this->render->render("view/administrarEquiposView.php", $data);
             exit();
         }

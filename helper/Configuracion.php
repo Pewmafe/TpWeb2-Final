@@ -13,6 +13,7 @@ include_once("controller/AdministrarEquiposController.php");
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
 include_once("model/AdministrarUsuarioModel.php");
+include_once("model/AdministrarEquiposModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -81,8 +82,14 @@ class Configuracion
 
     public function getAdministrarEquiposController()
     {
-      //  $administrarUsuarioModel = $this->getAdministrarUsuarioModel();
-        return new AdministrarEquiposController($this->getRender());
+        $administrarEquiposModel = $this->getAdministrarEquiposModel();
+        return new AdministrarEquiposController($this->getRender(), $administrarEquiposModel);
+    }
+
+    public function getAgregarVehiculoController()
+    {
+        $agregarVehiculoModel = $this->getAdministrarEquiposModel();
+        return new AgregarVehiculoControllerController($this->getRender(), $agregarVehiculoModel);
     }
 
     public function getRegistroModel()
@@ -103,4 +110,9 @@ class Configuracion
         return new AdministrarUsuarioModel($bd);
     }
 
+    public function getAdministrarEquiposModel()
+    {
+        $bd = $this->getDatabase();
+        return new AdministrarEquiposModel($bd);
+    }
 }
