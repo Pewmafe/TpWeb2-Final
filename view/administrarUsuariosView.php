@@ -16,7 +16,7 @@
                             </p>
                             <a href="registroEmpleado" class="btn btn-primary">Hacerlo empleado</a>
                             <form class="text-center" method="post" action="administrarUsuarios/darDeBajaUsuario">
-                                <button type="submit" name="botonDarDeBajaUsuario" class="btn btn-danger mt-2" value="{{nombreUsuario}}" >Dar de baja usuario</button>
+                                <button type="submit" name="botonDarDeBajaUsuario" class="btn btn-danger mt-2" value="{{id}}" >Dar de baja usuario</button>
                             </form>
                         </div>
                     </div>

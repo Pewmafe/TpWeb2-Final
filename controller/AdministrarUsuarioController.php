@@ -47,9 +47,9 @@ class AdministrarUsuarioController
     }
 
     public function darDeBajaUsuario(){
-        $nombreUsuarioAEliminar = $_POST["botonDarDeBajaUsuario"];
+        $idUsuarioAEliminar = $_POST["botonDarDeBajaUsuario"];
 
-        $this->administrarUsuarioModel->eliminarUsuario($nombreUsuarioAEliminar);
+        $this->administrarUsuarioModel->eliminarUsuario($idUsuarioAEliminar);
 
         $this->ejecutar();
 
