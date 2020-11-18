@@ -1,5 +1,8 @@
 {{> header}}
 <main>
+    <section>
+        <h3 class="text-center p-2">Bienvenido a la Configuraci&oacute;n</h3>
+    </section>
     <section class="ancho p-3 row">
         <article class="col-12 col-md-3">
             <h4><i class="fas fa-caret-right"></i> Configuracion de Usuario</h4>
@@ -44,12 +47,14 @@
                                         <label for="nombre" class="control-label">Nombre de usuario actual:
                                             {{nombreUsuario}}</label>
                                         <div class="col-12">
-                                            <input type="text" name="nombre" id="nombre" class="form-control bg-dark text-white"
+                                            <input type="text" name="nombre" id="nombre"
+                                                   class="form-control bg-dark text-white"
                                                    placeholder="Ingrese el nuevo nombre de usuario">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                            Cerrar
                                         </button>
                                         <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
                                     </div>
@@ -87,12 +92,14 @@
                                         <label for="pass" class="control-label">Contrase&ntilde;a de usuario actual:
                                             {{contrasenia}}</label>
                                         <div class="col-12">
-                                            <input type="password" name="pass" id="pass" class="form-control bg-dark text-white"
+                                            <input type="password" name="pass" id="pass"
+                                                   class="form-control bg-dark text-white"
                                                    placeholder="Ingrese su nueva contrase&ntilde;a de usuario">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                            Cerrar
                                         </button>
                                         <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
                                     </div>
@@ -165,7 +172,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                            Cerrar
                                         </button>
                                         <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
                                     </div>
@@ -210,7 +218,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                            Cerrar
                                         </button>
                                         <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
                                     </div>
@@ -263,7 +272,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                            Cerrar
                                         </button>
                                         <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
                                     </div>
@@ -310,7 +320,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                            Cerrar
                                         </button>
                                         <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
                                     </div>
@@ -359,7 +370,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                            Cerrar
                                         </button>
                                         <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
                                     </div>
