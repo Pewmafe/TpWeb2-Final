@@ -23,10 +23,10 @@ class ModificarUsuarioController
             }
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
             $data["contrasenia"] = $_SESSION["contrasenia"];
-            echo $this->render->render("view/configuracionView.php", $data);
+            echo $this->render->render("view/modificarUsuarioView.php", $data);
             exit();
         }
-        echo $this->render->render("view/configuracionView.php");
+        echo $this->render->render("view/modificarUsuarioView.php");
     }
 
     public function verificarQueUsuarioEsteLogeado()
@@ -56,14 +56,14 @@ class ModificarUsuarioController
                 $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
                 $data["contrasenia"] = $_SESSION["contrasenia"];
 
-                echo $this->render->render("view/configuracionView.php", $data);
+                echo $this->render->render("view/modificarUsuarioView.php", $data);
                 exit();
             } else {
                 $data["nombreExistente"] = "El nombre de usuario ya existe";
-                echo $this->render->render("view/configuracionView.php", $data);
+                echo $this->render->render("view/modificarUsuarioView.php", $data);
                 exit();
             }
-            echo $this->render->render("view/configuracionView.php", $data);
+            echo $this->render->render("view/modificarUsuarioView.php", $data);
             exit();
         }
 
@@ -84,7 +84,7 @@ class ModificarUsuarioController
 
             $this->ModificarUsuarioModel->modificarContrasenia($contrasenia);
             $data["modificacionExitosa"] = "Actualizacion exitosa contra";
-            echo $this->render->render("view/configuracionView.php", $data);
+            echo $this->render->render("view/modificarUsuarioView.php", $data);
             exit();
         }
     }
