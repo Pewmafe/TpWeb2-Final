@@ -44,7 +44,7 @@ class ModificarUsuarioModel
 
     public function modificarNombreEmpleado($nombre)
     {
-        $dni = $_SESSION["dni"];
+        $dni = $_SESSION["dniEmpleado"];
         $sql = "UPDATE `grupo12`.`empleado` SET `nombre` = '" . $nombre . "' WHERE (`dni` = '" . $dni . "')";
         $this->bd->query($sql);
         $_SESSION["nombreEmpleado"] = $nombre;
@@ -53,10 +53,35 @@ class ModificarUsuarioModel
 
     public function modificarApellidoEmpleado($apellido)
     {
-        $dni = $_SESSION["dni"];
+        $dni = $_SESSION["dniEmpleado"];
         $sql = "UPDATE `grupo12`.`empleado` SET `apellido` = '" . $apellido . "' WHERE (`dni` = '" . $dni . "')";
         $this->bd->query($sql);
         $_SESSION["apellidoEmpleado"] = $apellido;
+
+    }
+
+    public function modificarLicenciaEmpleado($licencia)
+    {
+        $dni = $_SESSION["dniEmpleado"];
+        $sql = "UPDATE `grupo12`.`empleado` SET `tipo_de_licencia` = '" . $licencia . "' WHERE (`dni` = '" . $dni . "')";
+        $this->bd->query($sql);
+        $_SESSION["licenciaEmpleado"] = $licencia;
+
+    }
+    public function modificarDniEmpleado($dniEmpleado)
+    {
+        $dni = $_SESSION["dniEmpleado"];
+        $sql = "UPDATE `grupo12`.`empleado` SET `tipo_de_licencia` = '" . $dniEmpleado . "' WHERE (`dni` = '" . $dni . "')";
+        $this->bd->query($sql);
+        $_SESSION["dniEmpleado"] = $dniEmpleado;
+
+    }
+    public function modificarNacimientoEmpleado($nacimiento)
+    {
+        $dni = $_SESSION["dniEmpleado"];
+        $sql = "UPDATE `grupo12`.`empleado` SET `nacimiento` = '" . $nacimiento . "' WHERE (`dni` = '" . $dni . "')";
+        $this->bd->query($sql);
+        $_SESSION["nacimientoEmpleado"] = $nacimiento;
 
     }
 }

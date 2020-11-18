@@ -20,10 +20,12 @@ class LoginModel
                 $_SESSION["nombreUsuario"] = $nombre;
                 $_SESSION["logeado"] = 1;
                 $_SESSION["contrasenia"] = $contrasenia;
-                $_SESSION["dni"] = $this->obtenerDniEmpleado($nombre);
                 $_SESSION["rol"] = $this->obtenerRolUsuario($nombre);
+                $_SESSION["dniEmpleado"] = $this->obtenerDniEmpleado($nombre);
                 $_SESSION["nombreEmpleado"] = $this->obtenerNombreEmpleado($nombre);
                 $_SESSION["apellidoEmpleado"] = $this->obtenerApellidoEmpleado($nombre);
+                $_SESSION["licenciaEmpleado"] = $this->obtenerLicenciaEmpleado($nombre);
+                $_SESSION["nacimientoEmpleado"] = $this->obtenerNacimientoEmpleado($nombre);
                 return true;
             }
         }
@@ -65,9 +67,9 @@ class LoginModel
         $sql = "SELECT dni FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
         $resultado = $this->bd->query($sql);
         $arrayRol = $resultado->fetch_assoc();
-        $tipo = isset($arrayRol["dni"]) ? $arrayRol["dni"] : null;
+        $result = isset($arrayRol["dni"]) ? $arrayRol["dni"] : null;
 
-        return $tipo;
+        return $result;
     }
 
     public function obtenerNombreEmpleado($nombreUsuario)
@@ -80,6 +82,7 @@ class LoginModel
         return $result;
 
     }
+
     public function obtenerApellidoEmpleado($nombreUsuario)
     {
         $sql = "SELECT apellido FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
@@ -91,4 +94,25 @@ class LoginModel
 
     }
 
+    public function obtenerLicenciaEmpleado($nombreUsuario)
+    {
+        $sql = "SELECT tipo_de_licencia FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $resultado = $this->bd->query($sql);
+        $arrayRol = $resultado->fetch_assoc();
+        $result = isset($arrayRol["tipo_de_licencia"]) ? $arrayRol["tipo_de_licencia"] : null;
+
+        return $result;
+
+    }
+
+    public function obtenerNacimientoEmpleado($nombreUsuario)
+    {
+        $sql = "SELECT nacimiento FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $resultado = $this->bd->query($sql);
+        $arrayRol = $resultado->fetch_assoc();
+        $result = isset($arrayRol["nacimiento"]) ? $arrayRol["nacimiento"] : null;
+
+        return $result;
+
+    }
 }
