@@ -38,4 +38,20 @@ class AdministrarEquiposController
         }
         return false;
     }
+
+    public function eliminarVehiculo(){
+        $patenteVehAEliminar = $_POST["botonDarDeBajaCamionModal"];
+
+        $this->administrarEquiposModel->eliminarVehiculo($patenteVehAEliminar);
+
+        $this->ejecutar();
+    }
+
+    public function eliminarAcoplado(){
+        $patenteAcopAEliminar = $_POST["botonDarDeBajaAcopladoModal"];
+
+        $this->administrarEquiposModel->eliminarAcoplado($patenteAcopAEliminar);
+
+        $this->ejecutar();
+    }
 }

@@ -84,7 +84,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-                        <form  method="post" action="">
+                        <form  method="post" action="/administrarEquipos/eliminarVehiculo">
                             <button class="btn btn-danger" id="botonDarDeBajaCamionModal" name="botonDarDeBajaCamionModal">Baja</button>
                         </form>
                     </div>
@@ -105,7 +105,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-                        <form  method="post" action="">
+                        <form  method="post" action="/administrarEquipos/eliminarAcoplado">
                             <button class="btn btn-danger" id="botonDarDeBajaAcopladoModal" name="botonDarDeBajaAcopladoModal">Baja</button>
                         </form>
                     </div>
