@@ -52,7 +52,7 @@
 
                     <div class="form-group">
                         {{#nombreUsuarioExistente}}
-                        <h5 class="text-danger">Nombre de usuario ya existente</h5>
+                            <h5 class="text-danger">Nombre de usuario ya existente</h5>
                         {{/nombreUsuarioExistente}}
                         <label for="NombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
                         <div class="col-12">

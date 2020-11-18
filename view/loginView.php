@@ -5,7 +5,7 @@
             <h3 class="text-dark mb-3">Iniciar Sesion</h3>
             <form action="/login/login" class="login" name="form" id="form" method="post">
                 {{#loginError}}
-                <h5 class="text-danger">Error nombre de usuario o contrasenia </h5>
+                    <h5 class="text-danger">Error nombre de usuario o contrasenia </h5>
                 {{/loginError}}
                 <div class="form-group justify-content-center input-group">
                     <div class="input-group-append">

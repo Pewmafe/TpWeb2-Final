@@ -41,20 +41,20 @@
         </div>
     </section>
     {{#registroExitoso}}
-    <h5 class="text-success text-center">Se registro con exito.</h5>
+        <h5 class="text-success text-center">Se registro con exito.</h5>
     {{/registroExitoso}}
     {{#agregoVehExitosamente}}
-    <h5 class="text-success text-center">Se agregó el vehículo exitosamente.</h5>
+        <h5 class="text-success text-center">Se agregó el vehículo exitosamente.</h5>
     {{/agregoVehExitosamente}}
     {{#agregoAcopladoExitosamente}}
-    <h5 class="text-success text-center">Se agregó el acoplado exitosamente.</h5>
+        <h5 class="text-success text-center">Se agregó el acoplado exitosamente.</h5>
     {{/agregoAcopladoExitosamente}}
     <div class="text-center p-4">
         <h2 class="text-center d-inline-block border-bottom text-center">Bienvenido a Camionardo</h2>
     </div>
     <section class="row justify-content-center m-3 ancho ">
         <article class="col-12 col-md-6 border-right borde-login">
-            
+
             <p class="p-1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis repellat perferendis
                 nesciunt laudantium non, at quisquam suscipit natus obcaecati autem necessitatibus ut a. Aliquid
                 fugit animi hic voluptatum reprehenderit amet!</p>
