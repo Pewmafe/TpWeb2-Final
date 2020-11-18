@@ -43,7 +43,7 @@
             </div>
 
             <h1>admin acoplados</h1>
-            <a href="#" class="btn btn-primary">Agregar Acoplado</a>
+            <a href="/agregarAcoplado" class="btn btn-primary">Agregar Acoplado</a>
             <div class="row">
                 {{#tablaAcoplados}}
                 <div class="col-12 col-md-6 col-lg-4 p-2">

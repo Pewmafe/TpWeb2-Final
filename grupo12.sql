@@ -271,9 +271,9 @@ values('ba531aa', 12, 102, 18000, 20191108, 'Scania', 'g150', 20200201, null, nu
 
 
 insert into tipo_acoplado(id, descripcion)
-values (1, 'Araña'), (3, 'Jaula');
+values (1, 'Araña'), (2, 'CarCarrier'), (3, 'Jaula'), (4, 'Granel'), (5, 'Tanque');
 
 
 insert into acoplado(patente, chasis, tipo)
 values('aa159yy', 123789, 1), ('ab456uu', 456789, 3);
-select * from usuario;
+

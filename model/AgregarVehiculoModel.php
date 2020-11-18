@@ -15,8 +15,8 @@ class AgregarVehiculoModel
 
         $sql = "INSERT INTO grupo12.vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, 
                                                         marca, modelo, calendario_service)
-            VALUES ('".$patente."',".$nro_chasis.",".$nro_motor.",".$kilometraje.",".$fabricacion.",
-                     '".$marca."','".$modelo."',".$calendario_service.")";
+                VALUES ('".$patente."',".$nro_chasis.",".$nro_motor.",".$kilometraje.",".$fabricacion.",
+                         '".$marca."','".$modelo."',".$calendario_service.")";
         return $this->bd->query($sql);
     }
 

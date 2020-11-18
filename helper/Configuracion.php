@@ -11,6 +11,7 @@ include_once("controller/AdministrarUsuarioController.php");
 include_once("controller/AdministrarEquiposController.php");
 include_once("controller/ModificarUsuarioController.php");
 include_once("controller/AgregarVehiculoController.php");
+include_once("controller/AgregarAcopladoController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
@@ -18,6 +19,7 @@ include_once("model/AdministrarUsuariosModel.php");
 include_once("model/ModificarUsuarioModel.php");
 include_once("model/AdministrarEquiposModel.php");
 include_once("model/AgregarVehiculoModel.php");
+include_once("model/AgregarAcopladoModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -101,6 +103,18 @@ class Configuracion
     {
         $agregarVehiculoModel = $this->getAgregarVehiculoModel();
         return new AgregarVehiculoController($this->getRender(), $agregarVehiculoModel);
+    }
+
+    public function getAgregarAcopladoController()
+    {
+        $agregarAcopladoModel = $this->getAgregarAcopladoModel();
+        return new AgregarAcopladoController($this->getRender(), $agregarAcopladoModel);
+    }
+
+    public function getAgregarAcopladoModel()
+    {
+        $bd = $this->getDatabase();
+        return new AgregarAcopladoModel($bd);
     }
 
     public function getAgregarVehiculoModel()
