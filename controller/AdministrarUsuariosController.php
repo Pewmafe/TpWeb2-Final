@@ -1,7 +1,7 @@
 <?php
 
 
-class AdministrarUsuarioController
+class AdministrarUsuariosController
 {
     private $render;
     private $administrarUsuarioModel;
@@ -20,15 +20,14 @@ class AdministrarUsuarioController
             if($_SESSION["rol"] == "admin"){
                 $data["usuarioAdmin"] = true;
             }
+            $data["bajaUsuario"]= isset($_GET["bajaUsuario"]) ? $_GET["bajaUsuario"] : false;
+            $data["bajaEmpleado"]= isset($_GET["bajaEmpleado"]) ? $_GET["bajaEmpleado"] : false;
 
             $tablaUsuarios = $this->administrarUsuarioModel->obtenerUsuariosNoEmpleados();
             $tablaUsuariosEmpleados = $this->administrarUsuarioModel->obtenerUsuariosEmpleados();
 
             $data["tablaUsuarios"] = $tablaUsuarios;
             $data["tablaUsuariosEmpleados"] = $tablaUsuariosEmpleados;
-            /*for ($i = 0; $i < sizeof($tablaUsuarios); $i++) {
-                $data["tablaUsuarios"]["nombreUsuario"] = $tablaUsuarios[$i]["nombreUsuario"];
-            }*/
 
 
             echo $this->render->render("view/administrarUsuariosView.php", $data);
@@ -42,8 +41,8 @@ class AdministrarUsuarioController
 
         $this->administrarUsuarioModel->eliminarEmpleado($dniEmpleadoAEliminar);
 
-        $this->ejecutar();
-
+        header("Location: /administrarUsuarios?bajaEmpleado=true");
+        exit();
     }
 
     public function darDeBajaUsuario(){
@@ -51,8 +50,8 @@ class AdministrarUsuarioController
 
         $this->administrarUsuarioModel->eliminarUsuario($idUsuarioAEliminar);
 
-        $this->ejecutar();
-
+        header("Location: /administrarUsuarios?bajaUsuario=true");
+        exit();
     }
 
     public function verificarQueUsuarioEsteLogeado(){

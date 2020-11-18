@@ -41,13 +41,13 @@
         </div>
     </section>
     {{#registroExitoso}}
-    <h3 class="text-success text-center">Se registro con exito.</h3>
+    <h5 class="text-success text-center">Se registro con exito.</h5>
     {{/registroExitoso}}
     {{#agregoVehExitosamente}}
-    <h3 class="text-success text-center">Se agregó el vehículo exitosamente.</h3>
+    <h5 class="text-success text-center">Se agregó el vehículo exitosamente.</h5>
     {{/agregoVehExitosamente}}
     {{#agregoAcopladoExitosamente}}
-    <h3 class="text-success text-center">Se agregó el acoplado exitosamente.</h3>
+    <h5 class="text-success text-center">Se agregó el acoplado exitosamente.</h5>
     {{/agregoAcopladoExitosamente}}
     <div class="text-center p-4">
         <h2 class="text-center d-inline-block border-bottom text-center">Bienvenido a Camionardo</h2>

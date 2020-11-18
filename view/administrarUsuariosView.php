@@ -4,7 +4,12 @@
     <section class="row justify-content-center m-3 ancho">
         <article class=" justify-content-center mt-4 ancho2">
             <h2 class="text-dark mb-3 text-center">Administrar todos los usuarios</h2>
-            <p>{{registroEmpleadoExitoso}}</p>
+            {{#bajaUsuario}}
+            <h5 class="text-success">Se dio de baja el usuario con exito.</h5>
+            {{/bajaUsuario}}
+            {{#bajaEmpleado}}
+            <h5 class="text-success">Se dio de baja el empleado con exito.</h5 >
+            {{/bajaEmpleado}}
             <h3 class="text-dark mb-3">Administrar usuarios</h3>
             <div class="row">
                 {{#tablaUsuarios}}
