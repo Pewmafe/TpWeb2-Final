@@ -20,7 +20,10 @@ class LoginModel
                 $_SESSION["nombreUsuario"] = $nombre;
                 $_SESSION["logeado"] = 1;
                 $_SESSION["contrasenia"] = $contrasenia;
+                $_SESSION["dni"] = $this->obtenerDniEmpleado($nombre);
                 $_SESSION["rol"] = $this->obtenerRolUsuario($nombre);
+                $_SESSION["nombreEmpleado"] = $this->obtenerNombreEmpleado($nombre);
+                $_SESSION["apellidoEmpleado"] = $this->obtenerApellidoEmpleado($nombre);
                 return true;
             }
         }
@@ -55,6 +58,37 @@ class LoginModel
                 break;
         }
         return $rolString;
+    }
+
+    public function obtenerDniEmpleado($nombreUsuario)
+    {
+        $sql = "SELECT dni FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $resultado = $this->bd->query($sql);
+        $arrayRol = $resultado->fetch_assoc();
+        $tipo = isset($arrayRol["dni"]) ? $arrayRol["dni"] : null;
+
+        return $tipo;
+    }
+
+    public function obtenerNombreEmpleado($nombreUsuario)
+    {
+        $sql = "SELECT nombre FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $resultado = $this->bd->query($sql);
+        $arrayRol = $resultado->fetch_assoc();
+        $result = isset($arrayRol["nombre"]) ? $arrayRol["nombre"] : null;
+
+        return $result;
+
+    }
+    public function obtenerApellidoEmpleado($nombreUsuario)
+    {
+        $sql = "SELECT apellido FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $resultado = $this->bd->query($sql);
+        $arrayRol = $resultado->fetch_assoc();
+        $result = isset($arrayRol["apellido"]) ? $arrayRol["apellido"] : null;
+
+        return $result;
+
     }
 
 }
