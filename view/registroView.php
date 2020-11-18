@@ -77,9 +77,9 @@
                         </div>
                     </div>-->
                     <div class="form-group">
-                        {{#nombreUsuarioError}}
-                        <p class="text-danger">Nombre de usuario ya existente</p>
-                        {{/nombreUsuarioError}}
+                        {{#nombreUsuarioExistente}}
+                        <h5 class="text-danger">Nombre de usuario ya existente</h5>
+                        {{/nombreUsuarioExistente}}
                         <label for="NombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
                         <div class="col-12">
                             <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>

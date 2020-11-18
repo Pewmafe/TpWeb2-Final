@@ -14,7 +14,9 @@ class LoginController
 
     public function ejecutar()
     {
-        echo $this->render->render("view/loginView.php");
+        $data["loginError"]= isset($_GET["loginError"]) ? $_GET["loginError"] : false;
+
+        echo $this->render->render("view/loginView.php", $data);
     }
 
     public function login()
@@ -24,22 +26,16 @@ class LoginController
         $loginExitoso = $this->loginModel->logearUsuario($nombreUsuario, $password);
 
         if(!$loginExitoso){
-            $data["loginError"] = "Usuario o contraseña incorrecta";
-            echo $this->render->render("view/loginView.php", $data);
+            header("Location: /login?loginError=true");
             exit();
         }
-        $data["login"] = $loginExitoso;
-
-        if($_SESSION["rol"] == "admin"){
-            $data["usuarioAdmin"] = true;
-        }
-
-        echo $this->render->render("view/home.php", $data);
+        header("Location: /");
     }
 
     public function deslogearse()
     {
         session_destroy();
-        echo $this->render->render("view/home.php");
+        header("Location: /");
+        exit();
     }
 }

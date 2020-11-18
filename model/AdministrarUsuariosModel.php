@@ -47,6 +47,9 @@ class AdministrarUsuariosModel
     }
 
     public function eliminarUsuario($idUsuarioAEliminar){
+        $queryNoFijarseForeignKey = "SET FOREIGN_KEY_CHECKS=0";
+        $this->bd->query($queryNoFijarseForeignKey);
+
         //sacar id maximo del momento
         $queryIdMaximo = "SELECT MAX(id) as max_id FROM usuario";
         $resultadoQuery = $this->bd->query($queryIdMaximo);
@@ -79,6 +82,9 @@ class AdministrarUsuariosModel
 
         $queryResetearAutoIncremental = "ALTER TABLE usuario AUTO_INCREMENT = ".$idMaximo["max_id"] ;
         $this->bd->query($queryResetearAutoIncremental);
+
+        $queryFijarseForeignKey = "SET FOREIGN_KEY_CHECKS=1";
+        $this->bd->query($queryNoFijarseForeignKey);
     }
 
 
