@@ -35,7 +35,6 @@
                             <span class="h5 font-weight-bold">Clendario de Service</span>: {{calendario_service}}
                         </p>
                         <a href="#" class="btn btn-primary">Modificar Camion</a>
-                        <a href="#" class="btn btn-secondary mt-2">Dar de baja Camion</a>
                         <a type="button" class="btn btn-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
                     </div>
                 </div>
@@ -59,7 +58,6 @@
                             <span class="h5 font-weight-bold">Tipo</span>: {{descripcion}}
                         </p>
                         <a href="#" class="btn btn-primary">Modificar Camion</a>
-                        <a href="" class="btn btn-secondary mt-2">Dar de baja acoplado</a>
                         <a type="button" class="btn btn-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
                     </div>
                 </div>
