@@ -23,9 +23,10 @@ class ModificarUsuarioController
             }
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
             $data["contrasenia"] = $_SESSION["contrasenia"];
-            $data["dni"] = isset($_SESSION["dni"]) ? $_SESSION["dni"] : false;;
-            $data["nombreEmpleado"] = isset($_SESSION["nombreEmpleado"]) ? $_SESSION["nombreEmpleado"] : false;;
-            $data["apellidoEmpleado"] = isset($_SESSION["apellidoEmpleado"]) ? $_SESSION["apellidoEmpleado"] : false;;
+            $data["dni"] = isset($_SESSION["dni"]) ? $_SESSION["dni"] : false;
+            $data["nombreEmpleado"] = isset($_SESSION["nombreEmpleado"]) ? $_SESSION["nombreEmpleado"] : false;
+            $data["apellidoEmpleado"] = isset($_SESSION["apellidoEmpleado"]) ? $_SESSION["apellidoEmpleado"] : false;
+            $data["licenciaEmpleado"] = isset($_SESSION["licenciaEmpleado"]) ? $_SESSION["licenciaEmpleado"] : false;
 
             $data["nombreExistente"] = isset($_GET["nombreExistente"]) ? $_GET["nombreExistente"] : false;
             $data["cambioNombre"] = isset($_GET["nombreUsuarioModificado"]) ? $_GET["nombreUsuarioModificado"] : false;
@@ -33,6 +34,10 @@ class ModificarUsuarioController
             $data["cambioNombreEmpleado"] = isset($_GET["nombreEmpleadoModificado"]) ? $_GET["nombreEmpleadoModificado"] : false;
             $data["cambioApellidoEmpleado"] = isset($_GET["apellidoEmpleadoModificado"]) ? $_GET["apellidoEmpleadoModificado"] : false;
 
+            $usuarioEsEmpleado = $this->ModificarUsuarioModel->verificarSiUnUsuarioEsUnEmpleado($_SESSION["nombreUsuario"]);
+            if($usuarioEsEmpleado){
+                $data["usuarioEsEmpleado"] = true;
+            }
 
             echo $this->render->render("view/modificarUsuarioView.php", $data);
             exit();
@@ -120,6 +125,22 @@ class ModificarUsuarioController
             $this->ModificarUsuarioModel->modificarApellidoEmpleado($apellido);
 
             header("Location: /modificarUsuario?apellidoEmpleadoModificado=true");
+            exit();
+        }
+    }
+
+    public function modificarLicenciaEmpleado()
+    {
+        $tipoLicencia = $_POST["tipoLicencia"];
+        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        if ($logeado) {
+            $data["login"] = true;
+            if ($_SESSION["rol"] == "admin") {
+                $data["usuarioAdmin"] = true;
+            }
+            $this->ModificarUsuarioModel->modificarTipoLicenciaEmpleado($tipoLicencia);
+
+            header("Location: /modificarUsuario?tipoLicenciaEmpleadoModificado=true");
             exit();
         }
     }

@@ -59,4 +59,22 @@ class ModificarUsuarioModel
         $_SESSION["apellidoEmpleado"] = $apellido;
 
     }
+
+    public function modificarTipoLicenciaEmpleado($tipoLicencia)
+    {
+        $dni = $_SESSION["dni"];
+        $sql = "UPDATE grupo12.empleado SET tipo_de_licencia = '" . $tipoLicencia . "' WHERE (`dni` = '" . $dni . "')";
+        $this->bd->query($sql);
+        $_SESSION["licenciaEmpleado"] = $tipoLicencia;
+
+    }
+
+    public function verificarSiUnUsuarioEsUnEmpleado($nombreUsuario){
+
+        $sql = "SELECT nombreUsuario from usuario where nombreUsuario = '".$nombreUsuario."' and id in(SELECT id_usuario FROM empleado)";
+
+        $resultado = $this->bd->query($sql)->fetch_assoc();
+
+        return $resultado;
+    }
 }

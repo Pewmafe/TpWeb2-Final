@@ -46,7 +46,6 @@ class RegistroEmpleadoController
             $dniExistente = $this->registroEmpleadoModel->verificarDNIUsuarioExistente($dni);
 
             if(!$nombreUsuarioExistente and $dniExistente){
-
                 header("Location: /registroEmpleado?nombreUsuarioError=true&dniUsuarioError=true");
                 exit();
             }elseif ($dniExistente){

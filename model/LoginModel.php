@@ -24,6 +24,7 @@ class LoginModel
                 $_SESSION["rol"] = $this->obtenerRolUsuario($nombre);
                 $_SESSION["nombreEmpleado"] = $this->obtenerNombreEmpleado($nombre);
                 $_SESSION["apellidoEmpleado"] = $this->obtenerApellidoEmpleado($nombre);
+                $_SESSION["licenciaEmpleado"] = $this->obtenerlicenciaEmpleado($nombre);
                 return true;
             }
         }
@@ -86,6 +87,17 @@ class LoginModel
         $resultado = $this->bd->query($sql);
         $arrayRol = $resultado->fetch_assoc();
         $result = isset($arrayRol["apellido"]) ? $arrayRol["apellido"] : null;
+
+        return $result;
+
+    }
+
+    public function obtenerlicenciaEmpleado($nombreUsuario)
+    {
+        $sql = "SELECT tipo_de_licencia FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $resultado = $this->bd->query($sql);
+        $arrayRol = $resultado->fetch_assoc();
+        $result = isset($arrayRol["tipo_de_licencia"]) ? $arrayRol["tipo_de_licencia"] : null;
 
         return $result;
 

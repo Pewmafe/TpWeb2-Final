@@ -106,6 +106,7 @@
 
     <hr style="width: 90%">
     <section class="ancho row p-3">
+        {{#usuarioEsEmpleado}}
         <article class="col-12 col-md-3">
             <h4><i class="fas fa-caret-right"></i> Configuracion de Empleado</h4>
             {{#cambioNombreEmpleado}}
@@ -115,6 +116,7 @@
             <h6 class="text-success">Nombre de Empleaaasdasdo Cambiado exitosamente</h6>
             {{/cambioApellidoEmpleado}}
         </article>
+
         <article class="col-12 col-md-9 pt-4">
 
             <div class="row border-bottom">
@@ -228,7 +230,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="/ModificarUsuario/modificarApellidoEmpleado" class="form-horizontal"
+                                <form action="/ModificarUsuario/modificarLicenciaEmpleado" class="form-horizontal"
                                       method="post">
                                     <div class="form-group">
                                         <label for="apellidoEmpleado" class="control-label">Licencia de empleado actual:
@@ -259,6 +261,7 @@
             </div>
 
         </article>
+        {{/usuarioEsEmpleado}}
     </section>
 </main>
 {{> footer}}
