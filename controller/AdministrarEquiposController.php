@@ -20,6 +20,9 @@ class AdministrarEquiposController
             if($_SESSION["rol"] == "admin"){
                 $data["usuarioAdmin"] = true;
             }
+            $data["bajaVehiculo"]= isset($_GET["bajaVehiculo"]) ? $_GET["bajaVehiculo"] : false;
+            $data["bajaAcoplado"]= isset($_GET["bajaAcoplado"]) ? $_GET["bajaAcoplado"] : false;
+
             $tablaCamiones = $this->administrarEquiposModel->obtenerCamiones();
             $tablaAcoplados = $this->administrarEquiposModel->obtenerAcoplados();
 
@@ -31,20 +34,13 @@ class AdministrarEquiposController
         echo $this->render->render("view/administrarEquiposView.php");
     }
 
-    public function verificarQueUsuarioEsteLogeado(){
-        $logeado = isset( $_SESSION["logeado"]) ?  $_SESSION["logeado"] : null;
-        if($logeado == 1){
-            return true;
-        }
-        return false;
-    }
-
     public function eliminarVehiculo(){
         $patenteVehAEliminar = $_POST["botonDarDeBajaCamionModal"];
 
         $this->administrarEquiposModel->eliminarVehiculo($patenteVehAEliminar);
 
-        $this->ejecutar();
+        header("Location: /administrarEquipos?bajaVehiculo=true");
+        exit();
     }
 
     public function eliminarAcoplado(){
@@ -52,6 +48,14 @@ class AdministrarEquiposController
 
         $this->administrarEquiposModel->eliminarAcoplado($patenteAcopAEliminar);
 
-        $this->ejecutar();
+        header("Location: /administrarEquipos?bajaAcoplado=true");
+        exit();
+    }
+    public function verificarQueUsuarioEsteLogeado(){
+        $logeado = isset( $_SESSION["logeado"]) ?  $_SESSION["logeado"] : null;
+        if($logeado == 1){
+            return true;
+        }
+        return false;
     }
 }

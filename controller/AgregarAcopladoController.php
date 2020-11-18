@@ -20,6 +20,10 @@ class AgregarAcopladoController
             if ($_SESSION["rol"] == "admin") {
                 $data["usuarioAdmin"] = true;
             }
+            $data["patenteAcopladoError"]= isset($_GET["patenteAcopladoError"]) ? $_GET["patenteAcopladoError"] : false;
+            $data["agregoAcopladoExitosamente"]= isset($_GET["agregoAcopladoExitosamente"]) ? $_GET["agregoAcopladoExitosamente"] : false;
+
+
             echo $this->render->render("view/agregarAcopladoView.php", $data);
             exit();
         }
@@ -44,16 +48,16 @@ class AgregarAcopladoController
 
 
             if ($patenteExistente) {
-                $data["patenteAcopladoError"] = "El acoplado con esa patente ya está agregado";
-                echo $this->render->render("view/agregarAcopladoView.php", $data);
+                header("Location: /agregarAcoplado?patenteAcopladoError=true");
                 exit();
             }
 
 
             $this->agregarAcopladoModel->agregarAcoplado($patente, $chasis, $tipoAcoplado);
 
-            $data["agregoAcopladoExitosamente"] = true;
-            echo $this->render->render("view/home.php", $data);
+
+            header("Location: /agregarAcoplado?agregoAcopladoExitosamente=true");
+            exit();
         }
 
     }

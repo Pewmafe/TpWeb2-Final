@@ -20,6 +20,10 @@ class RegistroEmpleadoController
             if($_SESSION["rol"] == "admin"){
                 $data["usuarioAdmin"] = true;
             }
+            $data["dniUsuarioError"]= isset($_GET["dniUsuarioError"]) ? $_GET["dniUsuarioError"] : false;
+            $data["nombreUsuarioError"]= isset($_GET["nombreUsuarioError"]) ? $_GET["nombreUsuarioError"] : false;
+            $data["registroExitoso"]= isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
+
             echo $this->render->render("view/registroEmpleadoView.php", $data);
             exit();
         }
@@ -30,11 +34,6 @@ class RegistroEmpleadoController
     {
         $logeado = $this->verificarQueUsuarioEsteLogeado();
         if($logeado){
-            $data["login"] = true;
-            if($_SESSION["rol"] == "admin"){
-                $data["usuarioAdmin"] = true;
-            }
-
             $dni = $_POST["dni"];
             $nombre = $_POST["nombre"];
             $apellido = $_POST["apellido"];
@@ -47,17 +46,13 @@ class RegistroEmpleadoController
             $dniExistente = $this->registroEmpleadoModel->verificarDNIUsuarioExistente($dni);
 
             if(!$nombreUsuarioExistente and $dniExistente){
-                $data["dniUsuarioError"] = "El dni de empleado ya existe";
-                $data["nombreUsuarioError"] = "El nombre de usuario no existe";
-                echo $this->render->render("view/registroEmpleadoView.php", $data);
+                header("Location: /registroEmpleado?nombreUsuarioError=true&dniUsuarioError=true");
                 exit();
             }elseif ($dniExistente){
-            $data["dniUsuarioError"] = "El dni de empleado ya existe";
-            echo $this->render->render("view/registroEmpleadoView.php", $data);
-            exit();
+                header("Location: /registroEmpleado?dniUsuarioError=true");
+                exit();
             }elseif (!$nombreUsuarioExistente){
-                $data["nombreUsuarioError"] = "El nombre de usuario no existe";
-                echo $this->render->render("view/registroEmpleadoView.php", $data);
+                header("Location: /registroEmpleado?nombreUsuarioError=true");
                 exit();
             }
 
@@ -70,7 +65,8 @@ class RegistroEmpleadoController
                 $nombreUsuario);
 
             $data["registroExitoso"] = true;
-            echo $this->render->render("view/home.php", $data);
+            header("Location: /registroEmpleado?registroExitoso=true");
+            exit();
         }
 
     }

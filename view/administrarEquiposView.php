@@ -1,70 +1,77 @@
 {{> header}}
 {{#usuarioAdmin}}
-<main>
-    <section class="row justify-content-center m-3 ancho">
-        <article class=" justify-content-center mt-4 ancho2">
-            <h1>admin tractores</h1>
-            <a href="/agregarVehiculo" class="btn btn-primary">Agregar Vehículo</a>
-            <div class="row">
-                {{#tablaCamiones}}
-                <div class="col-12 col-md-6 col-lg-4 p-2">
-                    <div class="card mb-4 p-3 bg-dark">
-                        <h3 class="text-center border-bottom border-secondary text-light">Descripcion</h3>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Patente</span>: {{patente}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Nro de Chasis</span>: {{nro_chasis}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Nro de Motor</span>: {{nro_motor}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Kilometraje</span>: {{kilometraje}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Fabricacion</span>: {{fabricacion}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Marca</span>: {{marca}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Modelo</span>: {{modelo}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Clendario de Service</span>: {{calendario_service}}
-                        </p>
-                        <a href="#" class="btn btn-primary">Modificar Camion</a>
-                        <a type="button" class="btn btn-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
-                    </div>
+    <main>
+        <section class="row justify-content-center m-3 ancho">
+            <article class=" justify-content-center mt-4 ancho2">
+                <h2 class="text-dark mb-3 text-center">Administrar los Equipos</h2>
+                {{#bajaVehiculo}}
+                <h5 class="text-success">Se dio de baja el vehículo con éxito.</h5>
+                {{/bajaVehiculo}}
+                {{#bajaAcoplado}}
+                <h5 class="text-success">Se dio de baja el acoplado con éxito.</h5>
+                {{/bajaAcoplado}}
+                <h3 class="text-dark mb-3">Administrar Vehículos</h3>
+                <a href="/agregarVehiculo" class="btn btn-primary">Agregar Vehículo</a>
+                <div class="row">
+                    {{#tablaCamiones}}
+                        <div class="col-12 col-md-6 col-lg-4 p-2">
+                            <div class="card mb-4 p-3 bg-dark">
+                                <h3 class="text-center border-bottom border-secondary text-light">Descripcion</h3>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Patente</span>: {{patente}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Nro de Chasis</span>: {{nro_chasis}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Nro de Motor</span>: {{nro_motor}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Kilometraje</span>: {{kilometraje}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Fabricacion</span>: {{fabricacion}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Marca</span>: {{marca}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Modelo</span>: {{modelo}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Clendario de Service</span>: {{calendario_service}}
+                                </p>
+                                <a href="#" class="btn btn-primary">Modificar Camion</a>
+                                <a type="button" class="btn btn-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
+                            </div>
+                        </div>
+                    {{/tablaCamiones}}
                 </div>
-                {{/tablaCamiones}}
-            </div>
 
-            <h1>admin acoplados</h1>
-            <a href="/agregarAcoplado" class="btn btn-primary">Agregar Acoplado</a>
-            <div class="row">
-                {{#tablaAcoplados}}
-                <div class="col-12 col-md-6 col-lg-4 p-2">
-                    <div class="card mb-4 p-3 bg-dark">
-                        <h3 class="text-center border-bottom border-secondary text-light">Descripcion</h3>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Patente</span>: {{patente}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Chasis</span>: {{chasis}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Tipo</span>: {{descripcion}}
-                        </p>
-                        <a href="#" class="btn btn-primary">Modificar Camion</a>
-                        <a type="button" class="btn btn-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
-                    </div>
+                <h3 class="text-dark mb-3">Administrar Acoplados</h3>
+                <a href="/agregarAcoplado" class="btn btn-primary">Agregar Acoplado</a>
+                <div class="row">
+                    {{#tablaAcoplados}}
+                        <div class="col-12 col-md-6 col-lg-4 p-2">
+                            <div class="card mb-4 p-3 bg-dark">
+                                <h3 class="text-center border-bottom border-secondary text-light">Descripcion</h3>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Patente</span>: {{patente}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Chasis</span>: {{chasis}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Tipo</span>: {{descripcion}}
+                                </p>
+                                <a href="#" class="btn btn-primary">Modificar Camion</a>
+                                <a type="button" class="btn btn-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
+                            </div>
+                        </div>
+                    {{/tablaAcoplados}}
                 </div>
-                {{/tablaAcoplados}}
-            </div>
 
-        </article>
+            </article>
 
     </section>
     <section>
@@ -109,14 +116,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
 {{/usuarioAdmin}}
 {{^usuarioAdmin}}
-<main class="text-center">
-    <h1>ERROR 404 PAGINA NO ENCONTRADA</h1>
-    <a class="btn btn-outline-danger" href="/home">Volver al Inicio</a>
-</main>
+    <main class="text-center">
+        <h1>ERROR 404 PAGINA NO ENCONTRADA</h1>
+        <a class="btn btn-outline-danger" href="/home">Volver al Inicio</a>
+    </main>
 {{/usuarioAdmin}}
 {{> footer}}

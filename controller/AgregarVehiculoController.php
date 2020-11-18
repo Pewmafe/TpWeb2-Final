@@ -20,6 +20,9 @@ class AgregarVehiculoController
             if ($_SESSION["rol"] == "admin") {
                 $data["usuarioAdmin"] = true;
             }
+            $data["patenteVehiculoError"]= isset($_GET["patenteVehiculoError"]) ? $_GET["patenteVehiculoError"] : false;
+            $data["agregoVehExitosamente"]= isset($_GET["agregoVehExitosamente"]) ? $_GET["agregoVehExitosamente"] : false;
+
             echo $this->render->render("view/agregarCamionView.php", $data);
             exit();
         }
@@ -48,8 +51,7 @@ class AgregarVehiculoController
 
 
             if ($patenteExistente) {
-                $data["patenteVehError"] = "El vehículo con esa patente ya está agregado";
-                echo $this->render->render("view/agregarCamionView.php", $data);
+                header("Location: /agregarVehiculo?patenteVehiculoError=true");
                 exit();
             }
 
@@ -63,8 +65,9 @@ class AgregarVehiculoController
                 $modelo,
                 $calendarioService);
 
-            $data["agregoVehExitosamente"] = true;
-            echo $this->render->render("view/home.php", $data);
+
+            header("Location: /agregarVehiculo?agregoVehExitosamente=true");
+            exit();
         }
 
     }

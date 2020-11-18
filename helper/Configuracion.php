@@ -7,7 +7,7 @@ include_once("controller/HomeController.php");
 include_once("controller/LoginController.php");
 include_once("controller/RegistroController.php");
 include_once("controller/RegistroEmpleadoController.php");
-include_once("controller/AdministrarUsuarioController.php");
+include_once("controller/AdministrarUsuariosController.php");
 include_once("controller/AdministrarEquiposController.php");
 include_once("controller/ModificarUsuarioController.php");
 include_once("controller/AgregarVehiculoController.php");
@@ -83,7 +83,7 @@ class Configuracion
     public function getAdministrarUsuariosController()
     {
         $administrarUsuarioModel = $this->getAdministrarUsuariosModel();
-        return new AdministrarUsuarioController($this->getRender(), $administrarUsuarioModel);
+        return new AdministrarUsuariosController($this->getRender(), $administrarUsuarioModel);
     }
 
 
