@@ -23,9 +23,9 @@ class ModificarUsuarioController
             }
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
             $data["contrasenia"] = $_SESSION["contrasenia"];
-            $data["dni"] = $_SESSION["dni"];
-            $data["nombreEmpleado"] = $_SESSION["nombreEmpleado"];
-            $data["apellidoEmpleado"] = $_SESSION["apellidoEmpleado"];
+            $data["dni"] = isset($_SESSION["dni"]) ? $_SESSION["dni"] : false;;
+            $data["nombreEmpleado"] = isset($_SESSION["nombreEmpleado"]) ? $_SESSION["nombreEmpleado"] : false;;
+            $data["apellidoEmpleado"] = isset($_SESSION["apellidoEmpleado"]) ? $_SESSION["apellidoEmpleado"] : false;;
 
             $data["nombreExistente"] = isset($_GET["nombreExistente"]) ? $_GET["nombreExistente"] : false;
             $data["cambioNombre"] = isset($_GET["nombreUsuarioModificado"]) ? $_GET["nombreUsuarioModificado"] : false;
