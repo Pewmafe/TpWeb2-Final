@@ -26,6 +26,7 @@ class LoginModel
                 $_SESSION["apellidoEmpleado"] = $this->obtenerApellidoEmpleado($nombre);
                 $_SESSION["licenciaEmpleado"] = $this->obtenerLicenciaEmpleado($nombre);
                 $_SESSION["nacimientoEmpleado"] = $this->obtenerNacimientoEmpleado($nombre);
+
                 return true;
             }
         }
@@ -94,7 +95,9 @@ class LoginModel
 
     }
 
+
     public function obtenerLicenciaEmpleado($nombreUsuario)
+
     {
         $sql = "SELECT tipo_de_licencia FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
         $resultado = $this->bd->query($sql);
@@ -104,6 +107,7 @@ class LoginModel
         return $result;
 
     }
+
 
     public function obtenerNacimientoEmpleado($nombreUsuario)
     {
@@ -115,4 +119,5 @@ class LoginModel
         return $result;
 
     }
+
 }

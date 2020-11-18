@@ -23,11 +23,13 @@ class ModificarUsuarioController
             }
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
             $data["contrasenia"] = $_SESSION["contrasenia"];
+
             $data["dniEmpleado"] = $_SESSION["dniEmpleado"];
             $data["nombreEmpleado"] = $_SESSION["nombreEmpleado"];
             $data["apellidoEmpleado"] = $_SESSION["apellidoEmpleado"];
             $data["licenciaEmpleado"] = $_SESSION["licenciaEmpleado"];
             $data["nacimientoEmpleado"] = $_SESSION["nacimientoEmpleado"];
+
 
             $data["nombreExistente"] = isset($_GET["nombreExistente"]) ? $_GET["nombreExistente"] : false;
             $data["cambioNombre"] = isset($_GET["nombreUsuarioModificado"]) ? $_GET["nombreUsuarioModificado"] : false;
@@ -38,6 +40,10 @@ class ModificarUsuarioController
             $data["dniEmpleadoModificado"] = isset($_GET["dniEmpleadoModificado"]) ? $_GET["dniEmpleadoModificado"] : false;
             $data["nacimientoEmpleadoModificado"] = isset($_GET["nacimientoEmpleadoModificado"]) ? $_GET["nacimientoEmpleadoModificado"] : false;
 
+            $usuarioEsEmpleado = $this->ModificarUsuarioModel->verificarSiUnUsuarioEsUnEmpleado($_SESSION["nombreUsuario"]);
+            if ($usuarioEsEmpleado) {
+                $data["usuarioEsEmpleado"] = true;
+            }
 
             echo $this->render->render("view/modificarUsuarioView.php", $data);
             exit();
@@ -131,19 +137,23 @@ class ModificarUsuarioController
 
     public function modificarLicenciaEmpleado()
     {
+
         $licencia = $_POST["licenciaEmpleado"];
+
         $logeado = $this->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {
                 $data["usuarioAdmin"] = true;
             }
+
             $this->ModificarUsuarioModel->modificarLicenciaEmpleado($licencia);
 
             header("Location: /modificarUsuario?licenciaEmpleadoModificado=true");
             exit();
         }
     }
+
     public function modificarDniEmpleado()
     {
         $dniEmpleado = $_POST["dniEmpleado"];
@@ -159,6 +169,7 @@ class ModificarUsuarioController
             exit();
         }
     }
+
     public function modificarNacimientoEmpleado()
     {
         $nacimiento = $_POST["nacimientoEmpleado"];
@@ -171,6 +182,7 @@ class ModificarUsuarioController
             $this->ModificarUsuarioModel->modificarNacimientoEmpleado($nacimiento);
 
             header("Location: /modificarUsuario?nacimientoEmpleadoModificado=true");
+
             exit();
         }
     }

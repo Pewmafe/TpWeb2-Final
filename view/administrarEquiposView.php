@@ -3,7 +3,7 @@
 <main>
     <section class="row justify-content-center m-3 ancho">
         <article class=" justify-content-center mt-4 ancho2">
-            <h1>admin tractores</h1>
+            <h1>administrar tractores</h1>
             <a href="/agregarVehiculo" class="btn btn-primary">Agregar Vehículo</a>
             <div class="row">
                 {{#tablaCamiones}}
@@ -41,7 +41,7 @@
                 {{/tablaCamiones}}
             </div>
 
-            <h1>admin acoplados</h1>
+            <h1>administrar acoplados</h1>
             <a href="/agregarAcoplado" class="btn btn-primary">Agregar Acoplado</a>
             <div class="row">
                 {{#tablaAcoplados}}

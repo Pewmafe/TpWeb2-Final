@@ -60,6 +60,7 @@ class ModificarUsuarioModel
 
     }
 
+
     public function modificarLicenciaEmpleado($licencia)
     {
         $dni = $_SESSION["dniEmpleado"];
@@ -68,6 +69,7 @@ class ModificarUsuarioModel
         $_SESSION["licenciaEmpleado"] = $licencia;
 
     }
+
     public function modificarDniEmpleado($dniEmpleado)
     {
         $dni = $_SESSION["dniEmpleado"];
@@ -76,12 +78,24 @@ class ModificarUsuarioModel
         $_SESSION["dniEmpleado"] = $dniEmpleado;
 
     }
+
     public function modificarNacimientoEmpleado($nacimiento)
     {
         $dni = $_SESSION["dniEmpleado"];
         $sql = "UPDATE `grupo12`.`empleado` SET `nacimiento` = '" . $nacimiento . "' WHERE (`dni` = '" . $dni . "')";
         $this->bd->query($sql);
         $_SESSION["nacimientoEmpleado"] = $nacimiento;
+
+    }
+
+    public function verificarSiUnUsuarioEsUnEmpleado($nombreUsuario)
+    {
+
+        $sql = "SELECT nombreUsuario from usuario where nombreUsuario = '" . $nombreUsuario . "' and id in(SELECT id_usuario FROM empleado)";
+
+        $resultado = $this->bd->query($sql)->fetch_assoc();
+
+        return $resultado;
 
     }
 }

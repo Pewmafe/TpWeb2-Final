@@ -110,6 +110,7 @@
     <hr style="width: 90%">
 
     <section class="ancho row p-3">
+        {{#usuarioEsEmpleado}}
         <article class="col-12 col-md-3">
             <h4><i class="fas fa-caret-right"></i> Configuracion de Empleado</h4>
             {{#cambioNombreEmpleado}}
@@ -128,6 +129,7 @@
             <h6 class="text-success">Nacimiento de Empleaaasdasdo Cambiado exitosamente</h6>
             {{/nacimientoEmpleadoModificado}}
         </article>
+
         <article class="col-12 col-md-9 pt-4">
 
             <div class="row border-bottom">
@@ -240,7 +242,9 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+
                             <div class="modal-body bg-dark text-white">
+
                                 <form action="/ModificarUsuario/modificarLicenciaEmpleado" class="form-horizontal"
                                       method="post">
                                     <div class="form-group">
@@ -368,6 +372,7 @@
             </div>
 
         </article>
+        {{/usuarioEsEmpleado}}
     </section>
 </main>
 {{> footer}}
