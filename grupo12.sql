@@ -276,4 +276,4 @@ values (1, 'Araña'), (3, 'Jaula');
 
 insert into acoplado(patente, chasis, tipo)
 values('aa159yy', 123789, 1), ('ab456uu', 456789, 3);
-select * from usuario;
+select * from usuario,empleado;

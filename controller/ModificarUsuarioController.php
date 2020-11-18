@@ -23,6 +23,17 @@ class ModificarUsuarioController
             }
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
             $data["contrasenia"] = $_SESSION["contrasenia"];
+            $data["dni"] = $_SESSION["dni"];
+            $data["nombreEmpleado"] = $_SESSION["nombreEmpleado"];
+            $data["apellidoEmpleado"] = $_SESSION["apellidoEmpleado"];
+
+            $data["nombreExistente"] = isset($_GET["nombreExistente"]) ? $_GET["nombreExistente"] : false;
+            $data["cambioNombre"] = isset($_GET["nombreUsuarioModificado"]) ? $_GET["nombreUsuarioModificado"] : false;
+            $data["cambioPassword"] = isset($_GET["PasswordUsuarioModificado"]) ? $_GET["PasswordUsuarioModificado"] : false;
+            $data["cambioNombreEmpleado"] = isset($_GET["nombreEmpleadoModificado"]) ? $_GET["nombreEmpleadoModificado"] : false;
+            $data["cambioApellidoEmpleado"] = isset($_GET["apellidoEmpleadoModificado"]) ? $_GET["apellidoEmpleadoModificado"] : false;
+
+
             echo $this->render->render("view/modificarUsuarioView.php", $data);
             exit();
         }
@@ -51,19 +62,13 @@ class ModificarUsuarioController
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
             if (!$nombreUsuarioExistente) {
 
-                $this->ModificarUsuarioModel->modificarNombre($nombreUsuario);
-                $data["modificacionExitosa"] = "Actualizacion exitosa del nombre";
-                $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
-                $data["contrasenia"] = $_SESSION["contrasenia"];
+                $this->ModificarUsuarioModel->modificarNombreUsuario($nombreUsuario);
 
-                echo $this->render->render("view/modificarUsuarioView.php", $data);
-                exit();
             } else {
-                $data["nombreExistente"] = "El nombre de usuario ya existe";
-                echo $this->render->render("view/modificarUsuarioView.php", $data);
+                header("Location: /modificarUsuario?nombreExistente=true");
                 exit();
             }
-            echo $this->render->render("view/modificarUsuarioView.php", $data);
+            header("Location: /modificarUsuario?nombreUsuarioModificado=true");
             exit();
         }
 
@@ -79,12 +84,42 @@ class ModificarUsuarioController
             if ($_SESSION["rol"] == "admin") {
                 $data["usuarioAdmin"] = true;
             }
-            $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
-            $data["contrasenia"] = $_SESSION["contrasenia"];
+            $this->ModificarUsuarioModel->modificarContraseniaUsuario($contrasenia);
 
-            $this->ModificarUsuarioModel->modificarContrasenia($contrasenia);
-            $data["modificacionExitosa"] = "Actualizacion exitosa contra";
-            echo $this->render->render("view/modificarUsuarioView.php", $data);
+            header("Location: /modificarUsuario?PasswordUsuarioModificado=true");
+            exit();
+        }
+    }
+
+
+    public function modificarNombreEmpleado()
+    {
+        $nombre = $_POST["nombreEmpleado"];
+        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        if ($logeado) {
+            $data["login"] = true;
+            if ($_SESSION["rol"] == "admin") {
+                $data["usuarioAdmin"] = true;
+            }
+            $this->ModificarUsuarioModel->modificarNombreEmpleado($nombre);
+
+            header("Location: /modificarUsuario?nombreEmpleadoModificado=true");
+            exit();
+        }
+    }
+
+    public function modificarApellidoEmpleado()
+    {
+        $apellido = $_POST["apellidoEmpleado"];
+        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        if ($logeado) {
+            $data["login"] = true;
+            if ($_SESSION["rol"] == "admin") {
+                $data["usuarioAdmin"] = true;
+            }
+            $this->ModificarUsuarioModel->modificarApellidoEmpleado($apellido);
+
+            header("Location: /modificarUsuario?apellidoEmpleadoModificado=true");
             exit();
         }
     }
