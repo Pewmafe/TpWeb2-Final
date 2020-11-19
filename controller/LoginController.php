@@ -14,21 +14,28 @@ class LoginController
 
     public function ejecutar()
     {
-        echo $this->render->render("view/loginView.php");
+        $data["loginError"]= isset($_GET["loginError"]) ? $_GET["loginError"] : false;
+
+        echo $this->render->render("view/loginView.php", $data);
     }
 
     public function login()
     {
-        $usuario = $_POST["Usuario"];
+        $nombreUsuario = $_POST["Usuario"];
         $password = $_POST["Contrasenia"];
-        $result = $this->loginModel->logearUsuario($usuario, $password);
-        $data["login"] = $result;
-        echo $this->render->render("view/home.php", $data);
+        $loginExitoso = $this->loginModel->logearUsuario($nombreUsuario, $password);
+
+        if(!$loginExitoso){
+            header("Location: /login?loginError=true");
+            exit();
+        }
+        header("Location: /");
     }
 
     public function deslogearse()
     {
         session_destroy();
-        echo $this->render->render("view/home.php");
+        header("Location: /");
+        exit();
     }
 }
