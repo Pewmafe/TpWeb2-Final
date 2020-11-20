@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+header {
+    border-bottom: 1px solid #000;
+}
+
+footer {
+    bottom: 0;
+    width: 100%;
+    margin-top: 3em;
+    background-color: #d4dcdf;
+}
+
+.ancho {
+    width: 87% !important;
+    margin: auto !important;
+}
+
+.ancho2 {
+    width: 70%;
+    margin: auto;
+}
+
+.login .form-control {
+    background-color: #fff;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 2px solid #d4dcdf;
+    color: #333;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+    display: block;
+    align-items: center;
+    width: 50%;
+    transition: 0.50s
+}
+
+.login input[type="text"]:focus,
+.login input[type="password"]:focus {
+    border-bottom: 1px solid #000;
+}
+
+.login .btn-outline-primary {
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: #000 !important;
+    border-bottom: 1px solid #242424 !important;
+    transition: 0.50s;
+    width: 100%;
+}
+
+.login .btn-outline-primary:hover {
+    border: 0 !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    background-color: #000 !important;
+    border-bottom: 1px solid #fff !important;
+}
+
+.icono-login {
+    height: 2.35em;
+    width: 2.35em;
+}
+
+.referencia img {
+    border: 1px solid #000;
+    -webkit-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46);
+    -moz-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46);
+    box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46);
+}
+
+@media screen and (max-width: 768px) {
+    .borde-login {
+        border: 0 !important;
+        border-bottom: 1px solid #d4dcdf !important;
+        margin-bottom: 1em;
+    }
+    .intDatos {
+        text-align: center;
+    }
+}
