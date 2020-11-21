@@ -19,8 +19,20 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Nombre de Usuario</span>: {{nombreUsuario}}
                                 </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Nombre</span>: {{nombre}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Apellido</span>: {{apellido}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">DNI</span>: {{dni}}
+                                </p>
+                                <p class="text-light">
+                                    <span class="h5 font-weight-bold">Fecha nacimiento</span>: {{fecha_nacimiento}}
+                                </p>
                                 <a href="registroEmpleado?nombreUsuario={{nombreUsuario}}" class="btn btn-primary">Hacerlo empleado</a>
-                                <a type="button" class="btn btn-danger mt-2 botonDarDeBajaUsuario" data-toggle="modal" data-target="#darDeBajaUsuarioModal" data-id="'{{id}}'">Dar de baja usuario</a>
+                                <a type="button" class="btn btn-danger mt-2 botonDarDeBajaUsuario" data-toggle="modal" data-target="#darDeBajaUsuarioModal" data-id="'{{dni}}'">Dar de baja usuario</a>
                             </div>
                         </div>
                     {{/tablaUsuarios}}
@@ -44,12 +56,15 @@
                                     <span class="h5 font-weight-bold">DNI </span>: {{dni}}
                                 </p>
                                 <p class="text-light">
+                                    <span class="h5 font-weight-bold">Fecha nacimiento</span>: {{fecha_nacimiento}}
+                                </p>
+                                <p class="text-light">
                                     <span class="h5 font-weight-bold">Tipo de licencia </span>: {{tipo_de_licencia}}
                                 </p>
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Rol </span>: {{descripcion}}
                                 </p>
-                                <a type="button" class="btn btn-danger mt-2 botonDarDeBajaEmpleado" data-toggle="modal" data-target="#darDeBajaEmpleadoModal" data-id="'{{dni}}'">Dar de baja empleado</a>
+                                <a type="button" class="btn btn-danger mt-2 botonDarDeBajaEmpleado" data-toggle="modal" data-target="#darDeBajaEmpleadoModal" data-id="'{{id}}'">Dar de baja empleado</a>
                             </div>
                         </div>
                     {{/tablaUsuariosEmpleados}}

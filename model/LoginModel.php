@@ -118,5 +118,4 @@ class LoginModel
         return $result;
 
     }*/
-
 }

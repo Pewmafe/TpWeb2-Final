@@ -37,18 +37,18 @@ class AdministrarUsuariosController
     }
 
     public function darDeBajaEmpleado(){
-        $dniEmpleadoAEliminar = $_POST["botonDarDeBajaEmpleadoModal"];
+        $idEmpleadoAEliminar = $_POST["botonDarDeBajaEmpleadoModal"];
 
-        $this->administrarUsuarioModel->eliminarEmpleado($dniEmpleadoAEliminar);
+        $this->administrarUsuarioModel->eliminarEmpleado($idEmpleadoAEliminar);
 
         header("Location: /administrarUsuarios?bajaEmpleado=true");
         exit();
     }
 
     public function darDeBajaUsuario(){
-        $idUsuarioAEliminar = $_POST["botonDarDeBajaUsuarioModal"];
+        $dniUsuarioAEliminar = $_POST["botonDarDeBajaUsuarioModal"];
 
-        $this->administrarUsuarioModel->eliminarUsuario($idUsuarioAEliminar);
+        $this->administrarUsuarioModel->eliminarUsuario($dniUsuarioAEliminar);
 
         header("Location: /administrarUsuarios?bajaUsuario=true");
         exit();
