@@ -23,6 +23,7 @@ class RegistroEmpleadoController
             $data["dniUsuarioError"]= isset($_GET["dniUsuarioError"]) ? $_GET["dniUsuarioError"] : false;
             $data["nombreUsuarioError"]= isset($_GET["nombreUsuarioError"]) ? $_GET["nombreUsuarioError"] : false;
             $data["registroExitoso"]= isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
+            $data["nombreUsuario"]= isset($_GET["nombreUsuario"]) ? $_GET["nombreUsuario"] : false;
 
             echo $this->render->render("view/registroEmpleadoView.php", $data);
             exit();

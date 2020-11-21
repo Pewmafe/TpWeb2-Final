@@ -20,7 +20,7 @@
                         {{/registroExitoso}}
                         <label for="nombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
                         <div class="col-12">
-                            <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>
+                            <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre de Usuario" class="form-control" value="{{nombreUsuario}}" required>
                         </div>
                     </div>
                     <div class="form-group">

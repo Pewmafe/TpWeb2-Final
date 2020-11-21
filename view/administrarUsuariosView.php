@@ -19,7 +19,7 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Nombre de Usuario</span>: {{nombreUsuario}}
                                 </p>
-                                <a href="registroEmpleado" class="btn btn-primary">Hacerlo empleado</a>
+                                <a href="registroEmpleado?nombreUsuario={{nombreUsuario}}" class="btn btn-primary">Hacerlo empleado</a>
                                 <a type="button" class="btn btn-danger mt-2 botonDarDeBajaUsuario" data-toggle="modal" data-target="#darDeBajaUsuarioModal" data-id="'{{id}}'">Dar de baja usuario</a>
                             </div>
                         </div>
