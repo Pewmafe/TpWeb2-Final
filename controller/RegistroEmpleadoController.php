@@ -20,7 +20,7 @@ class RegistroEmpleadoController
             if($_SESSION["rol"] == "admin"){
                 $data["usuarioAdmin"] = true;
             }
-            $data["dniUsuarioError"]= isset($_GET["dniUsuarioError"]) ? $_GET["dniUsuarioError"] : false;
+
             $data["nombreUsuarioError"]= isset($_GET["nombreUsuarioError"]) ? $_GET["nombreUsuarioError"] : false;
             $data["registroExitoso"]= isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
             $data["nombreUsuario"]= isset($_GET["nombreUsuario"]) ? $_GET["nombreUsuario"] : false;
@@ -41,26 +41,13 @@ class RegistroEmpleadoController
             $nombreUsuario = $_POST["nombreUsuario"];
 
             $nombreUsuarioExistente = $this->registroEmpleadoModel->verificarNombreUsuarioExistente($nombreUsuario);
-            $dniExistente = $this->registroEmpleadoModel->verificarDNIUsuarioExistente($dni);
 
-            if(!$nombreUsuarioExistente and $dniExistente){
-                header("Location: /registroEmpleado?nombreUsuarioError=true&dniUsuarioError=true");
-                exit();
-            }elseif ($dniExistente){
-                header("Location: /registroEmpleado?dniUsuarioError=true");
-                exit();
-            }elseif (!$nombreUsuarioExistente){
+            if(!$nombreUsuarioExistente){
                 header("Location: /registroEmpleado?nombreUsuarioError=true");
                 exit();
             }
 
-            $this->registroEmpleadoModel->registrarEmpleado($dni,
-                $nombre,
-                $apellido,
-                $fechaNacimiento,
-                $tipoLicencia,
-                $rolAsignar,
-                $nombreUsuario);
+            $this->registroEmpleadoModel->registrarEmpleado($tipoLicencia, $rolAsignar, $nombreUsuario);
 
             $data["registroExitoso"] = true;
             header("Location: /registroEmpleado?registroExitoso=true");

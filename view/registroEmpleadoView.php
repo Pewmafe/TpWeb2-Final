@@ -12,9 +12,6 @@
                         {{#nombreUsuarioError}}
                             <h5 class="text-danger">El nombre de usuario no existe.</h5>
                         {{/nombreUsuarioError}}
-                        {{#dniUsuarioError}}
-                            <h5 class="text-danger">El dni de empleado ya existe.</h5>
-                        {{/dniUsuarioError}}
                         {{#registroExitoso}}
                             <h5 class="text-success">Se registro el empleado con exito.</h5>
                         {{/registroExitoso}}

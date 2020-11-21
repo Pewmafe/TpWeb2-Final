@@ -17,11 +17,12 @@ class RegistroModel
         return $this->bd->query($sql);
     }
 
-    public function  registrarEmpleado($dni, $nombre, $apellido, $fechaNacimiento, $tipoLicencia, $rolAsignar, $nombreUsuario){
-        $idUsuario = $this->obtenerIdUsuario($nombreUsuario);
+    public function  registrarEmpleado($tipoLicencia, $rolAsignar, $nombreUsuario){
+        $dniUsuario = $this->obtenerIdUsuario($nombreUsuario);
 
-        $sql = "insert into empleado(dni, nombre, apellido, nacimiento, tipo_de_licencia, tipo, id_usuario)
-                values(".$dni.",'".$nombre."','".$apellido."', '".$fechaNacimiento."', '".$tipoLicencia."', ".$rolAsignar.", ".$idUsuario.")";
+        $sql = "insert into empleado(tipo_de_licencia, tipo_empleado, dni_usuario)
+                values('".$tipoLicencia."', ".$rolAsignar.", ".$dniUsuario.")";
+
         $this->bd->query($sql);
     }
 
@@ -50,11 +51,11 @@ class RegistroModel
     }
 
     public function obtenerIdUsuario($nombreUsuario){
-        $sql = "SELECT id FROM usuario WHERE usuario.nombreUsuario = '".$nombreUsuario."'";
+        $sql = "SELECT dni FROM usuario WHERE usuario.nombreUsuario = '".$nombreUsuario."'";
         $resultado = $this->bd->query($sql);
         $arrayRol = $resultado-> fetch_assoc();
-        $idUsuario = $arrayRol["id"];
+        $dniUsuario = $arrayRol["dni"];
 
-        return $idUsuario;
+        return $dniUsuario;
     }
 }
