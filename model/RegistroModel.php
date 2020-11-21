@@ -9,11 +9,11 @@ class RegistroModel
         $this->bd = $bd;
     }
 
-    public function registrarUsuario($nombre, $contrasenia)
+    public function registrarUsuario($nombreUsuario, $contrasenia,$dni, $nombre, $apellido, $fechaNacimiento)
     {
         $contraseniaEncriptada = md5($contrasenia);
-        $sql = "INSERT INTO grupo12.usuario(nombreUsuario, contrasenia)
-            VALUES ('" . $nombre . "','" . $contraseniaEncriptada . "')";
+        $sql = "INSERT INTO grupo12.usuario(dni, nombreUsuario, contrasenia, nombre, apellido, fecha_nacimiento)
+            VALUES (".$dni.",'" . $nombreUsuario . "','" . $contraseniaEncriptada . "','".$nombre."','".$apellido."','".$fechaNacimiento."')";
         return $this->bd->query($sql);
     }
 
@@ -40,7 +40,7 @@ class RegistroModel
     public function verificarDNIUsuarioExistente($dni){
         $resultado = false;
 
-        $table = $this->bd->devolverDatos("empleado");
+        $table = $this->bd->devolverDatos("usuario");
         for ($i = 0; $i < sizeof($table); $i++) {
             if ($table[$i]["dni"] == $dni) {
                 $resultado = true;

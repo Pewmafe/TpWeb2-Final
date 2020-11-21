@@ -35,10 +35,7 @@ class RegistroEmpleadoController
     {
         $logeado = $this->verificarQueUsuarioEsteLogeado();
         if($logeado){
-            $dni = $_POST["dni"];
-            $nombre = $_POST["nombre"];
-            $apellido = $_POST["apellido"];
-            $fechaNacimiento = $_POST["fechaNacimiento"];
+
             $tipoLicencia = $_POST["tipoLicencia"];
             $rolAsignar =  $_POST["rolAsignar"];
             $nombreUsuario = $_POST["nombreUsuario"];

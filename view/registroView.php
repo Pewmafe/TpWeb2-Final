@@ -54,9 +54,36 @@
                         {{#nombreUsuarioExistente}}
                             <h5 class="text-danger">Nombre de usuario ya existente</h5>
                         {{/nombreUsuarioExistente}}
+                        {{#dniUsuarioExistente}}
+                        <h5 class="text-danger">DNI de usuario ya existente</h5>
+                        {{/dniUsuarioExistente}}
                         <label for="NombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
                         <div class="col-12">
                             <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre" class="col-12 control-label">*Nombre</label>
+                        <div class="col-12">
+                            <input type="text" id="nombre" name="nombre" placeholder="Nombre/s" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido" class="col-12 control-label">*Apellido</label>
+                        <div class="col-12">
+                            <input type="text" id="apellido" name="apellido" placeholder="Apellido/s" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaNacimiento" class="col-12 control-label">*Fecha de Nacimiento</label>
+                        <div class="col-12">
+                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dni" class="col-12 control-label">*Dni</label>
+                        <div class="col-12">
+                            <input type="number" id="dni" name="dni" placeholder="DNI" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">

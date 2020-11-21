@@ -24,30 +24,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="nombre" class="col-12 control-label">*Nombre</label>
-                        <div class="col-12">
-                            <input type="text" id="nombre" name="nombre" placeholder="Nombre/s" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="apellido" class="col-12 control-label">*Apellido</label>
-                        <div class="col-12">
-                            <input type="text" id="apellido" name="apellido" placeholder="Apellido/s" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="fechaNacimiento" class="col-12 control-label">*Fecha de Nacimiento</label>
-                        <div class="col-12">
-                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="dni" class="col-12 control-label">*Dni</label>
-                        <div class="col-12">
-                            <input type="number" id="dni" name="dni" placeholder="DNI" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="tipoLicencia" class="col-12 control-label">*Tipo de licencia</label>
                         <div class="col-12">
                             <select name="tipoLicencia" id="tipoLicencia" class="custom-select form-control">

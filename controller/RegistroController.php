@@ -15,22 +15,35 @@ class RegistroController
     public function ejecutar()
     {
         $data["nombreUsuarioExistente"]= isset($_GET["nombreUsuarioExistente"]) ? $_GET["nombreUsuarioExistente"] : false;
+        $data["dniUsuarioExistente"]= isset($_GET["dniUsuarioExistente"]) ? $_GET["dniUsuarioExistente"] : false;
 
         echo $this->render->render("view/registroView.php", $data);
     }
 
     public function registroUsuario()
     {
-        $contrasenia = $_POST["contrasenia"];
         $nombreUsuario = $_POST["NombreUsuario"];
+        $dni = $_POST["dni"];
+        $nombre = $_POST["nombre"];
+        $apellido = $_POST["apellido"];
+        $fechaNacimiento = $_POST["fechaNacimiento"];
+        $contrasenia = $_POST["contrasenia"];
 
         $nombreUsuarioExistente = $this->registroModel->verificarNombreUsuarioExistente($nombreUsuario);
-        if($nombreUsuarioExistente){
+        $dniExistente = $this->registroModel->verificarDNIUsuarioExistente($dni);
+
+        if($nombreUsuarioExistente and $dniExistente){
+            header("Location: /registro?nombreUsuarioExistente=true&dniUsuarioExistente=true");
+            exit();
+        }elseif ($dniExistente){
+            header("Location: /registro?dniUsuarioExistente=true");
+            exit();
+        }elseif ($nombreUsuarioExistente){
             header("Location: /registro?nombreUsuarioExistente=true");
             exit();
         }
 
-        $this->registroModel->registrarUsuario($nombreUsuario, $contrasenia);
+        $this->registroModel->registrarUsuario($nombreUsuario, $contrasenia, $dni, $nombre, $apellido, $fechaNacimiento);
 
         header("Location: /home?registroExitoso=true");
         exit();
