@@ -33,4 +33,16 @@ class AdministrarEquiposModel
         }
         return $tablaAcoplados;
     }
+
+    public function eliminarVehiculo($patenteVehAEliminar){
+
+        $sql = "DELETE FROM vehiculo WHERE vehiculo.patente = " . $patenteVehAEliminar;
+        $this->bd->query($sql);
+    }
+
+    public function eliminarAcoplado($patenteAcopAEliminar){
+
+        $sql = "DELETE FROM acoplado WHERE acoplado.patente = " . $patenteAcopAEliminar;
+        $this->bd->query($sql);
+    }
 }

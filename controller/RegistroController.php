@@ -14,7 +14,9 @@ class RegistroController
 
     public function ejecutar()
     {
-        echo $this->render->render("view/registroView.php");
+        $data["nombreUsuarioExistente"]= isset($_GET["nombreUsuarioExistente"]) ? $_GET["nombreUsuarioExistente"] : false;
+
+        echo $this->render->render("view/registroView.php", $data);
     }
 
     public function registroUsuario()
@@ -24,14 +26,13 @@ class RegistroController
 
         $nombreUsuarioExistente = $this->registroModel->verificarNombreUsuarioExistente($nombreUsuario);
         if($nombreUsuarioExistente){
-            $data["nombreUsuarioError"] = true;
-            echo $this->render->render("view/registroView.php", $data);
+            header("Location: /registro?nombreUsuarioExistente=true");
             exit();
         }
 
         $this->registroModel->registrarUsuario($nombreUsuario, $contrasenia);
-        $data["registroExitoso"] = true;
 
-        echo $this->render->render("view/home.php",$data);
+        header("Location: /home?registroExitoso=true");
+        exit();
     }
 }

@@ -11,16 +11,18 @@ class HomeController
 
     public function ejecutar()
     {
+        $data["registroExitoso"]= isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
         $logeado = $this->verificarQueUsuarioEsteLogeado();
         if($logeado){
             $data["login"] = true;
             if($_SESSION["rol"] == "admin"){
                 $data["usuarioAdmin"] = true;
             }
+            
             echo $this->render->render("view/home.php", $data);
             exit();
         }
-       echo $this->render->render("view/home.php");
+       echo $this->render->render("view/home.php", $data);
     }
 
     public function verificarQueUsuarioEsteLogeado(){

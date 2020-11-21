@@ -4,7 +4,9 @@
         <article class=" justify-content-center mt-4 ancho2">
             <h3 class="text-dark mb-3">Iniciar Sesion</h3>
             <form action="/login/login" class="login" name="form" id="form" method="post">
-                <p class="text-danger"> {{loginError}}</p>
+                {{#loginError}}
+                    <h5 class="text-danger">Error nombre de usuario o contrasenia </h5>
+                {{/loginError}}
                 <div class="form-group justify-content-center input-group">
                     <div class="input-group-append">
                         <span class="input-group-text icono-login"><i class="fas fa-user"></i></span>

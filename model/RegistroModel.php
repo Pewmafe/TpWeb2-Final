@@ -21,7 +21,7 @@ class RegistroModel
         $idUsuario = $this->obtenerIdUsuario($nombreUsuario);
 
         $sql = "insert into empleado(dni, nombre, apellido, nacimiento, tipo_de_licencia, tipo, id_usuario)
-                values(".$dni.",'".$nombre."','".$apellido."', ".$fechaNacimiento.", '".$tipoLicencia."', ".$rolAsignar.", ".$idUsuario.")";
+                values(".$dni.",'".$nombre."','".$apellido."', '".$fechaNacimiento."', '".$tipoLicencia."', ".$rolAsignar.", ".$idUsuario.")";
         $this->bd->query($sql);
     }
 

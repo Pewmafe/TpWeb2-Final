@@ -6,7 +6,7 @@ class AgregarVehiculoController
     private $render;
     private $agregarVehiculoModel;
 
-    public function __construct($render , $agregarVehiculoModel)
+    public function __construct($render, $agregarVehiculoModel)
     {
         $this->render = $render;
         $this->agregarVehiculoModel = $agregarVehiculoModel;
@@ -15,11 +15,14 @@ class AgregarVehiculoController
     public function ejecutar()
     {
         $logeado = $this->verificarQueUsuarioEsteLogeado();
-        if($logeado){
+        if ($logeado) {
             $data["login"] = true;
-            if($_SESSION["rol"] == "admin"){
+            if ($_SESSION["rol"] == "admin") {
                 $data["usuarioAdmin"] = true;
             }
+            $data["patenteVehiculoError"]= isset($_GET["patenteVehiculoError"]) ? $_GET["patenteVehiculoError"] : false;
+            $data["agregoVehExitosamente"]= isset($_GET["agregoVehExitosamente"]) ? $_GET["agregoVehExitosamente"] : false;
+
             echo $this->render->render("view/agregarCamionView.php", $data);
             exit();
         }
@@ -29,9 +32,9 @@ class AgregarVehiculoController
     public function agregarVehiculo()
     {
         $logeado = $this->verificarQueUsuarioEsteLogeado();
-        if($logeado){
+        if ($logeado) {
             $data["login"] = true;
-            if($_SESSION["rol"] == "admin"){
+            if ($_SESSION["rol"] == "admin") {
                 $data["usuarioAdmin"] = true;
             }
 
@@ -40,16 +43,15 @@ class AgregarVehiculoController
             $nroMotor = $_POST["nroMotor"];
             $kilometraje = $_POST["kilometraje"];
             $fabricacion = $_POST["fabricacion"];
-            $marca =  $_POST["marca"];
+            $marca = $_POST["marca"];
             $modelo = $_POST["modelo"];
             $calendarioService = $_POST["calendarioService"];
 
             $patenteExistente = $this->agregarVehiculoModel->verificarPatenteExistente($patente);
 
 
-            if($patenteExistente){
-               $data["patenteVehError"] = "El vehículo con esa patente ya está agregado";
-                echo $this->render->render("view/agregarCamionView.php", $data);
+            if ($patenteExistente) {
+                header("Location: /agregarVehiculo?patenteVehiculoError=true");
                 exit();
             }
 
@@ -63,15 +65,17 @@ class AgregarVehiculoController
                 $modelo,
                 $calendarioService);
 
-            $data["agregoVehExitosamente"] = true;
-            echo $this->render->render("view/home.php", $data);
+
+            header("Location: /agregarVehiculo?agregoVehExitosamente=true");
+            exit();
         }
 
     }
 
-    public function verificarQueUsuarioEsteLogeado(){
-        $logeado = isset( $_SESSION["logeado"]) ?  $_SESSION["logeado"] : null;
-        if($logeado == 1){
+    public function verificarQueUsuarioEsteLogeado()
+    {
+        $logeado = isset($_SESSION["logeado"]) ? $_SESSION["logeado"] : null;
+        if ($logeado == 1) {
             return true;
         }
         return false;

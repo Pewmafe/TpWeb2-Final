@@ -19,20 +19,28 @@ class LoginModel
             if ($table[$i]["nombreUsuario"] == $nombre && $table[$i]["contrasenia"] == $contraseniaEncriptada) {
                 $_SESSION["nombreUsuario"] = $nombre;
                 $_SESSION["logeado"] = 1;
+                $_SESSION["contrasenia"] = $contrasenia;
                 $_SESSION["rol"] = $this->obtenerRolUsuario($nombre);
+                $_SESSION["dniEmpleado"] = $this->obtenerDniEmpleado($nombre);
+                $_SESSION["nombreEmpleado"] = $this->obtenerNombreEmpleado($nombre);
+                $_SESSION["apellidoEmpleado"] = $this->obtenerApellidoEmpleado($nombre);
+                $_SESSION["licenciaEmpleado"] = $this->obtenerLicenciaEmpleado($nombre);
+                $_SESSION["nacimientoEmpleado"] = $this->obtenerNacimientoEmpleado($nombre);
+
                 return true;
             }
         }
         return false;
     }
 
-    public  function obtenerRolUsuario($nombreUsuario){
-        $sql = "SELECT tipo FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '".$nombreUsuario."'";
+    public function obtenerRolUsuario($nombreUsuario)
+    {
+        $sql = "SELECT tipo FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
         $resultado = $this->bd->query($sql);
-        $arrayRol = $resultado-> fetch_assoc();
+        $arrayRol = $resultado->fetch_assoc();
         $rol = isset($arrayRol["tipo"]) ? $arrayRol["tipo"] : null;
 
-        switch ($rol){
+        switch ($rol) {
             case 1:
                 $rolString = "admin";
                 break;
@@ -53,6 +61,63 @@ class LoginModel
                 break;
         }
         return $rolString;
+    }
+
+    public function obtenerDniEmpleado($nombreUsuario)
+    {
+        $sql = "SELECT dni FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $resultado = $this->bd->query($sql);
+        $arrayRol = $resultado->fetch_assoc();
+        $result = isset($arrayRol["dni"]) ? $arrayRol["dni"] : null;
+
+        return $result;
+    }
+
+    public function obtenerNombreEmpleado($nombreUsuario)
+    {
+        $sql = "SELECT nombre FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $resultado = $this->bd->query($sql);
+        $arrayRol = $resultado->fetch_assoc();
+        $result = isset($arrayRol["nombre"]) ? $arrayRol["nombre"] : null;
+
+        return $result;
+
+    }
+
+    public function obtenerApellidoEmpleado($nombreUsuario)
+    {
+        $sql = "SELECT apellido FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $resultado = $this->bd->query($sql);
+        $arrayRol = $resultado->fetch_assoc();
+        $result = isset($arrayRol["apellido"]) ? $arrayRol["apellido"] : null;
+
+        return $result;
+
+    }
+
+
+    public function obtenerLicenciaEmpleado($nombreUsuario)
+
+    {
+        $sql = "SELECT tipo_de_licencia FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $resultado = $this->bd->query($sql);
+        $arrayRol = $resultado->fetch_assoc();
+        $result = isset($arrayRol["tipo_de_licencia"]) ? $arrayRol["tipo_de_licencia"] : null;
+
+        return $result;
+
+    }
+
+
+    public function obtenerNacimientoEmpleado($nombreUsuario)
+    {
+        $sql = "SELECT nacimiento FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $resultado = $this->bd->query($sql);
+        $arrayRol = $resultado->fetch_assoc();
+        $result = isset($arrayRol["nacimiento"]) ? $arrayRol["nacimiento"] : null;
+
+        return $result;
+
     }
 
 }
