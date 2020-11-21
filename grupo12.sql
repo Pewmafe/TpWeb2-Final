@@ -33,9 +33,12 @@ create table carga(
 );
 
 create table usuario(
-	id int primary key auto_increment,
+	dni int primary key ,
 	nombreUsuario varchar(100),
-	contrasenia varchar(100)
+	contrasenia varchar(100),
+	nombre varchar(100),
+	apellido varchar(100),
+	fecha_nacimiento date
 );
 
 create table tipo_empleado(
@@ -44,19 +47,16 @@ create table tipo_empleado(
 );
 
 create table empleado (
-	dni int primary key,
-	nombre varchar(100),
-	apellido varchar(100),
-	nacimiento date,
+	id int primary key auto_increment,
 	tipo_de_licencia varchar(100),
-	tipo int,
-	id_usuario int,
+	tipo_empleado int,
+	dni_usuario int,
 	constraint fk_empleado_tipo
-	foreign key (tipo)
+	foreign key (tipo_empleado)
 	references tipo_empleado(id_tipo_empleado),
 	constraint fk_empleado_usuario
-	foreign key (id_usuario)
-	references usuario(id)
+	foreign key (dni_usuario)
+	references usuario(dni)
 );
 
 create table tipo_mantenimiento(
@@ -134,13 +134,13 @@ create table empleado_mantenimiento(
 	primary key(id_empleado,id_mantenimiento),
 	constraint fk_empleado_mantenimiento_empleado
 	foreign key (id_empleado) 
-	references empleado(dni),
+	references empleado(id),
 	constraint fk_empleado_mantenimiento_mantenimiento
 	foreign key (id_mantenimiento) 
 	references mantenimiento(id),
 	constraint fk_empleado_mantenimiento_responsable
 	foreign key (mecanico_responsable) 
-	references empleado(dni)
+	references empleado(id)
 );
 
 create table provincia(
@@ -214,7 +214,7 @@ create table viaje(
 	partida int,
 	constraint fk_viaje_carga foreign key (carga) references carga(id),
 	constraint fk_viaje_acoplado foreign key (acoplado) references acoplado(patente),
-	constraint fk_viaje_chofer foreign key (chofer) references empleado(dni),
+	constraint fk_viaje_chofer foreign key (chofer) references empleado(id),
 	constraint fk_viaje_destino foreign key (destino) references direccion(id),
 	constraint fk_viaje_partida foreign key (partida) references direccion(id)
 );
@@ -244,21 +244,20 @@ values(1, "administrador"),
 (4,"chofer"),
 (5,"mecanico");
 
-insert into usuario(id, nombreUsuario, contrasenia)
-values(1, 'admin','202cb962ac59075b964b07152d234b70'),
-(2, 'segundo','202cb962ac59075b964b07152d234b70'),
-(3, 'tercero','202cb962ac59075b964b07152d234b70'),
-(4, 'cuarto','202cb962ac59075b964b07152d234b70'),
-(5, 'quinto','202cb962ac59075b964b07152d234b70'),
-(6, 'sexto','202cb962ac59075b964b07152d234b70'),
-(7, 'pew','202cb962ac59075b964b07152d234b70');
+insert into usuario(dni, nombreUsuario, contrasenia, nombre, apellido, fecha_nacimiento)
+values(123, 'admin','202cb962ac59075b964b07152d234b70','ABC','CBA', 19940918),
+(124, 'segundo','202cb962ac59075b964b07152d234b70','Pewmafe','Fefar', 19940918),
+(125, 'tercero','202cb962ac59075b964b07152d234b70','Pedro', 'Roco', 19940918),
+(126, 'cuarto','202cb962ac59075b964b07152d234b70','Armando','Rodriguez', 19981018),
+(127, 'quinto','202cb962ac59075b964b07152d234b70','Ramiro','Ledez', 19940923),
+(128, 'sexto','202cb962ac59075b964b07152d234b70','CBZ','CRT', 19920912),
+(129, 'pew','202cb962ac59075b964b07152d234b70','DFG','QWERTY', 19980908);
 
 
-insert into empleado(dni, nombre, apellido, nacimiento, tipo_de_licencia, tipo, id_usuario)
-values(123, 'ABC', 'CBA', 19940918, 'camion', 1, 1),
-(124, 'Pewmafe', 'Fefar', 19940918, 'auto', 3, 7),
-(125, 'Pedro', 'Roco', 19940918, 'auto', 4, 4);
-
+insert into empleado(id, tipo_de_licencia, tipo_empleado, dni_usuario)
+values(1, 'camion', 1, 123),
+(2, 'auto', 3, 124),
+(3, 'auto', 4, 127);
 
 insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
 values('aa123bb', 10, 100, 20000, 20150505, 'Iveco', 'Scavenger', 20180209, null, null);
