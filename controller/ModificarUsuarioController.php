@@ -32,6 +32,7 @@ class ModificarUsuarioController
 
 
             $data["nombreExistente"] = isset($_GET["nombreExistente"]) ? $_GET["nombreExistente"] : false;
+            $data["dniExistente"] = isset($_GET["dniExistente"]) ? $_GET["dniExistente"] : false;
             $data["cambioNombre"] = isset($_GET["nombreUsuarioModificado"]) ? $_GET["nombreUsuarioModificado"] : false;
             $data["cambioPassword"] = isset($_GET["PasswordUsuarioModificado"]) ? $_GET["PasswordUsuarioModificado"] : false;
             $data["cambioNombreDelUsuario"] = isset($_GET["nombreDelUsuarioModificado"]) ? $_GET["nombreDelUsuarioModificado"] : false;
@@ -139,13 +140,20 @@ class ModificarUsuarioController
     {
         $dniUsuario = $_POST["dniUsuario"];
         $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $dniExistente = $this->ModificarUsuarioModel->verificarDniExistente($dniUsuario);
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {
                 $data["usuarioAdmin"] = true;
             }
-            $this->ModificarUsuarioModel->modificarDniUsuario($dniUsuario);
+            if (!$dniExistente) {
 
+                $this->ModificarUsuarioModel->modificarDniUsuario($dniUsuario);
+
+            } else {
+                header("Location: /modificarUsuario?dniExistente=true");
+                exit();
+            }
             header("Location: /modificarUsuario?dniUsuarioModificado=true");
             exit();
         }
@@ -167,6 +175,7 @@ class ModificarUsuarioController
             exit();
         }
     }
+
     public function modificarLicenciaEmpleado()
     {
 
