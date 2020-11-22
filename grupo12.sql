@@ -56,7 +56,7 @@ create table empleado (
 	references tipo_empleado(id_tipo_empleado),
 	constraint fk_empleado_usuario
 	foreign key (dni_usuario)
-	references usuario(dni)
+	references usuario(dni) ON UPDATE CASCADE
 );
 
 create table tipo_mantenimiento(
