@@ -15,18 +15,25 @@
             {{/cambioPassword}}
 
             {{#nombreExistente}}
-                <h6 class="text-danger">Nombre de usuario Existente</h6>
+            <h6 class="text-danger">Nombre de usuario Existente</h6>
             {{/nombreExistente}}
+
+            {{#dniExistente}}
+            <h6 class="text-danger">Dni de usuario Existente</h6>
+            {{/dniExistente}}
 
             {{#cambioNombreDelUsuario}}
             <h6 class="text-success">Nombre del Usuario Cambiado exitosamente</h6>
             {{/cambioNombreDelUsuario}}
+
             {{#cambioApellidoUsuario}}
             <h6 class="text-success">Apellido de Usuario Cambiado exitosamente</h6>
             {{/cambioApellidoUsuario}}
+
             {{#cambioDniUsuario}}
             <h6 class="text-success">Dni del Usuario Cambiado exitosamente</h6>
             {{/cambioDniUsuario}}
+
             {{#cambioNacimientoUsuario}}
             <h6 class="text-success">Nacimiento del Usuario Cambiado exitosamente</h6>
             {{/cambioNacimientoUsuario}}
