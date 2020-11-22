@@ -23,6 +23,17 @@ class ModificarUsuarioModel
         return $resultado;
     }
 
+    public function verificarDniExistente($dni)
+    {
+        $resultado = false;
+        $table = $this->bd->devolverDatos("usuario");
+        for ($i = 0; $i < sizeof($table); $i++) {
+            if ($table[$i]["dni"] == $dni) {
+                $resultado = true;
+            }
+        }
+        return $resultado;
+    }
 
     public function modificarNombreUsuario($nombreNuevo)
     {
@@ -63,7 +74,8 @@ class ModificarUsuarioModel
     public function modificarDniUsuario($dniUsuario)
     {
         $dni = $_SESSION["dniUsuario"];
-        $sql = "UPDATE `grupo12`.`usuario` SET `dni` = '" . $dniUsuario . "' WHERE (`dni` = '" . $dni . "')";
+        $sql = "UPDATE grupo12.usuario SET dni = " . $dniUsuario . " WHERE (dni = " . $dni . ")";
+
         $this->bd->query($sql);
         $_SESSION["dniUsuario"] = $dniUsuario;
 
