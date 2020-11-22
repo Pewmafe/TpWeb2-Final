@@ -36,7 +36,6 @@ class AdministrarUsuariosModel
         while($fila = $resultadoQuery->fetch_assoc()){
             $tablaUsuarios[] = $fila;
         }
-
         return $tablaUsuarios;
     }
 
@@ -88,5 +87,51 @@ class AdministrarUsuariosModel
 
     }
 
+    public function modificarUsuario($nombreUsuario,
+                                     $nombre,
+                                     $apellido,
+                                     $dni,
+                                     $fechaNacimiento){
+        $sql = "UPDATE usuario SET dni=".$dni.",nombreUsuario='".$nombreUsuario."',nombre='".$nombre."',apellido='".$apellido."',fecha_nacimiento='".$fechaNacimiento."' 
+        WHERE dni=".$dni;
+        $this->bd->query($sql);
+    }
 
+    public function verificarNombreUsuarioExistente($nombreUsuario, $dni){
+        $resultado = false;
+
+        $sql = "SELECT nombreUsuario FROM usuario 
+                WHERE dni <>" . $dni;
+        $resultadoQuery = $this->bd->query($sql);
+
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $tablaUsuarios[] = $fila;
+        }
+
+        for ($i = 0; $i < sizeof($tablaUsuarios); $i++) {
+            if ($tablaUsuarios[$i]["nombreUsuario"] == $nombreUsuario) {
+                $resultado = true;
+            }
+        }
+        return $resultado;
+    }
+
+    public function verificarDNIUsuarioExistente($dniAModificar, $dni){
+        $resultado = false;
+
+        $sql = "SELECT dni FROM usuario 
+                WHERE dni <>" . $dni;
+
+        $resultadoQuery = $this->bd->query($sql);
+
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $tablaUsuarios[] = $fila;
+        }
+        for ($i = 0; $i < sizeof($tablaUsuarios); $i++) {
+            if ($tablaUsuarios[$i]["dni"] == $dniAModificar) {
+                $resultado = true;
+            }
+        }
+        return $resultado;
+    }
 }

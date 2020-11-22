@@ -10,6 +10,15 @@
                 {{#bajaEmpleado}}
                     <h5 class="text-success">Se dio de baja el empleado con exito.</h5>
                 {{/bajaEmpleado}}
+                {{#modificarUsuario}}
+                <h5 class="text-success">Se modifico al usuario con exito.</h5>
+                {{/modificarUsuario}}
+                {{#nombreUsuarioExistente}}
+                    <h5 class="text-danger">Nombre de usuario ya existe.</h5>
+                {{/nombreUsuarioExistente}}
+                {{#dniExistente}}
+                <h5 class="text-danger">DNI de usuario ya existe.</h5>
+                {{/dniExistente}}
                 <h3 class="text-dark mb-3">Administrar usuarios</h3>
                 <div class="row">
                     {{#tablaUsuarios}}
@@ -67,6 +76,7 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Rol </span>: {{descripcion}}
                                 </p>
+                                <a  class="mt-2 btn btn-success botonModificarEmpleado" type="button">Modificar</a>
                                 <a type="button" class="btn btn-danger mt-2 botonDarDeBajaEmpleado" data-toggle="modal" data-target="#darDeBajaEmpleadoModal" data-id="'{{id}}'">Dar de baja empleado</a>
                             </div>
                         </div>
@@ -127,26 +137,26 @@
                             </button>
                         </div>
                             <div class="modal-body container">
-                                <form class="formularioModificarUsuario" method="POST"  action="">
+                                <form class="formularioModificarUsuario" method="POST"  action="/administrarUsuarios/modificarUsuario">
                                     <div class="form-group">
-                                        <label class="text-dark" for="">Nombre de usuario</label>
-                                        <input type="text" class="form-control inputNombreUsuario" id="" name="" >
+                                        <label class="text-dark" for="nombreUsuario">Nombre de usuario</label>
+                                        <input type="text" class="form-control inputNombreUsuario" id="nombreUsuario" name="nombreUsuario" required>
                                     </div>
                                     <div class="form-group">
-                                        <label class="text-dark" for="">Nombre</label>
-                                        <input type="text" class="form-control inputNombre" id="" name="" >
+                                        <label class="text-dark" for="nombre">Nombre</label>
+                                        <input type="text" class="form-control inputNombre" id="nombre" name="nombre" required>
                                     </div>
                                     <div class="form-group">
-                                        <label class="text-dark" for="">Apellido</label>
-                                        <input type="text" class="form-control inputApellido" id="" name="" >
+                                        <label class="text-dark" for="apellido">Apellido</label>
+                                        <input type="text" class="form-control inputApellido" id="apellido" name="apellido" required>
                                     </div>
                                     <div class="form-group">
-                                        <label class="text-dark" for="">DNI</label>
-                                        <input type="text" class="form-control inputDni" id="" name="" >
+                                        <label class="text-dark" for="dni">DNI</label>
+                                        <input type="text" class="form-control inputDni" id="dni" name="dni" required>
                                     </div>
                                     <div class="form-group">
-                                        <label class="text-dark" for="">Fecha nacimiento</label>
-                                        <input type="date" class="form-control inputFechaNacimiento" id="" name="">
+                                        <label class="text-dark" for="fechaNacimiento">Fecha nacimiento</label>
+                                        <input type="date" class="form-control inputFechaNacimiento" id="fechaNacimiento" name="fechaNacimiento" required>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>

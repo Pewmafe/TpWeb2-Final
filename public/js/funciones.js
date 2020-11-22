@@ -29,4 +29,5 @@ $(document).on("click", ".botonModificarUsuario", function () {
     $(".formularioModificarUsuario .inputApellido").val( apellido );
     $(".formularioModificarUsuario .inputDni").val( dni );
     $(".formularioModificarUsuario .inputFechaNacimiento").val( fechanaci );
+    $(".formularioModificarUsuario .modal-footer #botonModificar").val( dni );
 });

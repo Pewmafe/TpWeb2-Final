@@ -22,6 +22,9 @@ class AdministrarUsuariosController
             }
             $data["bajaUsuario"]= isset($_GET["bajaUsuario"]) ? $_GET["bajaUsuario"] : false;
             $data["bajaEmpleado"]= isset($_GET["bajaEmpleado"]) ? $_GET["bajaEmpleado"] : false;
+            $data["nombreUsuarioExistente"]= isset($_GET["nombreUsuarioExistente"]) ? $_GET["nombreUsuarioExistente"] : false;
+            $data["dniExistente"]= isset($_GET["dniExistente"]) ? $_GET["dniExistente"] : false;
+            $data["modificarUsuario"]= isset($_GET["modificarUsuario"]) ? $_GET["modificarUsuario"] : false;
 
             $tablaUsuarios = $this->administrarUsuarioModel->obtenerUsuariosNoEmpleados();
             $tablaUsuariosEmpleados = $this->administrarUsuarioModel->obtenerUsuariosEmpleados();
@@ -51,6 +54,35 @@ class AdministrarUsuariosController
         $this->administrarUsuarioModel->eliminarUsuario($dniUsuarioAEliminar);
 
         header("Location: /administrarUsuarios?bajaUsuario=true");
+        exit();
+    }
+
+    public function modificarUsuario(){
+        $nombreUsuarioAModificar = $_POST["nombreUsuario"];
+        $nombreModificar = $_POST["nombre"];
+        $apellidoAModificar = $_POST["apellido"];
+        $dniAModificar = $_POST["dni"];
+        $fechaNacimientoAModificar = $_POST["fechaNacimiento"];
+        $dniUsuarioQueSeVaAModificar = $_POST["botonModificar"];
+
+        $nombreUsuarioExistente=$this->administrarUsuarioModel->verificarNombreUsuarioExistente($nombreUsuarioAModificar,$dniUsuarioQueSeVaAModificar);
+        $dniExistente=$this->administrarUsuarioModel->verificarDNIUsuarioExistente($dniAModificar, $dniUsuarioQueSeVaAModificar);
+
+        if($nombreUsuarioExistente and $dniExistente){
+            header("Location: /administrarUsuarios?nombreUsuarioExistente=true&dniExistente=true");
+            exit();
+        }elseif ($nombreUsuarioExistente){
+            header("Location: /administrarUsuarios?nombreUsuarioExistente=true");
+            exit();
+        }elseif ($dniExistente){
+            header("Location: /administrarUsuarios?dniExistente=true");
+            exit();
+        }
+
+        $this->administrarUsuarioModel->modificarUsuario($nombreUsuarioAModificar,
+            $nombreModificar, $apellidoAModificar, $dniAModificar, $fechaNacimientoAModificar);
+
+        header("Location: /administrarUsuarios?modificarUsuario=true");
         exit();
     }
 
