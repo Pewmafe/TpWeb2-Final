@@ -131,67 +131,29 @@
                                     <div class="form-group">
                                         <label class="text-dark" for="">Nombre de usuario</label>
                                         <input type="text" class="form-control inputNombreUsuario" id="" name="" >
-                                        <button class="btn btn-primary" id="" name="">Modificar</button>
                                     </div>
                                     <div class="form-group">
                                         <label class="text-dark" for="">Nombre</label>
                                         <input type="text" class="form-control inputNombre" id="" name="" >
-                                        <button class="btn btn-primary" id="" name="">Modificar</button>
                                     </div>
                                     <div class="form-group">
                                         <label class="text-dark" for="">Apellido</label>
                                         <input type="text" class="form-control inputApellido" id="" name="" >
-                                        <button class="btn btn-primary" id="" name="">Modificar</button>
                                     </div>
                                     <div class="form-group">
                                         <label class="text-dark" for="">DNI</label>
                                         <input type="text" class="form-control inputDni" id="" name="" >
-                                        <button class="btn btn-primary" id="" name="">Modificar</button>
                                     </div>
                                     <div class="form-group">
                                         <label class="text-dark" for="">Fecha nacimiento</label>
                                         <input type="date" class="form-control inputFechaNacimiento" id="" name="">
-                                        <button class="btn btn-primary" id="" name="">Modificar</button>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
                                         <button type="submit" class="btn btn-primary" id="botonModificar" name="botonModificar">Modificar</button>
                                     </div>
                                 </form>
-
-                                <!--<div class="form-group">
-                                    <label class="text-dark" for="nombreHeroe">Nombre del Heroe</label>
-                                    <input type="text" class="form-control" id="nombreHeroe" name="nombreHeroe" placeholder="Axe">
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label class="text-dark" for="atributoHeroe">Atributo principal</label>
-                                        <select class="form-control" id="atributoHeroe" name="atributoHeroe">
-                                            <option disabled selected>Tipo de Atributo</option>
-                                            <option value="Agilidad">Agilidad</option>
-                                            <option value="Fuerza">Fuerza</option>
-                                            <option value="Inteligencia">Inteligencia</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="text-dark" for="tipoAtaqueHeroe">Tipo de ataque</label>
-                                        <select class="form-control" id="tipoAtaqueHeroe" name="tipoAtaqueHeroe">
-                                            <option disabled selected>Tipo de Ataque</option>
-                                            <option>Cuerpo a cuerpo</option>
-                                            <option>Distancia</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="text-dark" for="historiaHeroe">Historia</label>
-                                    <textarea class="form-control" id="historiaHeroe" name="historiaHeroe" rows="8"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label class="text-dark" for="archivoImagen">Elegir imagen</label>
-                                    <input type="file" class="form-control-file text-light" id="archivoImagen" name="archivoImagen">
-                                </div>
                             </div>
-                        </form>-->
                     </div>
                 </div>
             </div>
