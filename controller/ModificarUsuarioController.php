@@ -23,6 +23,13 @@ class ModificarUsuarioController
             $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
             if($usuarioAdmin){
                 $data["usuarioAdmin"] = true;
+                $data["usuarioChofer"] = true;
+                $data["usuarioSupervisor"] = true;
+            }
+
+            $usuarioSupervisor = $this->loginSession->verificarQueUsuarioEsSupervisor();
+            if($usuarioSupervisor){
+                $data["usuarioSupervisor"] = true;
             }
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
             $data["contrasenia"] = $_SESSION["contrasenia"];
