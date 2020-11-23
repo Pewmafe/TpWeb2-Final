@@ -76,7 +76,7 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Rol </span>: {{descripcion}}
                                 </p>
-                                <a  class="mt-2 btn btn-success botonModificarEmpleado" type="button">Modificar</a>
+                                <a  class="mt-2 btn btn-success botonModificarEmpleado" data-toggle="modal" data-target="#modificarEmpleadoModal" type="button">Modificar</a>
                                 <a type="button" class="btn btn-danger mt-2 botonDarDeBajaEmpleado" data-toggle="modal" data-target="#darDeBajaEmpleadoModal" data-id="'{{id}}'">Dar de baja empleado</a>
                             </div>
                         </div>
@@ -164,6 +164,46 @@
                                     </div>
                                 </form>
                             </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modificarEmpleadoModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="staticBackdropLabel">Modificar empleado</h5>
+                            <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body container">
+                            <form class="formularioModificarUsuario" method="POST"  action="/administrarUsuarios/modificarUsuario">
+                                <div class="form-group">
+                                    <label class="text-dark" for="nombreUsuario">Nombre de usuario</label>
+                                    <input type="text" class="form-control inputNombreUsuario" id="nombreUsuario" name="nombreUsuario" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="nombre">Nombre</label>
+                                    <input type="text" class="form-control inputNombre" id="nombre" name="nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="apellido">Apellido</label>
+                                    <input type="text" class="form-control inputApellido" id="apellido" name="apellido" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="dni">DNI</label>
+                                    <input type="text" class="form-control inputDni" id="dni" name="dni" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="fechaNacimiento">Fecha nacimiento</label>
+                                    <input type="date" class="form-control inputFechaNacimiento" id="fechaNacimiento" name="fechaNacimiento" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                                    <button type="submit" class="btn btn-primary" id="botonModificar" name="botonModificar">Modificar</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
