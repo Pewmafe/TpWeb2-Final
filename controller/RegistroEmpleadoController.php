@@ -44,7 +44,7 @@ class RegistroEmpleadoController
 
     public function registroEmpleado()
     {
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if($logeado){
 
             $tipoLicencia = $_POST["tipoLicencia"];

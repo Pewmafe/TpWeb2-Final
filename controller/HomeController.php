@@ -29,6 +29,10 @@ class HomeController
             if($usuarioSupervisor){
                 $data["usuarioSupervisor"] = true;
             }
+            $usuarioChofer = $this->loginSession->verificarQueUsuarioEsChofer();
+            if ($usuarioChofer) {
+                $data["usuarioChofer"] = true;
+            }
 
             echo $this->render->render("view/home.php", $data);
             exit();
