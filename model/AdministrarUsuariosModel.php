@@ -91,10 +91,27 @@ class AdministrarUsuariosModel
                                      $nombre,
                                      $apellido,
                                      $dni,
-                                     $fechaNacimiento){
+                                     $fechaNacimiento,
+                                     $dniUsuarioQueSeVaAModificar){
         $sql = "UPDATE usuario SET dni=".$dni.",nombreUsuario='".$nombreUsuario."',nombre='".$nombre."',apellido='".$apellido."',fecha_nacimiento='".$fechaNacimiento."' 
-        WHERE dni=".$dni;
+        WHERE dni=".$dniUsuarioQueSeVaAModificar;
         $this->bd->query($sql);
+    }
+
+    public function modificarEmpleado($nombreUsuario,
+                                     $nombre,
+                                     $apellido,
+                                     $dni,
+                                     $fechaNacimiento,
+                                      $tipoLicenciaAModificar,
+                                      $rolAModificar,
+                                      $id,
+                                      $dniUsuarioQueSeVaAModificar){
+        $sqlUsuario = "UPDATE usuario SET dni=".$dni.",nombreUsuario='".$nombreUsuario."',nombre='".$nombre."',apellido='".$apellido."',fecha_nacimiento='".$fechaNacimiento."' 
+        WHERE dni=".$dniUsuarioQueSeVaAModificar;
+        $resultado= $this->bd->query($sqlUsuario);
+        $sqlEmpleado = "UPDATE empleado SET tipo_de_licencia='".$tipoLicenciaAModificar."',tipo_empleado=".$rolAModificar." WHERE id=".$id;
+        $this->bd->query($sqlEmpleado);
     }
 
     public function verificarNombreUsuarioExistente($nombreUsuario, $dni){

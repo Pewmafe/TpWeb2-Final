@@ -13,6 +13,9 @@
                 {{#modificarUsuario}}
                 <h5 class="text-success">Se modifico al usuario con exito.</h5>
                 {{/modificarUsuario}}
+                {{#modificarEmpleado}}
+                <h5 class="text-success">Se modifico al empleado con exito.</h5>
+                {{/modificarEmpleado}}
                 {{#nombreUsuarioExistente}}
                     <h5 class="text-danger">Nombre de usuario ya existe.</h5>
                 {{/nombreUsuarioExistente}}
@@ -76,7 +79,9 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Rol </span>: {{descripcion}}
                                 </p>
-                                <a  class="mt-2 btn btn-success botonModificarEmpleado" data-toggle="modal" data-target="#modificarEmpleadoModal" type="button">Modificar</a>
+                                <a  class="mt-2 btn btn-success botonModificarEmpleado" data-toggle="modal" data-target="#modificarEmpleadoModal" data-nombreusuario="{{nombreUsuario}}" data-nombre="{{nombre}}"
+                                    data-apellido="{{apellido}}" data-dni="{{dni}}" data-id="{{id}}" data-fechanaci="{{fecha_nacimiento}}"
+                                    data-tipolicencia="{{tipo_de_licencia}}" data-rol="{{descripcion}}" type="button">Modificar</a>
                                 <a type="button" class="btn btn-danger mt-2 botonDarDeBajaEmpleado" data-toggle="modal" data-target="#darDeBajaEmpleadoModal" data-id="'{{id}}'">Dar de baja empleado</a>
                             </div>
                         </div>
@@ -177,7 +182,7 @@
                             </button>
                         </div>
                         <div class="modal-body container">
-                            <form class="formularioModificarUsuario" method="POST"  action="/administrarUsuarios/modificarUsuario">
+                            <form class="formularioModificarEmpleado" method="POST"  action="/administrarUsuarios/modificarEmpleado">
                                 <div class="form-group">
                                     <label class="text-dark" for="nombreUsuario">Nombre de usuario</label>
                                     <input type="text" class="form-control inputNombreUsuario" id="nombreUsuario" name="nombreUsuario" required>
@@ -198,8 +203,29 @@
                                     <label class="text-dark" for="fechaNacimiento">Fecha nacimiento</label>
                                     <input type="date" class="form-control inputFechaNacimiento" id="fechaNacimiento" name="fechaNacimiento" required>
                                 </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="tipoLicencia">Tipo de licencia</label>
+                                    <select name="tipoLicencia" id="tipoLicencia" class="custom-select form-control selectTipoLicencia">
+                                        <option disabled>-</option>
+                                        <option value="auto">Auto</option>
+                                        <option value="camion">Camion</option>
+                                        <option value="tractor">Tractor</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="rol">Rol</label>
+                                    <select name="rol" id="rol" class="custom-select form-control selectRol">
+                                        <option selected disabled>-</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Supervisor</option>
+                                        <option value="3">Encargado</option>
+                                        <option value="4">Chofer</option>
+                                        <option value="5">Mecanico</option>
+                                    </select>
+                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                                    <input type="hidden" class="idEmpleado" id="idEmpleado" name="idEmpleado">
                                     <button type="submit" class="btn btn-primary" id="botonModificar" name="botonModificar">Modificar</button>
                                 </div>
                             </form>

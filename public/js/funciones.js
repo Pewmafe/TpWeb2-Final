@@ -25,10 +25,49 @@ $(document).on("click", ".botonModificarUsuario", function () {
     var apellido = $(this).data('apellido');
     var fechanaci = $(this).data('fechanaci');
 
-    $(".formularioModificarUsuario .modal-footer #botonModificar").val( dni );
+    $(".formularioModificarUsuario .modal-footer #botonModificar").val(dni);
     $(".formularioModificarUsuario .inputNombreUsuario").val(nombreUsuario);
     $(".formularioModificarUsuario .inputNombre").val(nombre);
     $(".formularioModificarUsuario .inputApellido").val(apellido);
     $(".formularioModificarUsuario .inputDni").val(dni);
     $(".formularioModificarUsuario .inputFechaNacimiento").val(fechanaci);
+});
+
+$(document).on("click", ".botonModificarEmpleado", function () {
+    var dni = $(this).data('dni');
+    var nombreUsuario = $(this).data('nombreusuario');
+    var nombre = $(this).data('nombre');
+    var apellido = $(this).data('apellido');
+    var fechanaci = $(this).data('fechanaci');
+    var tipoLicencia = $(this).data('tipolicencia');
+    var rol = $(this).data('rol');
+    var id = $(this).data('id');
+
+    switch (rol) {
+        case 'administrador':
+            rol=1;
+            break;
+        case 'supervisor':
+            rol=2;
+            break;
+        case 'encargado':
+            rol=3;
+            break;
+        case 'chofer':
+            rol=4;
+            break;
+        case 'mecanico':
+            rol=5;
+            break;
+    }
+
+    $(".formularioModificarEmpleado .modal-footer #botonModificar").val(dni);
+    $(".formularioModificarEmpleado .inputNombreUsuario").val(nombreUsuario);
+    $(".formularioModificarEmpleado .inputNombre").val(nombre);
+    $(".formularioModificarEmpleado .inputApellido").val(apellido);
+    $(".formularioModificarEmpleado .inputDni").val(dni);
+    $(".formularioModificarEmpleado .inputFechaNacimiento").val(fechanaci);
+    $(".formularioModificarEmpleado .selectTipoLicencia").val(tipoLicencia);
+    $(".formularioModificarEmpleado .selectRol").val(rol);
+    $(".formularioModificarEmpleado .modal-footer .idEmpleado").val(id);
 });
