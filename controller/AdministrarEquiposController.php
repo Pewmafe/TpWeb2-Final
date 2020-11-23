@@ -17,27 +17,28 @@ class AdministrarEquiposController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
-        if($logeado){
+        if ($logeado) {
             $data["login"] = true;
-            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
-            if($usuarioAdmin){
-                $data["usuarioAdmin"] = true;
-            }
-            $data["bajaVehiculo"]= isset($_GET["bajaVehiculo"]) ? $_GET["bajaVehiculo"] : false;
-            $data["bajaAcoplado"]= isset($_GET["bajaAcoplado"]) ? $_GET["bajaAcoplado"] : false;
+
+            $data["bajaVehiculo"] = isset($_GET["bajaVehiculo"]) ? $_GET["bajaVehiculo"] : false;
+            $data["bajaAcoplado"] = isset($_GET["bajaAcoplado"]) ? $_GET["bajaAcoplado"] : false;
 
             $tablaCamiones = $this->administrarEquiposModel->obtenerCamiones();
             $tablaAcoplados = $this->administrarEquiposModel->obtenerAcoplados();
 
             $data['tablaCamiones'] = $tablaCamiones;
             $data['tablaAcoplados'] = $tablaAcoplados;
-            echo $this->render->render("view/administrarEquiposView.php", $data);
+
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+            $dataMerge = array_merge($data, $data2);
+            echo $this->render->render("view/administrarEquiposView.php", $dataMerge);
             exit();
         }
         echo $this->render->render("view/administrarEquiposView.php");
     }
 
-    public function eliminarVehiculo(){
+    public function eliminarVehiculo()
+    {
         $patenteVehAEliminar = $_POST["botonDarDeBajaCamionModal"];
 
         $this->administrarEquiposModel->eliminarVehiculo($patenteVehAEliminar);
@@ -46,7 +47,8 @@ class AdministrarEquiposController
         exit();
     }
 
-    public function eliminarAcoplado(){
+    public function eliminarAcoplado()
+    {
         $patenteAcopAEliminar = $_POST["botonDarDeBajaAcopladoModal"];
 
         $this->administrarEquiposModel->eliminarAcoplado($patenteAcopAEliminar);
