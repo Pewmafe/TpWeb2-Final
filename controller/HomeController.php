@@ -3,19 +3,23 @@
 class HomeController
 {
     private $render;
+    private $loginSession;
 
-    public function __construct($render)
+    public function __construct($render, $loginSession)
     {
         $this->render = $render;
+        $this->loginSession = $loginSession;
     }
 
     public function ejecutar()
     {
         $data["registroExitoso"]= isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if($logeado){
             $data["login"] = true;
-            if($_SESSION["rol"] == "admin"){
+
+            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
+            if($usuarioAdmin){
                 $data["usuarioAdmin"] = true;
             }
             
@@ -23,13 +27,5 @@ class HomeController
             exit();
         }
        echo $this->render->render("view/home.php", $data);
-    }
-
-    public function verificarQueUsuarioEsteLogeado(){
-        $logeado = isset( $_SESSION["logeado"]) ?  $_SESSION["logeado"] : null;
-        if($logeado == 1){
-            return true;
-        }
-        return false;
     }
 }

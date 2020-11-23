@@ -5,19 +5,22 @@ class AgregarAcopladoController
 {
     private $render;
     private $agregarAcopladoModel;
+    private $loginSession;
 
-    public function __construct($render, $agregarAcopladoModel)
+    public function __construct($render, $loginSession, $agregarAcopladoModel)
     {
         $this->render = $render;
+        $this->loginSession = $loginSession;
         $this->agregarAcopladoModel = $agregarAcopladoModel;
     }
 
     public function ejecutar()
     {
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
-            if ($_SESSION["rol"] == "admin") {
+            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
+            if($usuarioAdmin){
                 $data["usuarioAdmin"] = true;
             }
             $data["patenteAcopladoError"]= isset($_GET["patenteAcopladoError"]) ? $_GET["patenteAcopladoError"] : false;
@@ -60,14 +63,5 @@ class AgregarAcopladoController
             exit();
         }
 
-    }
-
-    public function verificarQueUsuarioEsteLogeado()
-    {
-        $logeado = isset($_SESSION["logeado"]) ? $_SESSION["logeado"] : null;
-        if ($logeado == 1) {
-            return true;
-        }
-        return false;
     }
 }

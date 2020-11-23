@@ -5,19 +5,22 @@ class AdministrarEquiposController
 {
     private $render;
     private $administrarEquiposModel;
+    private $loginSession;
 
-    public function __construct($render, $administrarEquiposModel)
+    public function __construct($render, $loginSession, $administrarEquiposModel)
     {
         $this->render = $render;
+        $this->loginSession = $loginSession;
         $this->administrarEquiposModel = $administrarEquiposModel;
     }
 
     public function ejecutar()
     {
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if($logeado){
             $data["login"] = true;
-            if($_SESSION["rol"] == "admin"){
+            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
+            if($usuarioAdmin){
                 $data["usuarioAdmin"] = true;
             }
             $data["bajaVehiculo"]= isset($_GET["bajaVehiculo"]) ? $_GET["bajaVehiculo"] : false;
@@ -50,12 +53,5 @@ class AdministrarEquiposController
 
         header("Location: /administrarEquipos?bajaAcoplado=true");
         exit();
-    }
-    public function verificarQueUsuarioEsteLogeado(){
-        $logeado = isset( $_SESSION["logeado"]) ?  $_SESSION["logeado"] : null;
-        if($logeado == 1){
-            return true;
-        }
-        return false;
     }
 }
