@@ -21,7 +21,6 @@ class CrearProformaController
             $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
             if($usuarioAdmin){
                 $data["usuarioAdmin"] = true;
-                $data["usuarioChofer"] = true;
                 $data["usuarioSupervisor"] = true;
             }
 
