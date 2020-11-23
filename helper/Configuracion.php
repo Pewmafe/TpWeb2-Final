@@ -13,6 +13,8 @@ include_once("controller/AdministrarEquiposController.php");
 include_once("controller/ModificarUsuarioController.php");
 include_once("controller/AgregarVehiculoController.php");
 include_once("controller/AgregarAcopladoController.php");
+include_once("controller/ChoferController.php");
+include_once("controller/CrearProformaController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
@@ -21,6 +23,8 @@ include_once("model/ModificarUsuarioModel.php");
 include_once("model/AdministrarEquiposModel.php");
 include_once("model/AgregarVehiculoModel.php");
 include_once("model/AgregarAcopladoModel.php");
+include_once("model/ChoferModel.php");
+include_once("model/CrearProformaModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -92,7 +96,7 @@ class Configuracion
     {
         $loginSession = $this->getLoginSession();
         $administrarUsuarioModel = $this->getAdministrarUsuariosModel();
-        return new AdministrarUsuariosController($this->getRender(), $loginSession,$administrarUsuarioModel);
+        return new AdministrarUsuariosController($this->getRender(), $loginSession, $administrarUsuarioModel);
     }
 
 
@@ -122,6 +126,20 @@ class Configuracion
         $loginSession = $this->getLoginSession();
         $agregarAcopladoModel = $this->getAgregarAcopladoModel();
         return new AgregarAcopladoController($this->getRender(), $loginSession, $agregarAcopladoModel);
+    }
+
+    public function getChoferController()
+    {
+        $choferModel = $this->getChoferModel();
+        $loginSession = $this->getLoginSession();
+        return new ChoferController($this->getRender(), $loginSession, $choferModel);
+    }
+
+    public function getCrearProformaController()
+    {
+        $proformaModel = $this->getCrearProformaModel();
+        $loginSession = $this->getLoginSession();
+        return new CrearProformaController($this->getRender(), $loginSession, $proformaModel);
     }
 
     public function getAgregarAcopladoModel()
@@ -165,5 +183,17 @@ class Configuracion
     {
         $bd = $this->getDatabase();
         return new AdministrarEquiposModel($bd);
+    }
+
+    private function getChoferModel()
+    {
+        $bd = $this->getDatabase();
+        return new ChoferModel($bd);
+    }
+
+    private function getCrearProformaModel()
+    {
+        $bd = $this->getDatabase();
+        return new CrearProformaModel($bd);
     }
 }

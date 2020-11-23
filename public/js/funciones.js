@@ -72,6 +72,7 @@ $(document).on("click", ".botonModificarEmpleado", function () {
     $(".formularioModificarEmpleado .modal-footer .idEmpleado").val(id);
 });
 
+
 $(document).on("click", ".botonModificarCamion", function () {
     var patente = $(this).data('patente');
     var nroChasis = $(this).data('nroChasis');
@@ -105,3 +106,26 @@ $(document).on("click", ".botonModificarAcoplado", function () {
     $(".formularioModificarAcoplado .inputPatente").val(patente);
 
 });
+
+$(document).ready(function () {
+    $('#Activos').click(function () {
+        $('.popup1').show("slow");
+        $('.popup2').hide(1000);
+        $('.popup3').hide(1000);
+    });
+
+
+    $('#Pendientes').click(function () {
+        $('.popup2').show(1000);
+        $('.popup1').hide(1000);
+        $('.popup3').hide(1000);
+    });
+
+
+    $('#Finalizados').click(function () {
+        $('.popup3').show(1000);
+        $('.popup2').hide(1000);
+        $('.popup1').hide(1000);
+    });
+});
+
