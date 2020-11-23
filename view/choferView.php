@@ -122,8 +122,7 @@
             </div>
         </article>
     </section>
-    {{/usuarioChofer}}
-    {{^usuarioChofer}}
+    {{/usuarioChofer}} {{^usuarioChofer}}
     <div class="text-center">
         <h1>ERROR 404 PAGINA NO ENCONTRADA</h1>
         <a class="btn btn-outline-danger" href="/home">Volver al Inicio</a>

@@ -45,39 +45,43 @@
             <h3 class="text-dark text-center">Registrando a un nuevo Conductardo</h3>
 
             <div class="container">
-                <form class="form-horizontal" role="form" action="/registro/registroUsuario" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" action="/registro/registroUsuario" method="post"
+                      enctype="multipart/form-data">
                     <div class="intDatos">
                         <h2>Introduzca sus datos.</h2>
                     </div>
 
                     <div class="form-group">
                         {{#nombreUsuarioExistente}}
-                            <h5 class="text-danger">Nombre de usuario ya existente</h5>
-                        {{/nombreUsuarioExistente}}
-                        {{#dniUsuarioExistente}}
+                        <h5 class="text-danger">Nombre de usuario ya existente</h5>
+                        {{/nombreUsuarioExistente}} {{#dniUsuarioExistente}}
                         <h5 class="text-danger">DNI de usuario ya existente</h5>
                         {{/dniUsuarioExistente}}
                         <label for="NombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
                         <div class="col-12">
-                            <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>
+                            <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario"
+                                   class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nombre" class="col-12 control-label">*Nombre</label>
                         <div class="col-12">
-                            <input type="text" id="nombre" name="nombre" placeholder="Nombre/s" class="form-control" required>
+                            <input type="text" id="nombre" name="nombre" placeholder="Nombre/s" class="form-control"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="apellido" class="col-12 control-label">*Apellido</label>
                         <div class="col-12">
-                            <input type="text" id="apellido" name="apellido" placeholder="Apellido/s" class="form-control" required>
+                            <input type="text" id="apellido" name="apellido" placeholder="Apellido/s"
+                                   class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="fechaNacimiento" class="col-12 control-label">*Fecha de Nacimiento</label>
                         <div class="col-12">
-                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" required>
+                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control"
+                                   required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -89,7 +93,8 @@
                     <div class="form-group">
                         <label for="contrasenia" class="col-12 control-label">*Contraseña</label>
                         <div class="col-12">
-                            <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña" class="form-control" required>
+                            <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña"
+                                   class="form-control" required>
                         </div>
                     </div>
 
