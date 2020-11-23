@@ -19,10 +19,19 @@ class AdministrarUsuariosController
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if($logeado){
             $data["login"] = true;
+
             $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
             if($usuarioAdmin){
                 $data["usuarioAdmin"] = true;
+                $data["usuarioChofer"] = true;
+                $data["usuarioSupervisor"] = true;
             }
+
+            $usuarioSupervisor = $this->loginSession->verificarQueUsuarioEsSupervisor();
+            if($usuarioSupervisor){
+                $data["usuarioSupervisor"] = true;
+            }
+
             $data["bajaUsuario"]= isset($_GET["bajaUsuario"]) ? $_GET["bajaUsuario"] : false;
             $data["bajaEmpleado"]= isset($_GET["bajaEmpleado"]) ? $_GET["bajaEmpleado"] : false;
             $data["nombreUsuarioExistente"]= isset($_GET["nombreUsuarioExistente"]) ? $_GET["nombreUsuarioExistente"] : false;

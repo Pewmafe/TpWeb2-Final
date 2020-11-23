@@ -11,6 +11,20 @@ class LoginSession
         return false;
     }
 
+    public function verificarQueUsuarioRol(){
+        $data[] = false;
+        if($this->verificarQueUsuarioEsAdmin()){
+            $data["usuarioAdmin"]  = true;
+            $data["usuarioSupervisor"]  = true;
+        }
+
+        if($this->verificarQueUsuarioEsSupervisor()){
+            $data["usuarioSupervisor"]  = true;
+        }
+
+        return $data;
+    }
+
     public function verificarQueUsuarioEsAdmin(){
         $usuarioAdmin = false;
         if($_SESSION["rol"] == "admin"){
@@ -18,4 +32,14 @@ class LoginSession
         }
         return $usuarioAdmin;
     }
+
+    public function verificarQueUsuarioEsSupervisor(){
+        $usuarioSupervisor = false;
+        if($_SESSION["rol"] == "supervisor"){
+            $usuarioSupervisor  = true;
+        }
+        return $usuarioSupervisor;
+    }
+
+
 }

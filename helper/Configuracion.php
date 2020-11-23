@@ -13,6 +13,7 @@ include_once("controller/AdministrarEquiposController.php");
 include_once("controller/ModificarUsuarioController.php");
 include_once("controller/AgregarVehiculoController.php");
 include_once("controller/AgregarAcopladoController.php");
+include_once("controller/CrearProformaController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
@@ -122,6 +123,12 @@ class Configuracion
         $loginSession = $this->getLoginSession();
         $agregarAcopladoModel = $this->getAgregarAcopladoModel();
         return new AgregarAcopladoController($this->getRender(), $loginSession, $agregarAcopladoModel);
+    }
+
+    public function getCrearProformaController()
+    {
+        $loginSession = $this->getLoginSession();
+        return new CrearProformaController($this->getRender(), $loginSession);
     }
 
     public function getAgregarAcopladoModel()
