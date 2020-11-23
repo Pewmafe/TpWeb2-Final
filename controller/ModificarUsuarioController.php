@@ -24,21 +24,22 @@ class ModificarUsuarioController
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
             $data["contrasenia"] = $_SESSION["contrasenia"];
 
-            $data["dniEmpleado"] = $_SESSION["dniEmpleado"];
-            $data["nombreEmpleado"] = $_SESSION["nombreEmpleado"];
-            $data["apellidoEmpleado"] = $_SESSION["apellidoEmpleado"];
+            $data["dniUsuario"] = $_SESSION["dniUsuario"];
+            $data["nombreDelUsuario"] = $_SESSION["nombre"];
+            $data["apellidoUsuario"] = $_SESSION["apellido"];
             $data["licenciaEmpleado"] = $_SESSION["licenciaEmpleado"];
-            $data["nacimientoEmpleado"] = $_SESSION["nacimientoEmpleado"];
+            $data["nacimientoUsuario"] = $_SESSION["fecha_nacimiento"];
 
 
             $data["nombreExistente"] = isset($_GET["nombreExistente"]) ? $_GET["nombreExistente"] : false;
+            $data["dniExistente"] = isset($_GET["dniExistente"]) ? $_GET["dniExistente"] : false;
             $data["cambioNombre"] = isset($_GET["nombreUsuarioModificado"]) ? $_GET["nombreUsuarioModificado"] : false;
             $data["cambioPassword"] = isset($_GET["PasswordUsuarioModificado"]) ? $_GET["PasswordUsuarioModificado"] : false;
-            $data["cambioNombreEmpleado"] = isset($_GET["nombreEmpleadoModificado"]) ? $_GET["nombreEmpleadoModificado"] : false;
-            $data["cambioApellidoEmpleado"] = isset($_GET["apellidoEmpleadoModificado"]) ? $_GET["apellidoEmpleadoModificado"] : false;
+            $data["cambioNombreDelUsuario"] = isset($_GET["nombreDelUsuarioModificado"]) ? $_GET["nombreDelUsuarioModificado"] : false;
+            $data["cambioApellidoUsuario"] = isset($_GET["apellidoUsuarioModificado"]) ? $_GET["apellidoUsuarioModificado"] : false;
             $data["licenciaEmpleadoModificado"] = isset($_GET["licenciaEmpleadoModificado"]) ? $_GET["licenciaEmpleadoModificado"] : false;
-            $data["dniEmpleadoModificado"] = isset($_GET["dniEmpleadoModificado"]) ? $_GET["dniEmpleadoModificado"] : false;
-            $data["nacimientoEmpleadoModificado"] = isset($_GET["nacimientoEmpleadoModificado"]) ? $_GET["nacimientoEmpleadoModificado"] : false;
+            $data["cambioDniUsuario"] = isset($_GET["dniUsuarioModificado"]) ? $_GET["dniUsuarioModificado"] : false;
+            $data["cambioNacimientoUsuario"] = isset($_GET["nacimientoUsuarioModificado"]) ? $_GET["nacimientoUsuarioModificado"] : false;
 
             $usuarioEsEmpleado = $this->ModificarUsuarioModel->verificarSiUnUsuarioEsUnEmpleado($_SESSION["nombreUsuario"]);
             if ($usuarioEsEmpleado) {
@@ -103,34 +104,74 @@ class ModificarUsuarioController
     }
 
 
-    public function modificarNombreEmpleado()
+    public function modificarNombreDelUsuario()
     {
-        $nombre = $_POST["nombreEmpleado"];
+        $nombre = $_POST["nombreDelUsuario"];
         $logeado = $this->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {
                 $data["usuarioAdmin"] = true;
             }
-            $this->ModificarUsuarioModel->modificarNombreEmpleado($nombre);
+            $this->ModificarUsuarioModel->modificarNombreDelUsuario($nombre);
 
-            header("Location: /modificarUsuario?nombreEmpleadoModificado=true");
+            header("Location: /modificarUsuario?nombreDelUsuarioModificado=true");
             exit();
         }
     }
 
-    public function modificarApellidoEmpleado()
+    public function modificarApellidoUsuario()
     {
-        $apellido = $_POST["apellidoEmpleado"];
+        $apellido = $_POST["apellidoUsuario"];
         $logeado = $this->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {
                 $data["usuarioAdmin"] = true;
             }
-            $this->ModificarUsuarioModel->modificarApellidoEmpleado($apellido);
+            $this->ModificarUsuarioModel->modificarApellidoUsuario($apellido);
 
-            header("Location: /modificarUsuario?apellidoEmpleadoModificado=true");
+            header("Location: /modificarUsuario?apellidoUsuarioModificado=true");
+            exit();
+        }
+    }
+
+    public function modificarDniUsuario()
+    {
+        $dniUsuario = $_POST["dniUsuario"];
+        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $dniExistente = $this->ModificarUsuarioModel->verificarDniExistente($dniUsuario);
+        if ($logeado) {
+            $data["login"] = true;
+            if ($_SESSION["rol"] == "admin") {
+                $data["usuarioAdmin"] = true;
+            }
+            if (!$dniExistente) {
+
+                $this->ModificarUsuarioModel->modificarDniUsuario($dniUsuario);
+
+            } else {
+                header("Location: /modificarUsuario?dniExistente=true");
+                exit();
+            }
+            header("Location: /modificarUsuario?dniUsuarioModificado=true");
+            exit();
+        }
+    }
+
+    public function modificarNacimientoUsuario()
+    {
+        $nacimiento = $_POST["nacimientoUsuario"];
+        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        if ($logeado) {
+            $data["login"] = true;
+            if ($_SESSION["rol"] == "admin") {
+                $data["usuarioAdmin"] = true;
+            }
+            $this->ModificarUsuarioModel->modificarNacimientoUsuario($nacimiento);
+
+            header("Location: /modificarUsuario?nacimientoUsuarioModificado=true");
+
             exit();
         }
     }
@@ -154,36 +195,5 @@ class ModificarUsuarioController
         }
     }
 
-    public function modificarDniEmpleado()
-    {
-        $dniEmpleado = $_POST["dniEmpleado"];
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
-        if ($logeado) {
-            $data["login"] = true;
-            if ($_SESSION["rol"] == "admin") {
-                $data["usuarioAdmin"] = true;
-            }
-            $this->ModificarUsuarioModel->modificarDniEmpleado($dniEmpleado);
 
-            header("Location: /modificarUsuario?dniEmpleadoModificado=true");
-            exit();
-        }
-    }
-
-    public function modificarNacimientoEmpleado()
-    {
-        $nacimiento = $_POST["nacimientoEmpleado"];
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
-        if ($logeado) {
-            $data["login"] = true;
-            if ($_SESSION["rol"] == "admin") {
-                $data["usuarioAdmin"] = true;
-            }
-            $this->ModificarUsuarioModel->modificarNacimientoEmpleado($nacimiento);
-
-            header("Location: /modificarUsuario?nacimientoEmpleadoModificado=true");
-
-            exit();
-        }
-    }
 }

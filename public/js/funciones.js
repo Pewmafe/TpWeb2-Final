@@ -1,21 +1,21 @@
 $(document).on("click", ".botonDarDeBajaUsuario", function () {
     var primaryKey = $(this).data('id');
-    $(".modal-footer #botonDarDeBajaUsuarioModal").val( primaryKey );
+    $(".modal-footer #botonDarDeBajaUsuarioModal").val(primaryKey);
 });
 
 $(document).on("click", ".botonDarDeBajaEmpleado", function () {
     var primaryKey = $(this).data('id');
-    $(".modal-footer #botonDarDeBajaEmpleadoModal").val( primaryKey );
+    $(".modal-footer #botonDarDeBajaEmpleadoModal").val(primaryKey);
 });
 
 $(document).on("click", ".botonDarDeBajaCamion", function () {
     var primaryKey = $(this).data('id');
-    $(".modal-footer #botonDarDeBajaCamionModal").val( primaryKey );
+    $(".modal-footer #botonDarDeBajaCamionModal").val(primaryKey);
 });
 
 $(document).on("click", ".botonDarDeBajaAcoplado", function () {
     var primaryKey = $(this).data('id');
-    $(".modal-footer #botonDarDeBajaAcopladoModal").val( primaryKey );
+    $(".modal-footer #botonDarDeBajaAcopladoModal").val(primaryKey);
 });
 
 $(document).on("click", ".botonModificarUsuario", function () {
@@ -24,10 +24,11 @@ $(document).on("click", ".botonModificarUsuario", function () {
     var nombre = $(this).data('nombre');
     var apellido = $(this).data('apellido');
     var fechanaci = $(this).data('fechanaci');
-    $(".formularioModificarUsuario .inputNombreUsuario").val( nombreUsuario );
-    $(".formularioModificarUsuario .inputNombre").val( nombre );
-    $(".formularioModificarUsuario .inputApellido").val( apellido );
-    $(".formularioModificarUsuario .inputDni").val( dni );
-    $(".formularioModificarUsuario .inputFechaNacimiento").val( fechanaci );
+
     $(".formularioModificarUsuario .modal-footer #botonModificar").val( dni );
+    $(".formularioModificarUsuario .inputNombreUsuario").val(nombreUsuario);
+    $(".formularioModificarUsuario .inputNombre").val(nombre);
+    $(".formularioModificarUsuario .inputApellido").val(apellido);
+    $(".formularioModificarUsuario .inputDni").val(dni);
+    $(".formularioModificarUsuario .inputFechaNacimiento").val(fechanaci);
 });

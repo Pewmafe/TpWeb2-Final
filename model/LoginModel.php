@@ -24,8 +24,9 @@ class LoginModel
                 $_SESSION["dniUsuario"] = $table[$i]["dni"];
                 $_SESSION["nombre"] = $table[$i]["nombre"];
                 $_SESSION["apellido"] = $table[$i]["apellido"];
-                $_SESSION["licenciaEmpleado"] = $this->obtenerLicenciaEmpleado($nombre);
                 $_SESSION["fecha_nacimiento"] = $table[$i]["fecha_nacimiento"];
+                $_SESSION["licenciaEmpleado"] = $this->obtenerLicenciaEmpleado($nombre);
+                $_SESSION["idEmpleado"] = $this->obtenerIdEmpleado($nombre);
                 return true;
             }
         }
@@ -107,15 +108,27 @@ class LoginModel
 
     }
 
+    public function obtenerIdEmpleado($nombreUsuario)
 
-   /* public function obtenerNacimientoEmpleado($nombreUsuario)
     {
-        $sql = "SELECT nacimiento FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+        $sql = "SELECT id FROM empleado JOIN usuario ON usuario.dni = empleado.dni_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
         $resultado = $this->bd->query($sql);
         $arrayRol = $resultado->fetch_assoc();
-        $result = isset($arrayRol["nacimiento"]) ? $arrayRol["nacimiento"] : null;
+        $result = isset($arrayRol["id"]) ? $arrayRol["id"] : null;
 
         return $result;
 
-    }*/
+    }
+
+
+    /* public function obtenerNacimientoEmpleado($nombreUsuario)
+     {
+         $sql = "SELECT nacimiento FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
+         $resultado = $this->bd->query($sql);
+         $arrayRol = $resultado->fetch_assoc();
+         $result = isset($arrayRol["nacimiento"]) ? $arrayRol["nacimiento"] : null;
+
+         return $result;
+
+     }*/
 }
