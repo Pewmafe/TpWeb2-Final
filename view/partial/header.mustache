@@ -39,11 +39,16 @@
                         <a class="nav-link text-white" href="/administrarUsuarios">Administraci&oacute;n Usuarios</a>
 
                     </li>
+                {{/usuarioAdmin}}
+                {{#usuarioSupervisor}}
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/administrarEquipos">Administrar Equipos</a>
 
                     </li>
-                {{/usuarioAdmin}}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/crearProforma">Crear proforma</a>
+                    </li>
+                {{/usuarioSupervisor}}
                 {{#login}}
                     <li class="nav-item">
                         <a class="nav-link text-white "

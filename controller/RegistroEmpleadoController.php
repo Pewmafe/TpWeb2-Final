@@ -19,9 +19,17 @@ class RegistroEmpleadoController
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if($logeado){
             $data["login"] = true;
+
             $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
             if($usuarioAdmin){
                 $data["usuarioAdmin"] = true;
+                $data["usuarioChofer"] = true;
+                $data["usuarioSupervisor"] = true;
+            }
+
+            $usuarioSupervisor = $this->loginSession->verificarQueUsuarioEsSupervisor();
+            if($usuarioSupervisor){
+                $data["usuarioSupervisor"] = true;
             }
 
             $data["nombreUsuarioError"]= isset($_GET["nombreUsuarioError"]) ? $_GET["nombreUsuarioError"] : false;

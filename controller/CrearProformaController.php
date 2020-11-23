@@ -1,6 +1,7 @@
 <?php
 
-class HomeController
+
+class CrearProformaController
 {
     private $render;
     private $loginSession;
@@ -13,7 +14,6 @@ class HomeController
 
     public function ejecutar()
     {
-        $data["registroExitoso"]= isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if($logeado){
             $data["login"] = true;
@@ -30,9 +30,9 @@ class HomeController
                 $data["usuarioSupervisor"] = true;
             }
 
-            echo $this->render->render("view/home.php", $data);
+            echo $this->render->render("view/CrearProformaView.php", $data);
             exit();
         }
-       echo $this->render->render("view/home.php", $data);
+        echo $this->render->render("view/CrearProformaView.php");
     }
 }
