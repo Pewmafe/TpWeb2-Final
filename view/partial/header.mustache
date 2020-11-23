@@ -50,10 +50,14 @@
                            href="/modificarUsuario">Configuracion</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-white" href="/chofer">Viajes</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-white btn btn-outline-danger"
                            href="/login/deslogearse">Cerrar Sesion</a>
                     </li>
                 {{/login}}
+
                 {{^login}}
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/registro">Registrarse</a>
@@ -62,6 +66,7 @@
                         <a class="nav-link text-white" href="/login">Log In</a>
                     </li>
                 {{/login}}
+
             </ul>
         </div>
     </nav>
