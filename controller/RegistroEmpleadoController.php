@@ -5,19 +5,22 @@ class RegistroEmpleadoController
 {
     private $render;
     private $registroEmpleadoModel;
+    private $loginSession;
 
-    public function __construct($render , $registroEmpleadoModel)
+    public function __construct($render ,$loginSession, $registroEmpleadoModel)
     {
         $this->render = $render;
+        $this->loginSession = $loginSession;
         $this->registroEmpleadoModel = $registroEmpleadoModel;
     }
 
     public function ejecutar()
     {
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if($logeado){
             $data["login"] = true;
-            if($_SESSION["rol"] == "admin"){
+            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
+            if($usuarioAdmin){
                 $data["usuarioAdmin"] = true;
             }
 
@@ -54,13 +57,5 @@ class RegistroEmpleadoController
             exit();
         }
 
-    }
-
-    public function verificarQueUsuarioEsteLogeado(){
-        $logeado = isset( $_SESSION["logeado"]) ?  $_SESSION["logeado"] : null;
-        if($logeado == 1){
-            return true;
-        }
-        return false;
     }
 }

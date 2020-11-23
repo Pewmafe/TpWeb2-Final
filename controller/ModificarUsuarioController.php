@@ -6,19 +6,22 @@ class ModificarUsuarioController
 
     private $render;
     private $ModificarUsuarioModel;
+    private $loginSession;
 
-    public function __construct($render, $ModificarUsuarioModel)
+    public function __construct($render, $loginSession , $ModificarUsuarioModel)
     {
         $this->render = $render;
+        $this->loginSession = $loginSession;
         $this->ModificarUsuarioModel = $ModificarUsuarioModel;
     }
 
     public function ejecutar()
     {
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
-            if ($_SESSION["rol"] == "admin") {
+            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
+            if($usuarioAdmin){
                 $data["usuarioAdmin"] = true;
             }
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
@@ -50,15 +53,6 @@ class ModificarUsuarioController
             exit();
         }
         echo $this->render->render("view/modificarUsuarioView.php");
-    }
-
-    public function verificarQueUsuarioEsteLogeado()
-    {
-        $logeado = isset($_SESSION["logeado"]) ? $_SESSION["logeado"] : null;
-        if ($logeado == 1) {
-            return true;
-        }
-        return false;
     }
 
     public function modificarNombreUsuario()

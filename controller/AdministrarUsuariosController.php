@@ -5,19 +5,22 @@ class AdministrarUsuariosController
 {
     private $render;
     private $administrarUsuarioModel;
+    private $loginSession;
 
-    public function __construct($render, $administrarUsuarioModel)
+    public function __construct($render, $loginSession , $administrarUsuarioModel)
     {
         $this->render = $render;
+        $this->loginSession = $loginSession;
         $this->administrarUsuarioModel = $administrarUsuarioModel;
     }
 
     public function ejecutar()
     {
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if($logeado){
             $data["login"] = true;
-            if($_SESSION["rol"] == "admin"){
+            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
+            if($usuarioAdmin){
                 $data["usuarioAdmin"] = true;
             }
             $data["bajaUsuario"]= isset($_GET["bajaUsuario"]) ? $_GET["bajaUsuario"] : false;
@@ -84,13 +87,5 @@ class AdministrarUsuariosController
 
         header("Location: /administrarUsuarios?modificarUsuario=true");
         exit();
-    }
-
-    public function verificarQueUsuarioEsteLogeado(){
-        $logeado = isset( $_SESSION["logeado"]) ?  $_SESSION["logeado"] : null;
-        if($logeado == 1){
-            return true;
-        }
-        return false;
     }
 }

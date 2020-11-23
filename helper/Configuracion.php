@@ -2,6 +2,7 @@
 include_once("helper/MysqlDataBase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
+include_once("helper/LoginSession.php");
 
 include_once("controller/HomeController.php");
 include_once("controller/LoginController.php");
@@ -47,6 +48,11 @@ class Configuracion
         return new Render('view/partial');
     }
 
+    public function getLoginSession()
+    {
+        return new LoginSession();
+    }
+
     public function getRouter()
     {
         return new Router($this);
@@ -59,7 +65,8 @@ class Configuracion
 
     public function getHomeController()
     {
-        return new HomeController($this->getRender());
+        $loginSession = $this->getLoginSession();
+        return new HomeController($this->getRender(), $loginSession);
     }
 
     public function getLoginController()
@@ -76,39 +83,45 @@ class Configuracion
 
     public function getRegistroEmpleadoController()
     {
+        $loginSession = $this->getLoginSession();
         $registroModel = $this->getRegistroModel();
-        return new RegistroEmpleadoController($this->getRender(), $registroModel);
+        return new RegistroEmpleadoController($this->getRender(), $loginSession, $registroModel);
     }
 
     public function getAdministrarUsuariosController()
     {
+        $loginSession = $this->getLoginSession();
         $administrarUsuarioModel = $this->getAdministrarUsuariosModel();
-        return new AdministrarUsuariosController($this->getRender(), $administrarUsuarioModel);
+        return new AdministrarUsuariosController($this->getRender(), $loginSession,$administrarUsuarioModel);
     }
 
 
     public function getModificarUsuarioController()
     {
+        $loginSession = $this->getLoginSession();
         $modificarUsuarioModel = $this->getModificarUsuarioModel();
-        return new ModificarUsuarioController($this->getRender(), $modificarUsuarioModel);
+        return new ModificarUsuarioController($this->getRender(), $loginSession, $modificarUsuarioModel);
     }
 
     public function getAdministrarEquiposController()
     {
+        $loginSession = $this->getLoginSession();
         $administrarEquiposModel = $this->getAdministrarEquiposModel();
-        return new AdministrarEquiposController($this->getRender(), $administrarEquiposModel);
+        return new AdministrarEquiposController($this->getRender(), $loginSession, $administrarEquiposModel);
     }
 
     public function getAgregarVehiculoController()
     {
+        $loginSession = $this->getLoginSession();
         $agregarVehiculoModel = $this->getAgregarVehiculoModel();
-        return new AgregarVehiculoController($this->getRender(), $agregarVehiculoModel);
+        return new AgregarVehiculoController($this->getRender(), $loginSession, $agregarVehiculoModel);
     }
 
     public function getAgregarAcopladoController()
     {
+        $loginSession = $this->getLoginSession();
         $agregarAcopladoModel = $this->getAgregarAcopladoModel();
-        return new AgregarAcopladoController($this->getRender(), $agregarAcopladoModel);
+        return new AgregarAcopladoController($this->getRender(), $loginSession, $agregarAcopladoModel);
     }
 
     public function getAgregarAcopladoModel()

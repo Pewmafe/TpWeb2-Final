@@ -10,4 +10,12 @@ class LoginSession
         }
         return false;
     }
+
+    public function verificarQueUsuarioEsAdmin(){
+        $usuarioAdmin = false;
+        if($_SESSION["rol"] == "admin"){
+            $usuarioAdmin  = true;
+        }
+        return $usuarioAdmin;
+    }
 }
