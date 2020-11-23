@@ -18,12 +18,16 @@ class LoginSession
         if ($this->verificarQueUsuarioEsAdmin()) {
             $data["usuarioAdmin"] = true;
             $data["usuarioSupervisor"] = true;
+            $data["usuarioChofer"] = true;
         }
 
         if ($this->verificarQueUsuarioEsSupervisor()) {
             $data["usuarioSupervisor"] = true;
         }
 
+        if ($this->verificarQueUsuarioEsChofer()) {
+            $data["usuarioChofer"] = true;
+        }
         return $data;
     }
 
