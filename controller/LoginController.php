@@ -30,6 +30,7 @@ class LoginController
             exit();
         }
         header("Location: /");
+        exit();
     }
 
     public function deslogearse()
