@@ -7,7 +7,7 @@ class RegistroEmpleadoController
     private $registroEmpleadoModel;
     private $loginSession;
 
-    public function __construct($render ,$loginSession, $registroEmpleadoModel)
+    public function __construct($render, $loginSession, $registroEmpleadoModel)
     {
         $this->render = $render;
         $this->loginSession = $loginSession;
@@ -17,26 +17,16 @@ class RegistroEmpleadoController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
-        if($logeado){
+        if ($logeado) {
             $data["login"] = true;
 
-            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
-            if($usuarioAdmin){
-                $data["usuarioAdmin"] = true;
-                $data["usuarioChofer"] = true;
-                $data["usuarioSupervisor"] = true;
-            }
+            $data["nombreUsuarioError"] = isset($_GET["nombreUsuarioError"]) ? $_GET["nombreUsuarioError"] : false;
+            $data["registroExitoso"] = isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
+            $data["nombreUsuario"] = isset($_GET["nombreUsuario"]) ? $_GET["nombreUsuario"] : false;
 
-            $usuarioSupervisor = $this->loginSession->verificarQueUsuarioEsSupervisor();
-            if($usuarioSupervisor){
-                $data["usuarioSupervisor"] = true;
-            }
-
-            $data["nombreUsuarioError"]= isset($_GET["nombreUsuarioError"]) ? $_GET["nombreUsuarioError"] : false;
-            $data["registroExitoso"]= isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
-            $data["nombreUsuario"]= isset($_GET["nombreUsuario"]) ? $_GET["nombreUsuario"] : false;
-
-            echo $this->render->render("view/registroEmpleadoView.php", $data);
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+            $dataMerge = array_merge($data, $data2);
+            echo $this->render->render("view/registroEmpleadoView.php", $dataMerge);
             exit();
         }
         echo $this->render->render("view/registroEmpleadoView.php");
@@ -45,15 +35,15 @@ class RegistroEmpleadoController
     public function registroEmpleado()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
-        if($logeado){
+        if ($logeado) {
 
             $tipoLicencia = $_POST["tipoLicencia"];
-            $rolAsignar =  $_POST["rolAsignar"];
+            $rolAsignar = $_POST["rolAsignar"];
             $nombreUsuario = $_POST["nombreUsuario"];
 
             $nombreUsuarioExistente = $this->registroEmpleadoModel->verificarNombreUsuarioExistente($nombreUsuario);
 
-            if(!$nombreUsuarioExistente){
+            if (!$nombreUsuarioExistente) {
                 header("Location: /registroEmpleado?nombreUsuarioError=true");
                 exit();
             }

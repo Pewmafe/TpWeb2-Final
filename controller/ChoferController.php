@@ -20,25 +20,10 @@ class ChoferController
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
-            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
-            if ($usuarioAdmin) {
-                $data["usuarioAdmin"] = true;
-                $data["usuarioChofer"] = true;
-                $data["usuarioSupervisor"] = true;
-            }
-
-            $usuarioSupervisor = $this->loginSession->verificarQueUsuarioEsSupervisor();
-            if ($usuarioSupervisor) {
-                $data["usuarioSupervisor"] = true;
-                $data["usuarioChofer"] = true;
-
-            }
-            $usuarioChofer = $this->loginSession->verificarQueUsuarioEsChofer();
-            if ($usuarioChofer) {
-                $data["usuarioChofer"] = true;
-            }
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
-            echo $this->render->render("view/choferView.php", $data);
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+            $dataMerge = array_merge($data, $data2);
+            echo $this->render->render("view/choferView.php", $dataMerge);
             exit();
         }
         echo $this->render->render("view/choferView.php");

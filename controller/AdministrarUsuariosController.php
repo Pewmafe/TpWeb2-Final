@@ -7,7 +7,7 @@ class AdministrarUsuariosController
     private $administrarUsuarioModel;
     private $loginSession;
 
-    public function __construct($render, $loginSession , $administrarUsuarioModel)
+    public function __construct($render, $loginSession, $administrarUsuarioModel)
     {
         $this->render = $render;
         $this->loginSession = $loginSession;
@@ -17,27 +17,16 @@ class AdministrarUsuariosController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
-        if($logeado){
+        if ($logeado) {
             $data["login"] = true;
 
-            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
-            if($usuarioAdmin){
-                $data["usuarioAdmin"] = true;
-                $data["usuarioChofer"] = true;
-                $data["usuarioSupervisor"] = true;
-            }
 
-            $usuarioSupervisor = $this->loginSession->verificarQueUsuarioEsSupervisor();
-            if($usuarioSupervisor){
-                $data["usuarioSupervisor"] = true;
-            }
-
-            $data["bajaUsuario"]= isset($_GET["bajaUsuario"]) ? $_GET["bajaUsuario"] : false;
-            $data["bajaEmpleado"]= isset($_GET["bajaEmpleado"]) ? $_GET["bajaEmpleado"] : false;
-            $data["nombreUsuarioExistente"]= isset($_GET["nombreUsuarioExistente"]) ? $_GET["nombreUsuarioExistente"] : false;
-            $data["dniExistente"]= isset($_GET["dniExistente"]) ? $_GET["dniExistente"] : false;
-            $data["modificarUsuario"]= isset($_GET["modificarUsuario"]) ? $_GET["modificarUsuario"] : false;
-            $data["modificarEmpleado"]= isset($_GET["modificarEmpleado"]) ? $_GET["modificarEmpleado"] : false;
+            $data["bajaUsuario"] = isset($_GET["bajaUsuario"]) ? $_GET["bajaUsuario"] : false;
+            $data["bajaEmpleado"] = isset($_GET["bajaEmpleado"]) ? $_GET["bajaEmpleado"] : false;
+            $data["nombreUsuarioExistente"] = isset($_GET["nombreUsuarioExistente"]) ? $_GET["nombreUsuarioExistente"] : false;
+            $data["dniExistente"] = isset($_GET["dniExistente"]) ? $_GET["dniExistente"] : false;
+            $data["modificarUsuario"] = isset($_GET["modificarUsuario"]) ? $_GET["modificarUsuario"] : false;
+            $data["modificarEmpleado"] = isset($_GET["modificarEmpleado"]) ? $_GET["modificarEmpleado"] : false;
 
             $tablaUsuarios = $this->administrarUsuarioModel->obtenerUsuariosNoEmpleados();
             $tablaUsuariosEmpleados = $this->administrarUsuarioModel->obtenerUsuariosEmpleados();
@@ -45,14 +34,16 @@ class AdministrarUsuariosController
             $data["tablaUsuarios"] = $tablaUsuarios;
             $data["tablaUsuariosEmpleados"] = $tablaUsuariosEmpleados;
 
-
-            echo $this->render->render("view/administrarUsuariosView.php", $data);
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+            $dataMerge = array_merge($data, $data2);
+            echo $this->render->render("view/administrarUsuariosView.php", $dataMerge);
             exit();
         }
         echo $this->render->render("view/administrarUsuariosView.php");
     }
 
-    public function darDeBajaEmpleado(){
+    public function darDeBajaEmpleado()
+    {
         $idEmpleadoAEliminar = $_POST["botonDarDeBajaEmpleadoModal"];
 
         $this->administrarUsuarioModel->eliminarEmpleado($idEmpleadoAEliminar);
@@ -61,7 +52,8 @@ class AdministrarUsuariosController
         exit();
     }
 
-    public function darDeBajaUsuario(){
+    public function darDeBajaUsuario()
+    {
         $dniUsuarioAEliminar = $_POST["botonDarDeBajaUsuarioModal"];
 
         $this->administrarUsuarioModel->eliminarUsuario($dniUsuarioAEliminar);
@@ -70,7 +62,8 @@ class AdministrarUsuariosController
         exit();
     }
 
-    public function modificarUsuario(){
+    public function modificarUsuario()
+    {
         $nombreUsuarioAModificar = $_POST["nombreUsuario"];
         $nombreModificar = $_POST["nombre"];
         $apellidoAModificar = $_POST["apellido"];
@@ -78,29 +71,30 @@ class AdministrarUsuariosController
         $fechaNacimientoAModificar = $_POST["fechaNacimiento"];
         $dniUsuarioQueSeVaAModificar = $_POST["botonModificar"];
 
-        $nombreUsuarioExistente=$this->administrarUsuarioModel->verificarNombreUsuarioExistente($nombreUsuarioAModificar,$dniUsuarioQueSeVaAModificar);
-        $dniExistente=$this->administrarUsuarioModel->verificarDNIUsuarioExistente($dniAModificar, $dniUsuarioQueSeVaAModificar);
+        $nombreUsuarioExistente = $this->administrarUsuarioModel->verificarNombreUsuarioExistente($nombreUsuarioAModificar, $dniUsuarioQueSeVaAModificar);
+        $dniExistente = $this->administrarUsuarioModel->verificarDNIUsuarioExistente($dniAModificar, $dniUsuarioQueSeVaAModificar);
 
-        if($nombreUsuarioExistente and $dniExistente){
+        if ($nombreUsuarioExistente and $dniExistente) {
             header("Location: /administrarUsuarios?nombreUsuarioExistente=true&dniExistente=true");
             exit();
-        }elseif ($nombreUsuarioExistente){
+        } elseif ($nombreUsuarioExistente) {
             header("Location: /administrarUsuarios?nombreUsuarioExistente=true");
             exit();
-        }elseif ($dniExistente){
+        } elseif ($dniExistente) {
             header("Location: /administrarUsuarios?dniExistente=true");
             exit();
         }
 
         $this->administrarUsuarioModel->modificarUsuario($nombreUsuarioAModificar,
             $nombreModificar, $apellidoAModificar,
-            $dniAModificar, $fechaNacimientoAModificar,$dniUsuarioQueSeVaAModificar);
+            $dniAModificar, $fechaNacimientoAModificar, $dniUsuarioQueSeVaAModificar);
 
         header("Location: /administrarUsuarios?modificarUsuario=true");
         exit();
     }
 
-    public function modificarEmpleado(){
+    public function modificarEmpleado()
+    {
         $nombreUsuarioAModificar = $_POST["nombreUsuario"];
         $nombreModificar = $_POST["nombre"];
         $apellidoAModificar = $_POST["apellido"];
@@ -112,23 +106,23 @@ class AdministrarUsuariosController
         $idEmpleado = $_POST["idEmpleado"];
 
 
-        $nombreUsuarioExistente=$this->administrarUsuarioModel->verificarNombreUsuarioExistente($nombreUsuarioAModificar,$dniUsuarioQueSeVaAModificar);
-        $dniExistente=$this->administrarUsuarioModel->verificarDNIUsuarioExistente($dniAModificar, $dniUsuarioQueSeVaAModificar);
+        $nombreUsuarioExistente = $this->administrarUsuarioModel->verificarNombreUsuarioExistente($nombreUsuarioAModificar, $dniUsuarioQueSeVaAModificar);
+        $dniExistente = $this->administrarUsuarioModel->verificarDNIUsuarioExistente($dniAModificar, $dniUsuarioQueSeVaAModificar);
 
-        if($nombreUsuarioExistente and $dniExistente){
+        if ($nombreUsuarioExistente and $dniExistente) {
             header("Location: /administrarUsuarios?nombreUsuarioExistente=true&dniExistente=true");
             exit();
-        }elseif ($nombreUsuarioExistente){
+        } elseif ($nombreUsuarioExistente) {
             header("Location: /administrarUsuarios?nombreUsuarioExistente=true");
             exit();
-        }elseif ($dniExistente){
+        } elseif ($dniExistente) {
             header("Location: /administrarUsuarios?dniExistente=true");
             exit();
         }
 
         $this->administrarUsuarioModel->modificarEmpleado($nombreUsuarioAModificar,
             $nombreModificar, $apellidoAModificar, $dniAModificar,
-            $fechaNacimientoAModificar, $tipoLicenciaAModificar, $rolAModificar,$idEmpleado,$dniUsuarioQueSeVaAModificar);
+            $fechaNacimientoAModificar, $tipoLicenciaAModificar, $rolAModificar, $idEmpleado, $dniUsuarioQueSeVaAModificar);
 
         header("Location: /administrarUsuarios?modificarEmpleado=true");
         exit();

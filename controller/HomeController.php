@@ -13,30 +13,17 @@ class HomeController
 
     public function ejecutar()
     {
-        $data["registroExitoso"]= isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
+        $data["registroExitoso"] = isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
-        if($logeado){
+        if ($logeado) {
             $data["login"] = true;
 
-            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
-            if($usuarioAdmin){
-                $data["usuarioAdmin"] = true;
-                $data["usuarioChofer"] = true;
-                $data["usuarioSupervisor"] = true;
-            }
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+            $dataMerge = array_merge($data, $data2);
 
-            $usuarioSupervisor = $this->loginSession->verificarQueUsuarioEsSupervisor();
-            if($usuarioSupervisor){
-                $data["usuarioSupervisor"] = true;
-            }
-            $usuarioChofer = $this->loginSession->verificarQueUsuarioEsChofer();
-            if ($usuarioChofer) {
-                $data["usuarioChofer"] = true;
-            }
-
-            echo $this->render->render("view/home.php", $data);
+            echo $this->render->render("view/home.php", $dataMerge);
             exit();
         }
-       echo $this->render->render("view/home.php", $data);
+        echo $this->render->render("view/home.php", $data);
     }
 }

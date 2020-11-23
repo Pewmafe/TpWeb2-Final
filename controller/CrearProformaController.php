@@ -15,22 +15,12 @@ class CrearProformaController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
-        if($logeado){
+        if ($logeado) {
             $data["login"] = true;
 
-            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
-            if($usuarioAdmin){
-                $data["usuarioAdmin"] = true;
-                $data["usuarioChofer"] = true;
-                $data["usuarioSupervisor"] = true;
-            }
-
-            $usuarioSupervisor = $this->loginSession->verificarQueUsuarioEsSupervisor();
-            if($usuarioSupervisor){
-                $data["usuarioSupervisor"] = true;
-            }
-
-            echo $this->render->render("view/CrearProformaView.php", $data);
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+            $dataMerge = array_merge($data, $data2);
+            echo $this->render->render("view/CrearProformaView.php", $dataMerge);
             exit();
         }
         echo $this->render->render("view/CrearProformaView.php");
