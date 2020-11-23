@@ -41,7 +41,10 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Clendario de Service</span>: {{calendario_service}}
                                 </p>
-                                <a href="#" class="btn btn-primary">Modificar Camion</a>
+                                <a class="btn btn-primary mt-2 botonModificarCamion" data-toggle="modal" data-target="#modificarCamionModal"
+                                data-patente="{{patente}}" data-nroChasis="{{nroChasis}}" data-nroMotor="{{nroMotor}}"
+                                data-kilometraje="{{kilometraje}}" data-fabricacion="{{fabricacion}}" data-marca="{{marca}}" data-modelo="{{modelo}}"
+                                data-calendarioService="{{calendarioService}}" type="button">Modificar Camion</a>
                                 <a type="button" class="btn btn-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
                             </div>
                         </div>
@@ -64,7 +67,9 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Tipo</span>: {{descripcion}}
                                 </p>
-                                <a href="#" class="btn btn-primary">Modificar Camion</a>
+                                <a href="#" class="mt-2 btn btn-primary botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal"
+                                   data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoAcoplado="{{descripcion}}"
+                                   type="button">Modificar Acoplado</a>
                                 <a type="button" class="btn btn-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
                             </div>
                         </div>
@@ -113,6 +118,91 @@
                         <form  method="post" action="/administrarEquipos/eliminarAcoplado">
                             <button class="btn btn-danger" id="botonDarDeBajaAcopladoModal" name="botonDarDeBajaAcopladoModal">Baja</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="modal fade" id="modificarCamionModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="staticBackdropLabel">Modificar Vehículo</h5>
+                            <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body container">
+                            <form class="formularioModificarCamion" method="POST"  action="/administrarEquipos/modificarVehiculo">
+                                <div class="form-group">
+                                    <label class="text-dark" for="patente">Patente</label>
+                                    <input type="text" class="form-control inputPatente" id="patente" name="patente" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="nroChasis">Nro de Chasis</label>
+                                    <input type="text" class="form-control inputNroChasis" id="nroChasis" name="nroChasis" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="nroMotor">Nro de Motor</label>
+                                    <input type="text" class="form-control inputNroMotor" id="nroMotor" name="nroMotor" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="kilometraje">Kilometraje</label>
+                                    <input type="text" class="form-control inputKilometraje" id="kilometraje" name="kilometraje" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="fabricacion">Fecha de Fabricación</label>
+                                    <input type="date" class="form-control inputFabricacion" id="fabricacion" name="fabricacion" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="marca">Marca</label>
+                                    <input type="text" class="form-control inputMarca" id="marca" name="marca" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="modelo">Modelo</label>
+                                    <input type="text" class="form-control inputModelo" id="modelo" name="modelo" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="calendarioService">Calendario de Service</label>
+                                    <input type="date" class="form-control inputCalendarioService" id="calendarioService" name="calendarioService" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                                    <button type="submit" class="btn btn-primary" id="botonModificarCamion" name="botonModificarCamion">Modificar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modificarAcopladoModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="staticBackdropLabel">Modificar Acoplado</h5>
+                            <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body container">
+                            <form class="formularioModificarAcoplado" method="POST"  action="/administrarEquipos/modificarAcoplado">
+                                <div class="form-group">
+                                    <label class="text-dark" for="patente">Patente</label>
+                                    <input type="text" class="form-control inputPatente" id="patente" name="patente" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="chasis">Nro de Chasis</label>
+                                    <input type="text" class="form-control inputChasis" id="chasis" name="chasis" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="tipoAcoplado">Tipo de Acoplado</label>
+                                    <input type="text" class="form-control inputTipoAcoplado" id="tipoAcoplado" name="tipoAcoplado" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                                    <button type="submit" class="btn btn-primary" id="botonModificarAcoplado" name="botonModificarAcoplado">Modificar</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

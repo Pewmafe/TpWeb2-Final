@@ -71,3 +71,37 @@ $(document).on("click", ".botonModificarEmpleado", function () {
     $(".formularioModificarEmpleado .selectRol").val(rol);
     $(".formularioModificarEmpleado .modal-footer .idEmpleado").val(id);
 });
+
+$(document).on("click", ".botonModificarCamion", function () {
+    var patente = $(this).data('patente');
+    var nroChasis = $(this).data('nroChasis');
+    var nroMotor = $(this).data('nroMotor');
+    var kilometraje = $(this).data('kilometraje');
+    var fabricacion = $(this).data('fabricacion');
+    var marca = $(this).data('marca');
+    var modelo = $(this).data('modelo');
+    var calendarioService = $(this).data('calendarioService');
+
+    $(".formularioModificarCamion .modal-footer #botonModificarCamion").val(patente);
+    $(".formularioModificarCamion .inputNroChasis").val(nroChasis);
+    $(".formularioModificarCamion .inputKilometraje").val(kilometraje);
+    $(".formularioModificarCamion .inputNroMotor").val(nroMotor);
+    $(".formularioModificarCamion .inputPatente").val(patente);
+    $(".formularioModificarCamion .inputFabricacion").val(fabricacion);
+    $(".formularioModificarCamion .inputMarca").val(marca);
+    $(".formularioModificarCamion .inputModelo").val(modelo);
+    $(".formularioModificarCamion .inputCalendarioService").val(calendarioService);
+});
+
+$(document).on("click", ".botonModificarAcoplado", function () {
+    var patente = $(this).data('patente');
+    var chasis = $(this).data('chasis');
+    var tipoAcoplado = $(this).data('tipoAcoplado');
+
+
+    $(".formularioModificarAcoplado .modal-footer #botonModificarAcoplado").val(patente);
+    $(".formularioModificarAcoplado .inputChasis").val(chasis);
+    $(".formularioModificarAcoplado .inputTipoAcoplado").val(tipoAcoplado);
+    $(".formularioModificarAcoplado .inputPatente").val(patente);
+
+});

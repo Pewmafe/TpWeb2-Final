@@ -54,4 +54,25 @@ class AdministrarEquiposController
         header("Location: /administrarEquipos?bajaAcoplado=true");
         exit();
     }
+
+    public function modificarVehiculo(){
+        $patenteAModificar = $_POST["patente"];
+        $nroChasisAModificar = $_POST["nroChasis"];
+        $nroMotorAModificar = $_POST["nroMotor"];
+        $kilometrajeAModificar = $_POST["kilometraje"];
+        $fabricacionAModificar = $_POST["fabricacion"];
+        $marcaAModificar = $_POST["marca"];
+        $modeloAModificar = $_POST["modelo"];
+        $calendarioServiceAModificar = $_POST["calendarioService"];
+        $patenteCamionQueSeVaAModificar = $_POST["botonModificarCamion"];
+
+        $patenteExistente = $this->administrarEquiposModel->verificarPatenteCamionExistente($patenteCamionQueSeVaAModificar, $patenteAModificar);
+
+        if ($patenteExistente) {
+            header("Location: /modificarVehiculo?patenteVehiculoError=true");
+            exit();
+        }
+
+
+    }
 }

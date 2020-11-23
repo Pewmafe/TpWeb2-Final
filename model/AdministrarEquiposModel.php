@@ -45,4 +45,66 @@ class AdministrarEquiposModel
         $sql = "DELETE FROM acoplado WHERE acoplado.patente = " . $patenteAcopAEliminar;
         $this->bd->query($sql);
     }
+
+    public function modificarCamion($patente,
+                                     $nroChasis,
+                                     $nroMotor,
+                                     $kilometraje,
+                                     $fabricacion,
+                                     $marca,
+                                     $modelo,
+                                     $calendarioService,
+                                     $patenteCamionQueSeVaAModificar){
+        $sql = "UPDATE vehiculo SET patente=".$patente.",nroChasis='".$nroChasis."',nroMotor='".$nroMotor."',kilometraje='".$kilometraje."',fabricacion='".$fabricacion."'
+        ,marca='".$marca."',modelo='".$modelo."',calendarioService='".$calendarioService."' 
+        WHERE patente=".$patenteCamionQueSeVaAModificar;
+        $this->bd->query($sql);
+    }
+
+    public function modificarAcoplado($patente,
+                                      $chasis,
+                                      $tipoAcoplado,
+                                      $patenteAcopladoQueSeVaAModificar){
+        $sql = "UPDATE vehiculo SET patente=".$patente.",chasis='".$chasis."',tipo='".$tipoAcoplado."'
+        WHERE patente=".$patenteAcopladoQueSeVaAModificar;
+        $this->bd->query($sql);
+    }
+
+    public function verificarPatenteCamionExistente($patenteAModificar, $patente){
+        $resultado = false;
+
+        $sql = "SELECT patente FROM vehiculo 
+                WHERE patente <>" . $patente;
+
+        $resultadoQuery = $this->bd->query($sql);
+
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $tablaCamiones[] = $fila;
+        }
+        for ($i = 0; $i < sizeof($tablaCamiones); $i++) {
+            if ($tablaCamiones[$i]["patente"] == $patenteAModificar) {
+                $resultado = true;
+            }
+        }
+        return $resultado;
+    }
+
+    public function verificarPatenteAcopladoExistente($patenteAModificar, $patente){
+        $resultado = false;
+
+        $sql = "SELECT patente FROM acoplado 
+                WHERE patente <>" . $patente;
+
+        $resultadoQuery = $this->bd->query($sql);
+
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $tablaAcoplados[] = $fila;
+        }
+        for ($i = 0; $i < sizeof($tablaAcoplados); $i++) {
+            if ($tablaAcoplados[$i]["patente"] == $patenteAModificar) {
+                $resultado = true;
+            }
+        }
+        return $resultado;
+    }
 }
