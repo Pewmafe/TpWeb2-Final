@@ -24,6 +24,7 @@ include_once("model/AdministrarEquiposModel.php");
 include_once("model/AgregarVehiculoModel.php");
 include_once("model/AgregarAcopladoModel.php");
 include_once("model/ChoferModel.php");
+include_once("model/CrearProformaModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -136,8 +137,9 @@ class Configuracion
 
     public function getCrearProformaController()
     {
+        $proformaModel = $this->getCrearProformaModel();
         $loginSession = $this->getLoginSession();
-        return new CrearProformaController($this->getRender(), $loginSession);
+        return new CrearProformaController($this->getRender(), $loginSession, $proformaModel);
     }
 
     public function getAgregarAcopladoModel()
@@ -187,5 +189,11 @@ class Configuracion
     {
         $bd = $this->getDatabase();
         return new ChoferModel($bd);
+    }
+
+    private function getCrearProformaModel()
+    {
+        $bd = $this->getDatabase();
+        return new CrearProformaModel($bd);
     }
 }

@@ -5,11 +5,13 @@ class CrearProformaController
 {
     private $render;
     private $loginSession;
+    private $crearProformaModel;
 
-    public function __construct($render, $loginSession)
+    public function __construct($render, $loginSession, $crearProformaModel)
     {
         $this->render = $render;
         $this->loginSession = $loginSession;
+        $this->crearProformaModel = $crearProformaModel;
     }
 
     public function ejecutar()
@@ -28,6 +30,10 @@ class CrearProformaController
             if($usuarioSupervisor){
                 $data["usuarioSupervisor"] = true;
             }
+
+            $tablaChoferes = $this->crearProformaModel->obtenerUsuariosChoferes();
+
+            $data["tablaChoferes"] = $tablaChoferes;
 
             echo $this->render->render("view/CrearProformaView.php", $data);
             exit();

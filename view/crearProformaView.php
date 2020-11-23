@@ -162,6 +162,7 @@
                         <h3>Chofer a asignar</h3>
                     </div>
                     <div class="row">
+                        {{#tablaChoferes}}
                         <div class="col-12 col-md-6 col-lg-4 p-2">
                             <div class="card mb-4 p-3 bg-dark">
                                 <h3 class="text-center border-bottom border-secondary text-light">Chofer</h3>
@@ -177,7 +178,7 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Tipo de licencia </span>: {{tipo_de_licencia}}
                                 </p>
-                                <div class="form-check">
+                                <div class="form-check text-center">
                                     <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
                                     <label class="form-check-label" for="gridRadios2">
 
@@ -185,52 +186,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-4 p-2">
-                            <div class="card mb-4 p-3 bg-dark">
-                                <h3 class="text-center border-bottom border-secondary text-light">Chofer</h3>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Nombre </span>: {{nombre}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Apellido </span>: {{apellido}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">DNI </span>: {{dni}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Tipo de licencia </span>: {{tipo_de_licencia}}
-                                </p>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                                    <label class="form-check-label" for="gridRadios2">
-
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4 p-2">
-                            <div class="card mb-4 p-3 bg-dark">
-                                <h3 class="text-center border-bottom border-secondary text-light">Chofer</h3>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Nombre </span>: {{nombre}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Apellido </span>: {{apellido}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">DNI </span>: {{dni}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Tipo de licencia </span>: {{tipo_de_licencia}}
-                                </p>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                                    <label class="form-check-label" for="gridRadios2">
-
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                        {{/tablaChoferes}}
                     </div>
                     <div class="form-group p-3">
                         <div class="col-sm-9 col-sm-offset-3">
