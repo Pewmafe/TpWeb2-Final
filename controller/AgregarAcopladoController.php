@@ -19,15 +19,13 @@ class AgregarAcopladoController
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
-            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
-            if($usuarioAdmin){
-                $data["usuarioAdmin"] = true;
-            }
+
             $data["patenteAcopladoError"]= isset($_GET["patenteAcopladoError"]) ? $_GET["patenteAcopladoError"] : false;
             $data["agregoAcopladoExitosamente"]= isset($_GET["agregoAcopladoExitosamente"]) ? $_GET["agregoAcopladoExitosamente"] : false;
 
-
-            echo $this->render->render("view/agregarAcopladoView.php", $data);
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+            $dataMerge = array_merge($data, $data2);
+            echo $this->render->render("view/agregarAcopladoView.php", $dataMerge);
             exit();
         }
         echo $this->render->render("view/agregarAcopladoView.php");

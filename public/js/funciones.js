@@ -75,13 +75,13 @@ $(document).on("click", ".botonModificarEmpleado", function () {
 
 $(document).on("click", ".botonModificarCamion", function () {
     var patente = $(this).data('patente');
-    var nroChasis = $(this).data('nroChasis');
-    var nroMotor = $(this).data('nroMotor');
+    var nroChasis = $(this).data('nrochasis');
+    var nroMotor = $(this).data('nromotor');
     var kilometraje = $(this).data('kilometraje');
     var fabricacion = $(this).data('fabricacion');
     var marca = $(this).data('marca');
     var modelo = $(this).data('modelo');
-    var calendarioService = $(this).data('calendarioService');
+    var calendarioService = $(this).data('calendarioservice');
 
     $(".formularioModificarCamion .modal-footer #botonModificarCamion").val(patente);
     $(".formularioModificarCamion .inputNroChasis").val(nroChasis);

@@ -10,6 +10,18 @@
                 {{#bajaAcoplado}}
                 <h5 class="text-success">Se dio de baja el acoplado con éxito.</h5>
                 {{/bajaAcoplado}}
+                {{#modificarCamionExitosamente}}
+                <h5 class="text-success">Se modifico el vehículo con exito.</h5>
+                {{/modificarCamionExitosamente}}
+                {{#modificarAcopladoExitosamente}}
+                <h5 class="text-success">Se modifico el acoplado con exito.</h5>
+                {{/modificarAcopladoExitosamente}}
+                {{#patenteVehiculoError}}
+                <h5 class="text-danger">La patente del vehículo ya existe.</h5>
+                {{/patenteVehiculoError}}
+                {{#patenteAcopladoError}}
+                <h5 class="text-danger">La patente del acoplado ya existe.</h5>
+                {{/patenteAcopladoError}}
                 <h3 class="text-dark mb-3">Administrar Vehículos</h3>
                 <a href="/agregarVehiculo" class="btn btn-primary">Agregar Vehículo</a>
                 <div class="row">
@@ -42,9 +54,9 @@
                                     <span class="h5 font-weight-bold">Clendario de Service</span>: {{calendario_service}}
                                 </p>
                                 <a class="btn btn-primary mt-2 botonModificarCamion" data-toggle="modal" data-target="#modificarCamionModal"
-                                data-patente="{{patente}}" data-nroChasis="{{nroChasis}}" data-nroMotor="{{nroMotor}}"
+                                data-patente="{{patente}}" data-nrochasis="{{nro_chasis}}" data-nromotor="{{nro_motor}}"
                                 data-kilometraje="{{kilometraje}}" data-fabricacion="{{fabricacion}}" data-marca="{{marca}}" data-modelo="{{modelo}}"
-                                data-calendarioService="{{calendarioService}}" type="button">Modificar Camion</a>
+                                data-calendarioservice="{{calendario_service}}" type="button">Modificar Camion</a>
                                 <a type="button" class="btn btn-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
                             </div>
                         </div>
@@ -68,7 +80,7 @@
                                     <span class="h5 font-weight-bold">Tipo</span>: {{descripcion}}
                                 </p>
                                 <a href="#" class="mt-2 btn btn-primary botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal"
-                                   data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoAcoplado="{{descripcion}}"
+                                   data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoacoplado="{{descripcion}}"
                                    type="button">Modificar Acoplado</a>
                                 <a type="button" class="btn btn-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
                             </div>
@@ -132,7 +144,7 @@
                             </button>
                         </div>
                         <div class="modal-body container">
-                            <form class="formularioModificarCamion" method="POST"  action="/administrarEquipos/modificarVehiculo">
+                            <form class="formularioModificarCamion" method="POST"  action="/administrarEquipos/modificarCamion">
                                 <div class="form-group">
                                     <label class="text-dark" for="patente">Patente</label>
                                     <input type="text" class="form-control inputPatente" id="patente" name="patente" required>
@@ -195,7 +207,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="text-dark" for="tipoAcoplado">Tipo de Acoplado</label>
-                                    <input type="text" class="form-control inputTipoAcoplado" id="tipoAcoplado" name="tipoAcoplado" required>
+                                    <select name="tipoAcoplado" id="tipoAcoplado" class="custom-select form-control selectRol">
+                                        <option selected disabled>-</option>
+                                        <option value="1">Araña</option>
+                                        <option value="2">CarCarrier</option>
+                                        <option value="3">Jaula</option>
+                                        <option value="4">Granel</option>
+                                        <option value="5">Tanque</option>
+                                    </select>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>

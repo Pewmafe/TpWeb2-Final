@@ -55,9 +55,10 @@ class AdministrarEquiposModel
                                      $modelo,
                                      $calendarioService,
                                      $patenteCamionQueSeVaAModificar){
-        $sql = "UPDATE vehiculo SET patente=".$patente.",nroChasis='".$nroChasis."',nroMotor='".$nroMotor."',kilometraje='".$kilometraje."',fabricacion='".$fabricacion."'
-        ,marca='".$marca."',modelo='".$modelo."',calendarioService='".$calendarioService."' 
-        WHERE patente=".$patenteCamionQueSeVaAModificar;
+        $sql = "UPDATE vehiculo SET patente='".$patente."',nro_chasis='".$nroChasis."',nro_motor='".$nroMotor."',kilometraje='".$kilometraje."',fabricacion='".$fabricacion."'
+        ,marca='".$marca."',modelo='".$modelo."',calendario_service='".$calendarioService."' 
+        WHERE patente='".$patenteCamionQueSeVaAModificar."'";
+
         $this->bd->query($sql);
     }
 
@@ -65,8 +66,9 @@ class AdministrarEquiposModel
                                       $chasis,
                                       $tipoAcoplado,
                                       $patenteAcopladoQueSeVaAModificar){
-        $sql = "UPDATE vehiculo SET patente=".$patente.",chasis='".$chasis."',tipo='".$tipoAcoplado."'
-        WHERE patente=".$patenteAcopladoQueSeVaAModificar;
+        $sql = "UPDATE acoplado SET patente='".$patente."',chasis='".$chasis."',tipo='".$tipoAcoplado."'
+        WHERE patente='".$patenteAcopladoQueSeVaAModificar."'";
+
         $this->bd->query($sql);
     }
 
@@ -74,7 +76,7 @@ class AdministrarEquiposModel
         $resultado = false;
 
         $sql = "SELECT patente FROM vehiculo 
-                WHERE patente <>" . $patente;
+                WHERE patente <>'".$patenteAModificar."'";
 
         $resultadoQuery = $this->bd->query($sql);
 
@@ -82,10 +84,11 @@ class AdministrarEquiposModel
             $tablaCamiones[] = $fila;
         }
         for ($i = 0; $i < sizeof($tablaCamiones); $i++) {
-            if ($tablaCamiones[$i]["patente"] == $patenteAModificar) {
+            if ($tablaCamiones[$i]["patente"] == $patente) {
                 $resultado = true;
             }
         }
+
         return $resultado;
     }
 
@@ -93,7 +96,7 @@ class AdministrarEquiposModel
         $resultado = false;
 
         $sql = "SELECT patente FROM acoplado 
-                WHERE patente <>" . $patente;
+                WHERE patente <>'" . $patenteAModificar ."'";
 
         $resultadoQuery = $this->bd->query($sql);
 
@@ -101,7 +104,7 @@ class AdministrarEquiposModel
             $tablaAcoplados[] = $fila;
         }
         for ($i = 0; $i < sizeof($tablaAcoplados); $i++) {
-            if ($tablaAcoplados[$i]["patente"] == $patenteAModificar) {
+            if ($tablaAcoplados[$i]["patente"] == $patente) {
                 $resultado = true;
             }
         }
