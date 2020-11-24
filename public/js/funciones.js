@@ -92,3 +92,23 @@ $(document).ready(function () {
         $('.popup1').hide(1000);
     });
 });
+
+$(document).on("click", ".inputSiHazard", function () {
+
+    $("#hazard").collapse('show');
+});
+
+$(document).on("click", ".inputNoHazard", function () {
+
+    $("#hazard").collapse('hide');
+});
+
+$(document).on("click", ".inputSiReefer", function () {
+
+    $("#reefer").collapse('show');
+});
+
+$(document).on("click", ".inputNoReefer", function () {
+
+    $("#reefer").collapse('hide');
+});

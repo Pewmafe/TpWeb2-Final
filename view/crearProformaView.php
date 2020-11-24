@@ -75,57 +75,57 @@
                             <input type="number" id="" name="" placeholder="" class="form-control" required>
                         </div>
                     </div>
-                    <hr>
                     <div class="">
-                        <h3>Hazard</h3>
+                        <h4>Hazard</h4>
                     </div>
                     <legend class="col-form-label col-sm-2 pt-0">¿Tiene?</legend>
                     <div class="col-sm-10 mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
+                            <input class="form-check-input inputSiHazard" type="radio" name="hazardRadios" id="gridRadios1" value="option1" >
+                            <label class="form-check-label" for="gridRadios1" >
                                 si
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                            <input class="form-check-input inputNoHazard" type="radio" name="hazardRadios" id="gridRadios2" value="option2" checked>
                             <label class="form-check-label" for="gridRadios2">
                                 no
                             </label>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="" class="col-12 control-label">*IMO Class</label>
-                        <div class="col-12">
-                            <input type="text" id="" name="" placeholder="" class="form-control" required>
+                    <div id="hazard" class="collapse">
+                        <div class="form-group">
+                            <label for="" class="col-12 control-label">*IMO Class</label>
+                            <div class="col-12">
+                                <input type="text" id="" name="" placeholder="" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-12 control-label">*IMO Sclass</label>
+                            <div class="col-12">
+                                <input type="text" id="" name="" placeholder="" class="form-control" required>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="" class="col-12 control-label">*IMO Sclass</label>
-                        <div class="col-12">
-                            <input type="text" id="" name="" placeholder="" class="form-control" required>
-                        </div>
-                    </div>
-                    <hr>
                     <div class="">
-                        <h3>Reefer</h3>
+                        <h4>Reefer</h4>
                     </div>
                     <legend class="col-form-label col-sm-2 pt-0">¿Tiene?</legend>
                     <div class="col-sm-10 mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                            <input class="form-check-input inputSiReefer" type="radio" name="reeferRadios" id="gridRadios1" value="option1">
                             <label class="form-check-label" for="gridRadios1">
                                 si
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                            <input class="form-check-input inputNoReefer" type="radio" name="reeferRadios" id="gridRadios2" value="option2" checked>
                             <label class="form-check-label" for="gridRadios2">
                                 no
                             </label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group collapse" id="reefer">
                         <label for="" class="col-12 control-label">*Temperatura C°</label>
                         <div class="col-12">
                             <input type="number" id="" name="" placeholder="" class="form-control" required>
@@ -158,6 +158,71 @@
                             <input type="date" id="" name="" class="form-control" required>
                         </div>
                     </div>
+                    <hr>
+                    <div class="">
+                        <h3>Equipo a asignar</h3>
+                    </div>
+                    <div class="">
+                        <h4>Vehiculo</h4>
+                        <div class="row">
+                            {{#tablaChoferes}}
+                            <div class="col-12 col-md-6 col-lg-4 p-2">
+                                <div class="card mb-4 p-3 bg-dark">
+                                    <h3 class="text-center border-bottom border-secondary text-light">Vehiculo</h3>
+                                    <p class="text-light">
+                                        <span class="h5 font-weight-bold">Nombre </span>: {{nombre}}
+                                    </p>
+                                    <p class="text-light">
+                                        <span class="h5 font-weight-bold">Apellido </span>: {{apellido}}
+                                    </p>
+                                    <p class="text-light">
+                                        <span class="h5 font-weight-bold">DNI </span>: {{dni}}
+                                    </p>
+                                    <p class="text-light">
+                                        <span class="h5 font-weight-bold">Tipo de licencia </span>: {{tipo_de_licencia}}
+                                    </p>
+                                    <div class="form-check text-center">
+                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                        <label class="form-check-label" for="gridRadios2">
+
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/tablaChoferes}}
+                        </div>
+                    </div>
+                    <div class="">
+                        <h4>Acoplado</h4>
+                        <div class="row">
+                            {{#tablaChoferes}}
+                            <div class="col-12 col-md-6 col-lg-4 p-2">
+                                <div class="card mb-4 p-3 bg-dark">
+                                    <h3 class="text-center border-bottom border-secondary text-light">Acoplado</h3>
+                                    <p class="text-light">
+                                        <span class="h5 font-weight-bold">Nombre </span>: {{nombre}}
+                                    </p>
+                                    <p class="text-light">
+                                        <span class="h5 font-weight-bold">Apellido </span>: {{apellido}}
+                                    </p>
+                                    <p class="text-light">
+                                        <span class="h5 font-weight-bold">DNI </span>: {{dni}}
+                                    </p>
+                                    <p class="text-light">
+                                        <span class="h5 font-weight-bold">Tipo de licencia </span>: {{tipo_de_licencia}}
+                                    </p>
+                                    <div class="form-check text-center">
+                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                        <label class="form-check-label" for="gridRadios2">
+
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/tablaChoferes}}
+                        </div>
+                    </div>
+                    <hr>
                     <div class="">
                         <h3>Chofer a asignar</h3>
                     </div>
