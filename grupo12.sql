@@ -151,9 +151,9 @@ create table provincia(
 create table localidad(
 	id int primary key,
 	descripcion varchar(100),
-	provincia int,
-	constraint fk_localidad_provincia 
-	foreign key (provincia)
+	provincia_id int,
+	constraint fk_localidad_provincia
+	foreign key (provincia_id)
 	references provincia(id)
 );
 
@@ -255,9 +255,10 @@ values(123, 'admin','202cb962ac59075b964b07152d234b70','ABC','CBA', 19940918),
 
 
 insert into empleado(id, tipo_de_licencia, tipo_empleado, dni_usuario)
-values(1, 'camion', 1, 123),
+values(1, 'auto', 1, 123),
 (2, 'auto', 3, 124),
-(3, 'auto', 4, 127);
+(3, 'tractor', 4, 127),
+(4, 'camion', 4, 128);
 
 insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
 values('aa123bb', 10, 100, 20000, 20150505, 'Iveco', 'Scavenger', 20180209, null, null);
@@ -275,4 +276,28 @@ values (1, 'Araña'), (2, 'CarCarrier'), (3, 'Jaula'), (4, 'Granel'), (5, 'Tanqu
 
 insert into acoplado(patente, chasis, tipo)
 values('aa159yy', 123789, 1), ('ab456uu', 456789, 3);
+
+insert into provincia(id, descripcion)
+values(1, 'Buenos Aires'),
+(2, 'Cordoba'),
+(3, 'Rosario');
+
+insert into localidad(id, descripcion, provincia_id)
+values(1, 'Bahía Blanca',1),
+(2, 'El palomar',1),
+(3, 'Pontevedra',1),
+(4, 'Amboy',2),
+(5, 'La Falda',2),
+(6, 'Pasco',2),
+(7, 'Pergamino',3),
+(8, 'Venado Tuerto',3),
+(9, 'Gran Rosario',3);
+
+insert into tipo_carga(id_tipo_carga, descripcion)
+values(1, 'Granel'),
+(2, 'Liquida'),
+(3, "20''"),
+(4,"40''"),
+(5, 'Jaula'),
+(6, 'carCarrier');
 

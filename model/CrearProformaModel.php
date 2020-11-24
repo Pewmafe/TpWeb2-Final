@@ -21,8 +21,54 @@ class CrearProformaModel
         $resultadoQuery = $this->bd->query($sql);
 
         while($fila = $resultadoQuery->fetch_assoc()){
-            $tablaUsuarios[] = $fila;
+            $tablaChoferes[] = $fila;
         }
-        return $tablaUsuarios;
+        return $tablaChoferes;
+    }
+
+    public function obtenerEquiposVehiculos(){
+        $sql = "SELECT patente, marca, modelo, calendario_service 
+                FROM vehiculo";
+        $resultadoQuery = $this->bd->query($sql);
+
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $tablaEquipos[] = $fila;
+        }
+        return $tablaEquipos;
+    }
+
+    public function obtenerEquiposAcoplados(){
+        $sql = "SELECT acoplado.patente, tipo_acoplado.descripcion  
+                FROM acoplado JOIN tipo_acoplado 
+                                    ON tipo_acoplado.id = acoplado.tipo
+                GROUP BY acoplado.patente, tipo_acoplado.descripcion";
+        $resultadoQuery = $this->bd->query($sql);
+
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $tablaAcoplados[] = $fila;
+        }
+        return $tablaAcoplados;
+    }
+
+    public function obtenerLocalidades(){
+        $sql = "SELECT id, descripcion
+                FROM localidad";
+        $resultadoQuery = $this->bd->query($sql);
+
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $tablaLocalidades[] = $fila;
+        }
+        return $tablaLocalidades;
+    }
+
+    public function obtenerTiposDeCarga(){
+        $sql = "SELECT id_tipo_carga, descripcion
+                FROM tipo_carga";
+        $resultadoQuery = $this->bd->query($sql);
+
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $tablaTipoDeCarga[] = $fila;
+        }
+        return $tablaTipoDeCarga;
     }
 }

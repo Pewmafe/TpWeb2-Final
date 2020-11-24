@@ -10,6 +10,12 @@
                         <h3>Cliente</h3>
                     </div>
                     <div class="form-group">
+                        <label for="denominacion" class="col-12 control-label">*Denominacion</label>
+                        <div class="col-12">
+                            <input type="text" id="denominacion" name="denominacion" placeholder="Denominacion" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="nombre" class="col-12 control-label">*Nombre</label>
                         <div class="col-12">
                             <input type="text" id="nombre" name="nombre" placeholder="Nombre/s" class="form-control" required>
@@ -22,24 +28,24 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="" class="col-12 control-label">*Cuit</label>
+                        <label for="cuit" class="col-12 control-label">*Cuit</label>
                         <div class="col-12">
-                            <input type="number" id="" name="" placeholder="CUIT" class="form-control" required>
+                            <input type="number" id="cuit" name="cuit" placeholder="CUIT" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="" class="col-12 control-label">*Direccion</label>
+                        <label for="direccion" class="col-12 control-label">*Direccion</label>
                         <div class="col-12">
-                            <input type="text" id="" name="" placeholder="Contraseña" class="form-control" required>
+                            <input type="text" id="direccion" name="direccion" placeholder="Contraseña" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="" class="col-12 control-label">*Telefono</label>
+                        <label for="telefono" class="col-12 control-label">*Telefono</label>
                         <div class="col-12">
-                            <input type="text" id="" name="" placeholder="Contraseña" class="form-control" required>
+                            <input type="text" id="telefono" name="telefono" placeholder="Contraseña" class="form-control" required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="" class="col-12 control-label">Contacto 1</label>
                         <div class="col-12">
                             <input type="text" id="" name="" placeholder="Contraseña" class="form-control" required>
@@ -50,7 +56,7 @@
                         <div class="col-12">
                             <input type="text" id="" name="" placeholder="Contraseña" class="form-control" required>
                         </div>
-                    </div>
+                    </div>-->
                     <hr>
                     <div class="">
                         <h3>Carga</h3>
@@ -60,12 +66,9 @@
                         <div class="col-12">
                             <select name="" id="" class="custom-select form-control">
                                 <option selected disabled>-</option>
-                                <option value="1">Granel</option>
-                                <option value="2">Liquida</option>
-                                <option value="3">20''</option>
-                                <option value="4">40''</option>
-                                <option value="5">Jaula</option>
-                                <option value="6">CarCarrier</option>
+                                {{#tablaTiposDeCarga}}
+                                <option value="{{id}}">{{descripcion}}</option>
+                                {{/tablaTiposDeCarga}}
                             </select>
                         </div>
                     </div>
@@ -75,7 +78,7 @@
                             <input type="number" id="" name="" placeholder="" class="form-control" required>
                         </div>
                     </div>
-                    <div class="">
+                    <!--<div class="">
                         <h4>Hazard</h4>
                     </div>
                     <legend class="col-form-label col-sm-2 pt-0">¿Tiene?</legend>
@@ -130,20 +133,30 @@
                         <div class="col-12">
                             <input type="number" id="" name="" placeholder="" class="form-control" required>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="">
                         <h3>Viaje</h3>
                     </div>
                     <div class="form-group">
                         <label for="" class="col-12 control-label">*Origen</label>
                         <div class="col-12">
-                            <input type="text" id="" name="" placeholder="" class="form-control" required>
+                            <select name="" id="" class="custom-select form-control">
+                                <option selected disabled>-</option>
+                                {{#tablaDestinos}}
+                                <option value="{{id}}">{{descripcion}}</option>
+                                {{/tablaDestinos}}
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="" class="col-12 control-label">*Destino</label>
                         <div class="col-12">
-                            <input type="text" id="" name="" placeholder="" class="form-control" required>
+                            <select name="" id="" class="custom-select form-control">
+                                <option selected disabled>-</option>
+                                {{#tablaDestinos}}
+                                <option value="{{id}}">{{descripcion}}</option>
+                                {{/tablaDestinos}}
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -162,69 +175,63 @@
                     <div class="">
                         <h3>Equipo a asignar</h3>
                     </div>
-                    <div class="">
-                        <h4>Vehiculo</h4>
+                    <div>
+                        <h4 class="text-center">*Vehiculo</h4>
                         <div class="row">
-                            {{#tablaChoferes}}
+                            {{#tablaVehiculos}}
                             <div class="col-12 col-md-6 col-lg-4 p-2">
                                 <div class="card mb-4 p-3 bg-dark">
                                     <h3 class="text-center border-bottom border-secondary text-light">Vehiculo</h3>
                                     <p class="text-light">
-                                        <span class="h5 font-weight-bold">Nombre </span>: {{nombre}}
+                                        <span class="h5 font-weight-bold">Patente </span>: {{patente}}
                                     </p>
                                     <p class="text-light">
-                                        <span class="h5 font-weight-bold">Apellido </span>: {{apellido}}
+                                        <span class="h5 font-weight-bold">Marca </span>: {{marca}}
                                     </p>
                                     <p class="text-light">
-                                        <span class="h5 font-weight-bold">DNI </span>: {{dni}}
+                                        <span class="h5 font-weight-bold">Modelo </span>: {{modelo}}
                                     </p>
                                     <p class="text-light">
-                                        <span class="h5 font-weight-bold">Tipo de licencia </span>: {{tipo_de_licencia}}
+                                        <span class="h5 font-weight-bold">Calendario service </span>: {{calendario_service}}
                                     </p>
                                     <div class="form-check text-center">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                        <input class="form-check-input" type="radio" name="vehiculoRadios" id="gridRadios2" value="option2">
                                         <label class="form-check-label" for="gridRadios2">
 
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            {{/tablaChoferes}}
+                            {{/tablaVehiculos}}
                         </div>
                     </div>
-                    <div class="">
-                        <h4>Acoplado</h4>
+                    <div>
+                        <h4 class="text-center">*Acoplado</h4>
                         <div class="row">
-                            {{#tablaChoferes}}
+                            {{#tablaAcoplados}}
                             <div class="col-12 col-md-6 col-lg-4 p-2">
                                 <div class="card mb-4 p-3 bg-dark">
                                     <h3 class="text-center border-bottom border-secondary text-light">Acoplado</h3>
                                     <p class="text-light">
-                                        <span class="h5 font-weight-bold">Nombre </span>: {{nombre}}
+                                        <span class="h5 font-weight-bold">Patente </span>: {{patente}}
                                     </p>
                                     <p class="text-light">
-                                        <span class="h5 font-weight-bold">Apellido </span>: {{apellido}}
-                                    </p>
-                                    <p class="text-light">
-                                        <span class="h5 font-weight-bold">DNI </span>: {{dni}}
-                                    </p>
-                                    <p class="text-light">
-                                        <span class="h5 font-weight-bold">Tipo de licencia </span>: {{tipo_de_licencia}}
+                                        <span class="h5 font-weight-bold">Tipo </span>: {{descripcion}}
                                     </p>
                                     <div class="form-check text-center">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                        <input class="form-check-input" type="radio" name="acopladoRadios" id="gridRadios2" value="option2">
                                         <label class="form-check-label" for="gridRadios2">
 
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            {{/tablaChoferes}}
+                            {{/tablaAcoplados}}
                         </div>
                     </div>
                     <hr>
                     <div class="">
-                        <h3>Chofer a asignar</h3>
+                        <h3>*Chofer a asignar</h3>
                     </div>
                     <div class="row">
                         {{#tablaChoferes}}
@@ -258,7 +265,7 @@
                             <span class="help-block alert alert-info">*Campos requeridos</span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                    <button type="submit" class="btn btn-primary btn-block">Crear proforma</button>
                 </form>
             </div>
         </article>
