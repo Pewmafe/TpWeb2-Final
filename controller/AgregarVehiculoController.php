@@ -19,14 +19,13 @@ class AgregarVehiculoController
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
-            $usuarioAdmin = $this->loginSession->verificarQueUsuarioEsAdmin();
-            if($usuarioAdmin){
-                $data["usuarioAdmin"] = true;
-            }
+
             $data["patenteVehiculoError"]= isset($_GET["patenteVehiculoError"]) ? $_GET["patenteVehiculoError"] : false;
             $data["agregoVehExitosamente"]= isset($_GET["agregoVehExitosamente"]) ? $_GET["agregoVehExitosamente"] : false;
 
-            echo $this->render->render("view/agregarCamionView.php", $data);
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+            $dataMerge = array_merge($data, $data2);
+            echo $this->render->render("view/agregarCamionView.php", $dataMerge);
             exit();
         }
         echo $this->render->render("view/agregarCamionView.php");
