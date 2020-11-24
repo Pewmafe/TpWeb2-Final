@@ -22,7 +22,7 @@ create table tipo_carga(
 );
 
 create table carga(
-	id int primary key,
+	id int primary key auto_increment,
 	hazard varchar(100),
 	peso_neto decimal(10,2),
 	reefer varchar(100),
@@ -158,7 +158,7 @@ create table localidad(
 );
 
 create table direccion(
-	id int primary key,
+	id int primary key auto_increment,
 	calle varchar(100),
 	altura int,
 	localidad int,
@@ -170,6 +170,8 @@ create table direccion(
 create table cliente(
 	cuit int primary key,
 	email varchar(100),
+	nombre varchar(100),
+	apellido varchar(100),
 	telefono int,
 	direccion int,
 	denominacion varchar(100),
@@ -203,20 +205,22 @@ create table costeo(
 
 	
 create table viaje(
-	id int primary key,
+	id int primary key auto_increment,
 	eta varchar(100),
-	carga int,
-	acoplado varchar(10),
-	chofer int,
+	carga_id int,
+	acoplado_patente varchar(10),
+	vehiculo_patente varchar(10),
+	chofer_id int,
 	fecha_incio datetime,
 	fecha_fin datetime,
-	destino int,
-	partida int,
-	constraint fk_viaje_carga foreign key (carga) references carga(id),
-	constraint fk_viaje_acoplado foreign key (acoplado) references acoplado(patente),
-	constraint fk_viaje_chofer foreign key (chofer) references empleado(id),
-	constraint fk_viaje_destino foreign key (destino) references direccion(id),
-	constraint fk_viaje_partida foreign key (partida) references direccion(id)
+	destino_id int,
+	partida_id int,
+	constraint fk_viaje_carga foreign key (carga_id) references carga(id),
+	constraint fk_viaje_acoplado foreign key (acoplado_patente) references acoplado(patente),
+	constraint fk_vehiculo foreign key (vehiculo_patente) references vehiculo(patente),
+	constraint fk_viaje_chofer foreign key (chofer_id) references empleado(id),
+	constraint fk_viaje_destino foreign key (destino_id) references direccion(id),
+	constraint fk_viaje_partida foreign key (partida_id) references direccion(id)
 );
 
 create table posicion(
@@ -235,6 +239,14 @@ create table seguimiento(
 	constraint fk_seguimiento_vehiculo foreign key (vehiculo) references vehiculo(patente),
 	constraint fk_seguimiento_viaje foreign key (viaje) references viaje(id),
 	constraint fk_seguimiento_posicion foreign key (posicion_actual) references posicion(id)
+);
+
+create table proforma(
+	id int primary key auto_increment,
+	cliente_cuit int,
+	viaje_id int,
+	constraint fk_cliente foreign key (cliente_cuit) references cliente(cuit),
+	constraint fk_viaje foreign key (viaje_id) references viaje(id)
 );
 
 insert into tipo_empleado(id_tipo_empleado, descripcion)
@@ -258,7 +270,8 @@ insert into empleado(id, tipo_de_licencia, tipo_empleado, dni_usuario)
 values(1, 'auto', 1, 123),
 (2, 'auto', 3, 124),
 (3, 'tractor', 4, 127),
-(4, 'camion', 4, 128);
+(4, 'camion', 4, 128),
+(5, 'auto', 2, 125);
 
 insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
 values('aa123bb', 10, 100, 20000, 20150505, 'Iveco', 'Scavenger', 20180209, null, null);

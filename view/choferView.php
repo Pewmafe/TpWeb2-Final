@@ -121,6 +121,37 @@
                 </table>
             </div>
         </article>
+        <article class="">
+            <div>
+                <div class="row">
+                    {{#tablaProforma}}
+                    <div class="col-12 col-md-6 col-lg-4 p-2">
+                        <div class="card mb-4 p-3 bg-dark">
+                            <h3 class="text-center border-bottom border-secondary text-light">Proforma</h3>
+                            <p class="text-light">
+                                <span class="h5 font-weight-bold">Nro proforma </span>: {{id}}
+                            </p>
+                            <p class="text-light">
+                                <span class="h5 font-weight-bold">Cliente nombre </span>: {{nombre}}
+                            </p>
+                            <p class="text-light">
+                                <span class="h5 font-weight-bold">Cliente apellido </span>: {{apellido}}
+                            </p>
+                            <p class="text-light">
+                                <span class="h5 font-weight-bold">Calendario service </span>:
+                            </p>
+                            <p class="text-light">
+                                <span class="h5 font-weight-bold">Origen </span>:
+                            </p>
+                            <p class="text-light">
+                                <span class="h5 font-weight-bold">Destino </span>:
+                            </p>
+                        </div>
+                    </div>
+                    {{/tablaProforma}}
+                </div>
+            </div>
+        </article>
     </section>
     {{/usuarioChofer}} {{^usuarioChofer}}
     <div class="text-center">
