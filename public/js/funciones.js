@@ -153,11 +153,9 @@ $(document).on("click", ".inputNoReefer", function () {
 $(document).on("click", ".inputRegistrarCliente", function () {
 
     $("#registrarCliente").collapse('show');
-    $("#ingresarCuitCliente").collapse('hide');
 });
 
 $(document).on("click", ".inputIngresarCuit", function () {
 
     $("#registrarCliente").collapse('hide');
-    $("#ingresarCuitCliente").collapse('show');
 });

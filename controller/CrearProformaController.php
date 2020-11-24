@@ -36,8 +36,7 @@ class CrearProformaController
             $data["tablaTiposDeCarga"] = $tablaTiposDeCarga;
 
             $data["proformaCreada"] = isset($_GET["proformaCreada"]) ? $_GET["proformaCreada"] : false;
-
-
+            $data["clienteRegistrado"] = isset($_GET["clienteRegistrado"]) ? $_GET["clienteRegistrado"] : false;
 
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
@@ -52,24 +51,7 @@ class CrearProformaController
         if ($logeado) {
             $data["login"] = true;
 
-
-            $registroClienteRadios = $_POST["registroClienteRadios"];
             $clienteCuit = isset($_POST["clienteRegistradoCuit"])? $_POST["clienteRegistradoCuit"] : null;
-            if($registroClienteRadios == "si"){
-                $clienteDenominacion = $_POST["clienteDenominacion"];
-                $clienteNombre = $_POST["clienteNombre"];
-                $clienteApellido = $_POST["clienteApellido"];
-                $clienteCuit = $_POST["clienteCuit"];
-                $clienteLocalidad = $_POST["clienteLocalidad"];
-                $clienteCalle = $_POST["clienteCalle"];
-                $clienteAltura = $_POST["clienteAltura"];
-                $clienteTelefono = $_POST["clienteTelefono"];
-                $idDireccionCliente=$this->crearProformaModel->registrarDireccion($clienteCalle, $clienteAltura, $clienteLocalidad);
-                $this->crearProformaModel->registrarClienteConDireccion($idDireccionCliente, $clienteDenominacion,
-                    $clienteNombre, $clienteApellido ,$clienteCuit, $clienteTelefono);
-            }
-
-
 
             $cargaTipo = $_POST["cargaTipo"];
             $cargaPeso = $_POST["cargaPeso"];
@@ -100,6 +82,31 @@ class CrearProformaController
             $this->crearProformaModel->registrarProforma($clienteCuit, $idViaje);
 
             header("Location: /crearProforma?proformaCreada=true");
+            exit();
+        }
+        echo $this->render->render("view/loginView.php");
+    }
+
+    public function registrarCliente(){
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        if ($logeado) {
+            $data["login"] = true;
+            $clienteDenominacion = $_POST["clienteDenominacion"];
+            $clienteNombre = $_POST["clienteNombre"];
+            $clienteApellido = $_POST["clienteApellido"];
+            $clienteCuit = $_POST["clienteCuit"];
+            $clienteLocalidad = $_POST["clienteLocalidad"];
+            $clienteCalle = $_POST["clienteCalle"];
+            $clienteAltura = $_POST["clienteAltura"];
+            $clienteTelefono = $_POST["clienteTelefono"];
+
+            $idDireccionCliente=$this->crearProformaModel->registrarDireccion($clienteCalle, $clienteAltura, $clienteLocalidad);
+
+            $this->crearProformaModel->registrarClienteConDireccion($idDireccionCliente, $clienteDenominacion,
+                    $clienteNombre, $clienteApellido ,$clienteCuit, $clienteTelefono);
+
+
+            header("Location: /crearProforma?clienteRegistrado=true");
             exit();
         }
         echo $this->render->render("view/loginView.php");
