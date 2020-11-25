@@ -21,6 +21,9 @@ class ChoferController
         if ($logeado) {
             $data["login"] = true;
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
+            $tablaProforma= $this->ChoferModel->obtenerProformas();
+            $data["tablaProforma"]= $tablaProforma;
+
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
             echo $this->render->render("view/choferView.php", $dataMerge);

@@ -129,3 +129,33 @@ $(document).ready(function () {
     });
 });
 
+
+$(document).on("click", ".inputSiHazard", function () {
+
+    $("#hazard").collapse('show');
+});
+
+$(document).on("click", ".inputNoHazard", function () {
+
+    $("#hazard").collapse('hide');
+});
+
+$(document).on("click", ".inputSiReefer", function () {
+
+    $("#reefer").collapse('show');
+});
+
+$(document).on("click", ".inputNoReefer", function () {
+
+    $("#reefer").collapse('hide');
+});
+
+$(document).on("click", ".inputRegistrarCliente", function () {
+
+    $("#registrarCliente").collapse('show');
+});
+
+$(document).on("click", ".inputIngresarCuit", function () {
+
+    $("#registrarCliente").collapse('hide');
+});

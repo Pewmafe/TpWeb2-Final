@@ -33,6 +33,19 @@ class MySqlDataBase
 
     }
 
+    public function queryQueDevuelveId($sql)
+    {
+        $resultadoQuery = $this->conneccion->query($sql);
+
+        if (!$resultadoQuery) {
+            echo("error al ejecutar query<br>");
+            echo $this->conneccion->error . "-" . $this->conneccion->error;
+            exit();
+        }
+        return $this->conneccion->insert_id;
+
+    }
+
 
     public function devolverDatos($tablaAdevolcer)
     {

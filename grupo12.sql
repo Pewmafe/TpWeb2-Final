@@ -22,7 +22,7 @@ create table tipo_carga(
 );
 
 create table carga(
-	id int primary key,
+	id int primary key auto_increment,
 	hazard varchar(100),
 	peso_neto decimal(10,2),
 	reefer varchar(100),
@@ -151,14 +151,14 @@ create table provincia(
 create table localidad(
 	id int primary key,
 	descripcion varchar(100),
-	provincia int,
-	constraint fk_localidad_provincia 
-	foreign key (provincia)
+	provincia_id int,
+	constraint fk_localidad_provincia
+	foreign key (provincia_id)
 	references provincia(id)
 );
 
 create table direccion(
-	id int primary key,
+	id int primary key auto_increment,
 	calle varchar(100),
 	altura int,
 	localidad int,
@@ -170,6 +170,8 @@ create table direccion(
 create table cliente(
 	cuit int primary key,
 	email varchar(100),
+	nombre varchar(100),
+	apellido varchar(100),
 	telefono int,
 	direccion int,
 	denominacion varchar(100),
@@ -203,20 +205,22 @@ create table costeo(
 
 	
 create table viaje(
-	id int primary key,
+	id int primary key auto_increment,
 	eta varchar(100),
-	carga int,
-	acoplado varchar(10),
-	chofer int,
+	carga_id int,
+	acoplado_patente varchar(10),
+	vehiculo_patente varchar(10),
+	chofer_id int,
 	fecha_incio datetime,
 	fecha_fin datetime,
-	destino int,
-	partida int,
-	constraint fk_viaje_carga foreign key (carga) references carga(id),
-	constraint fk_viaje_acoplado foreign key (acoplado) references acoplado(patente),
-	constraint fk_viaje_chofer foreign key (chofer) references empleado(id),
-	constraint fk_viaje_destino foreign key (destino) references direccion(id),
-	constraint fk_viaje_partida foreign key (partida) references direccion(id)
+	destino_id int,
+	partida_id int,
+	constraint fk_viaje_carga foreign key (carga_id) references carga(id),
+	constraint fk_viaje_acoplado foreign key (acoplado_patente) references acoplado(patente),
+	constraint fk_vehiculo foreign key (vehiculo_patente) references vehiculo(patente),
+	constraint fk_viaje_chofer foreign key (chofer_id) references empleado(id),
+	constraint fk_viaje_destino foreign key (destino_id) references direccion(id),
+	constraint fk_viaje_partida foreign key (partida_id) references direccion(id)
 );
 
 create table posicion(
@@ -237,6 +241,14 @@ create table seguimiento(
 	constraint fk_seguimiento_posicion foreign key (posicion_actual) references posicion(id)
 );
 
+create table proforma(
+	id int primary key auto_increment,
+	cliente_cuit int,
+	viaje_id int,
+	constraint fk_cliente foreign key (cliente_cuit) references cliente(cuit),
+	constraint fk_viaje foreign key (viaje_id) references viaje(id)
+);
+
 insert into tipo_empleado(id_tipo_empleado, descripcion)
 values(1, "administrador"),
 (2, "supervisor"),
@@ -255,9 +267,11 @@ values(123, 'admin','202cb962ac59075b964b07152d234b70','ABC','CBA', 19940918),
 
 
 insert into empleado(id, tipo_de_licencia, tipo_empleado, dni_usuario)
-values(1, 'camion', 1, 123),
+values(1, 'auto', 1, 123),
 (2, 'auto', 3, 124),
-(3, 'auto', 4, 127);
+(3, 'tractor', 4, 127),
+(4, 'camion', 4, 128),
+(5, 'auto', 2, 125);
 
 insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
 values('aa123bb', 10, 100, 20000, 20150505, 'Iveco', 'Scavenger', 20180209, null, null);
@@ -275,4 +289,28 @@ values (1, 'Araña'), (2, 'CarCarrier'), (3, 'Jaula'), (4, 'Granel'), (5, 'Tanqu
 
 insert into acoplado(patente, chasis, tipo)
 values('aa159yy', 123789, 1), ('ab456uu', 456789, 3);
+
+insert into provincia(id, descripcion)
+values(1, 'Buenos Aires'),
+(2, 'Cordoba'),
+(3, 'Rosario');
+
+insert into localidad(id, descripcion, provincia_id)
+values(1, 'Bahía Blanca',1),
+(2, 'El palomar',1),
+(3, 'Pontevedra',1),
+(4, 'Amboy',2),
+(5, 'La Falda',2),
+(6, 'Pasco',2),
+(7, 'Pergamino',3),
+(8, 'Venado Tuerto',3),
+(9, 'Gran Rosario',3);
+
+insert into tipo_carga(id_tipo_carga, descripcion)
+values(1, 'Granel'),
+(2, 'Liquida'),
+(3, "20''"),
+(4,"40''"),
+(5, 'Jaula'),
+(6, 'carCarrier');
 
