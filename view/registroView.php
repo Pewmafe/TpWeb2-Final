@@ -43,20 +43,16 @@
     <section class="row justify-content-center m-3 ancho">
         <article class="col-12 col-md-6 justify-content-center  mt-2">
             <h3 class="text-dark text-center">Registrando a un nuevo Conductardo</h3>
-
             <div class="container">
-                <form class="form-horizontal" role="form" action="/registro/registroUsuario" method="post"
+                <form class="form-horizontal" role="form"  id="registroFormulario" action="/registro/registroUsuario" method="post"
                       enctype="multipart/form-data">
                     <div class="intDatos">
                         <h2>Introduzca sus datos.</h2>
                     </div>
-
                     <div class="form-group">
-                        {{#nombreUsuarioExistente}}
-                        <h5 class="text-danger">Nombre de usuario ya existente</h5>
-                        {{/nombreUsuarioExistente}} {{#dniUsuarioExistente}}
-                        <h5 class="text-danger">DNI de usuario ya existente</h5>
-                        {{/dniUsuarioExistente}}
+                        <h5 class="text-success" id="registroExitoso"></h5>
+                        <h5 class="text-danger" id="nombreUsuarioError"></h5>
+                        <h5 class="text-danger" id="dniUsuarioError"></h5>
                         <label for="NombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
                         <div class="col-12">
                             <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario"

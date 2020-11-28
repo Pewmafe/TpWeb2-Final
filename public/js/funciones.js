@@ -178,4 +178,36 @@ $(document).ready(function (){
             }
         });
     });
+
+    /************************AJAX REGISTRO**********************************/
+    $("#registroFormulario").submit(function(event){
+        event.preventDefault();
+        var post_url = $(this).attr("action");
+        var form_data = $(this).serialize();
+
+        $.post( post_url, form_data, function(errorRegistro) {
+            var json_data = jQuery.parseJSON(errorRegistro);
+            $("#nombreUsuarioError").html("");
+            $("#dniUsuarioError").html("");
+            $("#registroExitoso").html("");
+
+            if(json_data.nombreUsuarioError == true && json_data.dniError == true){
+                $("#nombreUsuarioError").html("<span>Nombre de usuario ya existente</span>");
+                $("#dniUsuarioError").html("<span>DNI de usuario ya existente</span>");
+            }else if(json_data.nombreUsuarioError){
+                $("#nombreUsuarioError").html("<span>Nombre de usuario ya existente</span>");
+            }else if(json_data.dniError == true){
+                $("#dniUsuarioError").html("<span>DNI de usuario ya existente</span>");
+            }
+            else{
+                $("#registroExitoso").html("<span>Se registro con exito</span>");
+                $("#NombreUsuario").val('');
+                $("#nombre").val('');
+                $("#apellido").val('');
+                $("#fechaNacimiento").val('');
+                $("#dni").val('');
+                $("#contrasenia").val('');
+            }
+        });
+    });
 });
