@@ -1,4 +1,6 @@
 $(document).ready(function (){
+
+    /************************BAJA USUARIOS**********************************/
     $(document).on("click", ".botonDarDeBajaUsuario", function () {
         var primaryKey = $(this).data('id');
         $(".modal-footer #botonDarDeBajaUsuarioModal").val(primaryKey);
@@ -9,6 +11,7 @@ $(document).ready(function (){
         $(".modal-footer #botonDarDeBajaEmpleadoModal").val(primaryKey);
     });
 
+    /************************BAJA EQUIPOS**********************************/
     $(document).on("click", ".botonDarDeBajaCamion", function () {
         var primaryKey = $(this).data('id');
         $(".modal-footer #botonDarDeBajaCamionModal").val(primaryKey);
@@ -19,6 +22,7 @@ $(document).ready(function (){
         $(".modal-footer #botonDarDeBajaAcopladoModal").val(primaryKey);
     });
 
+    /************************MODIFICACION USUARIOS**********************************/
     $(document).on("click", ".botonModificarUsuario", function () {
         var dni = $(this).data('dni');
         var nombreUsuario = $(this).data('nombreusuario');
@@ -73,7 +77,7 @@ $(document).ready(function (){
         $(".formularioModificarEmpleado .modal-footer .idEmpleado").val(id);
     });
 
-
+    /************************MODIFICACION EQUIPO**********************************/
     $(document).on("click", ".botonModificarCamion", function () {
         var patente = $(this).data('patente');
         var nroChasis = $(this).data('nrochasis');
@@ -108,6 +112,7 @@ $(document).ready(function (){
 
     });
 
+    /************************JS VIAJE**********************************/
     $('#Activos').click(function () {
         $('.popup1').show("slow");
         $('.popup2').hide(1000);
@@ -128,7 +133,7 @@ $(document).ready(function (){
         $('.popup1').hide(1000);
     });
 
-
+    /************************COLLAPSE PROFORMA**********************************/
     $(document).on("click", ".inputSiHazard", function () {
 
         $("#hazard").collapse('show');
@@ -159,4 +164,5 @@ $(document).ready(function (){
         $("#registrarCliente").collapse('hide');
     });
 
+    
 });
