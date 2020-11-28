@@ -164,5 +164,18 @@ $(document).ready(function (){
         $("#registrarCliente").collapse('hide');
     });
 
-    
+    /************************AJAX LOGIN**********************************/
+    $("#loginFormulario").submit(function(event){
+        event.preventDefault();
+        var post_url = $(this).attr("action");
+        var form_data = $(this).serialize();
+
+        $.post( post_url, form_data, function(errorLogin) {
+            if(errorLogin == true){
+                $("#loginError").html("<span>Error en el usuario o la contrasenia</span>");
+            }else{
+                window.location = "/";
+            }
+        });
+    });
 });

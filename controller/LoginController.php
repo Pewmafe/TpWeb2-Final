@@ -14,9 +14,7 @@ class LoginController
 
     public function ejecutar()
     {
-        $data["loginError"]= isset($_GET["loginError"]) ? $_GET["loginError"] : false;
-
-        echo $this->render->render("view/loginView.php", $data);
+        echo $this->render->render("view/loginView.php");
     }
 
     public function login()
@@ -26,11 +24,9 @@ class LoginController
         $loginExitoso = $this->loginModel->logearUsuario($nombreUsuario, $password);
 
         if(!$loginExitoso){
-            header("Location: /login?loginError=true");
+            echo true;
             exit();
         }
-        header("Location: /");
-        exit();
     }
 
     public function deslogearse()
