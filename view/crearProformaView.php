@@ -4,9 +4,6 @@
     <section class="row justify-content-center m-3 ancho">
         <article class="col-12 col-md-6 justify-content-center  mt-2">
             <h1 class="text-dark text-center">Crear nueva proforma</h1>
-            {{#proformaCreada}}
-                <h5 class="text-success">Se creo la proforma con exito.</h5>
-            {{/proformaCreada}}
             <h5 class="text-danger" id="clienteRegistroError"></h5>
             <h5 class="text-success" id="clienteRegistroExitoso"></h5>
             <div class="container">
@@ -99,7 +96,7 @@
     <section class="row justify-content-center m-3 ancho">
         <article class="col-12 col-md-6 justify-content-center  mt-2">
             <h3 class="text-center">Crear proforma</h3>
-            <form class="form-horizontal" role="form" action="/crearProforma/crearProforma" method="post">
+            <form class="form-horizontal" id="crearProformaFormulario" role="form" action="/crearProforma/crearProforma" method="post">
                 <div class="">
                     <h4>Cliente</h4>
                 </div>
@@ -319,7 +316,6 @@
                             <div class="form-check text-center">
                                 <input class="form-check-input" type="radio" name="choferRadios" id="choferRadios{{id}}" value="{{id}}">
                                 <label class="form-check-label" for="choferRadios{{id}}">
-
                                 </label>
                             </div>
                         </div>
@@ -332,6 +328,9 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Crear proforma</button>
+                <h5 class="text-danger" id="errorClienteCuit"></h5>
+                <h5 class="text-danger" id="errorCamposVacios"></h5>
+                <h5 class="text-success" id="crearProformaExito"></h5>
             </form>
         </article>
     </section>

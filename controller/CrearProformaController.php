@@ -35,9 +35,6 @@ class CrearProformaController
             $tablaTiposDeCarga = $this->crearProformaModel->obtenerTiposDeCarga();
             $data["tablaTiposDeCarga"] = $tablaTiposDeCarga;
 
-            $data["proformaCreada"] = isset($_GET["proformaCreada"]) ? $_GET["proformaCreada"] : false;
-            $data["clienteRegistrado"] = isset($_GET["clienteRegistrado"]) ? $_GET["clienteRegistrado"] : false;
-
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
             echo $this->render->render("view/CrearProformaView.php", $dataMerge);
@@ -51,37 +48,57 @@ class CrearProformaController
         if ($logeado) {
             $data["login"] = true;
 
-            $clienteCuit = isset($_POST["clienteRegistradoCuit"])? $_POST["clienteRegistradoCuit"] : null;
+            $clienteCuit = isset($_POST["clienteRegistradoCuit"])? $_POST["clienteRegistradoCuit"] : false;
+            $clienteCuitExistente=false;
+            $clienteCuitExistente=$this->crearProformaModel->verificarCuitClienteExistente($clienteCuit);
 
-            $cargaTipo = $_POST["cargaTipo"];
-            $cargaPeso = $_POST["cargaPeso"];
-            $idCarga = $this->crearProformaModel->registrarCarga($cargaTipo, $cargaPeso);
-
-
-            $origenLocalidad = $_POST["origenLocalidad"];
-            $origenCalle= $_POST["origenCalle"];
-            $origenAltura = $_POST["origenAltura"];
-            $idDireccionOrigen=$this->crearProformaModel->registrarDireccion($origenCalle, $origenAltura, $origenLocalidad);
+            $cargaTipo = isset($_POST["cargaTipo"])?  $_POST["cargaTipo"] : false;
+            $cargaPeso = isset($_POST["cargaPeso"])?  $_POST["cargaPeso"] : false;
 
 
-            $destinoLocalidad = $_POST["destinoLocalidad"];
-            $destinoCalle = $_POST["destinoCalle"];
-            $destinoAltura= $_POST["destinoAltura"];
-            $idDireccionDestino=$this->crearProformaModel->registrarDireccion($destinoCalle, $destinoAltura, $destinoLocalidad);
+
+            $origenLocalidad = isset($_POST["origenLocalidad"])?  $_POST["origenLocalidad"] : false;
+            $origenCalle= isset($_POST["origenCalle"])? $_POST["origenCalle"] : false;
+            $origenAltura = isset($_POST["origenAltura"])? $_POST["origenAltura"] : false;
 
 
-            $fechaSalida = $_POST["fechaSalida"];
-            $fechaLlegada = $_POST["fechaLlegada"];
 
-            $vehiculoPatente= $_POST["vehiculoRadios"];
-            $acopladoPatente = $_POST["acopladoRadios"];
+            $destinoLocalidad = isset($_POST["destinoLocalidad"])? $_POST["destinoLocalidad"] : false;
+            $destinoCalle = isset($_POST["destinoCalle"])? $_POST["destinoCalle"] : false;
+            $destinoAltura= isset($_POST["destinoAltura"])? $_POST["destinoAltura"] : false;
 
-            $choferID = $_POST["choferRadios"];
-            $idViaje=$this->crearProformaModel->registrarViaje($idCarga, $acopladoPatente, $vehiculoPatente, $choferID, $fechaSalida, $fechaLlegada, $idDireccionDestino, $idDireccionOrigen);
 
-            $this->crearProformaModel->registrarProforma($clienteCuit, $idViaje);
 
-            header("Location: /crearProforma?proformaCreada=true");
+            $fechaSalida = isset($_POST["fechaSalida"])? $_POST["fechaSalida"] : false;
+            $fechaLlegada = isset($_POST["fechaLlegada"])? $_POST["fechaLlegada"] : false;
+
+            $vehiculoPatente= isset($_POST["vehiculoRadios"])? $_POST["vehiculoRadios"] : false;
+            $acopladoPatente = isset($_POST["acopladoRadios"])? $_POST["acopladoRadios"] : false;
+
+            $choferID = isset($_POST["choferRadios"])? $_POST["choferRadios"] : false;
+
+            $camposVacios = false;
+            if($clienteCuit != false and $cargaTipo != false and $cargaPeso != false and $origenLocalidad != false and $origenCalle != false and
+                $origenAltura != false and $destinoLocalidad != false and $destinoCalle != false and $destinoAltura != false and
+                $fechaSalida != false and $fechaLlegada != false and $vehiculoPatente != false and $acopladoPatente != false and
+                $choferID != false){
+                if($clienteCuitExistente==true){
+                    $idCarga = $this->crearProformaModel->registrarCarga($cargaTipo, $cargaPeso);
+
+                    $idDireccionOrigen=$this->crearProformaModel->registrarDireccion($origenCalle, $origenAltura, $origenLocalidad);
+
+                    $idDireccionDestino=$this->crearProformaModel->registrarDireccion($destinoCalle, $destinoAltura, $destinoLocalidad);
+
+                    $idViaje=$this->crearProformaModel->registrarViaje($idCarga, $acopladoPatente, $vehiculoPatente, $choferID, $fechaSalida, $fechaLlegada, $idDireccionDestino, $idDireccionOrigen);
+
+                    $this->crearProformaModel->registrarProforma($clienteCuit, $idViaje);
+                }
+            }else{
+                $camposVacios = true;
+            }
+
+            $datos =array('camposVacios'=>$camposVacios,'clienteCuitExistente'=> $clienteCuitExistente);
+            echo json_encode($datos);
             exit();
         }
         echo $this->render->render("view/loginView.php");

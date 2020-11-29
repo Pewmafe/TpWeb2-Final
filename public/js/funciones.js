@@ -243,5 +243,46 @@ $(document).ready(function (){
     });
 
     /************************AJAX PROFORMA**********************************/
+    $("#crearProformaFormulario").submit(function (event){
+        event.preventDefault();
 
+        var post_url = $(this).attr("action");
+        var form_datos = $(this).serialize();
+
+        $.post( post_url, form_datos, function(datos) {
+            var jsonErrorRegistro = jQuery.parseJSON(datos);
+            $("#errorClienteCuit").html("");
+            $("#errorCamposVacios").html("");
+            $("#crearProformaExito").html("");
+
+            var registroExitoso = true;
+            if(jsonErrorRegistro.clienteCuitExistente == false){
+                $("#errorClienteCuit").html("<span>No se encuentra registrado un cliente con ese CUIT.</span>");
+                registroExitoso = false;
+            }
+
+            if(jsonErrorRegistro.camposVacios == true){
+                $("#errorCamposVacios").html("<span>Debe completar todos los campos.</span>");
+                registroExitoso = false;
+            }
+
+            if(registroExitoso){
+                $("#crearProformaExito").html("<span>Se registro la proforma con exito</span>");
+                $("#clienteRegistradoCuit").val('');
+                $("#cargaTipo").val('');
+                $("#cargaPeso").val('');
+                $("#origenLocalidad").val('');
+                $("#origenCalle").val('');
+                $("#origenAltura").val('');
+                $("#destinoLocalidad").val('');
+                $("#destinoCalle").val('');
+                $("#destinoAltura").val('');
+                $("#fechaSalida").val('');
+                $("#fechaLlegada").val('');
+                $('td[name ="vehiculoRadios"]').val('');
+                $('td[name ="acopladoRadios"]').val('');
+                $('td[name ="choferRadios"]').val('');
+            }
+        });
+    });
 });
