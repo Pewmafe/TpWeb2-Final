@@ -7,9 +7,8 @@
             {{#proformaCreada}}
                 <h5 class="text-success">Se creo la proforma con exito.</h5>
             {{/proformaCreada}}
-            {{#clienteRegistrado}}
-                <h5 class="text-success">Se registro el cliente con exito.</h5>
-            {{/clienteRegistrado}}
+            <h5 class="text-danger" id="clienteRegistroError"></h5>
+            <h5 class="text-success" id="clienteRegistroExitoso"></h5>
             <div class="container">
                 <p class="col-form-label col-sm-8 pt-0">¿Necesita registrar un cliente?</p>
                 <div class="col-sm-10 mb-3">
@@ -28,7 +27,7 @@
                 </div>
                 <div id="registrarCliente" class="collapse">
                     <h3 class="text-center">Registro cliente</h3>
-                    <form class="form-horizontal" role="form" action="/crearProforma/registrarCliente" method="post">
+                    <form class="form-horizontal" role="form" id="clienteRegistroFormulario" action="/crearProforma/registrarCliente" method="post">
                         <div class="form-group" >
                             <label for="clienteDenominacion" class="col-12 control-label">*Denominacion</label>
                             <div class="col-12">

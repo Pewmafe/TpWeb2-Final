@@ -210,4 +210,38 @@ $(document).ready(function (){
             }
         });
     });
+
+    /************************AJAX CREAR CLIENTE**********************************/
+    $("#clienteRegistroFormulario").submit(function (event){
+        event.preventDefault();
+
+        var post_url = $(this).attr("action");
+        var form_datos = $(this).serialize();
+
+        $.post( post_url, form_datos, function(errorRegistro) {
+            var jsonErrorRegistro = jQuery.parseJSON(errorRegistro);
+            $("#clienteRegistroError").html("");
+            $("#clienteRegistroExitoso").html("");
+
+            if(jsonErrorRegistro.clienteCuitExistente == true){
+                $("#clienteRegistroError").html("<span>El CUIT del cliente ya existe.</span>");
+            }else if(jsonErrorRegistro.clienteDenominacion == false || jsonErrorRegistro.clienteNombre == false || jsonErrorRegistro.clienteApellido == false || jsonErrorRegistro.clienteCuit == false
+                || jsonErrorRegistro.clienteLocalidad == false || jsonErrorRegistro.clienteCalle == false || jsonErrorRegistro.clienteAltura == false || jsonErrorRegistro.clienteTelefono == false){
+                $("#clienteRegistroError").html("<span>Debe completar todos los campos.</span>");
+            }else{
+                $("#clienteRegistroExitoso").html("<span>Se registro el cliente con exito</span>");
+                $("#clienteDenominacion").val('');
+                $("#clienteNombre").val('');
+                $("#clienteApellido").val('');
+                $("#clienteCuit").val('');
+                $("#clienteLocalidad").val('');
+                $("#clienteCalle").val('');
+                $("#clienteAltura").val('');
+                $("#clienteTelefono").val('');
+            }
+        });
+    });
+
+    /************************AJAX PROFORMA**********************************/
+
 });

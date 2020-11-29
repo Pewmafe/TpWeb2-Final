@@ -113,4 +113,18 @@ class CrearProformaModel
         values (".$clienteCuit.",".$viajeId.")";
         $this->bd->query($sql);
     }
+
+    public function verificarCuitClienteExistente($cuit){
+        $resultado = false;
+
+        $table = $this->bd->devolverDatos("cliente");
+        for ($i = 0; $i < sizeof($table); $i++) {
+            if ($table[$i]["cuit"] == $cuit) {
+                $resultado = true;
+            }
+        }
+        return $resultado;
+    }
+
+
 }
