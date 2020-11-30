@@ -114,23 +114,23 @@ $(document).ready(function (){
 
     /************************JS VIAJE**********************************/
     $('#Activos').click(function () {
-        $('.popup1').show("slow");
         $('.popup2').hide(1000);
         $('.popup3').hide(1000);
+        $('.popup1').show(1000);
     });
 
 
     $('#Pendientes').click(function () {
-        $('.popup2').show(1000);
         $('.popup1').hide(1000);
         $('.popup3').hide(1000);
+        $('.popup2').show(1000);
     });
 
 
     $('#Finalizados').click(function () {
-        $('.popup3').show(1000);
         $('.popup2').hide(1000);
         $('.popup1').hide(1000);
+        $('.popup3').show(1000);
     });
 
     /************************COLLAPSE PROFORMA**********************************/
