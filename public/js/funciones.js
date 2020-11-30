@@ -134,14 +134,40 @@ $(document).ready(function (){
     });
 
     /************************COLLAPSE PROFORMA**********************************/
+    /*****************AJAX SELECT HAZARD***************/
     $(document).on("click", ".inputSiHazard", function () {
 
         $("#hazard").collapse('show');
+
+        $.ajax({
+            type:'POST',
+            url: '/crearProforma/cargarListaImoClass'
+        }).done(function (listas_imoClass){
+            $("#imoClass").html(listas_imoClass);
+        }).fail(function (){
+            alert("error al cargar lista de IMO Class");
+        });
+    });
+
+    $("#imoClass").on('change',function(){
+        var idImoClass = $("#imoClass").val();
+        $.ajax({
+            type:'POST',
+            url: '/crearProforma/cargarListaImoSubClass',
+            data:{
+                'idImoClass':idImoClass}
+        }).done(function (listas_imoSubClass){
+            $("#imoSubClass").html(listas_imoSubClass);
+        }).fail(function (){
+            alert("error al cargar lista Imo Sub Class");
+        });
     });
 
     $(document).on("click", ".inputNoHazard", function () {
 
         $("#hazard").collapse('hide');
+        $("#imoClass").val('');
+        $("#imoSubClass").val('');
     });
 
     $(document).on("click", ".inputSiReefer", function () {
@@ -242,6 +268,61 @@ $(document).ready(function (){
         });
     });
 
+    /************************AJAX SELECT PROVINCIA LOCALIDAD**********************************/
+    $.ajax({
+        type:'POST',
+        url: '/crearProforma/cargarListaProvincia'
+    }).done(function (listas_prov){
+        $("#clienteProvincia").html(listas_prov);
+        $("#origenProvincia").html(listas_prov);
+        $("#destinoProvincia").html(listas_prov);
+    }).fail(function (){
+        alert("error al cargar lista provincias");
+    });
+
+    $("#clienteProvincia").on('change',function(){
+        var idProvincia = $("#clienteProvincia").val();
+        $.ajax({
+            type:'POST',
+            url: '/crearProforma/cargarListaLocalidad',
+            data:{
+                'idProvincia':idProvincia}
+        }).done(function (listas_loca){
+            $("#clienteLocalidad").html(listas_loca);
+        }).fail(function (){
+            alert("error al cargar lista localidad cliente");
+        });
+    });
+
+    $("#origenProvincia").on('change',function(){
+        var idProvincia = $("#origenProvincia").val();
+        $.ajax({
+            type:'POST',
+            url: '/crearProforma/cargarListaLocalidad',
+            data:{
+                'idProvincia':idProvincia}
+        }).done(function (listas_loca){
+            $("#origenLocalidad").html(listas_loca);
+        }).fail(function (){
+            alert("error al cargar lista localidad origen");
+        });
+    });
+
+    $("#destinoProvincia").on('change',function(){
+        var idProvincia = $("#destinoProvincia").val();
+        $.ajax({
+            type:'POST',
+            url: '/crearProforma/cargarListaLocalidad',
+            data:{
+                'idProvincia':idProvincia}
+        }).done(function (listas_loca){
+            $("#destinoLocalidad").html(listas_loca);
+        }).fail(function (){
+            alert("error al cargar lista localidad destino");
+        });
+    });
+
+
     /************************AJAX PROFORMA**********************************/
     $("#crearProformaFormulario").submit(function (event){
         event.preventDefault();
@@ -251,6 +332,7 @@ $(document).ready(function (){
 
         $.post( post_url, form_datos, function(datos) {
             var jsonErrorRegistro = jQuery.parseJSON(datos);
+            console.log(jsonErrorRegistro);
             $("#errorClienteCuit").html("");
             $("#errorCamposVacios").html("");
             $("#crearProformaExito").html("");
@@ -271,17 +353,21 @@ $(document).ready(function (){
                 $("#clienteRegistradoCuit").val('');
                 $("#cargaTipo").val('');
                 $("#cargaPeso").val('');
+                $( "#hazardRadios2" ).prop( "checked", true );
+                $( "#reeferRadios2" ).prop( "checked", true );
+                $("#origenProvincia").val('');
                 $("#origenLocalidad").val('');
                 $("#origenCalle").val('');
                 $("#origenAltura").val('');
+                $("#destinoProvincia").val('');
                 $("#destinoLocalidad").val('');
                 $("#destinoCalle").val('');
                 $("#destinoAltura").val('');
                 $("#fechaSalida").val('');
                 $("#fechaLlegada").val('');
-                $('td[name ="vehiculoRadios"]').val('');
-                $('td[name ="acopladoRadios"]').val('');
-                $('td[name ="choferRadios"]').val('');
+                $('td[name ="vehiculoRadios"]').prop( "checked", false );
+                $('td[name ="acopladoRadios"]').prop( "checked", false );
+                $('td[name ="choferRadios"]').prop( "checked", false );
             }
         });
     });

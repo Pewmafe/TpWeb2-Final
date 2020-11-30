@@ -49,18 +49,6 @@ class CrearProformaModel
         }
         return $tablaAcoplados;
     }
-
-    public function obtenerLocalidades(){
-        $sql = "SELECT id, descripcion
-                FROM localidad";
-        $resultadoQuery = $this->bd->query($sql);
-
-        while($fila = $resultadoQuery->fetch_assoc()){
-            $tablaLocalidades[] = $fila;
-        }
-        return $tablaLocalidades;
-    }
-
     public function obtenerTiposDeCarga(){
         $sql = "SELECT id_tipo_carga, descripcion
                 FROM tipo_carga";
@@ -94,9 +82,25 @@ class CrearProformaModel
 
     }
 
-    public function registrarCarga($tipo, $peso){
-        $sql="INSERT INTO carga(peso_neto, tipo) 
-        values (".$peso.",".$tipo.")";
+    public function registrarHazard($imoSubClass){
+        $sql="INSERT INTO hazard(imo_sub_class_id) 
+        values (".$imoSubClass.")";
+        $idHazard=$this->bd->queryQueDevuelveId($sql);
+        return $idHazard;
+    }
+
+    public function registrarReefer($reeferTemperatura){
+        $sql="INSERT INTO reefer(temperatura) 
+        values (".$reeferTemperatura.")";
+        $idReefer=$this->bd->queryQueDevuelveId($sql);
+        return $idReefer;
+    }
+
+    public function registrarCarga($tipo, $peso, $hazard, $reefer){
+        $hazardId = isset($hazard) ? $hazard : "NULL";
+        $reeferId = isset($reefer) ? $reefer : "NULL";
+        $sql="INSERT INTO carga(peso_neto, tipo, hazard_id, reefer_id) 
+        values (".$peso.",".$tipo.",".$hazardId.",".$reeferId.")";
         $idCarga=$this->bd->queryQueDevuelveId($sql);
         return $idCarga;
     }
@@ -126,5 +130,52 @@ class CrearProformaModel
         return $resultado;
     }
 
+    public function obtenerProvincias(){
+        $sql= "SELECT * FROM provincia";
+
+        $resultadoQuery = $this->bd->query($sql);
+        $lista = '<option selected disabled>-</option>';
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $lista .= "<option value='$fila[id]'>$fila[descripcion]</option>";
+        }
+        return $lista;
+    }
+
+    public function obtenerLocalidades($idProvincia){
+        $sql = "SELECT *
+                FROM localidad
+                WHERE provincia_id =" . $idProvincia;
+        $resultadoQuery = $this->bd->query($sql);
+
+        $lista = '<option selected disabled>-</option>';
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $lista .= "<option value='$fila[id]'>$fila[descripcion]</option>";
+        }
+        return $lista;
+    }
+
+    public function obtenerImoClases(){
+        $sql= "SELECT * FROM imo_class";
+
+        $resultadoQuery = $this->bd->query($sql);
+        $lista = '<option selected disabled>-</option>';
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $lista .= "<option value='$fila[id]'>$fila[descripcion]</option>";
+        }
+        return $lista;
+    }
+
+    public function obtenerImoSubClases($idImoClass){
+        $sql = "SELECT *
+                FROM imo_sub_class
+                WHERE imo_class_id =" . $idImoClass;
+        $resultadoQuery = $this->bd->query($sql);
+
+        $lista = '<option selected disabled>-</option>';
+        while($fila = $resultadoQuery->fetch_assoc()){
+            $lista .= "<option value='$fila[id]'>$fila[descripcion]</option>";
+        }
+        return $lista;
+    }
 
 }

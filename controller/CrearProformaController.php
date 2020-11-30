@@ -29,9 +29,6 @@ class CrearProformaController
             $tablaAcoplados = $this->crearProformaModel->obtenerEquiposAcoplados();
             $data["tablaAcoplados"] = $tablaAcoplados;
 
-            $tablaDestinos = $this->crearProformaModel->obtenerLocalidades();
-            $data["tablaDestinos"] = $tablaDestinos;
-
             $tablaTiposDeCarga = $this->crearProformaModel->obtenerTiposDeCarga();
             $data["tablaTiposDeCarga"] = $tablaTiposDeCarga;
 
@@ -49,13 +46,24 @@ class CrearProformaController
             $data["login"] = true;
 
             $clienteCuit = isset($_POST["clienteRegistradoCuit"])? $_POST["clienteRegistradoCuit"] : false;
-            $clienteCuitExistente=false;
             $clienteCuitExistente=$this->crearProformaModel->verificarCuitClienteExistente($clienteCuit);
 
             $cargaTipo = isset($_POST["cargaTipo"])?  $_POST["cargaTipo"] : false;
             $cargaPeso = isset($_POST["cargaPeso"])?  $_POST["cargaPeso"] : false;
 
+            $tieneHazard = isset($_POST["hazardRadios"])?  $_POST["hazardRadios"] : "no";
+            $imoSubClass=null;
+            $hazardId=NULL;
+            if($tieneHazard == "si"){
+                $imoSubClass= isset($_POST["cargaTipo"])?  $_POST["cargaTipo"] : false;
+            }
 
+            $tieneReefer = isset($_POST["reeferRadios"])?  $_POST["reeferRadios"] : "no";
+            $reeferId=NULL;
+            $reeferTemperatura=null;
+            if($tieneReefer == "si"){
+                $reeferTemperatura= isset($_POST["reeferTemperatura"])?  $_POST["reeferTemperatura"] : false;
+            }
 
             $origenLocalidad = isset($_POST["origenLocalidad"])?  $_POST["origenLocalidad"] : false;
             $origenCalle= isset($_POST["origenCalle"])? $_POST["origenCalle"] : false;
@@ -81,9 +89,17 @@ class CrearProformaController
             if($clienteCuit != false and $cargaTipo != false and $cargaPeso != false and $origenLocalidad != false and $origenCalle != false and
                 $origenAltura != false and $destinoLocalidad != false and $destinoCalle != false and $destinoAltura != false and
                 $fechaSalida != false and $fechaLlegada != false and $vehiculoPatente != false and $acopladoPatente != false and
-                $choferID != false){
+                $choferID != false and $imoSubClass!==false and $reeferTemperatura!==false){
                 if($clienteCuitExistente==true){
-                    $idCarga = $this->crearProformaModel->registrarCarga($cargaTipo, $cargaPeso);
+                    if($imoSubClass!=null){
+                        $hazardId = $this->crearProformaModel->registrarHazard($imoSubClass);
+                    }
+
+                    if($reeferTemperatura!=null){
+                        $reeferId = $this->crearProformaModel->registrarReefer($reeferTemperatura);
+                    }
+
+                    $idCarga = $this->crearProformaModel->registrarCarga($cargaTipo, $cargaPeso, $hazardId, $reeferId);
 
                     $idDireccionOrigen=$this->crearProformaModel->registrarDireccion($origenCalle, $origenAltura, $origenLocalidad);
 
@@ -141,4 +157,27 @@ class CrearProformaController
         }
         echo $this->render->render("view/loginView.php");
     }
+
+    public function cargarListaProvincia(){
+        $listaProvincia = $this->crearProformaModel->obtenerProvincias();
+        echo $listaProvincia;
+    }
+
+    public function cargarListaLocalidad(){
+        $idProvincia= $_POST["idProvincia"];
+        $listaLocalidad = $this->crearProformaModel->obtenerLocalidades($idProvincia);
+        echo $listaLocalidad;
+    }
+
+    public function cargarListaImoClass(){
+        $listaImoClass = $this->crearProformaModel->obtenerImoClases();
+        echo $listaImoClass;
+    }
+
+    public function cargarListaImoSubClass(){
+        $idImoClass= $_POST["idImoClass"];
+        $listaImoClass = $this->crearProformaModel->obtenerImoSubClases($idImoClass);
+        echo $listaImoClass;
+    }
+
 }
