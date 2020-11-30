@@ -4,12 +4,6 @@
     <section class="row justify-content-center m-3 ancho">
         <article class="col-12 col-md-6 justify-content-center  mt-2">
             <h1 class="text-dark text-center">Crear nueva proforma</h1>
-            {{#proformaCreada}}
-                <h5 class="text-success">Se creo la proforma con exito.</h5>
-            {{/proformaCreada}}
-            {{#clienteRegistrado}}
-                <h5 class="text-success">Se registro el cliente con exito.</h5>
-            {{/clienteRegistrado}}
             <div class="container">
                 <p class="col-form-label col-sm-8 pt-0">¿Necesita registrar un cliente?</p>
                 <div class="col-sm-10 mb-3">
@@ -28,7 +22,7 @@
                 </div>
                 <div id="registrarCliente" class="collapse">
                     <h3 class="text-center">Registro cliente</h3>
-                    <form class="form-horizontal" role="form" action="/crearProforma/registrarCliente" method="post">
+                    <form class="form-horizontal" role="form" id="clienteRegistroFormulario" action="/crearProforma/registrarCliente" method="post">
                         <div class="form-group" >
                             <label for="clienteDenominacion" class="col-12 control-label">*Denominacion</label>
                             <div class="col-12">
@@ -54,20 +48,21 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="clienteLocalidad">*Localidad</label>
-                                <select id="clienteLocalidad" name="clienteLocalidad" class="form-control">
-                                    <option selected disabled>-</option>
-                                    {{#tablaDestinos}}
-                                    <option value="{{id}}">{{descripcion}}</option>
-                                    {{/tablaDestinos}}
+                            <div class="form-group col-md-6">
+                                <label for="clienteProvincia">*Provincia</label>
+                                <select id="clienteProvincia" name="clienteProvincia" class="form-control">
                                 </select>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
+                                <label for="clienteLocalidad">*Localidad</label>
+                                <select id="clienteLocalidad" name="clienteLocalidad" class="form-control">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label for="clienteCalle">*Calle</label>
                                 <input type="text" class="form-control" id="clienteCalle" name="clienteCalle">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="clienteAltura">*Altura</label>
                                 <input type="number" class="form-control" id="clienteAltura" name="clienteAltura">
                             </div>
@@ -91,6 +86,8 @@
                             </div>
                         </div>-->
                         <button type="submit" class="btn btn-primary btn-block">Registrar cliente</button>
+                        <h5 class="text-danger" id="clienteRegistroError"></h5>
+                        <h5 class="text-success" id="clienteRegistroExitoso"></h5>
                     </form>
                 </div>
             </div>
@@ -100,7 +97,7 @@
     <section class="row justify-content-center m-3 ancho">
         <article class="col-12 col-md-6 justify-content-center  mt-2">
             <h3 class="text-center">Crear proforma</h3>
-            <form class="form-horizontal" role="form" action="/crearProforma/crearProforma" method="post">
+            <form class="form-horizontal" id="crearProformaFormulario" role="form" action="/crearProforma/crearProforma" method="post">
                 <div class="">
                     <h4>Cliente</h4>
                 </div>
@@ -131,35 +128,35 @@
                         <input type="number" id="cargaPeso" name="cargaPeso" placeholder="" class="form-control" required>
                     </div>
                 </div>
-                <!--<div class="">
+                <div class="">
                     <h4>Hazard</h4>
                 </div>
                 <legend class="col-form-label col-sm-2 pt-0">¿Tiene?</legend>
                 <div class="col-sm-10 mb-3">
                     <div class="form-check">
-                        <input class="form-check-input inputSiHazard" type="radio" name="hazardRadios" id="gridRadios1" value="option1" >
-                        <label class="form-check-label" for="gridRadios1" >
+                        <input class="form-check-input inputSiHazard" type="radio" name="hazardRadios" id="hazardRadios1" value="si" >
+                        <label class="form-check-label" for="hazardRadios1" >
                             si
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input inputNoHazard" type="radio" name="hazardRadios" id="gridRadios2" value="option2" checked>
-                        <label class="form-check-label" for="gridRadios2">
+                        <input class="form-check-input inputNoHazard" type="radio" name="hazardRadios" id="hazardRadios2" value="no" checked>
+                        <label class="form-check-label" for="hazardRadios2">
                             no
                         </label>
                     </div>
                 </div>
                 <div id="hazard" class="collapse">
-                    <div class="form-group">
-                        <label for="" class="col-12 control-label">*IMO Class</label>
-                        <div class="col-12">
-                            <input type="text" id="" name="" placeholder="" class="form-control" required>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="imoClass">*IMO class</label>
+                            <select id="imoClass" name="imoClass" class="form-control">
+                            </select>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-12 control-label">*IMO Sclass</label>
-                        <div class="col-12">
-                            <input type="text" id="" name="" placeholder="" class="form-control" required>
+                        <div class="form-group col-md-4">
+                            <label for="imoSubClass">*IMO sub class</label>
+                            <select id="imoSubClass" name="imoSubClass" class="form-control">
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -169,63 +166,65 @@
                 <legend class="col-form-label col-sm-2 pt-0">¿Tiene?</legend>
                 <div class="col-sm-10 mb-3">
                     <div class="form-check">
-                        <input class="form-check-input inputSiReefer" type="radio" name="reeferRadios" id="gridRadios1" value="option1">
-                        <label class="form-check-label" for="gridRadios1">
+                        <input class="form-check-input inputSiReefer" type="radio" name="reeferRadios" id="reeferRadios1" value="si">
+                        <label class="form-check-label" for="reeferRadios1">
                             si
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input inputNoReefer" type="radio" name="reeferRadios" id="gridRadios2" value="option2" checked>
-                        <label class="form-check-label" for="gridRadios2">
+                        <input class="form-check-input inputNoReefer" type="radio" name="reeferRadios" id="reeferRadios2" value="no" checked>
+                        <label class="form-check-label" for="reeferRadios2">
                             no
                         </label>
                     </div>
                 </div>
                 <div class="form-group collapse" id="reefer">
-                    <label for="" class="col-12 control-label">*Temperatura C°</label>
+                    <label for="reeferTemperatura" class="col-12 control-label">*Temperatura C°</label>
                     <div class="col-12">
-                        <input type="number" id="" name="" placeholder="" class="form-control" required>
+                        <input type="number" id="reeferTemperatura" name="reeferTemperatura" placeholder="" class="form-control">
                     </div>
-                </div>-->
+                </div>
                 <div class="">
                     <h4>Viaje</h4>
                 </div>
                 <h5>*Origen</h5>
                 <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="origenLocalidad">Localidad</label>
-                        <select id="origenLocalidad" name="origenLocalidad" class="form-control">
-                            <option selected disabled>-</option>
-                            {{#tablaDestinos}}
-                            <option value="{{id}}">{{descripcion}}</option>
-                            {{/tablaDestinos}}
+                    <div class="form-group col-md-6">
+                        <label for="origenProvincia">*Provincia</label>
+                        <select id="origenProvincia" name="origenProvincia" class="form-control">
                         </select>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
+                        <label for="origenLocalidad">Localidad</label>
+                        <select id="origenLocalidad" name="origenLocalidad" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
                         <label for="origenCalle">Calle</label>
                         <input type="text" class="form-control" id="origenCalle" name="origenCalle">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <label for="origenAltura">Altura</label>
                         <input type="number" class="form-control" id="origenAltura" name="origenAltura">
                     </div>
                 </div>
                 <h5>*Destino</h5>
                 <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="destinoLocalidad">Localidad</label>
-                        <select id="destinoLocalidad" name="destinoLocalidad" class="form-control">
-                            <option selected disabled>-</option>
-                            {{#tablaDestinos}}
-                            <option value="{{id}}">{{descripcion}}</option>
-                            {{/tablaDestinos}}
+                    <div class="form-group col-md-6">
+                        <label for="destinoProvincia">*Provincia</label>
+                        <select id="destinoProvincia" name="destinoProvincia" class="form-control">
                         </select>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
+                        <label for="destinoLocalidad">Localidad</label>
+                        <select id="destinoLocalidad" name="destinoLocalidad" class="form-control">
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
                         <label for="destinoCalle">Calle</label>
                         <input type="text" class="form-control" id="destinoCalle" name="destinoCalle">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <label for="destinoAltura">Altura</label>
                         <input type="number" class="form-control" id="destinoAltura" name="destinoAltura">
                     </div>
@@ -320,7 +319,6 @@
                             <div class="form-check text-center">
                                 <input class="form-check-input" type="radio" name="choferRadios" id="choferRadios{{id}}" value="{{id}}">
                                 <label class="form-check-label" for="choferRadios{{id}}">
-
                                 </label>
                             </div>
                         </div>
@@ -333,6 +331,9 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Crear proforma</button>
+                <h5 class="text-danger" id="errorClienteCuit"></h5>
+                <h5 class="text-danger" id="errorCamposVacios"></h5>
+                <h5 class="text-success" id="crearProformaExito"></h5>
             </form>
         </article>
     </section>
