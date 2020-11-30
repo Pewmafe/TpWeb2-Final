@@ -233,13 +233,12 @@ create table costeo(
 
 create table viaje(
 	id int primary key auto_increment,
-	eta varchar(100),
+	eta datetime,
+	etd datetime,
 	carga_id int,
 	acoplado_patente varchar(10),
 	vehiculo_patente varchar(10),
 	chofer_id int,
-	fecha_incio datetime,
-	fecha_fin datetime,
 	destino_id int,
 	partida_id int,
 	constraint fk_viaje_carga foreign key (carga_id) references carga(id),

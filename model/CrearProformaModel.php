@@ -106,7 +106,7 @@ class CrearProformaModel
     }
 
     public function registrarViaje($carga, $acoplado_patente, $vehiculo_patente, $choferId, $fecha_incio, $fecha_fin, $destinoId, $partidaId){
-        $sql="INSERT INTO viaje(carga_id, acoplado_patente, vehiculo_patente, chofer_id, fecha_incio, fecha_fin, destino_id, partida_id) 
+        $sql="INSERT INTO viaje(carga_id, acoplado_patente, vehiculo_patente, chofer_id, etd, eta, destino_id, partida_id) 
         values (".$carga.",'".$acoplado_patente."','".$vehiculo_patente."',".$choferId.", '".$fecha_incio."', '".$fecha_fin."', ".$destinoId.", ".$partidaId.")";
         $idViaje=$this->bd->queryQueDevuelveId($sql);
         return $idViaje;
