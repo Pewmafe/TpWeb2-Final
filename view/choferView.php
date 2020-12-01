@@ -150,7 +150,7 @@
                             <p class="text-light">
                                 <span class="h5 font-weight-bold">Destino </span>:
                             </p>
-                            <img src="{{dirQR}}">
+                            <img src="{{dirQR}}" style="max-width:auto">
                         </div>
                     </div>
                     {{/tablaProforma}}
