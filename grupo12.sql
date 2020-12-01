@@ -267,10 +267,17 @@ create table seguimiento(
 	constraint fk_seguimiento_posicion foreign key (posicion_actual) references posicion(id)
 );
 
+create table estado_proforma(
+    id int primary key,
+    descripcion varchar(50)
+);
+
 create table proforma(
 	id int primary key auto_increment,
 	cliente_cuit int,
 	viaje_id int,
+	estado int,
+	constraint fk_estado foreign key (estado) references estado_proforma(id),
 	constraint fk_cliente foreign key (cliente_cuit) references cliente(cuit),
 	constraint fk_viaje foreign key (viaje_id) references viaje(id)
 );
@@ -357,3 +364,26 @@ values(1, 'Bahía Blanca',1),
 (8, 'Venado Tuerto',3),
 (9, 'Gran Rosario',3);
 
+insert into estado_proforma values
+(1,'ACTIVO'),
+(2,'PENDIENTE'),
+(3,'FINALIZADO');
+
+select * from proforma;
+#concat(vehiculo_patente,descripcion) as 'suma'
+select  ep.descripcion as 'estado',
+                        pd.descripcion as 'destino',
+                        pp.descripcion as 'partida',
+                        j.eta,
+                        j.etd 
+                from proforma p
+                    join viaje j on p.viaje_id = j.id
+                    join direccion dp on j.partida_id = dp.id
+                    join direccion dd on j.destino_id = dd.id
+                    join localidad lp on lp.id = dp.localidad
+                    join localidad ld on ld.id = dd.localidad
+                    join provincia pp on pp.id = lp.provincia_id
+                    join provincia pd on pd.id = ld.provincia_id
+                    join estado_proforma ep on ep.id = p.estado
+                        where j.chofer_id = 4
+                        and p.estado = 2;

@@ -113,8 +113,8 @@ class CrearProformaModel
     }
 
     public function registrarProforma($clienteCuit, $viajeId){
-        $sql="INSERT INTO proforma(cliente_cuit, viaje_id) 
-        values (".$clienteCuit.",".$viajeId.")";
+        $sql="INSERT INTO proforma(cliente_cuit, viaje_id, estado) 
+        values (".$clienteCuit.",".$viajeId.", 2)";
         $this->bd->query($sql);
     }
 

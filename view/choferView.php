@@ -21,6 +21,7 @@
             </ul>
         </article>
         <article class="popup1">
+            {{#tablaDeViajes}}
             <div>
                 <table class="table table-hover table-dark">
                     <thead>
@@ -35,10 +36,10 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row" class="text-success">Activo</th>
-                        <td class="p-auto">Buenos Aires</td>
-                        <td>Mendoza</td>
-                        <td>12 horas</td>
+                        <th scope="row" class="text-success">{{estado}}</th>
+                        <td class="p-auto">{{partida}}</td>
+                        <td>{{destino}}</td>
+                        <td>{{tiempo_estimado}}</td>
                         <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6">Ver mas</a></td>
 
                     </tr>
@@ -46,6 +47,7 @@
                     </tbody>
                 </table>
             </div>
+            {{/tablaDeViajes}}
         </article>
         <article class="chofer-hidden popup2">
             <div>
@@ -156,7 +158,8 @@
             </div>
         </article>
     </section>
-    {{/usuarioChofer}} {{^usuarioChofer}}
+    {{/usuarioChofer}}
+    {{^usuarioChofer}}
     <div class="text-center">
         <h1>ERROR 404 PAGINA NO ENCONTRADA</h1>
         <a class="btn btn-outline-danger" href="/home">Volver al Inicio</a>
