@@ -30,6 +30,7 @@
                         <th scope="col">Hacia</th>
                         <th scope="col">Duracion Aproximada</th>
                         <th scope="col"></th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -39,6 +40,7 @@
                         <td>Mendoza</td>
                         <td>12 horas</td>
                         <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6">Ver mas</a></td>
+
                     </tr>
 
                     </tbody>
@@ -146,6 +148,7 @@
                             <p class="text-light">
                                 <span class="h5 font-weight-bold">Destino </span>:
                             </p>
+                            <img src="{{dirQR}}">
                         </div>
                     </div>
                     {{/tablaProforma}}
