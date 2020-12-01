@@ -334,7 +334,9 @@ values(1, 'granel'),
 
 insert into imo_class(id, descripcion)
 values(1, 'explosivo'),
-(2, 'gas');
+(2, 'gas'),
+(3, 'liquido inflamable'),
+(4, 'sólidos o sustancias inflamables');
 
 insert into imo_sub_class(id, descripcion, imo_class_id)
 values(1, '1.1', 1),
@@ -346,7 +348,11 @@ values(1, '1.1', 1),
 (7, 'gas inflamable', 2),
 (8, 'gas ininflamable', 2),
 (9, 'gas oxigeno', 2),
-(10, 'gas venenoso', 2);
+(10, 'gas venenoso', 2),
+(11, 'líquido con un punto de inflamación no superior a 60,5°C', 3),
+(12, 'materiales autorreactivos', 4),
+(13, 'explosivos insensibilizados que en estado seco son explosivos', 4),
+(14, 'sólidos fácilmente combustibles que pueden provocar un incendio por fricción', 4);
 
 insert into provincia(id, descripcion)
 values(1, 'Buenos Aires'),
