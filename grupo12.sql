@@ -369,27 +369,36 @@ values(1, 'Bahía Blanca',1),
 (7, 'Pergamino',3),
 (8, 'Venado Tuerto',3),
 (9, 'Gran Rosario',3);
+######d
+insert into direccion( id,	calle,	altura,	localidad) 
+values (1,"Ventura Bustos", 1223,1),
+(2,"falsa",1212,1),
+(3,"verdadera",2223,8);
 
-insert into estado_proforma values
-(1,'ACTIVO'),
+insert into cliente (cuit, nombre, apellido,telefono, direccion, denominacion)
+values (123,"Roberto", "Mangera", 12345678, 1, "Coca Cola");
+#####d
+insert into estado_proforma 
+values (1,'ACTIVO'),
 (2,'PENDIENTE'),
 (3,'FINALIZADO');
 
-select * from proforma;
-#concat(vehiculo_patente,descripcion) as 'suma'
-select  ep.descripcion as 'estado',
-                        pd.descripcion as 'destino',
-                        pp.descripcion as 'partida',
-                        j.eta,
-                        j.etd 
-                from proforma p
-                    join viaje j on p.viaje_id = j.id
-                    join direccion dp on j.partida_id = dp.id
-                    join direccion dd on j.destino_id = dd.id
-                    join localidad lp on lp.id = dp.localidad
-                    join localidad ld on ld.id = dd.localidad
-                    join provincia pp on pp.id = lp.provincia_id
-                    join provincia pd on pd.id = ld.provincia_id
-                    join estado_proforma ep on ep.id = p.estado
-                        where j.chofer_id = 4
-                        and p.estado = 2;
+insert into hazard(id, imo_sub_class_id)
+values (1, 2);
+
+insert into reefer(id_reefer, temperatura)
+values (1, 123);
+
+insert into carga(id, hazard_id, peso_neto, reefer_id, tipo)
+values(1, 1, 12.00, 1, 1);
+
+insert into viaje (id, eta, etd, carga_id, acoplado_patente, vehiculo_patente, chofer_id, destino_id, partida_id)
+values(1, "2020/12/12 16:02:00", "2020/11/01 03:40:00", 1, "ab456uu", "aa123bb", 4, 3, 2);
+
+insert into proforma (id,cliente_cuit,viaje_id,estado)
+values(1, 123, 1, 1),
+(2, 123, 1, 2),
+(3, 123, 1, 3);
+
+
+

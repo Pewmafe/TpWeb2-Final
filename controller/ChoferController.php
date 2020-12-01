@@ -31,8 +31,14 @@ class ChoferController
             $data["tablaProforma"] = $tablaProforma;
             $data["dirQR"] = $this->generarQR();
 
-            $tablaDeViajes = $this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"]);
-            $data["tablaDeViajes"] = $tablaDeViajes;
+            $tablaDeViajesActivo = $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]);
+            $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
+
+            $tablaDeViajesPendientes = $this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"]);
+            $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
+
+            $tablaDeViajesFinalizados = $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]);
+            $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
 
 
             $data2 = $this->loginSession->verificarQueUsuarioRol();

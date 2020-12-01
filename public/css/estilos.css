@@ -97,7 +97,10 @@ nav-item:hover c-pointer {
     display: none;
     transition: 2s;
 }
-
+.img-qr{
+    width: 500px;
+    height: auto;
+}
 @media screen and (max-width: 768px) {
     .borde-login {
         border: 0 !important;

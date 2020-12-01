@@ -21,8 +21,8 @@
             </ul>
         </article>
         <article class="popup1">
-            {{#tablaDeViajes}}
-            <div>
+            {{#tablaDeViajesActivo}}
+            <div class="table-responsive">
                 <table class="table table-hover table-dark">
                     <thead>
                     <tr>
@@ -47,10 +47,11 @@
                     </tbody>
                 </table>
             </div>
-            {{/tablaDeViajes}}
+            {{/tablaDeViajesActivo}}
         </article>
         <article class="chofer-hidden popup2">
-            <div>
+            {{#tablaDeViajesPendientes}}
+            <div class="table-responsive">
                 <table class="table table-hover table-dark">
                     <thead>
                     <tr>
@@ -59,36 +60,27 @@
                         <th scope="col">Hacia</th>
                         <th scope="col">Duracion Aproximada</th>
                         <th scope="col"></th>
+
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row" class="text-secondary">Pendiente</th>
-                        <td>Buenos Aires</td>
-                        <td>Mendoza</td>
-                        <td>12 horas</td>
+                        <th scope="row" class="text-secondary">{{estado}}</th>
+                        <td class="p-auto">{{partida}}</td>
+                        <td>{{destino}}</td>
+                        <td>{{tiempo_estimado}}</td>
                         <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6">Ver mas</a></td>
+
                     </tr>
-                    <tr>
-                        <th scope="row" class="text-secondary">Pendiente</th>
-                        <td>Buenos Aires</td>
-                        <td>Mendoza</td>
-                        <td>12 horas</td>
-                        <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6">Ver mas</a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-secondary">Pendiente</th>
-                        <td>Buenos Aires</td>
-                        <td>Mendoza</td>
-                        <td>12 horas</td>
-                        <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6">Ver mas</a></td>
-                    </tr>
+
                     </tbody>
                 </table>
             </div>
+            {{/tablaDeViajesPendientes}}
         </article>
         <article class="chofer-hidden popup3">
-            <div>
+            {{#tablaDeViajesFinalizados}}
+            <div class="table-responsive">
                 <table class="table table-hover table-dark">
                     <thead>
                     <tr>
@@ -97,33 +89,23 @@
                         <th scope="col">Hacia</th>
                         <th scope="col">Duracion Aproximada</th>
                         <th scope="col"></th>
+
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row" class="text-danger">Finalizado</th>
-                        <td>Buenos Aires</td>
-                        <td>Mendoza</td>
-                        <td>12 horas</td>
+                        <th scope="row" class="text-danger">{{estado}}</th>
+                        <td class="p-auto">{{partida}}</td>
+                        <td>{{destino}}</td>
+                        <td>{{tiempo_estimado}}</td>
                         <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6">Ver mas</a></td>
+
                     </tr>
-                    <tr>
-                        <th scope="row" class="text-danger">Finalizado</th>
-                        <td>Buenos Aires</td>
-                        <td>Mendoza</td>
-                        <td>12 horas</td>
-                        <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6">Ver mas</a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-danger">Finalizado</th>
-                        <td>Buenos Aires</td>
-                        <td>Mendoza</td>
-                        <td>12 horas</td>
-                        <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6">Ver mas</a></td>
-                    </tr>
+
                     </tbody>
                 </table>
             </div>
+            {{/tablaDeViajesFinalizados}}
         </article>
         <article class="">
             <div>
@@ -150,7 +132,7 @@
                             <p class="text-light">
                                 <span class="h5 font-weight-bold">Destino </span>:
                             </p>
-                            <img src="{{dirQR}}" style="max-width:auto">
+                            <img src="{{dirQR}}" class="img-fluid img-qr">
                         </div>
                     </div>
                     {{/tablaProforma}}
