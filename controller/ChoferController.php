@@ -1,5 +1,8 @@
 <?php
 
+define("activo", 1);
+define("pendiente", 2);
+define("finalizado", 3);
 
 class ChoferController
 {
@@ -21,8 +24,12 @@ class ChoferController
         if ($logeado) {
             $data["login"] = true;
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
-            $tablaProforma= $this->ChoferModel->obtenerProformas();
-            $data["tablaProforma"]= $tablaProforma;
+            $tablaProforma = $this->ChoferModel->obtenerProformas();
+            $data["tablaProforma"] = $tablaProforma;
+
+            $tablaDeViajes = $this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"]);
+            $data["tablaDeViajes"] = $tablaDeViajes;
+
 
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
