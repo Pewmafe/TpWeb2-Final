@@ -232,13 +232,13 @@
                 <div class="form-group">
                     <label for="fechaSalida" class="col-12 control-label">*Fecha de salida</label>
                     <div class="col-12">
-                        <input type="date" id="fechaSalida" name="fechaSalida" class="form-control" required>
+                        <input type="datetime-local" id="fechaSalida" name="fechaSalida" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="fechaLlegada" class="col-12 control-label">*Fecha de llegada</label>
                     <div class="col-12">
-                        <input type="date" id="fechaLlegada" name="fechaLlegada" class="form-control" required>
+                        <input type="datetime-local" id="fechaLlegada" name="fechaLlegada" class="form-control" required>
                     </div>
                 </div>
                 <hr>
