@@ -53,9 +53,9 @@ class ChoferModel
             $dateETA = new DateTime($fila["eta"]);
             $dateETD = new DateTime($fila["etd"]);
 
-            if( (($dateETA->getTimestamp() - $dateETD->getTimestamp()) / 60 / 60) > 24 ){
+            if ((($dateETA->getTimestamp() - $dateETD->getTimestamp()) / 60 / 60) > 24) {
                 $diff = (($dateETA->getTimestamp() - $dateETD->getTimestamp()) / 60 / 60 / 24) . " Dias";
-            }else{
+            } else {
                 $diff = (($dateETA->getTimestamp() - $dateETD->getTimestamp()) / 60 / 60) . " Horas";
             }
 
