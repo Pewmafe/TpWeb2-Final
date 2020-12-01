@@ -61,7 +61,8 @@ class AdministrarEquiposController
         exit();
     }
 
-    public function modificarCamion(){
+    public function modificarCamion()
+    {
         $patenteAModificar = $_POST["patente"];
         $nroChasisAModificar = $_POST["nroChasis"];
         $nroMotorAModificar = $_POST["nroMotor"];
@@ -80,15 +81,16 @@ class AdministrarEquiposController
         }
 
         $this->administrarEquiposModel->modificarCamion($patenteAModificar, $nroChasisAModificar, $nroMotorAModificar,
-                                                        $kilometrajeAModificar, $fabricacionAModificar, $marcaAModificar,
-                                                        $modeloAModificar, $calendarioServiceAModificar, $patenteCamionQueSeVaAModificar);
+            $kilometrajeAModificar, $fabricacionAModificar, $marcaAModificar,
+            $modeloAModificar, $calendarioServiceAModificar, $patenteCamionQueSeVaAModificar);
 
         header("Location: /administrarEquipos?modificarCamionExitosamente=true");
         exit();
 
     }
 
-    public function modificarAcoplado(){
+    public function modificarAcoplado()
+    {
         $patenteAModificar = $_POST["patente"];
         $chasisAModificar = $_POST["chasis"];
         $tipoAcopladoAModificar = $_POST["tipoAcoplado"];
@@ -96,13 +98,13 @@ class AdministrarEquiposController
 
         $patenteExistente = $this->administrarEquiposModel->verificarPatenteAcopladoExistente($patenteAcopladoQueSeVaAModificar, $patenteAModificar);
 
-        if ($patenteExistente){
+        if ($patenteExistente) {
             header("Location: /administrarEquipos?patenteAcopladoError=true");
             exit();
         }
 
         $this->administrarEquiposModel->modificarAcoplado($patenteAModificar, $chasisAModificar, $tipoAcopladoAModificar,
-                                                          $patenteAcopladoQueSeVaAModificar);
+            $patenteAcopladoQueSeVaAModificar);
         header("Location: /administrarEquipos?modificarAcopladoExitosamente=true");
         exit();
     }

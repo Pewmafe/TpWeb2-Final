@@ -8,7 +8,7 @@ class ModificarUsuarioController
     private $ModificarUsuarioModel;
     private $loginSession;
 
-    public function __construct($render, $loginSession , $ModificarUsuarioModel)
+    public function __construct($render, $loginSession, $ModificarUsuarioModel)
     {
         $this->render = $render;
         $this->loginSession = $loginSession;
