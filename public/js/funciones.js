@@ -335,7 +335,6 @@ $(document).ready(function() {
 
         $.post(post_url, form_datos, function(datos) {
             var jsonErrorRegistro = jQuery.parseJSON(datos);
-            console.log(jsonErrorRegistro);
             $("#errorClienteCuit").html("");
             $("#errorCamposVacios").html("");
             $("#crearProformaExito").html("");
