@@ -369,7 +369,7 @@ values(1, 'Bahía Blanca',1),
 (7, 'Pergamino',3),
 (8, 'Venado Tuerto',3),
 (9, 'Gran Rosario',3);
-######d
+
 insert into direccion( id,	calle,	altura,	localidad) 
 values (1,"Ventura Bustos", 1223,1),
 (2,"falsa",1212,1),
@@ -377,7 +377,7 @@ values (1,"Ventura Bustos", 1223,1),
 
 insert into cliente (cuit, nombre, apellido,telefono, direccion, denominacion)
 values (123,"Roberto", "Mangera", 12345678, 1, "Coca Cola");
-#####d
+
 insert into estado_proforma 
 values (1,'ACTIVO'),
 (2,'PENDIENTE'),
