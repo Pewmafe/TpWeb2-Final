@@ -20,8 +20,8 @@ class AgregarAcopladoController
         if ($logeado) {
             $data["login"] = true;
 
-            $data["patenteAcopladoError"]= isset($_GET["patenteAcopladoError"]) ? $_GET["patenteAcopladoError"] : false;
-            $data["agregoAcopladoExitosamente"]= isset($_GET["agregoAcopladoExitosamente"]) ? $_GET["agregoAcopladoExitosamente"] : false;
+            $data["patenteAcopladoError"] = isset($_GET["patenteAcopladoError"]) ? $_GET["patenteAcopladoError"] : false;
+            $data["agregoAcopladoExitosamente"] = isset($_GET["agregoAcopladoExitosamente"]) ? $_GET["agregoAcopladoExitosamente"] : false;
 
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);

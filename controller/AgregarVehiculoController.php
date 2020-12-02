@@ -20,8 +20,8 @@ class AgregarVehiculoController
         if ($logeado) {
             $data["login"] = true;
 
-            $data["patenteVehiculoError"]= isset($_GET["patenteVehiculoError"]) ? $_GET["patenteVehiculoError"] : false;
-            $data["agregoVehExitosamente"]= isset($_GET["agregoVehExitosamente"]) ? $_GET["agregoVehExitosamente"] : false;
+            $data["patenteVehiculoError"] = isset($_GET["patenteVehiculoError"]) ? $_GET["patenteVehiculoError"] : false;
+            $data["agregoVehExitosamente"] = isset($_GET["agregoVehExitosamente"]) ? $_GET["agregoVehExitosamente"] : false;
 
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);

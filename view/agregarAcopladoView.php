@@ -10,10 +10,10 @@
                     </div>
                     <div class="form-group">
                         {{#patenteAcopladoError}}
-                        <h5 class="text-danger">La patente ya está registrada.</h5>
+                            <h5 class="text-danger">La patente ya está registrada.</h5>
                         {{/patenteAcopladoError}}
                         {{#agregoAcopladoExitosamente}}
-                        <h5 class="text-success">Se agregó el acoplado correctamente.</h5>
+                            <h5 class="text-success">Se agregó el acoplado correctamente.</h5>
                         {{/agregoAcopladoExitosamente}}
                         <label for="patente" class="col-12 control-label">*Patente</label>
                         <div class="col-12">

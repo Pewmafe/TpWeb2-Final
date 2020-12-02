@@ -98,13 +98,17 @@ nav-item:hover c-pointer {
     transition: 2s;
 }
 
+.img-qr {
+    width: 500px;
+    height: auto;
+}
+
 @media screen and (max-width: 768px) {
     .borde-login {
         border: 0 !important;
         border-bottom: 1px solid #d4dcdf !important;
         margin-bottom: 1em;
     }
-
     .intDatos {
         text-align: center;
     }

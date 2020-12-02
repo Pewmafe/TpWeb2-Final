@@ -29,11 +29,11 @@ class RegistroController
         $nombreUsuarioExistente = $this->registroModel->verificarNombreUsuarioExistente($nombreUsuario);
         $dniExistente = $this->registroModel->verificarDNIUsuarioExistente($dni);
 
-        if(!($dniExistente) || !($nombreUsuarioExistente)){
+        if (!($dniExistente) || !($nombreUsuarioExistente)) {
             $this->registroModel->registrarUsuario($nombreUsuario, $contrasenia, $dni, $nombre, $apellido, $fechaNacimiento);
         }
 
-        $datos =array('nombreUsuarioError'=>$nombreUsuarioExistente, 'dniError'=>$dniExistente);
+        $datos = array('nombreUsuarioError' => $nombreUsuarioExistente, 'dniError' => $dniExistente);
         echo json_encode($datos);
 
     }

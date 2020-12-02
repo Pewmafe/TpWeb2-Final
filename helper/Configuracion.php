@@ -99,7 +99,6 @@ class Configuracion
         return new AdministrarUsuariosController($this->getRender(), $loginSession, $administrarUsuarioModel);
     }
 
-
     public function getModificarUsuarioController()
     {
         $loginSession = $this->getLoginSession();

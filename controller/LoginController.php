@@ -23,7 +23,7 @@ class LoginController
         $password = $_POST["Contrasenia"];
         $loginExitoso = $this->loginModel->logearUsuario($nombreUsuario, $password);
 
-        if(!$loginExitoso){
+        if (!$loginExitoso) {
             echo true;
             exit();
         }
