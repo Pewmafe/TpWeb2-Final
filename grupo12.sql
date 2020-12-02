@@ -401,4 +401,27 @@ values(1, 123, 1, 1),
 (3, 123, 1, 3);
 
 
-
+select p.estado as 'estado_proforma', p.id as 'proforma_id', c.nombre as 'nombre_cliente', c.apellido as 'apellido_cliente',
+c.email , c.telefono, v.eta ,v.etd ,v.id as 'viaje_id', a.chasis as 'acoplado_chasis',a.patente as 'acoplado_patente',
+ta.descripcion as 'tipo_acoplado_desc', ca.hazard_id as 'hazard_carga', ca.peso_neto as 'peso_neto_carga', ca.reefer_id as 'reefeer_id_carga',
+tv.descripcion as 'tipo_vehiculo_desc', ve.estado as 'vehiculo_estado', ve.fabricacion as 'vehiculo_fabricacion', 
+ve.kilometraje as 'vehiculo_kilometraje', ve.marca as 'vehiculo_marca', ve.modelo as 'vehiculo_modelo', ve.patente as 'vehiculo_patente',
+ve.nro_chasis as 'vehiculo_nro_chasis', ve.nro_motor as 'vehiculo_nro_motor', tc.descripcion as 'tipo_carga_desc', dp.altura as 'partida_altura',
+dp.calle as 'partida_calle', dd.altura as 'destino_altura', dd.calle as 'destino_calle', lp.descripcion as 'partida_localidad', 
+ld.descripcion as 'destino_localidad', pp.descripcion as 'partida_provincia', pd.descripcion 'destino_provincia'
+from proforma p 
+join cliente c on p.cliente_cuit = c.cuit 
+join viaje v on v.id = p.viaje_id 
+join carga ca on ca.id = v.carga_id 
+join acoplado a on a.patente = v.acoplado_patente 
+join vehiculo ve on ve.patente = v.vehiculo_patente 
+join direccion dp on v.partida_id = dp.id 
+join direccion dd on v.destino_id = dd.id 
+join localidad lp on dp.localidad = lp.id 
+join localidad ld on dd.localidad = ld.id 
+join provincia pp on pp.id = lp.provincia_id 
+join provincia pd on pd.id = ld.provincia_id 
+join tipo_carga tc on tc.id_tipo_carga = ca.tipo 
+join tipo_acoplado ta on ta.id = a.tipo 
+join tipo_vehiculo tv on tv.id = ve.tipo 
+where v.chofer_id = 1;
