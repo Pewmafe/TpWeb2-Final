@@ -82,10 +82,13 @@ class CrearProformaModel
     }
 
     public function registrarClienteConDireccion($idDireccion, $denominacion,
-                                                 $nombre, $apellido, $cuit, $telefono)
-    {
-        $sql = "INSERT INTO cliente(cuit, telefono, direccion, denominacion, nombre, apellido) 
-        values (" . $cuit . "," . $telefono . "," . $idDireccion . ",'" . $denominacion . "', '" . $nombre . "', '" . $apellido . "')";
+                                                 $nombre, $apellido ,$cuit, $telefono, $email, $contact1, $contact2){
+        $contacto1 = isset($contact1) ? $contact1 : "NULL";
+        $contacto2 = isset($contact2) ? $contact2 : "NULL";
+        $sql="INSERT INTO cliente(cuit, telefono, direccion, denominacion, nombre, apellido, email, contacto1, contacto2) 
+        values (".$cuit.",".$telefono.",".$idDireccion.",'".$denominacion."', '".$nombre."', '".$apellido."','".$email."',
+        '".$contacto1."', '".$contacto2."')";
+
         $this->bd->query($sql);
 
     }
