@@ -5,7 +5,7 @@
         <article class="col-12 col-md-6 justify-content-center  mt-2">
             <h1 class="text-dark text-center">Crear nueva proforma</h1>
             <div class="container">
-                <p class="col-form-label col-sm-8 pt-0">¿Necesita registrar un cliente?</p>
+                <h4 class="col-form-label col-sm-8 pt-0">¿Necesita registrar un cliente?</h4>
                 <div class="col-sm-10 mb-3">
                     <div class="form-check">
                         <input class="form-check-input inputRegistrarCliente" type="radio" name="registroClienteRadios" id="registroClienteRadios1" >
@@ -24,67 +24,78 @@
                     <h3 class="text-center">Registro cliente</h3>
                     <form class="form-horizontal" role="form" id="clienteRegistroFormulario" action="/crearProforma/registrarCliente" method="post">
                         <div class="form-group" >
-                            <label for="clienteDenominacion" class="col-12 control-label">*Denominacion</label>
+                            <label for="clienteDenominacion" class="col-12 control-label"><span class="text-info">*</span>Denominacion</label>
                             <div class="col-12">
                                 <input type="text" id="clienteDenominacion" name="clienteDenominacion" placeholder="Denominacion" class="form-control" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="clienteNombre" class="col-12 control-label">*Nombre</label>
+                            <label for="clienteNombre" class="col-12 control-label"><span class="text-info">*</span>Nombre</label>
                             <div class="col-12">
                                 <input type="text" id="clienteNombre" name="clienteNombre" placeholder="Nombre/s" class="form-control" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="clienteApellido" class="col-12 control-label">*Apellido</label>
+                            <label for="clienteApellido" class="col-12 control-label"><span class="text-info">*</span>Apellido</label>
                             <div class="col-12">
                                 <input type="text" id="clienteApellido" name="clienteApellido" placeholder="Apellido/s" class="form-control" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="clienteCuit" class="col-12 control-label">*Cuit</label>
+                            <label for="clienteCuit" class="col-12 control-label"><span class="text-info">*</span>Cuit</label>
                             <div class="col-12">
                                 <input type="number" id="clienteCuit" name="clienteCuit" placeholder="CUIT" class="form-control" >
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="clienteProvincia">*Provincia</label>
+                                <label for="clienteProvincia"><span class="text-info">*</span>Provincia</label>
                                 <select id="clienteProvincia" name="clienteProvincia" class="form-control">
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="clienteLocalidad">*Localidad</label>
+                                <label for="clienteLocalidad"><span class="text-info">*</span>Localidad</label>
                                 <select id="clienteLocalidad" name="clienteLocalidad" class="form-control">
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="clienteCalle">*Calle</label>
+                                <label for="clienteCalle"><span class="text-info">*</span>Calle</label>
                                 <input type="text" class="form-control" id="clienteCalle" name="clienteCalle">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="clienteAltura">*Altura</label>
+                                <label for="clienteAltura"><span class="text-info">*</span>Altura</label>
                                 <input type="number" class="form-control" id="clienteAltura" name="clienteAltura">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="clienteTelefono" class="col-12 control-label">*Telefono</label>
+                            <label for="clienteTelefono" class="col-12 control-label"><span class="text-info">*</span>Telefono</label>
                             <div class="col-12">
                                 <input type="text" id="clienteTelefono" name="clienteTelefono" placeholder="44662894" class="form-control" >
                             </div>
                         </div>
-                        <!--<div class="form-group">
-                            <label for="" class="col-12 control-label">Contacto 1</label>
+                        <div class="form-group">
+                            <label for="clienteEmail" class="col-12 control-label"><span class="text-info">*</span>Email</label>
                             <div class="col-12">
-                                <input type="text" id="" name="" placeholder="Contraseña" class="form-control" required>
+                                <input type="text" id="clienteEmail" name="clienteEmail" placeholder="email@email.com" class="form-control" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-12 control-label">Contacto 2</label>
+                            <label for="clienteContacto1" class="col-12 control-label">Contacto 1</label>
                             <div class="col-12">
-                                <input type="text" id="" name="" placeholder="Contraseña" class="form-control" required>
+                                <input type="text" id="clienteContacto1" name="clienteContacto1" class="form-control">
                             </div>
-                        </div>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="clienteContacto2" class="col-12 control-label">Contacto 2</label>
+                            <div class="col-12">
+                                <input type="text" id="clienteContacto2" name="clienteContacto2" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group p-3">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <span class="help-block alert alert-info">*Campos requeridos</span>
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary btn-block">Registrar cliente</button>
                         <h5 class="text-danger" id="clienteRegistroError"></h5>
                         <h5 class="text-success" id="clienteRegistroExitoso"></h5>
@@ -102,7 +113,7 @@
                     <h4>Cliente</h4>
                 </div>
                 <div class="form-group">
-                    <label for="clienteRegistradoCuit" class="col-12 control-label">*Cuit</label>
+                    <label for="clienteRegistradoCuit" class="col-12 control-label"><span class="text-info">*</span>Cuit</label>
                     <div class="col-12">
                         <input type="number" id="clienteRegistradoCuit" name="clienteRegistradoCuit" placeholder="CUIT" class="form-control" >
                     </div>
@@ -112,7 +123,7 @@
                     <h4>Carga</h4>
                 </div>
                 <div class="form-group">
-                    <label for="cargaTipo" class="col-12 control-label">*Tipo de carga</label>
+                    <label for="cargaTipo" class="col-12 control-label"><span class="text-info">*</span>Tipo de carga</label>
                     <div class="col-12">
                         <select name="cargaTipo" id="cargaTipo" class="custom-select form-control">
                             <option selected disabled>-</option>
@@ -123,7 +134,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="cargaPeso" class="col-12 control-label">*Peso en kilos</label>
+                    <label for="cargaPeso" class="col-12 control-label"><span class="text-info">*</span>Peso en kilos</label>
                     <div class="col-12">
                         <input type="number" id="cargaPeso" name="cargaPeso" placeholder="" class="form-control" required>
                     </div>
@@ -149,12 +160,12 @@
                 <div id="hazard" class="collapse">
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="imoClass">*IMO class</label>
+                            <label for="imoClass"><span class="text-info">*</span>IMO class</label>
                             <select id="imoClass" name="imoClass" class="form-control">
                             </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="imoSubClass">*IMO sub class</label>
+                            <label for="imoSubClass"><span class="text-info">*</span>IMO sub class</label>
                             <select id="imoSubClass" name="imoSubClass" class="form-control">
                             </select>
                         </div>
@@ -179,7 +190,7 @@
                     </div>
                 </div>
                 <div class="form-group collapse" id="reefer">
-                    <label for="reeferTemperatura" class="col-12 control-label">*Temperatura C°</label>
+                    <label for="reeferTemperatura" class="col-12 control-label"><span class="text-info">*</span>Temperatura C°</label>
                     <div class="col-12">
                         <input type="number" id="reeferTemperatura" name="reeferTemperatura" placeholder="" class="form-control">
                     </div>
@@ -187,56 +198,56 @@
                 <div class="">
                     <h4>Viaje</h4>
                 </div>
-                <h5>*Origen</h5>
+                <h5><span class="text-info">*</span>Origen</h5>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="origenProvincia">*Provincia</label>
+                        <label for="origenProvincia"><span class="text-info">*</span>Provincia</label>
                         <select id="origenProvincia" name="origenProvincia" class="form-control">
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="origenLocalidad">Localidad</label>
+                        <label for="origenLocalidad"><span class="text-info">*</span>Localidad</label>
                         <select id="origenLocalidad" name="origenLocalidad" class="form-control">
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="origenCalle">Calle</label>
+                        <label for="origenCalle"><span class="text-info">*</span>Calle</label>
                         <input type="text" class="form-control" id="origenCalle" name="origenCalle">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="origenAltura">Altura</label>
+                        <label for="origenAltura"><span class="text-info">*</span>Altura</label>
                         <input type="number" class="form-control" id="origenAltura" name="origenAltura">
                     </div>
                 </div>
-                <h5>*Destino</h5>
+                <h5><span class="text-info">*</span>Destino</h5>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="destinoProvincia">*Provincia</label>
+                        <label for="destinoProvincia"><span class="text-info">*</span>Provincia</label>
                         <select id="destinoProvincia" name="destinoProvincia" class="form-control">
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="destinoLocalidad">Localidad</label>
+                        <label for="destinoLocalidad"><span class="text-info">*</span>Localidad</label>
                         <select id="destinoLocalidad" name="destinoLocalidad" class="form-control">
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="destinoCalle">Calle</label>
+                        <label for="destinoCalle"><span class="text-info">*</span>Calle</label>
                         <input type="text" class="form-control" id="destinoCalle" name="destinoCalle">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="destinoAltura">Altura</label>
+                        <label for="destinoAltura"><span class="text-info">*</span>Altura</label>
                         <input type="number" class="form-control" id="destinoAltura" name="destinoAltura">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="fechaSalida" class="col-12 control-label">*Fecha de salida</label>
+                    <label for="fechaSalida" class="col-12 control-label"><span class="text-info">*</span>Fecha de salida</label>
                     <div class="col-12">
                         <input type="datetime-local" id="fechaSalida" name="fechaSalida" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="fechaLlegada" class="col-12 control-label">*Fecha de llegada</label>
+                    <label for="fechaLlegada" class="col-12 control-label"><span class="text-info">*</span>Fecha de llegada</label>
                     <div class="col-12">
                         <input type="datetime-local" id="fechaLlegada" name="fechaLlegada" class="form-control" required>
                     </div>
@@ -246,7 +257,7 @@
                     <h4>Equipo a asignar</h4>
                 </div>
                 <div>
-                    <h4 class="text-center">*Vehiculo</h4>
+                    <h4 class="text-center"><span class="text-info">*</span>Vehiculo</h4>
                     <div class="row">
                         {{#tablaVehiculos}}
                         <div class="col-12 col-md-6 col-lg-4 p-2">
@@ -274,7 +285,7 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-center">*Acoplado</h4>
+                    <h4 class="text-center"><span class="text-info">*</span>Acoplado</h4>
                     <div class="row">
                         {{#tablaAcoplados}}
                         <div class="col-12 col-md-6 col-lg-4 p-2">
@@ -297,7 +308,7 @@
                 </div>
                 <hr>
                 <div class="">
-                    <h4>*Chofer a asignar</h4>
+                    <h4><span class="text-info">*</span>Chofer a asignar</h4>
                 </div>
                 <div class="row">
                     {{#tablaChoferes}}
@@ -327,7 +338,7 @@
                 </div>
                 <div class="form-group p-3">
                     <div class="col-sm-9 col-sm-offset-3">
-                        <span class="help-block alert alert-info">*Campos requeridos</span>
+                        <span class="help-block alert alert-info"><span class="text-info">*</span>Campos requeridos</span>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Crear proforma</button>

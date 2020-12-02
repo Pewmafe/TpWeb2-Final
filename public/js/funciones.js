@@ -252,7 +252,8 @@ $(document).ready(function (){
             if(jsonErrorRegistro.clienteCuitExistente == true){
                 $("#clienteRegistroError").html("<span>El CUIT del cliente ya existe.</span>");
             }else if(jsonErrorRegistro.clienteDenominacion == false || jsonErrorRegistro.clienteNombre == false || jsonErrorRegistro.clienteApellido == false || jsonErrorRegistro.clienteCuit == false
-                || jsonErrorRegistro.clienteLocalidad == false || jsonErrorRegistro.clienteCalle == false || jsonErrorRegistro.clienteAltura == false || jsonErrorRegistro.clienteTelefono == false){
+                || jsonErrorRegistro.clienteLocalidad == false || jsonErrorRegistro.clienteCalle == false || jsonErrorRegistro.clienteAltura == false || jsonErrorRegistro.clienteTelefono == false
+                || jsonErrorRegistro.clienteEmail == false){
                 $("#clienteRegistroError").html("<span>Debe completar todos los campos.</span>");
             }else{
                 $("#clienteRegistroExitoso").html("<span>Se registro el cliente con exito</span>");
@@ -264,6 +265,9 @@ $(document).ready(function (){
                 $("#clienteCalle").val('');
                 $("#clienteAltura").val('');
                 $("#clienteTelefono").val('');
+                $("#clienteEmail").val('');
+                $("#clienteContacto1").val('');
+                $("#clienteContacto2").val('');
             }
         });
     });
