@@ -2,6 +2,7 @@
 include_once("helper/MysqlDataBase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
+include_once("helper/LoginSession.php");
 
 include_once("controller/HomeController.php");
 include_once("controller/LoginController.php");
@@ -12,6 +13,11 @@ include_once("controller/AdministrarEquiposController.php");
 include_once("controller/ModificarUsuarioController.php");
 include_once("controller/AgregarVehiculoController.php");
 include_once("controller/AgregarAcopladoController.php");
+include_once("controller/ChoferController.php");
+include_once("controller/CrearProformaController.php");
+include_once("controller/QrChoferController.php");
+include_once("controller/PdfProformaController.php");
+
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
@@ -20,6 +26,8 @@ include_once("model/ModificarUsuarioModel.php");
 include_once("model/AdministrarEquiposModel.php");
 include_once("model/AgregarVehiculoModel.php");
 include_once("model/AgregarAcopladoModel.php");
+include_once("model/ChoferModel.php");
+include_once("model/CrearProformaModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -47,6 +55,11 @@ class Configuracion
         return new Render('view/partial');
     }
 
+    public function getLoginSession()
+    {
+        return new LoginSession();
+    }
+
     public function getRouter()
     {
         return new Router($this);
@@ -59,7 +72,8 @@ class Configuracion
 
     public function getHomeController()
     {
-        return new HomeController($this->getRender());
+        $loginSession = $this->getLoginSession();
+        return new HomeController($this->getRender(), $loginSession);
     }
 
     public function getLoginController()
@@ -76,39 +90,68 @@ class Configuracion
 
     public function getRegistroEmpleadoController()
     {
+        $loginSession = $this->getLoginSession();
         $registroModel = $this->getRegistroModel();
-        return new RegistroEmpleadoController($this->getRender(), $registroModel);
+        return new RegistroEmpleadoController($this->getRender(), $loginSession, $registroModel);
     }
 
     public function getAdministrarUsuariosController()
     {
+        $loginSession = $this->getLoginSession();
         $administrarUsuarioModel = $this->getAdministrarUsuariosModel();
-        return new AdministrarUsuariosController($this->getRender(), $administrarUsuarioModel);
+        return new AdministrarUsuariosController($this->getRender(), $loginSession, $administrarUsuarioModel);
     }
-
 
     public function getModificarUsuarioController()
     {
+        $loginSession = $this->getLoginSession();
         $modificarUsuarioModel = $this->getModificarUsuarioModel();
-        return new ModificarUsuarioController($this->getRender(), $modificarUsuarioModel);
+        return new ModificarUsuarioController($this->getRender(), $loginSession, $modificarUsuarioModel);
     }
 
     public function getAdministrarEquiposController()
     {
+        $loginSession = $this->getLoginSession();
         $administrarEquiposModel = $this->getAdministrarEquiposModel();
-        return new AdministrarEquiposController($this->getRender(), $administrarEquiposModel);
+        return new AdministrarEquiposController($this->getRender(), $loginSession, $administrarEquiposModel);
     }
 
     public function getAgregarVehiculoController()
     {
+        $loginSession = $this->getLoginSession();
         $agregarVehiculoModel = $this->getAgregarVehiculoModel();
-        return new AgregarVehiculoController($this->getRender(), $agregarVehiculoModel);
+        return new AgregarVehiculoController($this->getRender(), $loginSession, $agregarVehiculoModel);
     }
 
     public function getAgregarAcopladoController()
     {
+        $loginSession = $this->getLoginSession();
         $agregarAcopladoModel = $this->getAgregarAcopladoModel();
-        return new AgregarAcopladoController($this->getRender(), $agregarAcopladoModel);
+        return new AgregarAcopladoController($this->getRender(), $loginSession, $agregarAcopladoModel);
+    }
+
+    public function getChoferController()
+    {
+        $choferModel = $this->getChoferModel();
+        $loginSession = $this->getLoginSession();
+        return new ChoferController($this->getRender(), $loginSession, $choferModel);
+    }
+
+    public function getCrearProformaController()
+    {
+        $proformaModel = $this->getCrearProformaModel();
+        $loginSession = $this->getLoginSession();
+        return new CrearProformaController($this->getRender(), $loginSession, $proformaModel);
+    }
+    public function getQrChoferController()
+    {
+        $loginSession = $this->getLoginSession();
+        return new QrChoferController($this->getRender(), $loginSession);
+    }
+
+    public function getPdfProformaController()
+    {
+        return new PdfProformaController($this->getRender());
     }
 
     public function getAgregarAcopladoModel()
@@ -153,4 +196,17 @@ class Configuracion
         $bd = $this->getDatabase();
         return new AdministrarEquiposModel($bd);
     }
+
+    private function getChoferModel()
+    {
+        $bd = $this->getDatabase();
+        return new ChoferModel($bd);
+    }
+
+    private function getCrearProformaModel()
+    {
+        $bd = $this->getDatabase();
+        return new CrearProformaModel($bd);
+    }
+
 }

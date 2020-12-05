@@ -43,20 +43,42 @@
     <section class="row justify-content-center m-3 ancho">
         <article class="col-12 col-md-6 justify-content-center  mt-2">
             <h3 class="text-dark text-center">Registrando a un nuevo Conductardo</h3>
-
             <div class="container">
-                <form class="form-horizontal" role="form" action="/registro/registroUsuario" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" id="registroFormulario" action="/registro/registroUsuario" method="post" enctype="multipart/form-data">
                     <div class="intDatos">
                         <h2>Introduzca sus datos.</h2>
                     </div>
-
                     <div class="form-group">
-                        {{#nombreUsuarioExistente}}
-                            <h5 class="text-danger">Nombre de usuario ya existente</h5>
-                        {{/nombreUsuarioExistente}}
+                        <h5 class="text-success" id="registroExitoso"></h5>
+                        <h5 class="text-danger" id="nombreUsuarioError"></h5>
+                        <h5 class="text-danger" id="dniUsuarioError"></h5>
                         <label for="NombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
                         <div class="col-12">
                             <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre" class="col-12 control-label">*Nombre</label>
+                        <div class="col-12">
+                            <input type="text" id="nombre" name="nombre" placeholder="Nombre/s" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido" class="col-12 control-label">*Apellido</label>
+                        <div class="col-12">
+                            <input type="text" id="apellido" name="apellido" placeholder="Apellido/s" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaNacimiento" class="col-12 control-label">*Fecha de Nacimiento</label>
+                        <div class="col-12">
+                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dni" class="col-12 control-label">*Dni</label>
+                        <div class="col-12">
+                            <input type="number" id="dni" name="dni" placeholder="DNI" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">

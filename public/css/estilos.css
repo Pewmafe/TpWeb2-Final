@@ -75,6 +75,34 @@ footer {
     box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46);
 }
 
+.c-pointer {
+    cursor: pointer;
+    text-decoration: none;
+    color: #999;
+}
+
+c-pointer:hover {
+    color: #000;
+}
+
+nav-item:hover c-pointer {
+    color: #000 !important;
+}
+
+.mt--6 {
+    margin-top: -6px;
+}
+
+.chofer-hidden {
+    display: none;
+    transition: 2s;
+}
+
+.img-qr {
+    width: 500px;
+    height: auto;
+}
+
 @media screen and (max-width: 768px) {
     .borde-login {
         border: 0 !important;

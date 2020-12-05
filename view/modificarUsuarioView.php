@@ -9,15 +9,27 @@
             {{#cambioNombre}}
                 <h6 class="text-success">Nombre de Usuario cambiado exitosamente</h6>
             {{/cambioNombre}}
-
             {{#cambioPassword}}
                 <h6 class="text-success">Contraseña de Usuario cambiado exitosamente</h6>
             {{/cambioPassword}}
-
             {{#nombreExistente}}
                 <h6 class="text-danger">Nombre de usuario Existente</h6>
             {{/nombreExistente}}
-
+            {{#dniExistente}}
+                <h6 class="text-danger">Dni de usuario Existente</h6>
+            {{/dniExistente}}
+            {{#cambioNombreDelUsuario}}
+                <h6 class="text-success">Nombre del Usuario Cambiado exitosamente</h6>
+            {{/cambioNombreDelUsuario}}
+            {{#cambioApellidoUsuario}}
+                <h6 class="text-success">Apellido de Usuario Cambiado exitosamente</h6>
+            {{/cambioApellidoUsuario}}
+            {{#cambioDniUsuario}}
+                <h6 class="text-success">Dni del Usuario Cambiado exitosamente</h6>
+            {{/cambioDniUsuario}}
+            {{#cambioNacimientoUsuario}}
+                <h6 class="text-success">Nacimiento del Usuario Cambiado exitosamente</h6>
+            {{/cambioNacimientoUsuario}}
         </article>
         <article class="col-12 col-md-9 pt-4">
 
@@ -101,6 +113,171 @@
                 </div>
             </div>
 
+            <div class="row mt-2 border-bottom">
+                <h5 class="col-4 font-weight-bold">Nombre del Usuario: </h5>
+                <h7 class="col-4">{{nombreDelUsuario}}</h7>
+                <h5 class="col-4 text-right">
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#cambiarNombreEmpleado" href="#">
+                        Editar
+                    </button>
+                </h5>
+                <div class="modal fade" id="cambiarNombreEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-dark text-white">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar Nombre de Empleado</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body bg-dark text-white">
+                                <form action="/ModificarUsuario/modificarNombreDelUsuario" class="form-horizontal" method="post">
+                                    <div class="form-group">
+                                        <label for="nombreDelUsuario" class="control-label">Nombre del usuario actual:
+                                            {{nombreDelUsuario}}</label>
+                                        <div class="col-12">
+                                            <input type="text" name="nombreDelUsuario" id="nombreDelUsuario" class="form-control bg-dark text-white" placeholder="Ingrese el nuevo nombre del usario">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                            Cerrar
+                                        </button>
+                                        <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 border-bottom">
+                <h5 class="col-4 font-weight-bold">Apellido del Usuario: </h5>
+                <h7 class="col-4">{{apellidoUsuario}}</h7>
+                <h5 class="col-4 text-right">
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#cambiarApellidoEmpleado" href="#">
+                        Editar
+                    </button>
+                </h5>
+                <div class="modal fade" id="cambiarApellidoEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-dark text-white">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar Apellido del Usuario</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body bg-dark text-white">
+                                <form action="/ModificarUsuario/modificarApellidoUsuario" class="form-horizontal" method="post">
+                                    <div class="form-group">
+                                        <label for="apellidoUsuario" class="control-label">Apellido de empleado actual:
+                                            {{apellidoUsuario}}</label>
+                                        <div class="col-12">
+                                            <input type="text" name="apellidoUsuario" id="apellidoUsuario" class="form-control bg-dark text-white" placeholder="Ingrese el nuevo apellido del Usuario">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                            Cerrar
+                                        </button>
+                                        <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 border-bottom">
+                <h5 class="col-4 font-weight-bold">Dni del Usuario: </h5>
+                <h7 class="col-4">{{dniUsuario}}</h7>
+                <h5 class="col-4 text-right">
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#cambiarDniEmpleado" href="#">
+                        Editar
+                    </button>
+                </h5>
+                <div class="modal fade" id="cambiarDniEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-dark text-white">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar Dni del Usuario</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body bg-dark text-white">
+                                <form action="/ModificarUsuario/modificarDniUsuario" class="form-horizontal" method="post">
+                                    <div class="form-group">
+                                        <label for="dniUsuario" class="control-label">Dni del usuario actual:
+                                            {{dniUsuario}}</label>
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <input type="number" name="dniUsuario" id="dniUsuario" class="form-control bg-dark text-white" placeholder="Ingrese el nuevo dni del Usuario">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                            Cerrar
+                                        </button>
+                                        <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 border-bottom">
+                <h5 class="col-4 font-weight-bold">Fecha de nacimiento del Usuario: </h5>
+                <h7 class="col-4">{{nacimientoUsuario}}</h7>
+                <h5 class="col-4 text-right">
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#cambiarNacimientoEmpleado" href="#">
+                        Editar
+                    </button>
+                </h5>
+                <div class="modal fade" id="cambiarNacimientoEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-dark text-white">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar Fecha de nacimiento del Usuario
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body bg-dark text-white">
+                                <form action="/ModificarUsuario/modificarNacimientoUsuario" class="form-horizontal" method="post">
+                                    <div class="form-group">
+                                        <label for="nacimientoUsuario" class="control-label">Fecha de nacimiento del
+                                            usuario actual:
+                                            {{nacimientoUsuario}}</label>
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <input type="date" id="nacimientoUsuario" name="nacimientoUsuario" class="form-control bg-dark text-white">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                                            Cerrar
+                                        </button>
+                                        <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </article>
     </section>
 
@@ -110,106 +287,15 @@
         {{#usuarioEsEmpleado}}
             <article class="col-12 col-md-3">
                 <h4><i class="fas fa-caret-right"></i> Configuracion de Empleado</h4>
-                {{#cambioNombreEmpleado}}
-                    <h6 class="text-success">Nombre de Empleado Cambiado exitosamente</h6>
-                {{/cambioNombreEmpleado}}
-                {{#cambioApellidoEmpleado}}
-                    <h6 class="text-success">Apellido de Empleaaasdasdo Cambiado exitosamente</h6>
-                {{/cambioApellidoEmpleado}}
                 {{#licenciaEmpleadoModificado}}
-                    <h6 class="text-success">Licencia de Empleaaasdasdo Cambiado exitosamente</h6>
+                    <h6 class="text-success">Licencia de Empleado Cambiado exitosamente</h6>
                 {{/licenciaEmpleadoModificado}}
-                {{#dniEmpleadoModificado}}
-                    <h6 class="text-success">Dni de Empleaaasdasdo Cambiado exitosamente</h6>
-                {{/dniEmpleadoModificado}}
-                {{#nacimientoEmpleadoModificado}}
-                    <h6 class="text-success">Nacimiento de Empleaaasdasdo Cambiado exitosamente</h6>
-                {{/nacimientoEmpleadoModificado}}
+
             </article>
 
             <article class="col-12 col-md-9 pt-4">
 
                 <div class="row border-bottom">
-                    <h5 class="col-4 font-weight-bold">Nombre de Empleado: </h5>
-                    <h7 class="col-4">{{nombreEmpleado}}</h7>
-                    <h5 class="col-4 text-right">
-                        <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#cambiarNombreEmpleado" href="#">
-                            Editar
-                        </button>
-                    </h5>
-                    <div class="modal fade" id="cambiarNombreEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header bg-dark text-white">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Nombre de Empleado</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body bg-dark text-white">
-                                    <form action="/ModificarUsuario/modificarNombreEmpleado" class="form-horizontal" method="post">
-                                        <div class="form-group">
-                                            <label for="nombreEmpleado" class="control-label">Nombre de empleado actual:
-                                                {{nombreEmpleado}}</label>
-                                            <div class="col-12">
-                                                <input type="text" name="nombreEmpleado" id="nombreEmpleado" class="form-control bg-dark text-white" placeholder="Ingrese el nuevo nombre de empleado">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
-                                                Cerrar
-                                            </button>
-                                            <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-2 border-bottom">
-                    <h5 class="col-4 font-weight-bold">Apellido de Empleado: </h5>
-                    <h7 class="col-4">{{apellidoEmpleado}}</h7>
-                    <h5 class="col-4 text-right">
-                        <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#cambiarApellidoEmpleado" href="#">
-                            Editar
-                        </button>
-                    </h5>
-                    <div class="modal fade" id="cambiarApellidoEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header bg-dark text-white">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Apellido de Empleado</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body bg-dark text-white">
-                                    <form action="/ModificarUsuario/modificarApellidoEmpleado" class="form-horizontal" method="post">
-                                        <div class="form-group">
-                                            <label for="apellidoEmpleado" class="control-label">Apellido de empleado actual:
-                                                {{apellidoEmpleado}}</label>
-                                            <div class="col-12">
-                                                <input type="text" name="apellidoEmpleado" id="apellidoEmpleado" class="form-control bg-dark text-white" placeholder="Ingrese el nuevo apellido de empleado">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
-                                                Cerrar
-                                            </button>
-                                            <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-2 border-bottom">
                     <h5 class="col-4 font-weight-bold">Tipo de licencia del Empleado: </h5>
                     <h7 class="col-4">{{licenciaEmpleado}}</h7>
                     <h5 class="col-4 text-right">
@@ -241,93 +327,6 @@
                                                         <option value="camion">Camion</option>
                                                         <option value="tractor">Tractor</option>
                                                     </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
-                                                Cerrar
-                                            </button>
-                                            <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-2 border-bottom">
-                    <h5 class="col-4 font-weight-bold">Dni del Empleado: </h5>
-                    <h7 class="col-4">{{dniEmpleado}}</h7>
-                    <h5 class="col-4 text-right">
-                        <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#cambiarDniEmpleado" href="#">
-                            Editar
-                        </button>
-                    </h5>
-                    <div class="modal fade" id="cambiarDniEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header bg-dark text-white">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Dni de Empleado</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body bg-dark text-white">
-                                    <form action="/ModificarUsuario/modificarDniEmpleado" class="form-horizontal" method="post">
-                                        <div class="form-group">
-                                            <label for="dniEmpleado" class="control-label">Dni de empleado actual:
-                                                {{dniEmpleado}}</label>
-                                            <div class="form-group">
-                                                <div class="col-12">
-                                                    <input type="number" name="dniEmpleado" id="dniEmpleado" class="form-control bg-dark text-white" placeholder="Ingrese el nuevo dni de empleado">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
-                                                Cerrar
-                                            </button>
-                                            <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-2 border-bottom">
-                    <h5 class="col-4 font-weight-bold">Fecha de nacimiento del Empleado: </h5>
-                    <h7 class="col-4">{{nacimientoEmpleado}}</h7>
-                    <h5 class="col-4 text-right">
-                        <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#cambiarNacimientoEmpleado" href="#">
-                            Editar
-                        </button>
-                    </h5>
-                    <div class="modal fade" id="cambiarNacimientoEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header bg-dark text-white">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Fecha de nacimiento de
-                                        Empleado</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body bg-dark text-white">
-                                    <form action="/ModificarUsuario/modificarNacimientoEmpleado" class="form-horizontal" method="post">
-                                        <div class="form-group">
-                                            <label for="nacimientoEmpleado" class="control-label">Fecha de nacimiento de
-                                                empleado actual:
-                                                {{nacimientoEmpleado}}</label>
-                                            <div class="form-group">
-                                                <div class="col-12">
-                                                    <input type="date" id="nacimientoEmpleado" name="nacimientoEmpleado" class="form-control bg-dark text-white">
-
                                                 </div>
                                             </div>
                                         </div>

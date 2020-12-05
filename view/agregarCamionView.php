@@ -10,10 +10,10 @@
                     </div>
                     <div class="form-group">
                         {{#patenteVehiculoError}}
-                        <h5 class="text-danger">La patente ya está registrada.</h5>
+                            <h5 class="text-danger">La patente ya está registrada.</h5>
                         {{/patenteVehiculoError}}
                         {{#agregoVehExitosamente}}
-                        <h5 class="text-success">Se agregó el vehículo correctamente.</h5>
+                            <h5 class="text-success">Se agregó el vehículo correctamente.</h5>
                         {{/agregoVehExitosamente}}
                         <label for="patente" class="col-12 control-label">*Patente</label>
                         <div class="col-12">

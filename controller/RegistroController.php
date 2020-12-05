@@ -14,25 +14,27 @@ class RegistroController
 
     public function ejecutar()
     {
-        $data["nombreUsuarioExistente"]= isset($_GET["nombreUsuarioExistente"]) ? $_GET["nombreUsuarioExistente"] : false;
-
-        echo $this->render->render("view/registroView.php", $data);
+        echo $this->render->render("view/registroView.php");
     }
 
     public function registroUsuario()
     {
-        $contrasenia = $_POST["contrasenia"];
         $nombreUsuario = $_POST["NombreUsuario"];
+        $dni = $_POST["dni"];
+        $nombre = $_POST["nombre"];
+        $apellido = $_POST["apellido"];
+        $fechaNacimiento = $_POST["fechaNacimiento"];
+        $contrasenia = $_POST["contrasenia"];
 
         $nombreUsuarioExistente = $this->registroModel->verificarNombreUsuarioExistente($nombreUsuario);
-        if($nombreUsuarioExistente){
-            header("Location: /registro?nombreUsuarioExistente=true");
-            exit();
+        $dniExistente = $this->registroModel->verificarDNIUsuarioExistente($dni);
+
+        if (!($dniExistente) || !($nombreUsuarioExistente)) {
+            $this->registroModel->registrarUsuario($nombreUsuario, $contrasenia, $dni, $nombre, $apellido, $fechaNacimiento);
         }
 
-        $this->registroModel->registrarUsuario($nombreUsuario, $contrasenia);
+        $datos = array('nombreUsuarioError' => $nombreUsuarioExistente, 'dniError' => $dniExistente);
+        echo json_encode($datos);
 
-        header("Location: /home?registroExitoso=true");
-        exit();
     }
 }
