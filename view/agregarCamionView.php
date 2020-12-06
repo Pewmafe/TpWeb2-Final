@@ -21,50 +21,50 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="nroChasis" class="col-12 control-label">*Número de Chasis</label>
+                        <label for="nroChasis" class="col-12 control-label"><span class="text-info">*</span>Número de Chasis</label>
                         <div class="col-12">
                             <input type="number" id="nroChasis" name="nroChasis" placeholder="Número de Chasis" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="nroMotor" class="col-12 control-label">*Número de motor</label>
+                        <label for="nroMotor" class="col-12 control-label"><span class="text-info">*</span>Número de motor</label>
                         <div class="col-12">
                             <input type="number" id="nroMotor" name="nroMotor" placeholder="Número de motor" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="kilometraje" class="col-12 control-label">*Kilometraje</label>
+                        <label for="kilometraje" class="col-12 control-label"><span class="text-info">*</span>Kilometraje</label>
                         <div class="col-12">
                             <input type="number" id="kilometraje" name="kilometraje" placeholder="Kilometraje" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="fabricacion" class="col-12 control-label">*Fecha de Fabricación</label>
+                        <label for="fabricacion" class="col-12 control-label"><span class="text-info">*</span>Fecha de Fabricación</label>
                         <div class="col-12">
                             <input type="date" id="fabricacion" name="fabricacion" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="marca" class="col-12 control-label">*Marca</label>
+                        <label for="marca" class="col-12 control-label"><span class="text-info">*</span>Marca</label>
                         <div class="col-12">
                             <input type="text" id="marca" name="marca" placeholder="Marca" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="modelo" class="col-12 control-label">*Modelo</label>
+                        <label for="modelo" class="col-12 control-label"><span class="text-info">*</span>Modelo</label>
                         <div class="col-12">
                             <input type="text" id="modelo" name="modelo" placeholder="Modelo" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="calendarioService" class="col-12 control-label">*Calendario de Service</label>
+                        <label for="calendarioService" class="col-12 control-label"><span class="text-info">*</span>Calendario de Service</label>
                         <div class="col-12">
                             <input type="date" id="calendarioService" name="calendarioService" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
-                            <span class="help-block alert alert-info">*Campos requeridos</span>
+                            <span class="help-block alert alert-info"><span class="text-info">*</span>Campos requeridos</span>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Agregar Vehículo</button>

@@ -15,19 +15,19 @@
                         {{#agregoAcopladoExitosamente}}
                             <h5 class="text-success">Se agregó el acoplado correctamente.</h5>
                         {{/agregoAcopladoExitosamente}}
-                        <label for="patente" class="col-12 control-label">*Patente</label>
+                        <label for="patente" class="col-12 control-label"><span class="text-info">*</span>Patente</label>
                         <div class="col-12">
                             <input type="text" id="patente" name="patente" placeholder="Patente" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="chasis" class="col-12 control-label">*Número de Chasis</label>
+                        <label for="chasis" class="col-12 control-label"><span class="text-info">*</span>Número de Chasis</label>
                         <div class="col-12">
                             <input type="number" id="chasis" name="chasis" placeholder="Número de Chasis" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="tipoAcoplado" class="col-12 control-label">*Tipo de acoplado</label>
+                        <label for="tipoAcoplado" class="col-12 control-label"><span class="text-info">*</span>Tipo de acoplado</label>
                         <div class="col-12">
                             <select name="tipoAcoplado" id="tipoAcoplado" class="custom-select form-control">
                                 <option selected disabled>-</option>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
-                            <span class="help-block alert alert-info">*Campos requeridos</span>
+                            <span class="help-block alert alert-info"><span class="text-info">*</span>Campos requeridos</span>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Agregar Acoplado</button>
