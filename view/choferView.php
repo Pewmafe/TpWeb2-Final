@@ -40,7 +40,7 @@
                                     <td class="p-auto">{{partida}}</td>
                                     <td>{{destino}}</td>
                                     <td>{{tiempo_estimado}}</td>
-                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma">Ver mas</a></td>
+                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver mas</a></td>
 
                                 </tr>
 
@@ -50,7 +50,7 @@
                 {{/tablaDeViajesActivo}}
             </article>
             <article class="chofer-hidden popup2">
-                {{#tablaDeViajesPendientes}}
+
                     <div class="table-responsive">
                         <table class="table table-hover table-dark">
                             <thead>
@@ -64,22 +64,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            {{#tablaDeViajesPendientes}}
                                 <tr>
                                     <th scope="row" class="text-secondary">{{estado}}</th>
                                     <td class="p-auto">{{partida}}</td>
                                     <td>{{destino}}</td>
                                     <td>{{tiempo_estimado}}</td>
-                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma">Ver mas</a></td>
+                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver mas</a></td>
 
                                 </tr>
-
+                            {{/tablaDeViajesPendientes}}
                             </tbody>
                         </table>
                     </div>
-                {{/tablaDeViajesPendientes}}
+
             </article>
             <article class="chofer-hidden popup3">
-                {{#tablaDeViajesFinalizados}}
+
                     <div class="table-responsive">
                         <table class="table table-hover table-dark">
                             <thead>
@@ -93,19 +94,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            {{#tablaDeViajesFinalizados}}
                                 <tr>
                                     <th scope="row" class="text-danger">{{estado}}</th>
                                     <td class="p-auto">{{partida}}</td>
                                     <td>{{destino}}</td>
                                     <td>{{tiempo_estimado}}</td>
-                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma">Ver mas</a></td>
+                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver mas</a></td>
 
                                 </tr>
-
+                                {{/tablaDeViajesFinalizados}}
                             </tbody>
                         </table>
                     </div>
-                {{/tablaDeViajesFinalizados}}
+
             </article>
             <article class="">
                 <div>

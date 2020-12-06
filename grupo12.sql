@@ -415,11 +415,12 @@ select p.fechaCreacion as 'fecha_proforma',p.estado as 'estado_proforma', ep.des
                 UCh.dni as 'dni_chofer', UCh.fecha_nacimiento as 'nacimiento_chofer', v.eta ,v.etd , dp.altura as 'partida_altura',
                 dp.calle as 'partida_calle', lp.descripcion as 'partida_localidad', pp.descripcion as 'partida_provincia', dd.altura as 'destino_altura', 
                 dd.calle as 'destino_calle', ld.descripcion as 'destino_localidad',  pd.descripcion 'destino_provincia',
-				v.id as 'viaje_id', a.chasis as 'acoplado_chasis',a.patente as 'acoplado_patente',
-                ta.descripcion as 'tipo_acoplado_desc', ca.hazard_id as 'hazard_carga', ca.peso_neto as 'peso_neto_carga', ca.reefer_id as 'reefeer_id_carga',
-                ve.estado as 'vehiculo_estado', ve.fabricacion as 'vehiculo_fabricacion', 
-                ve.kilometraje as 'vehiculo_kilometraje', ve.marca as 'vehiculo_marca', ve.modelo as 'vehiculo_modelo', ve.patente as 'vehiculo_patente',
-                ve.nro_chasis as 'vehiculo_nro_chasis', ve.nro_motor as 'vehiculo_nro_motor', tc.descripcion as 'tipo_carga_desc'
+				ve.patente as 'vehiculo_patente', ve.nro_chasis as 'vehiculo_nro_chasis', ve.nro_motor as 'vehiculo_nro_motor',
+				ve.kilometraje as 'vehiculo_kilometraje', ve.fabricacion as 'vehiculo_fabricacion', ve.marca as 'vehiculo_marca', 
+                ve.modelo as 'vehiculo_modelo', ve.calendario_service as 'vehiculo_service', a.patente as 'acoplado_patente',
+                a.chasis as 'acoplado_chasis', ta.descripcion as 'acoplado_tipo_desc',ca.peso_neto as 'peso_neto_carga',
+                tc.descripcion as 'tipo_carga_desc', IC.descripcion as 'imo_class', ISC.descripcion as 'imo_sub_class',
+				rf.temperatura as 'reefer_temperatura'
                     from proforma p 
                     join cliente c on p.cliente_cuit = c.cuit 
                     join viaje v on v.id = p.viaje_id 
@@ -440,8 +441,12 @@ select p.fechaCreacion as 'fecha_proforma',p.estado as 'estado_proforma', ep.des
                     join provincia pc on pc.id = lc.provincia_id
                     join empleado ECh on ECh.id = v.chofer_id
                     join usuario UCh on Uch.dni = ECh.dni_usuario
+                    join hazard hz on hz.id = ca.hazard_id
+                    join imo_sub_class ISC on ISC.id = hz.imo_sub_class_id
+                    join imo_class IC on IC.id = ISC.imo_class_id
+                    join reefer rf on rf.id_reefer = ca.reefer_id
+#tv.descripcion as 'tipo_vehiculo_desc',
 #join tipo_vehiculo tv on tv.id = ve.tipo 
 where v.chofer_id = 4 
 and p.id = 1;
-
 

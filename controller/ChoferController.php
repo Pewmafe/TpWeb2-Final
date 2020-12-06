@@ -31,8 +31,8 @@ class ChoferController
             $tablaProforma = $this->ChoferModel->obtenerProformas();
             $data["tablaProforma"] = $tablaProforma;
             $data["dirQR"] = $this->generarQR();
-
-            if(isset($_SESSION["idEmpleado"])){
+            $data["idChofer"] = $_SESSION["idEmpleado"];
+            if (isset($_SESSION["idEmpleado"])) {
                 $tablaDeViajesActivo = $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]);
                 $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
 

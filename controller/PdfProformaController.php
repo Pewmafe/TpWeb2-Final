@@ -33,6 +33,10 @@ class PdfProformaController
         } else {
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             if (isset($data2["usuarioChofer"]) and $data2["usuarioChofer"]) {
+                $IdChofer = $_GET["idChofer"];
+                $idProforma = $_GET["proformaID"];
+                $tablaDatosProforma = $this->choferModel->obtenerTodosLosDatosDeLaProformaSegunIDChofer($IdChofer, $idProforma);
+
 
                 $pdf = new FPDF('P', 'mm', 'A4');
                 $pdf->AddPage();
@@ -53,22 +57,22 @@ class PdfProformaController
                 $pdf->Cell(130, 5, ' Florencio Varela 1903', 0, 0);
                 $pdf->Cell(25, 5, 'Estado', 0, 0);
 
-                $estado = "FINALIZADO";
+                $estado = $tablaDatosProforma[0]["estado_proforma"];
                 $pdf->SetTextColor($this->devolverValorUnoSegunEstado($estado), $this->devolverValorDosSegunEstado($estado), $this->devolverValorTresSegunEstado($estado));
-                $pdf->Cell(34, 5, 'Activo', 0, 1);//end of line
+                $pdf->Cell(34, 5, $tablaDatosProforma[0]["estado_descripcion_Proforma"], 0, 1);//end of line
                 $pdf->SetTextColor(0, 0, 0);
 
                 $pdf->Cell(130, 5, ' San Justo, Provincia de Buenos Aires', 0, 0);
                 $pdf->Cell(25, 5, 'Fecha', 0, 0);
-                $pdf->Cell(34, 5, 'dd/mm/yyyy', 0, 1);//end of line
+                $pdf->Cell(34, 5, $tablaDatosProforma[0]["fecha_proforma"], 0, 1);//end of line
 
                 $pdf->Cell(130, 5, ' Telefono: +44808900', 0, 0);
                 $pdf->Cell(25, 5, 'Proforma ID', 0, 0);
-                $pdf->Cell(34, 5, '[1]', 0, 1);//end of line
+                $pdf->Cell(34, 5, $tablaDatosProforma[0]["proforma_id"], 0, 1);//end of line
 
                 $pdf->Cell(130, 5, ' CUIL: 12-34567890-1', 0, 0);
-                $pdf->Cell(25, 5, 'Cliente ID', 0, 0);
-                $pdf->Cell(34, 5, '[1234567]', 0, 1);//end of line
+                $pdf->Cell(25, 5, 'Cuit Cliente:', 0, 0);
+                $pdf->Cell(34, 5, $tablaDatosProforma[0]["cuit_cliente"], 0, 1);//end of line
 
                 $pdf->Cell(189, 10, '', 0, 1);//end of line
 
@@ -78,19 +82,19 @@ class PdfProformaController
 
 
                 $pdf->Cell(10, 5, '', 0, 0);
-                $pdf->Cell(90, 5, '[Nombre][Apellido]', 0, 1);
+                $pdf->Cell(90, 5, $tablaDatosProforma[0]["nombre_cliente"]." ".$tablaDatosProforma[0]["apellido_cliente"], 0, 1);
 
                 $pdf->Cell(10, 5, '', 0, 0);
-                $pdf->Cell(90, 5, '[Cuit]', 0, 1);
+                $pdf->Cell(90, 5, "Email: ".$tablaDatosProforma[0]["email_cliente"], 0, 1);
 
                 $pdf->Cell(10, 5, '', 0, 0);
-                $pdf->Cell(90, 5, '[Telefono]', 0, 1);
+                $pdf->Cell(90, 5, "Tel: ".$tablaDatosProforma[0]["tel_cliente"], 0, 1);
 
                 $pdf->Cell(10, 5, '', 0, 0);
-                $pdf->Cell(90, 5, '[Direccion]', 0, 1);
+                $pdf->Cell(90, 5, utf8_decode($tablaDatosProforma[0]["calle_cliente"])." ".$tablaDatosProforma[0]["altura_cliente"].", ".utf8_decode($tablaDatosProforma[0]["localidad_cliente"]).", ".utf8_decode($tablaDatosProforma[0]["provincia_cliente"]), 0, 1);
 
                 $pdf->Cell(10, 5, '', 0, 0);
-                $pdf->Cell(90, 5, '[Denomacion]', 0, 1);
+                $pdf->Cell(90, 5, "Denominacion: '".utf8_decode($tablaDatosProforma[0]["denominacion_cliente"])."'", 0, 1);
 
                 $pdf->Image('public/qr/temp/test.png', 140, 50, -220);
                 $pdf->Cell(189, 10, '', 0, 1);//end of line
@@ -106,10 +110,10 @@ class PdfProformaController
                 $pdf->Cell(189, 6, "Datos del Chofer", 1, 1,);
                 $pdf->SetFont('Arial', '', 12);
 
-                $pdf->Cell(94, 6, 'Nombre:', 1, 0);
-                $pdf->Cell(95, 6, 'Apellido:', 1, 1);
-                $pdf->Cell(94, 6, 'Dni:', 1, 0);
-                $pdf->Cell(95, 6, 'Fecha de Nacimiento:', 1, 1);
+                $pdf->Cell(94, 6, 'Nombre: '.utf8_decode($tablaDatosProforma[0]["nombre_chofer"]), 1, 0);
+                $pdf->Cell(95, 6, 'Apellido:'.utf8_decode($tablaDatosProforma[0]["apellido_chofer"]), 1, 1);
+                $pdf->Cell(94, 6, 'Dni:'.utf8_decode($tablaDatosProforma[0]["dni_chofer"]), 1, 0);
+                $pdf->Cell(95, 6, 'Fecha de Nacimiento:'.utf8_decode($tablaDatosProforma[0]["nacimiento_chofer"]), 1, 1);
 
                 $pdf->Cell(189, 2, '', 0, 1);//end of line
 
@@ -123,17 +127,17 @@ class PdfProformaController
 
                 $pdf->SetFont('Arial', '', 12);
 
-                $pdf->Cell(93, 6, "Direccion:", 1, 0);
+                $pdf->Cell(93, 6, "Direccion: ".utf8_decode($tablaDatosProforma[0]["partida_calle"])." ".utf8_decode($tablaDatosProforma[0]["partida_altura"]), 1, 0);
                 $pdf->Cell(2, 6, "", 0, 0);
-                $pdf->Cell(94, 6, "Direccion:", 1, 1);
-                $pdf->Cell(46, 6, "Localidad:", 1, 0);
-                $pdf->Cell(47, 6, "Provincia:", 1, 0);
+                $pdf->Cell(94, 6, "Direccion: ".utf8_decode($tablaDatosProforma[0]["destino_calle"])." ".utf8_decode($tablaDatosProforma[0]["destino_altura"]), 1, 1);
+                $pdf->Cell(46, 6, "Lugar: ".utf8_decode($tablaDatosProforma[0]["partida_localidad"]), 1, 0);
+                $pdf->Cell(47, 6, "Provincia:".utf8_decode($tablaDatosProforma[0]["partida_provincia"]), 1, 0);
                 $pdf->Cell(2, 6, "", 0, 0);
-                $pdf->Cell(47, 6, "Localidad:", 1, 0);
-                $pdf->Cell(47, 6, "Provincia:", 1, 1);
-                $pdf->Cell(93, 6, "ETD:", 1, 0);
+                $pdf->Cell(47, 6, "Lugar: ".utf8_decode($tablaDatosProforma[0]["destino_localidad"]), 1, 0);
+                $pdf->Cell(47, 6, "Provincia: ".utf8_decode($tablaDatosProforma[0]["destino_provincia"]), 1, 1);
+                $pdf->Cell(93, 6, "ETD: ".utf8_decode($tablaDatosProforma[0]["etd"]), 1, 0);
                 $pdf->Cell(2, 6, "", 0, 0);
-                $pdf->Cell(94, 6, "ETA:", 1, 1);
+                $pdf->Cell(94, 6, "ETA: ".utf8_decode($tablaDatosProforma[0]["eta"]), 1, 1);
                 $pdf->Cell(189, 2, '', 0, 1);//end of line
 
 
@@ -142,14 +146,14 @@ class PdfProformaController
                 $pdf->Cell(189, 6, "Datos del Vehiculo que realiza el viaje", 1, 1);
                 $pdf->SetFont('Arial', '', 12);
 
-                $pdf->Cell(94, 6, 'Patente:', 1, 0);
-                $pdf->Cell(95, 6, 'Nro Chasis:', 1, 1);
-                $pdf->Cell(94, 6, 'Nro Motor:', 1, 0);
-                $pdf->Cell(95, 6, 'Kilometraje:', 1, 1);
-                $pdf->Cell(94, 6, 'Fabricacion:', 1, 0);
-                $pdf->Cell(95, 6, 'Marca:', 1, 1);
-                $pdf->Cell(94, 6, 'Modelo:', 1, 0);
-                $pdf->Cell(95, 6, 'Service:', 1, 1);
+                $pdf->Cell(94, 6, 'Patente: '.utf8_decode($tablaDatosProforma[0]["vehiculo_patente"]), 1, 0);
+                $pdf->Cell(95, 6, 'Nro Chasis: '.utf8_decode($tablaDatosProforma[0]["vehiculo_nro_chasis"]), 1, 1);
+                $pdf->Cell(94, 6, 'Nro Motor: '.utf8_decode($tablaDatosProforma[0]["vehiculo_nro_motor"]), 1, 0);
+                $pdf->Cell(95, 6, 'Kilometraje: '.utf8_decode($tablaDatosProforma[0]["vehiculo_kilometraje"]), 1, 1);
+                $pdf->Cell(94, 6, 'Fabricacion: '.utf8_decode($tablaDatosProforma[0]["vehiculo_fabricacion"]), 1, 0);
+                $pdf->Cell(95, 6, 'Marca: '.utf8_decode($tablaDatosProforma[0]["vehiculo_marca"]), 1, 1);
+                $pdf->Cell(94, 6, 'Modelo: '.utf8_decode($tablaDatosProforma[0]["vehiculo_modelo"]), 1, 0);
+                $pdf->Cell(95, 6, 'Ultimo Service: '.utf8_decode($tablaDatosProforma[0]["vehiculo_service"]), 1, 1);
                 $pdf->Cell(189, 2, '', 0, 1);//end of line
 
 
@@ -158,9 +162,9 @@ class PdfProformaController
                 $pdf->Cell(189, 6, "Datos del Acoplado", 1, 1);
                 $pdf->SetFont('Arial', '', 12);
 
-                $pdf->Cell(94, 6, 'Patente', 1, 0);
-                $pdf->Cell(95, 6, 'Nro Chasis:', 1, 1);
-                $pdf->Cell(189, 6, "Tipo de Acoplado:", 1, 1);
+                $pdf->Cell(94, 6, 'Patente: '.utf8_decode($tablaDatosProforma[0]["acoplado_patente"]), 1, 0);
+                $pdf->Cell(95, 6, 'Nro Chasis: '.utf8_decode($tablaDatosProforma[0]["acoplado_chasis"]), 1, 1);
+                $pdf->Cell(189, 6, "Tipo de Acoplado: ".utf8_decode($tablaDatosProforma[0]["acoplado_tipo_desc"]), 1, 1);
                 $pdf->Cell(189, 2, '', 0, 1);//end of line
 
                 //Carga
@@ -168,8 +172,8 @@ class PdfProformaController
                 $pdf->Cell(189, 6, "Datos de la Carga", 1, 1);
                 $pdf->SetFont('Arial', '', 12);
 
-                $pdf->Cell(94, 6, 'Peso Neto:', 1, 0);
-                $pdf->Cell(95, 6, 'Tipo de Carga:', 1, 1);
+                $pdf->Cell(94, 6, 'Peso Neto: '.utf8_decode($tablaDatosProforma[0]["peso_neto_carga"]), 1, 0);
+                $pdf->Cell(95, 6, 'Tipo de Carga: '.utf8_decode($tablaDatosProforma[0]["tipo_carga_desc"]), 1, 1);
 
                 $pdf->SetFont('Times', 'B', 12);
 
@@ -180,18 +184,17 @@ class PdfProformaController
 
                 $pdf->SetFont('Arial', '', 12);
                 $pdf->Cell(1, 6, "", 0, 0);
-                $pdf->Cell(92, 6, 'Imo Class ', 1, 0);
+                $pdf->Cell(92, 6, 'Imo Class: '.utf8_decode($tablaDatosProforma[0]["imo_class"]), 1, 0);
                 $pdf->Cell(2, 6, "", 0, 0);
-                $pdf->Cell(93, 6, 'Temperatura', 1, 1);
+                $pdf->Cell(93, 6, 'Temperatura: '.utf8_decode($tablaDatosProforma[0]["reefer_temperatura"]), 1, 1);
                 $pdf->Cell(1, 6, "", 0, 0);
-                $pdf->Cell(92, 6, 'Imo Sub Class ', 1, 0);
+                $pdf->Cell(92, 6, 'Imo Sub Class: '.utf8_decode($tablaDatosProforma[0]["imo_sub_class"]), 1, 0);
                 $pdf->Cell(2, 6, "", 0, 0);
                 $pdf->Cell(93, 6, ' - ', 1, 1, "C");
                 $pdf->Cell(1, 6, "", 0, 0);
-                $pdf->MultiCell(92, 6, 'Descripcion:  ', 1, "L");
+
                 $pdf->Cell(2, 6, "", 0, 0);
-                $pdf->SetXY(105, 233);
-                $pdf->MultiCell(93, 6, ' - ', "LRB", "C");
+
 
                 $pdf->SetXY(10, 266);
                 $pdf->SetFillColor(52, 58, 64);
@@ -209,15 +212,15 @@ class PdfProformaController
     public function devolverValorUnoSegunEstado($estado)
     {
         switch ($estado) {
-            case "ACTIVO":
+            case 1:
                 $valor = 0;
                 break;
 
-            case "PENDIENTE":
+            case 2:
                 $valor = 155;
                 break;
 
-            case "FINALIZADO":
+            case 3:
                 $valor = 255;
                 break;
 
@@ -231,15 +234,15 @@ class PdfProformaController
     public function devolverValorDosSegunEstado($estado)
     {
         switch ($estado) {
-            case "ACTIVO":
+            case 1:
                 $valor = 142;
                 break;
 
-            case "PENDIENTE":
+            case 2:
                 $valor = 155;
                 break;
 
-            case "FINALIZADO":
+            case 3:
                 $valor = 0;
                 break;
 
@@ -253,15 +256,15 @@ class PdfProformaController
     public function devolverValorTresSegunEstado($estado)
     {
         switch ($estado) {
-            case "ACTIVO":
+            case 1:
                 $valor = 57;
                 break;
 
-            case "PENDIENTE":
+            case 2:
                 $valor = 155;
                 break;
 
-            case "FINALIZADO":
+            case 3:
                 $valor = 0;
                 break;
 
