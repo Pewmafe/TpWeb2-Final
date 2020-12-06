@@ -1,6 +1,6 @@
 {{>header}}
+{{#usuarioChofer}}
 <main>
-    {{#usuarioChofer}}
         <section>
             <h1 class="text-center p-2">Bienvenido Chofer</h1>
             <h2 class="text-center ">{{nombreUsuario}}</h2>
@@ -140,13 +140,9 @@
                 </div>
             </article>
         </section>
-    {{/usuarioChofer}}
-    {{^usuarioChofer}}
-        <div class="text-center">
-            <h1>ERROR 404 PAGINA NO ENCONTRADA</h1>
-            <a class="btn btn-outline-danger" href="/home">Volver al Inicio</a>
-        </div>
-    {{/usuarioChofer}}
-
 </main>
+{{/usuarioChofer}}
+{{^usuarioChofer}}
+    {{> error404}}
+{{/usuarioChofer}}
 {{>footer}}

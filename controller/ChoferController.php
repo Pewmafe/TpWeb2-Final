@@ -32,15 +32,16 @@ class ChoferController
             $data["tablaProforma"] = $tablaProforma;
             $data["dirQR"] = $this->generarQR();
 
-            $tablaDeViajesActivo = $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]);
-            $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
+            if(isset($_SESSION["idEmpleado"])){
+                $tablaDeViajesActivo = $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]);
+                $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
 
-            $tablaDeViajesPendientes = $this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"]);
-            $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
+                $tablaDeViajesPendientes = $this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"]);
+                $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
 
-            $tablaDeViajesFinalizados = $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]);
-            $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
-
+                $tablaDeViajesFinalizados = $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]);
+                $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
+            }
 
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);

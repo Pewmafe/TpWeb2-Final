@@ -1,4 +1,5 @@
 {{> header}}
+{{^login}}
 <main>
     <section>
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -102,4 +103,8 @@
 
     </section>
 </main>
+{{/login}}
+{{#login}}
+    {{> error404}}
+{{/login}}
 {{> footer}}

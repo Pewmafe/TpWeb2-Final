@@ -78,14 +78,16 @@ class Configuracion
 
     public function getLoginController()
     {
+        $loginSession = $this->getLoginSession();
         $loginModel = $this->getLoginModel();
-        return new LoginController($this->getRender(), $loginModel);
+        return new LoginController($this->getRender(), $loginSession, $loginModel);
     }
 
     public function getRegistroController()
     {
+        $loginSession = $this->getLoginSession();
         $registroModel = $this->getRegistroModel();
-        return new RegistroController($this->getRender(), $registroModel);
+        return new RegistroController($this->getRender(), $loginSession, $registroModel);
     }
 
     public function getRegistroEmpleadoController()

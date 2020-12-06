@@ -5,16 +5,28 @@ class RegistroController
 {
     private $render;
     private $registroModel;
+    private $loginSession;
 
-    public function __construct($render, $registroModel)
+    public function __construct($render, $loginSession, $registroModel)
     {
         $this->render = $render;
+        $this->loginSession = $loginSession;
         $this->registroModel = $registroModel;
     }
 
     public function ejecutar()
     {
         $data["titulo"] = "Registro";
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        if ($logeado) {
+            $data["login"] = true;
+
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+            $dataMerge = array_merge($data, $data2);
+
+            echo $this->render->render("view/registroView.php", $dataMerge);
+            exit();
+        }
         echo $this->render->render("view/registroView.php", $data);
     }
 

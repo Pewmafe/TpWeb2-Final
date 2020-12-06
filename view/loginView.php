@@ -1,4 +1,5 @@
 {{> header}}
+{{^login}}
 <main>
     <section class="row justify-content-center m-3 ancho">
         <article class=" justify-content-center mt-4 ancho2">
@@ -27,4 +28,8 @@
 
     </section>
 </main>
+{{/login}}
+{{#login}}
+    {{> error404}}
+{{/login}}
 {{> footer}}

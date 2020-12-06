@@ -1,6 +1,7 @@
 {{>header}}
+{{#usuarioChofer}}
 <main>
-    {{#usuarioChofer}}
+
 
     <section class="row justify-content-center m-3 ancho">
         <article class=" justify-content-center mt-4 ancho2">
@@ -13,13 +14,11 @@
                 </div>
 
 
-    {{/usuarioChofer}}
-    {{^usuarioChofer}}
-    <div class="text-center">
-        <h1>ERROR 404 PAGINA NO ENCONTRADA</h1>
-        <a class="btn btn-outline-danger" href="/home">Volver al Inicio</a>
-    </div>
-    {{/usuarioChofer}}
+
 
 </main>
+{{/usuarioChofer}}
+{{^usuarioChofer}}
+    {{> error404}}
+{{/usuarioChofer}}
 {{>footer}}

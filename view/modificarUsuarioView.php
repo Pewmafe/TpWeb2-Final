@@ -1,4 +1,5 @@
 {{> header}}
+{{#login}}
 <main>
     <section>
         <h3 class="text-center p-2">Bienvenido a la Configuraci&oacute;n</h3>
@@ -348,4 +349,8 @@
         {{/usuarioEsEmpleado}}
     </section>
 </main>
+{{/login}}
+{{^login}}
+    {{> error404}}
+{{/login}}
 {{> footer}}
