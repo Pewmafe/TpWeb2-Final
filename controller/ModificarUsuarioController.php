@@ -18,6 +18,7 @@ class ModificarUsuarioController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        $data["titulo"] = "Configuracion";
         if ($logeado) {
             $data["login"] = true;
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];

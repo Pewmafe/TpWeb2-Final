@@ -17,6 +17,7 @@ class RegistroEmpleadoController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        $data["titulo"] = "Hacerlo empleado";
         if ($logeado) {
             $data["login"] = true;
 

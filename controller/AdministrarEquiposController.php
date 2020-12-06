@@ -17,6 +17,7 @@ class AdministrarEquiposController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        $data["titulo"] = "Admin equipos";
         if ($logeado) {
             $data["login"] = true;
 

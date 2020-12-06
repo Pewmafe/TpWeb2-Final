@@ -17,6 +17,7 @@ class CrearProformaController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        $data["titulo"] = "Proforma";
         if ($logeado) {
             $data["login"] = true;
 

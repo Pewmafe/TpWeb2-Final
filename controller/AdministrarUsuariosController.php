@@ -17,7 +17,7 @@ class AdministrarUsuariosController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
-        $data["titulo"] = "Administrar usuarios";
+        $data["titulo"] = "Admin usuarios";
         if ($logeado) {
             $data["login"] = true;
 

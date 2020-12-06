@@ -17,6 +17,7 @@ class AgregarVehiculoController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        $data["titulo"] = "Agregar vehiculo";
         if ($logeado) {
             $data["login"] = true;
 
