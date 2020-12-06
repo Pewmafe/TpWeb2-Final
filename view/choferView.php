@@ -40,7 +40,7 @@
                                     <td class="p-auto">{{partida}}</td>
                                     <td>{{destino}}</td>
                                     <td>{{tiempo_estimado}}</td>
-                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6">Ver mas</a></td>
+                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma">Ver mas</a></td>
 
                                 </tr>
 
@@ -69,7 +69,7 @@
                                     <td class="p-auto">{{partida}}</td>
                                     <td>{{destino}}</td>
                                     <td>{{tiempo_estimado}}</td>
-                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6">Ver mas</a></td>
+                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma">Ver mas</a></td>
 
                                 </tr>
 
@@ -98,7 +98,7 @@
                                     <td class="p-auto">{{partida}}</td>
                                     <td>{{destino}}</td>
                                     <td>{{tiempo_estimado}}</td>
-                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6">Ver mas</a></td>
+                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma">Ver mas</a></td>
 
                                 </tr>
 
