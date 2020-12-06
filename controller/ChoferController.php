@@ -64,7 +64,7 @@ class ChoferController
         $tamanio = 10;
         $level = 'H';
         $frameSize = 1;
-        $contenido = 'Acá va la url de la view para el chofer';
+        $contenido = 'http://localhost/qrChofer';
 
 
         QRcode::png($contenido, $filename, $level, $tamanio, $frameSize);

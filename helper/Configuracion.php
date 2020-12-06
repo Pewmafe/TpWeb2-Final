@@ -15,6 +15,9 @@ include_once("controller/AgregarVehiculoController.php");
 include_once("controller/AgregarAcopladoController.php");
 include_once("controller/ChoferController.php");
 include_once("controller/CrearProformaController.php");
+include_once("controller/QrChoferController.php");
+include_once("controller/PdfProformaController.php");
+
 
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
@@ -140,6 +143,16 @@ class Configuracion
         $loginSession = $this->getLoginSession();
         return new CrearProformaController($this->getRender(), $loginSession, $proformaModel);
     }
+    public function getQrChoferController()
+    {
+        $loginSession = $this->getLoginSession();
+        return new QrChoferController($this->getRender(), $loginSession);
+    }
+
+    public function getPdfProformaController()
+    {
+        return new PdfProformaController($this->getRender());
+    }
 
     public function getAgregarAcopladoModel()
     {
@@ -195,4 +208,5 @@ class Configuracion
         $bd = $this->getDatabase();
         return new CrearProformaModel($bd);
     }
+
 }
