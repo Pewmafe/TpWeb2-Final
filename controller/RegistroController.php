@@ -14,7 +14,8 @@ class RegistroController
 
     public function ejecutar()
     {
-        echo $this->render->render("view/registroView.php");
+        $data["titulo"] = "Registro";
+        echo $this->render->render("view/registroView.php", $data);
     }
 
     public function registroUsuario()

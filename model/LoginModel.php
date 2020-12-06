@@ -17,17 +17,19 @@ class LoginModel
         $table = $this->bd->devolverDatos("usuario");
         for ($i = 0; $i < sizeof($table); $i++) {
             if ($table[$i]["nombreUsuario"] == $nombre && $table[$i]["contrasenia"] == $contraseniaEncriptada) {
-                $_SESSION["nombreUsuario"] = $nombre;
-                $_SESSION["logeado"] = 1;
-                $_SESSION["contrasenia"] = $contrasenia;
-                $_SESSION["rol"] = $this->obtenerRolUsuario($nombre);
-                $_SESSION["dniUsuario"] = $table[$i]["dni"];
-                $_SESSION["nombre"] = $table[$i]["nombre"];
-                $_SESSION["apellido"] = $table[$i]["apellido"];
-                $_SESSION["fecha_nacimiento"] = $table[$i]["fecha_nacimiento"];
-                $_SESSION["licenciaEmpleado"] = $this->obtenerLicenciaEmpleado($nombre);
-                $_SESSION["idEmpleado"] = $this->obtenerIdEmpleado($nombre);
-                return true;
+                if ($table[$i]["eliminado"] == false) {
+                    $_SESSION["nombreUsuario"] = $nombre;
+                    $_SESSION["logeado"] = 1;
+                    $_SESSION["contrasenia"] = $contrasenia;
+                    $_SESSION["rol"] = $this->obtenerRolUsuario($nombre);
+                    $_SESSION["dniUsuario"] = $table[$i]["dni"];
+                    $_SESSION["nombre"] = $table[$i]["nombre"];
+                    $_SESSION["apellido"] = $table[$i]["apellido"];
+                    $_SESSION["fecha_nacimiento"] = $table[$i]["fecha_nacimiento"];
+                    $_SESSION["licenciaEmpleado"] = $this->obtenerLicenciaEmpleado($nombre);
+                    $_SESSION["idEmpleado"] = $this->obtenerIdEmpleado($nombre);
+                    return true;
+                }
             }
         }
         return false;

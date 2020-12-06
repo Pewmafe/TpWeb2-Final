@@ -32,7 +32,8 @@ class AdministrarUsuariosModel
         $sql = "SELECT usuario.nombreUsuario, usuario.dni,usuario.nombre, usuario.apellido,usuario.fecha_nacimiento
                 FROM usuario 
                 WHERE usuario.dni not in(SELECT empleado.dni_usuario 
-                                        FROM empleado)";
+                                        FROM empleado)
+                and usuario.eliminado = 0";
         $resultadoQuery = $this->bd->query($sql);
 
         while ($fila = $resultadoQuery->fetch_assoc()) {
@@ -86,7 +87,7 @@ class AdministrarUsuariosModel
 
     public function eliminarUsuario($dniUsuarioAEliminar)
     {
-        $sql = "DELETE FROM usuario WHERE usuario.dni = " . $dniUsuarioAEliminar;
+        $sql = "UPDATE usuario SET eliminado = 1 WHERE usuario.dni = ". $dniUsuarioAEliminar;
         $this->bd->query($sql);
 
     }

@@ -14,7 +14,8 @@ class LoginController
 
     public function ejecutar()
     {
-        echo $this->render->render("view/loginView.php");
+        $data["titulo"] = "Logueo";
+        echo $this->render->render("view/loginView.php",$data);
     }
 
     public function login()
