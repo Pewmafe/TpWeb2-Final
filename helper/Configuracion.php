@@ -145,6 +145,7 @@ class Configuracion
         $loginSession = $this->getLoginSession();
         return new CrearProformaController($this->getRender(), $loginSession, $proformaModel);
     }
+
     public function getQrChoferController()
     {
         $loginSession = $this->getLoginSession();
@@ -153,7 +154,9 @@ class Configuracion
 
     public function getPdfProformaController()
     {
-        return new PdfProformaController($this->getRender());
+        $choferModel = $this->getChoferModel();
+        $loginSession = $this->getLoginSession();
+        return new PdfProformaController($this->getRender(), $loginSession, $choferModel);
     }
 
     public function getAgregarAcopladoModel()
