@@ -128,10 +128,10 @@ class CrearProformaModel
         return $idViaje;
     }
 
-    public function registrarProforma($clienteCuit, $viajeId)
+    public function registrarProforma($clienteCuit, $viajeId,$fechaCreacion)
     {
-        $sql = "INSERT INTO proforma(cliente_cuit, viaje_id, estado) 
-        values (" . $clienteCuit . "," . $viajeId . ", 2)";
+        $sql = "INSERT INTO proforma(cliente_cuit, viaje_id, estado, fechaCreacion) 
+        values (" . $clienteCuit . "," . $viajeId . ", 2, '".$fechaCreacion."')";
         $this->bd->query($sql);
     }
 

@@ -278,6 +278,7 @@ create table proforma(
 	cliente_cuit int,
 	viaje_id int,
 	estado int,
+    fechaCreacion date,
 	constraint fk_estado foreign key (estado) references estado_proforma(id),
 	constraint fk_cliente foreign key (cliente_cuit) references cliente(cuit),
 	constraint fk_viaje foreign key (viaje_id) references viaje(id)
@@ -318,11 +319,16 @@ values('ba531aa', 12, 102, 18000, 20191108, 'Scania', 'g150', 20200201, null, nu
 
 
 insert into tipo_acoplado(id, descripcion)
-values (1, 'Araña'), (2, 'CarCarrier'), (3, 'Jaula'), (4, 'Granel'), (5, 'Tanque');
+values (1, 'Araña'),
+(2, 'CarCarrier'), 
+(3, 'Jaula'), 
+(4, 'Granel'), 
+(5, 'Tanque');
 
 
 insert into acoplado(patente, chasis, tipo)
-values('aa159yy', 123789, 1), ('ab456uu', 456789, 3);
+values('aa159yy', 123789, 1), 
+('ab456uu', 456789, 3);
 
 
 insert into tipo_carga(id_tipo_carga, descripcion)
@@ -361,7 +367,8 @@ values(1, 'Buenos Aires'),
 (3, 'Rosario');
 
 insert into localidad(id, descripcion, provincia_id)
-values(1, 'Bahía Blanca',1),
+values
+(1, 'Bahía Blanca',1),
 (2, 'El palomar',1),
 (3, 'Pontevedra',1),
 (4, 'Amboy',2),
@@ -376,8 +383,8 @@ values (1,"Ventura Bustos", 1223,1),
 (2,"falsa",1212,1),
 (3,"verdadera",2223,8);
 
-insert into cliente (cuit, nombre, apellido,telefono, direccion, denominacion)
-values (123,"Roberto", "Mangera", 12345678, 1, "Coca Cola");
+insert into cliente (cuit, nombre, apellido,telefono, direccion, denominacion,email)
+values (123,"Roberto", "Mangera", 12345678, 1, "Coca Cola","cocacola@email.com");
 
 insert into estado_proforma 
 values (1,'ACTIVO'),
@@ -396,33 +403,45 @@ values(1, 1, 12.00, 1, 1);
 insert into viaje (id, eta, etd, carga_id, acoplado_patente, vehiculo_patente, chofer_id, destino_id, partida_id)
 values(1, "2020/12/12 16:02:00", "2020/11/01 03:40:00", 1, "ab456uu", "aa123bb", 4, 3, 2);
 
-insert into proforma (id,cliente_cuit,viaje_id,estado)
-values(1, 123, 1, 1),
-(2, 123, 1, 2),
-(3, 123, 1, 3);
+insert into proforma (id,cliente_cuit,viaje_id,estado,fechaCreacion)
+values(1, 123, 1, 1, '2020-03-21'),
+(2, 123, 1, 2, '2020-08-15'),
+(3, 123, 1, 3, '2020-12-01');
+
+select p.fechaCreacion as 'fecha_proforma',p.estado as 'estado_proforma', ep.descripcion as 'estado_descripcion_Proforma', p.id as 'proforma_id', c.nombre as 'nombre_cliente',
+                c.apellido as 'apellido_cliente', c.cuit as 'cuit_cliente', dc.calle as 'calle_cliente',dc.altura as 'altura_cliente',
+                lc.descripcion as 'localidad_cliente', pc.descripcion as 'provincia_cliente', c.denominacion as 'denominacion_cliente',
+                c.email as 'email_cliente' , c.telefono as 'tel_cliente' , Uch.nombre as 'nombre_chofer', Uch.apellido as 'apellido_chofer',
+                UCh.dni as 'dni_chofer', UCh.fecha_nacimiento as 'nacimiento_chofer', v.eta ,v.etd , dp.altura as 'partida_altura',
+                dp.calle as 'partida_calle', lp.descripcion as 'partida_localidad', pp.descripcion as 'partida_provincia', dd.altura as 'destino_altura', 
+                dd.calle as 'destino_calle', ld.descripcion as 'destino_localidad',  pd.descripcion 'destino_provincia',
+				v.id as 'viaje_id', a.chasis as 'acoplado_chasis',a.patente as 'acoplado_patente',
+                ta.descripcion as 'tipo_acoplado_desc', ca.hazard_id as 'hazard_carga', ca.peso_neto as 'peso_neto_carga', ca.reefer_id as 'reefeer_id_carga',
+                ve.estado as 'vehiculo_estado', ve.fabricacion as 'vehiculo_fabricacion', 
+                ve.kilometraje as 'vehiculo_kilometraje', ve.marca as 'vehiculo_marca', ve.modelo as 'vehiculo_modelo', ve.patente as 'vehiculo_patente',
+                ve.nro_chasis as 'vehiculo_nro_chasis', ve.nro_motor as 'vehiculo_nro_motor', tc.descripcion as 'tipo_carga_desc'
+                    from proforma p 
+                    join cliente c on p.cliente_cuit = c.cuit 
+                    join viaje v on v.id = p.viaje_id 
+                    join carga ca on ca.id = v.carga_id 
+                    join acoplado a on a.patente = v.acoplado_patente 
+                    join vehiculo ve on ve.patente = v.vehiculo_patente 
+                    join direccion dp on v.partida_id = dp.id 
+                    join direccion dd on v.destino_id = dd.id 
+                    join localidad lp on dp.localidad = lp.id 
+                    join localidad ld on dd.localidad = ld.id 
+                    join provincia pp on pp.id = lp.provincia_id 
+                    join provincia pd on pd.id = ld.provincia_id 
+                    join tipo_carga tc on tc.id_tipo_carga = ca.tipo 
+                    join tipo_acoplado ta on ta.id = a.tipo
+                    join estado_proforma ep on ep.id = p.estado
+                    join direccion dc on dc.id = c.direccion
+                    join localidad lc on dc.localidad = lc.id
+                    join provincia pc on pc.id = lc.provincia_id
+                    join empleado ECh on ECh.id = v.chofer_id
+                    join usuario UCh on Uch.dni = ECh.dni_usuario
+#join tipo_vehiculo tv on tv.id = ve.tipo 
+where v.chofer_id = 4 
+and p.id = 1;
 
 
-select p.estado as 'estado_proforma', p.id as 'proforma_id', c.nombre as 'nombre_cliente', c.apellido as 'apellido_cliente',
-c.email , c.telefono, v.eta ,v.etd ,v.id as 'viaje_id', a.chasis as 'acoplado_chasis',a.patente as 'acoplado_patente',
-ta.descripcion as 'tipo_acoplado_desc', ca.hazard_id as 'hazard_carga', ca.peso_neto as 'peso_neto_carga', ca.reefer_id as 'reefeer_id_carga',
-tv.descripcion as 'tipo_vehiculo_desc', ve.estado as 'vehiculo_estado', ve.fabricacion as 'vehiculo_fabricacion', 
-ve.kilometraje as 'vehiculo_kilometraje', ve.marca as 'vehiculo_marca', ve.modelo as 'vehiculo_modelo', ve.patente as 'vehiculo_patente',
-ve.nro_chasis as 'vehiculo_nro_chasis', ve.nro_motor as 'vehiculo_nro_motor', tc.descripcion as 'tipo_carga_desc', dp.altura as 'partida_altura',
-dp.calle as 'partida_calle', dd.altura as 'destino_altura', dd.calle as 'destino_calle', lp.descripcion as 'partida_localidad', 
-ld.descripcion as 'destino_localidad', pp.descripcion as 'partida_provincia', pd.descripcion 'destino_provincia'
-from proforma p 
-join cliente c on p.cliente_cuit = c.cuit 
-join viaje v on v.id = p.viaje_id 
-join carga ca on ca.id = v.carga_id 
-join acoplado a on a.patente = v.acoplado_patente 
-join vehiculo ve on ve.patente = v.vehiculo_patente 
-join direccion dp on v.partida_id = dp.id 
-join direccion dd on v.destino_id = dd.id 
-join localidad lp on dp.localidad = lp.id 
-join localidad ld on dd.localidad = ld.id 
-join provincia pp on pp.id = lp.provincia_id 
-join provincia pd on pd.id = ld.provincia_id 
-join tipo_carga tc on tc.id_tipo_carga = ca.tipo 
-join tipo_acoplado ta on ta.id = a.tipo 
-join tipo_vehiculo tv on tv.id = ve.tipo 
-where v.chofer_id = 1;

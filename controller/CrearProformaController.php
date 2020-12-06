@@ -107,7 +107,10 @@ class CrearProformaController
 
                     $idViaje = $this->crearProformaModel->registrarViaje($idCarga, $acopladoPatente, $vehiculoPatente, $choferID, $fechaSalida, $fechaLlegada, $idDireccionDestino, $idDireccionOrigen);
 
-                    $this->crearProformaModel->registrarProforma($clienteCuit, $idViaje);
+                    ini_set("date.timezone", "America/Argentina/Buenos_Aires");
+                    $fecha = date("Y-m-d", time());
+
+                    $this->crearProformaModel->registrarProforma($clienteCuit, $idViaje, $fecha);
                 }
             } else {
                 $camposVacios = true;
@@ -129,33 +132,33 @@ class CrearProformaController
             $clienteNombre = isset($_POST["clienteNombre"]) ? $_POST["clienteNombre"] : false;
             $clienteApellido = isset($_POST["clienteApellido"]) ? $_POST["clienteApellido"] : false;
             $clienteCuit = isset($_POST["clienteCuit"]) ? $_POST["clienteCuit"] : false;
-            $clienteLocalidad = isset($_POST["clienteLocalidad"]) ? $_POST["clienteLocalidad"]: false;
-            $clienteCalle = isset($_POST["clienteCalle"]) ? $_POST["clienteCalle"]: false;
-            $clienteAltura = isset($_POST["clienteAltura"]) ? $_POST["clienteAltura"]: false;
-            $clienteTelefono = isset($_POST["clienteTelefono"]) ? $_POST["clienteTelefono"]: false;
-            $clienteEmail = isset($_POST["clienteEmail"]) ? $_POST["clienteEmail"]: false;
-            $contacto1 =  isset($_POST["clienteContacto1"]) ? $_POST["clienteContacto1"]: null;
-            $contacto2 = isset($_POST["clienteContacto2"]) ? $_POST["clienteContacto2"]: null;
+            $clienteLocalidad = isset($_POST["clienteLocalidad"]) ? $_POST["clienteLocalidad"] : false;
+            $clienteCalle = isset($_POST["clienteCalle"]) ? $_POST["clienteCalle"] : false;
+            $clienteAltura = isset($_POST["clienteAltura"]) ? $_POST["clienteAltura"] : false;
+            $clienteTelefono = isset($_POST["clienteTelefono"]) ? $_POST["clienteTelefono"] : false;
+            $clienteEmail = isset($_POST["clienteEmail"]) ? $_POST["clienteEmail"] : false;
+            $contacto1 = isset($_POST["clienteContacto1"]) ? $_POST["clienteContacto1"] : null;
+            $contacto2 = isset($_POST["clienteContacto2"]) ? $_POST["clienteContacto2"] : null;
 
-            $clienteCuitExistente=false;
-            if(isset($_POST["clienteCuit"])){
-                $clienteCuitExistente=$this->crearProformaModel->verificarCuitClienteExistente($clienteCuit);
+            $clienteCuitExistente = false;
+            if (isset($_POST["clienteCuit"])) {
+                $clienteCuitExistente = $this->crearProformaModel->verificarCuitClienteExistente($clienteCuit);
             }
 
 
-            if($clienteDenominacion!=false and $clienteNombre!=false and $clienteApellido!=false and $clienteCuit!=false and
-                $clienteLocalidad!=false and $clienteCalle!=false and $clienteAltura!=false and $clienteTelefono!=false and
-                $clienteEmail != false and $clienteCuitExistente==false){
+            if ($clienteDenominacion != false and $clienteNombre != false and $clienteApellido != false and $clienteCuit != false and
+                $clienteLocalidad != false and $clienteCalle != false and $clienteAltura != false and $clienteTelefono != false and
+                $clienteEmail != false and $clienteCuitExistente == false) {
 
                 $idDireccionCliente = $this->crearProformaModel->registrarDireccion($clienteCalle, $clienteAltura, $clienteLocalidad);
 
                 $this->crearProformaModel->registrarClienteConDireccion($idDireccionCliente, $clienteDenominacion,
-                    $clienteNombre, $clienteApellido ,$clienteCuit, $clienteTelefono, $clienteEmail, $contacto1, $contacto2);
+                    $clienteNombre, $clienteApellido, $clienteCuit, $clienteTelefono, $clienteEmail, $contacto1, $contacto2);
             }
 
-            $datos =array('clienteDenominacion'=>$clienteDenominacion, 'clienteNombre'=>$clienteNombre, 'clienteApellido'=>$clienteApellido,
-                'clienteCuit'=>$clienteCuit, 'clienteLocalidad'=>$clienteLocalidad, 'clienteCalle'=>$clienteCalle, 'clienteAltura'=>$clienteAltura,
-                'clienteTelefono'=>$clienteTelefono, 'clienteEmail'=>$clienteEmail, 'clienteCuitExistente'=>$clienteCuitExistente);
+            $datos = array('clienteDenominacion' => $clienteDenominacion, 'clienteNombre' => $clienteNombre, 'clienteApellido' => $clienteApellido,
+                'clienteCuit' => $clienteCuit, 'clienteLocalidad' => $clienteLocalidad, 'clienteCalle' => $clienteCalle, 'clienteAltura' => $clienteAltura,
+                'clienteTelefono' => $clienteTelefono, 'clienteEmail' => $clienteEmail, 'clienteCuitExistente' => $clienteCuitExistente);
 
             echo json_encode($datos);
             exit();
