@@ -71,7 +71,8 @@ create table usuario(
 	contrasenia varchar(100),
 	nombre varchar(100),
 	apellido varchar(100),
-	fecha_nacimiento date
+	fecha_nacimiento date,
+	eliminado BOOLEAN
 );
 
 create table tipo_empleado(
@@ -289,14 +290,14 @@ values(1, "administrador"),
 (4,"chofer"),
 (5,"mecanico");
 
-insert into usuario(dni, nombreUsuario, contrasenia, nombre, apellido, fecha_nacimiento)
-values(123, 'admin','202cb962ac59075b964b07152d234b70','ABC','CBA', 19940918),
-(124, 'segundo','202cb962ac59075b964b07152d234b70','Pewmafe','Fefar', 19940918),
-(125, 'tercero','202cb962ac59075b964b07152d234b70','Pedro', 'Roco', 19940918),
-(126, 'cuarto','202cb962ac59075b964b07152d234b70','Armando','Rodriguez', 19981018),
-(127, 'quinto','202cb962ac59075b964b07152d234b70','Ramiro','Ledez', 19940923),
-(128, 'sexto','202cb962ac59075b964b07152d234b70','CBZ','CRT', 19920912),
-(129, 'pew','202cb962ac59075b964b07152d234b70','DFG','QWERTY', 19980908);
+insert into usuario(dni, nombreUsuario, contrasenia, nombre, apellido, fecha_nacimiento,eliminado)
+values(123, 'admin','202cb962ac59075b964b07152d234b70','ABC','CBA', 19940918, false),
+(124, 'segundo','202cb962ac59075b964b07152d234b70','Pewmafe','Fefar', 19940918, false),
+(125, 'tercero','202cb962ac59075b964b07152d234b70','Pedro', 'Roco', 19940918, false),
+(126, 'cuarto','202cb962ac59075b964b07152d234b70','Armando','Rodriguez', 19981018, false),
+(127, 'quinto','202cb962ac59075b964b07152d234b70','Ramiro','Ledez', 19940923, false),
+(128, 'sexto','202cb962ac59075b964b07152d234b70','CBZ','CRT', 19920912, false),
+(129, 'pew','202cb962ac59075b964b07152d234b70','DFG','QWERTY', 19980908, false);
 
 
 insert into empleado(id, tipo_de_licencia, tipo_empleado, dni_usuario)
