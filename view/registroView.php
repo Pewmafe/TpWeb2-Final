@@ -41,7 +41,7 @@
                 </a>
             </div>
         </section>
-        <section class="row justify-content-center m-3 ancho">
+        <section class="row justify-content-center m-3">
             <article class="col-12 col-md-6 justify-content-center  mt-2">
                 <h3 class="text-dark text-center">Registrando a un nuevo Conductardo</h3>
                 <div class="container">
