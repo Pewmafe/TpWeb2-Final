@@ -16,7 +16,9 @@ class LoginModel
         $contraseniaEncriptada = md5($contrasenia);
         $table = $this->bd->devolverDatos("usuario");
         for ($i = 0; $i < sizeof($table); $i++) {
-            if ($table[$i]["nombreUsuario"] == $nombre && $table[$i]["contrasenia"] == $contraseniaEncriptada) {
+            $usuarioEmpleado=$this->verificarSiUsuarioEsEmpleado($table[$i]["dni"]);
+            if ($table[$i]["nombreUsuario"] == $nombre && $table[$i]["contrasenia"] == $contraseniaEncriptada
+                && $usuarioEmpleado) {
                 if ($table[$i]["eliminado"] == false) {
                     $_SESSION["nombreUsuario"] = $nombre;
                     $_SESSION["logeado"] = 1;
@@ -63,6 +65,17 @@ class LoginModel
                 break;
         }
         return $rolString;
+    }
+
+    public function verificarSiUsuarioEsEmpleado($dni){
+        $resultado= false;
+        $table = $this->bd->devolverDatos("empleado");
+        for ($i = 0; $i < sizeof($table); $i++) {
+            if ($table[$i]["dni_usuario"] == $dni) {
+                $resultado= true;
+            }
+        }
+        return $resultado;
     }
 
     /*public function obtenerDniEmpleado($nombreUsuario)
