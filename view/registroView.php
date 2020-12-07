@@ -19,15 +19,15 @@
                     <div class="carousel-item">
                         <img src="/public/img/slider2.png" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
-                            <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
+                            <h5 class="bg-dark d-inline-block">La mejor calidad</h5> <br>
+                            <p class="bg-dark d-inline-block">Las marcas mas caras de camiones y acoplados</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="/public/img/slider3.png" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
-                            <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
+                            <h5 class="bg-dark d-inline-block">Seguridad ante todo</h5> <br>
+                            <p class="bg-dark d-inline-block">Contamos con todas las medidas de seguridad que existen</p>
                         </div>
                     </div>
                 </div>
