@@ -25,6 +25,11 @@ footer {
     margin: auto;
 }
 
+.anchoProforma {
+    width: 90%;
+    margin: auto;
+}
+
 .login .form-control {
     background-color: #fff;
     border-radius: 0;
