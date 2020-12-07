@@ -378,3 +378,32 @@ $(document).ready(function() {
         });
     });
 });
+
+/************************MAPA**********************************/
+function moveMapToArgentina(map){
+    map.setCenter({lat:-34.6085, lng:-58.37344});
+    map.setZoom(11);
+}
+
+var platform = new H.service.Platform({
+        apikey: '1O5IbTg0Qtqz70d_pSZwo--0mymlK8bA-BsCmHtCxuY'
+    });
+var defaultLayers = platform.createDefaultLayers();
+
+
+var map = new H.Map(document.getElementById('map'),
+    defaultLayers.vector.normal.map,{
+        center: {lat:50, lng:5},
+        zoom: 4,
+        pixelRatio: window.devicePixelRatio || 1
+    });
+
+window.addEventListener('resize', () => map.getViewPort().resize());
+
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+window.onload = function () {
+    moveMapToArgentina(map);
+}

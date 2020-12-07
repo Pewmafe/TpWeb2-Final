@@ -108,6 +108,12 @@ nav-item:hover c-pointer {
     height: auto;
 }
 
+#map {
+    width: 100%;
+    height: 450px;
+    background: grey;
+}
+
 @media screen and (max-width: 768px) {
     .borde-login {
         border: 0 !important;

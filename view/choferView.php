@@ -140,6 +140,9 @@
             </article>
 
         </section>
+        <section class="container">
+            <div id="map"></div>
+        </section>
     </main>
 {{/usuarioChofer}}
 {{^usuarioChofer}}
