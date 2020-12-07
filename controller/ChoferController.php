@@ -42,6 +42,17 @@ class ChoferController
 
                 $tablaDeViajesFinalizados = ($this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]) : null;
                 $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
+
+
+                $tablaDeTodosLosViajesActivos = ($this->ChoferModel->obtenerViajePorEstado(activo)) != null ? $this->ChoferModel->obtenerViajePorEstado(activo) : null;
+                $data["tablaDeTodosLosViajesActivos"] = $tablaDeTodosLosViajesActivos;
+
+
+                $tablaDeTodosLosViajesPendientes = ($this->ChoferModel->obtenerViajePorEstado(pendiente)) != null ? $this->ChoferModel->obtenerViajePorEstado(pendiente) : null;
+                $data["tablaDeTodosLosViajesPendientes"] = $tablaDeTodosLosViajesPendientes;
+
+                $tablaDeTodosLosViajesActivos = ($this->ChoferModel->obtenerViajePorEstado(finalizado)) != null ? $this->ChoferModel->obtenerViajePorEstado(finalizado) : null;
+                $data["tablaDeTodosLosViajesActivos"] = $tablaDeTodosLosViajesActivos;
             }
 
             $data2 = $this->loginSession->verificarQueUsuarioRol();

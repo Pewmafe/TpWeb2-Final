@@ -122,4 +122,45 @@ class ChoferModel
 
         return $tablaProformaSegunIdChofer;
     }
+    public function obtenerViajePorEstado($estado)
+    {
+
+        $sql = "select 	ep.descripcion as 'TodosEstado',
+                pd.descripcion as 'destino_todos', 
+                pp.descripcion as 'partida_todos',
+                p.id as 'id_proforma_todos',
+                v.chofer_id as 'chofer_id_todos',
+                Uch.nombre as 'nombre_chofer',
+                Uch.apellido as 'apellido_chofer',
+                cl.denominacion as 'denominacion_cliente'
+                    from proforma p
+                        join viaje v on p.viaje_id = v.id
+                        join direccion dp on v.partida_id = dp.id
+                        join direccion dd on v.destino_id = dd.id
+                        join localidad lp on lp.id = dp.localidad
+                        join localidad ld on ld.id = dd.localidad
+                        join provincia pp on pp.id = lp.provincia_id
+                        join provincia pd on pd.id = ld.provincia_id
+                        join estado_proforma ep on ep.id = p.estado
+                        join empleado ECh on ECh.id = v.chofer_id
+                        join usuario UCh on UCh.dni = ECh.dni_usuario
+                        join cliente cl on p.cliente_cuit = cl.cuit  
+
+                            where p.estado = " . $estado;
+
+        $resultado = $this->bd->query($sql);
+
+        $resultado1 = $this->bd->query($sql);
+        $verificacion = $resultado1->fetch_assoc();
+        if ($verificacion == null) {
+            $tablaDeViajes = null;
+        } else {
+            while ($fila = $resultado->fetch_assoc()) {
+
+                $tablaDeViajes[] = $fila;
+            }
+        }
+
+        return $tablaDeViajes;
+    }
 }

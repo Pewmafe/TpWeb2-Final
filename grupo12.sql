@@ -404,8 +404,8 @@ insert into viaje (id, eta, etd, carga_id, acoplado_patente, vehiculo_patente, c
 values(1, "2020/12/12 16:02:00", "2020/11/01 03:40:00", 1, "ab456uu", "aa123bb", 4, 3, 2);
 
 insert into proforma (id,cliente_cuit,viaje_id,estado,fechaCreacion)
-values(1, 123, 1, 1, '2020-03-21'),
-(2, 123, 1, 2, '2020-08-15'),
+values(1, 123, 1, 2, '2020-03-21'),
+(2, 123, 1, 1, '2020-08-15'),
 (3, 123, 1, 3, '2020-12-01');
 
 select 	p.fechaCreacion as 'fecha_proforma',p.estado as 'estado_proforma', ep.descripcion as 'estado_descripcion_Proforma', p.id as 'proforma_id', c.nombre as 'nombre_cliente',
@@ -450,3 +450,25 @@ select 	p.fechaCreacion as 'fecha_proforma',p.estado as 'estado_proforma', ep.de
 #tv.descripcion as 'tipo_vehiculo_desc',
 #join tipo_vehiculo tv on tv.id = ve.tipo 
 
+select 	ep.descripcion as 'TodosEstado',
+        pd.descripcion as 'destino_todos', 
+        pp.descripcion as 'partida_todos',
+        p.id as 'id_proforma_todos',
+        v.chofer_id as 'chofer_id_todos',
+        Uch.nombre as 'nombre_chofer',
+        Uch.apellido as 'apellido_chofer',
+        cl.denominacion as 'denominacion_cliente'
+			from proforma p
+				join viaje v on p.viaje_id = v.id
+                join direccion dp on v.partida_id = dp.id
+                join direccion dd on v.destino_id = dd.id
+                join localidad lp on lp.id = dp.localidad
+                join localidad ld on ld.id = dd.localidad
+                join provincia pp on pp.id = lp.provincia_id
+                join provincia pd on pd.id = ld.provincia_id
+                join estado_proforma ep on ep.id = p.estado
+                join empleado ECh on ECh.id = v.chofer_id
+                join usuario UCh on UCh.dni = ECh.dni_usuario
+				join cliente cl on p.cliente_cuit = cl.cuit 
+					where p.estado = 1;
+                    

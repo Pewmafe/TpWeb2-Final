@@ -1,12 +1,25 @@
 {{>header}}
 {{#usuarioChofer}}
     <main>
-        <section>
-            <h1 class="text-center p-2">Bienvenido Chofer</h1>
-            <h2 class="text-center ">{{nombreUsuario}}</h2>
-        </section>
+        {{#usuarioSupervisor}}
+            <section>
+                <h1 class="p-2"><i class="fas fa-user-shield"></i> {{nombreUsuario}}</h1>
+            </section>
+        {{/usuarioSupervisor}}
+        {{^usuarioSupervisor}}
+            <section>
+                <h1 class="text-center p-2">Bienvenido Chofer</h1>
+                <h2 class="text-center ">{{nombreUsuario}}</h2>
+            </section>
+        {{/usuarioSupervisor}}
+
         <section class="p-3">
-            <h4>Tus viajes</h4>
+            {{#usuarioSupervisor}}
+                <h4>Viajes</h4>
+            {{/usuarioSupervisor}}
+            {{^usuarioSupervisor}}
+                <h4>Tus viajes</h4>
+            {{/usuarioSupervisor}}
             <article>
                 <ul class="nav">
                     <li class="nav-item">
@@ -21,7 +34,6 @@
                 </ul>
             </article>
             <article class="popup1">
-
                 <div class="table-responsive">
                     <table class="table table-hover table-dark">
                         <thead>
@@ -31,7 +43,6 @@
                                 <th scope="col">Hacia</th>
                                 <th scope="col">Duracion Aproximada</th>
                                 <th scope="col"></th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +54,6 @@
                                     <td>{{tiempo_estimado}}</td>
                                     <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
                                             mas</a></td>
-
                                 </tr>
                             {{/tablaDeViajesActivo}}
                             {{^tablaDeViajesActivo}}
@@ -53,15 +63,12 @@
                                 <td>(vacio)</td>
                                 <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/Chofer">Ver mas</a>
                                 </td>
-
                             {{/tablaDeViajesActivo}}
                         </tbody>
                     </table>
                 </div>
-
             </article>
             <article class="chofer-hidden popup2">
-
                 <div class="table-responsive">
                     <table class="table table-hover table-dark">
                         <thead>
@@ -71,7 +78,6 @@
                                 <th scope="col">Hacia</th>
                                 <th scope="col">Duracion Aproximada</th>
                                 <th scope="col"></th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -83,7 +89,6 @@
                                     <td>{{tiempo_estimado}}</td>
                                     <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
                                             mas</a></td>
-
                                 </tr>
                             {{/tablaDeViajesPendientes}}
                             {{^tablaDeViajesPendientes}}
@@ -93,15 +98,12 @@
                                 <td>(vacio)</td>
                                 <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/Chofer">Ver mas</a>
                                 </td>
-
                             {{/tablaDeViajesPendientes}}
                         </tbody>
                     </table>
                 </div>
-
             </article>
             <article class="chofer-hidden popup3">
-
                 <div class="table-responsive">
                     <table class="table table-hover table-dark">
                         <thead>
@@ -111,7 +113,6 @@
                                 <th scope="col">Hacia</th>
                                 <th scope="col">Duracion Aproximada</th>
                                 <th scope="col"></th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -123,7 +124,6 @@
                                     <td>{{tiempo_estimado}}</td>
                                     <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
                                             mas</a></td>
-
                                 </tr>
                             {{/tablaDeViajesFinalizados}}
                             {{^tablaDeViajesFinalizados}}
@@ -133,12 +133,10 @@
                                 <td>(vacio)</td>
                                 <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/Chofer">Ver mas</a>
                                 </td>
-
                             {{/tablaDeViajesFinalizados}}
                         </tbody>
                     </table>
                 </div>
-
             </article>
 
         </section>
