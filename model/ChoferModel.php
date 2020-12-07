@@ -49,21 +49,26 @@ class ChoferModel
 
         $resultado = $this->bd->query($sql);
 
-        while ($fila = $resultado->fetch_assoc()) {
+        $resultado1 = $this->bd->query($sql);
+        $verificacion = $resultado1->fetch_assoc();
+        if ($verificacion == null) {
+            $tablaDeViajes = null;
+        } else {
+            while ($fila = $resultado->fetch_assoc()) {
 
-            $dateETA = new DateTime($fila["eta"]);
-            $dateETD = new DateTime($fila["etd"]);
+                $dateETA = new DateTime($fila["eta"]);
+                $dateETD = new DateTime($fila["etd"]);
 
-            if ((($dateETA->getTimestamp() - $dateETD->getTimestamp()) / 60 / 60) > 24) {
-                $diff = (($dateETA->getTimestamp() - $dateETD->getTimestamp()) / 60 / 60 / 24) . " Dias";
-            } else {
-                $diff = (($dateETA->getTimestamp() - $dateETD->getTimestamp()) / 60 / 60) . " Horas";
+                if ((($dateETA->getTimestamp() - $dateETD->getTimestamp()) / 60 / 60) > 24) {
+                    $diff = (($dateETA->getTimestamp() - $dateETD->getTimestamp()) / 60 / 60 / 24) . " Dias";
+                } else {
+                    $diff = (($dateETA->getTimestamp() - $dateETD->getTimestamp()) / 60 / 60) . " Horas";
+                }
+
+                $fila["tiempo_estimado"] = $diff;
+                $tablaDeViajes[] = $fila;
             }
-
-            $fila["tiempo_estimado"] = $diff;
-            $tablaDeViajes[] = $fila;
         }
-
         return $tablaDeViajes;
     }
 
@@ -117,5 +122,4 @@ class ChoferModel
 
         return $tablaProformaSegunIdChofer;
     }
-
 }

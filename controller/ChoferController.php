@@ -33,13 +33,14 @@ class ChoferController
             $data["dirQR"] = $this->generarQR();
             $data["idChofer"] = $_SESSION["idEmpleado"];
             if (isset($_SESSION["idEmpleado"])) {
-                $tablaDeViajesActivo = $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]);
+
+                $tablaDeViajesActivo = ($this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]) : null;
                 $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
 
-                $tablaDeViajesPendientes = $this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"]);
+                $tablaDeViajesPendientes = ($this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"]) : null;
                 $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
 
-                $tablaDeViajesFinalizados = $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]);
+                $tablaDeViajesFinalizados = ($this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]) : null;
                 $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
             }
 
@@ -73,8 +74,5 @@ class ChoferController
 
 
         return $filename;
-
-
     }
 }
-

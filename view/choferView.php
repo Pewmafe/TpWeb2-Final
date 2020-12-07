@@ -1,6 +1,6 @@
 {{>header}}
 {{#usuarioChofer}}
-<main>
+    <main>
         <section>
             <h1 class="text-center p-2">Bienvenido Chofer</h1>
             <h2 class="text-center ">{{nombreUsuario}}</h2>
@@ -21,128 +21,128 @@
                 </ul>
             </article>
             <article class="popup1">
-                {{#tablaDeViajesActivo}}
-                    <div class="table-responsive">
-                        <table class="table table-hover table-dark">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Desde</th>
-                                    <th scope="col">Hacia</th>
-                                    <th scope="col">Duracion Aproximada</th>
-                                    <th scope="col"></th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
+                <div class="table-responsive">
+                    <table class="table table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Desde</th>
+                                <th scope="col">Hacia</th>
+                                <th scope="col">Duracion Aproximada</th>
+                                <th scope="col"></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#tablaDeViajesActivo}}
                                 <tr>
                                     <th scope="row" class="text-success">{{estado}}</th>
                                     <td class="p-auto">{{partida}}</td>
                                     <td>{{destino}}</td>
                                     <td>{{tiempo_estimado}}</td>
-                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver mas</a></td>
+                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
+                                            mas</a></td>
 
                                 </tr>
+                            {{/tablaDeViajesActivo}}
+                            {{^tablaDeViajesActivo}}
+                                <th scope="row" class="text-success">(vacio)</th>
+                                <td class="p-auto">(vacio)</td>
+                                <td>(vacio)</td>
+                                <td>(vacio)</td>
+                                <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/Chofer">Ver mas</a>
+                                </td>
 
-                            </tbody>
-                        </table>
-                    </div>
-                {{/tablaDeViajesActivo}}
+                            {{/tablaDeViajesActivo}}
+                        </tbody>
+                    </table>
+                </div>
+
             </article>
             <article class="chofer-hidden popup2">
 
-                    <div class="table-responsive">
-                        <table class="table table-hover table-dark">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Desde</th>
-                                    <th scope="col">Hacia</th>
-                                    <th scope="col">Duracion Aproximada</th>
-                                    <th scope="col"></th>
+                <div class="table-responsive">
+                    <table class="table table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Desde</th>
+                                <th scope="col">Hacia</th>
+                                <th scope="col">Duracion Aproximada</th>
+                                <th scope="col"></th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {{#tablaDeViajesPendientes}}
                                 <tr>
                                     <th scope="row" class="text-secondary">{{estado}}</th>
                                     <td class="p-auto">{{partida}}</td>
                                     <td>{{destino}}</td>
                                     <td>{{tiempo_estimado}}</td>
-                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver mas</a></td>
+                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
+                                            mas</a></td>
 
                                 </tr>
                             {{/tablaDeViajesPendientes}}
-                            </tbody>
-                        </table>
-                    </div>
+                            {{^tablaDeViajesPendientes}}
+                                <th scope="row" class="text-secondary">(vacio)</th>
+                                <td class="p-auto">(vacio)</td>
+                                <td>(vacio)</td>
+                                <td>(vacio)</td>
+                                <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/Chofer">Ver mas</a>
+                                </td>
+
+                            {{/tablaDeViajesPendientes}}
+                        </tbody>
+                    </table>
+                </div>
 
             </article>
             <article class="chofer-hidden popup3">
 
-                    <div class="table-responsive">
-                        <table class="table table-hover table-dark">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Desde</th>
-                                    <th scope="col">Hacia</th>
-                                    <th scope="col">Duracion Aproximada</th>
-                                    <th scope="col"></th>
+                <div class="table-responsive">
+                    <table class="table table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Desde</th>
+                                <th scope="col">Hacia</th>
+                                <th scope="col">Duracion Aproximada</th>
+                                <th scope="col"></th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {{#tablaDeViajesFinalizados}}
                                 <tr>
                                     <th scope="row" class="text-danger">{{estado}}</th>
                                     <td class="p-auto">{{partida}}</td>
                                     <td>{{destino}}</td>
                                     <td>{{tiempo_estimado}}</td>
-                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver mas</a></td>
+                                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
+                                            mas</a></td>
 
                                 </tr>
-                                {{/tablaDeViajesFinalizados}}
-                            </tbody>
-                        </table>
-                    </div>
+                            {{/tablaDeViajesFinalizados}}
+                            {{^tablaDeViajesFinalizados}}
+                                <th scope="row" class="text-danger">(vacio)</th>
+                                <td class="p-auto">(vacio)</td>
+                                <td>(vacio)</td>
+                                <td>(vacio)</td>
+                                <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/Chofer">Ver mas</a>
+                                </td>
+
+                            {{/tablaDeViajesFinalizados}}
+                        </tbody>
+                    </table>
+                </div>
 
             </article>
-            <article class="">
-                <div>
-                    <div class="row">
-                        {{#tablaProforma}}
-                            <div class="col-12 col-md-6 col-lg-4 p-2">
-                                <div class="card mb-4 p-3 bg-dark">
-                                    <h3 class="text-center border-bottom border-secondary text-light">Proforma</h3>
-                                    <p class="text-light">
-                                        <span class="h5 font-weight-bold">Nro proforma </span>: {{id}}
-                                    </p>
-                                    <p class="text-light">
-                                        <span class="h5 font-weight-bold">Cliente nombre </span>: {{nombre}}
-                                    </p>
-                                    <p class="text-light">
-                                        <span class="h5 font-weight-bold">Cliente apellido </span>: {{apellido}}
-                                    </p>
-                                    <p class="text-light">
-                                        <span class="h5 font-weight-bold">Calendario service </span>:
-                                    </p>
-                                    <p class="text-light">
-                                        <span class="h5 font-weight-bold">Origen </span>:
-                                    </p>
-                                    <p class="text-light">
-                                        <span class="h5 font-weight-bold">Destino </span>:
-                                    </p>
-                                    <img src="{{dirQR}}" class="img-fluid img-qr">
-                                </div>
-                            </div>
-                        {{/tablaProforma}}
-                    </div>
-                </div>
-            </article>
+
         </section>
-</main>
+    </main>
 {{/usuarioChofer}}
 {{^usuarioChofer}}
     {{> error404}}
