@@ -177,6 +177,12 @@ create table empleado_mantenimiento(
 	references empleado(id)
 );
 
+create table posicion(
+	id int primary key,
+	x decimal(20,15),
+	y decimal(20,15)
+);
+
 create table provincia(
 	id int primary key,
 	descripcion varchar(100)
@@ -186,9 +192,13 @@ create table localidad(
 	id int primary key,
 	descripcion varchar(100),
 	provincia_id int,
+	posicion int,
 	constraint fk_localidad_provincia
 	foreign key (provincia_id)
-	references provincia(id)
+	references provincia(id),
+	constraint fk_localidad_posicion
+	foreign key (posicion)
+	references posicion(id)
 );
 
 create table direccion(
@@ -250,12 +260,6 @@ create table viaje(
 	constraint fk_viaje_partida foreign key (partida_id) references direccion(id)
 );
 
-create table posicion(
-	id int primary key,
-	x decimal(10,5),
-	y decimal(10,5)
-);
-
 create table seguimiento(
 	id int primary key,
 	combustible_consumido int,
@@ -279,9 +283,11 @@ create table proforma(
 	viaje_id int,
 	estado int,
     fechaCreacion date,
+    costeo_id int,
 	constraint fk_estado foreign key (estado) references estado_proforma(id),
 	constraint fk_cliente foreign key (cliente_cuit) references cliente(cuit),
-	constraint fk_viaje foreign key (viaje_id) references viaje(id)
+	constraint fk_viaje foreign key (viaje_id) references viaje(id),
+	constraint fk_proforma_costeo foreign key (costeo_id) references costeo(id)
 );
 
 insert into tipo_empleado(id_tipo_empleado, descripcion)
@@ -366,17 +372,29 @@ values(1, 'Buenos Aires'),
 (2, 'Cordoba'),
 (3, 'Rosario');
 
-insert into localidad(id, descripcion, provincia_id)
+INSERT INTO posicion (id, x, y) VALUES(1, -38.70409384939385, -62.25307383646255);
+INSERT INTO posicion (id, x, y) VALUES(2, -34.605708677680184, -58.601590778904544);
+INSERT INTO posicion (id, x, y) VALUES(3, -34.745022065986554, -58.694745264476936);
+INSERT INTO posicion (id, x, y) VALUES(4, -32.17527709996758, -64.57469250973966);
+INSERT INTO posicion (id, x, y) VALUES(5, -31.094559226481405, -64.49079521445562);
+INSERT INTO posicion (id, x, y) VALUES(6, -32.74843407686793, -63.34138840359429);
+INSERT INTO posicion (id, x, y) VALUES(7, -33.894351201532785, -60.57160988506926);
+INSERT INTO posicion (id, x, y) VALUES(8, -33.74400198026885, -61.98228188585451);
+INSERT INTO posicion (id, x, y) VALUES(9, -32.950360446533516, -60.677411326495005);
+
+insert into localidad(id, descripcion, provincia_id, posicion)
 values
-(1, 'Bahía Blanca',1),
-(2, 'El palomar',1),
-(3, 'Pontevedra',1),
-(4, 'Amboy',2),
-(5, 'La Falda',2),
-(6, 'Pasco',2),
-(7, 'Pergamino',3),
-(8, 'Venado Tuerto',3),
-(9, 'Gran Rosario',3);
+(1, 'Bahía Blanca',1, 1),
+(2, 'El palomar',1,2),
+(3, 'Pontevedra',1,3),
+(4, 'Amboy',2,4),
+(5, 'La Falda',2,5),
+(6, 'Pasco',2,6),
+(7, 'Pergamino',3,7),
+(8, 'Venado Tuerto',3,8),
+(9, 'Gran Rosario',3,9);
+
+SELECT * from posicion;
 
 insert into direccion( id,	calle,	altura,	localidad) 
 values (1,"Ventura Bustos", 1223,1),
@@ -408,10 +426,14 @@ values(1, 123, 1, 2, '2020-03-21'),
 (2, 123, 1, 1, '2020-08-15'),
 (3, 123, 1, 3, '2020-12-01');
 
+
+select p.x, p.y from localidad l join posicion p on l.posicion = p.id;
+
+
 select 	p.fechaCreacion as 'fecha_proforma',p.estado as 'estado_proforma', ep.descripcion as 'estado_descripcion_Proforma', p.id as 'proforma_id', c.nombre as 'nombre_cliente',
 		c.apellido as 'apellido_cliente', c.cuit as 'cuit_cliente', dc.calle as 'calle_cliente',dc.altura as 'altura_cliente',
 		lc.descripcion as 'localidad_cliente', pc.descripcion as 'provincia_cliente', c.denominacion as 'denominacion_cliente',
-		c.email as 'email_cliente' , c.telefono as 'tel_cliente' , Uch.nombre as 'nombre_chofer', Uch.apellido as 'apellido_chofer',
+		c.email as 'email_cliente' , c.telefono as 'tel_cliente' , UCh.nombre as 'nombre_chofer', UCh.apellido as 'apellido_chofer',
 		UCh.dni as 'dni_chofer', UCh.fecha_nacimiento as 'nacimiento_chofer', v.eta ,v.etd , dp.altura as 'partida_altura',
 		dp.calle as 'partida_calle', lp.descripcion as 'partida_localidad', pp.descripcion as 'partida_provincia', dd.altura as 'destino_altura', 
 		dd.calle as 'destino_calle', ld.descripcion as 'destino_localidad',  pd.descripcion 'destino_provincia',
@@ -440,7 +462,7 @@ select 	p.fechaCreacion as 'fecha_proforma',p.estado as 'estado_proforma', ep.de
                 join localidad lc on dc.localidad = lc.id
                 join provincia pc on pc.id = lc.provincia_id
                 join empleado ECh on ECh.id = v.chofer_id
-                join usuario UCh on Uch.dni = ECh.dni_usuario
+                join usuario UCh on UCh.dni = ECh.dni_usuario
                 join hazard hz on hz.id = ca.hazard_id
                 join imo_sub_class ISC on ISC.id = hz.imo_sub_class_id
                 join imo_class IC on IC.id = ISC.imo_class_id
@@ -455,8 +477,8 @@ select 	ep.descripcion as 'TodosEstado',
         pp.descripcion as 'partida_todos',
         p.id as 'id_proforma_todos',
         v.chofer_id as 'chofer_id_todos',
-        Uch.nombre as 'nombre_chofer',
-        Uch.apellido as 'apellido_chofer',
+        UCh.nombre as 'nombre_chofer',
+        UCh.apellido as 'apellido_chofer',
         cl.denominacion as 'denominacion_cliente'
 			from proforma p
 				join viaje v on p.viaje_id = v.id
@@ -471,4 +493,6 @@ select 	ep.descripcion as 'TodosEstado',
                 join usuario UCh on UCh.dni = ECh.dni_usuario
 				join cliente cl on p.cliente_cuit = cl.cuit 
 					where p.estado = 1;
+				
+
                     
