@@ -180,17 +180,7 @@ $(document).ready(function() {
 
         $("#reefer").collapse('hide');
     });
-
-    $(document).on("click", ".inputRegistrarCliente", function() {
-
-        $("#registrarCliente").collapse('show');
-    });
-
-    $(document).on("click", ".inputIngresarCuit", function() {
-
-        $("#registrarCliente").collapse('hide');
-    });
-
+    
     /************************AJAX LOGIN**********************************/
     $("#loginFormulario").submit(function(event) {
         event.preventDefault();
