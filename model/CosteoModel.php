@@ -19,8 +19,7 @@ class CosteoModel
         return acos($dist) / $rad * 60 *  1.853;
     }
 
-    public function precioDeLaDistancia($kilometros, $idImoSubClass,
-                                     $idTipoCarga, $idTipoAcoplado, $idReefer){
+    public function precioPorKilometro ($idImoSubClass, $idTipoCarga, $idTipoAcoplado, $idReefer){
         $precioKilometros = 50;
         $sql = "select precio_kilometro from precios
                 where id_tipo_carga = ".$idTipoCarga."
@@ -43,6 +42,10 @@ class CosteoModel
                 $precioKilometros = $precios[0]['precio_kilometro'];
             }
         }
+        return $precioKilometros;
+    }
+
+    public function precioDeLaDistancia($kilometros, $precioKilometros){
         return $precioKilometros * $kilometros;
     }
 
