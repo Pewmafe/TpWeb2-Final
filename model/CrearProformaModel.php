@@ -200,4 +200,36 @@ class CrearProformaModel
         return $lista;
     }
 
+    public function devolverNombreLocalidadPorIdLocalidad($localidad){
+        $sql = "SELECT l.descripcion 
+                FROM localidad l 
+                WHERE l.id =".$localidad;
+
+        $resultadoQuery = $this->bd->query($sql);
+        $nombreLocalidad = $resultadoQuery->fetch_assoc();
+        return $nombreLocalidad["descripcion"];
+    }
+
+    public function devolverNombreProvinciaPorIdLocalidad($localidad){
+        $sql = "SELECT p.descripcion 
+                FROM localidad l JOIN provincia p
+                                ON l.provincia_id = p.id 
+                WHERE l.id =".$localidad;
+
+        $resultadoQuery = $this->bd->query($sql);
+        $nombreProvincia = $resultadoQuery->fetch_assoc();
+        return $nombreProvincia["descripcion"];
+    }
+
+    public function obtenerTipoAcopladoPorPatente($acopladoPatente){
+        $sql = "SELECT a.tipo 
+                FROM acoplado a 
+                WHERE a.patente = '".$acopladoPatente."'";
+
+        $resultadoQuery = $this->bd->query($sql);
+        $tipoAcoplado = $resultadoQuery->fetch_assoc();
+        return $tipoAcoplado["tipo"];
+    }
+
+
 }

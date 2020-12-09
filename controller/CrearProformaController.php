@@ -21,7 +21,6 @@ class CrearProformaController
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         $data["titulo"] = "Proforma";
         if ($logeado) {
-            $this->calcularCosteo();
             $data["login"] = true;
 
             $tablaChoferes = $this->crearProformaModel->obtenerUsuariosChoferes();
@@ -88,6 +87,7 @@ class CrearProformaController
 
             $choferID = isset($_POST["choferRadios"]) ? $_POST["choferRadios"] : false;
 
+            $total = null;
             $camposVacios = false;
             if ($clienteCuit != false and $cargaTipo != false and $cargaPeso != false and $origenLocalidad != false and $origenCalle != false and
                 $origenAltura != false and $destinoLocalidad != false and $destinoCalle != false and $destinoAltura != false and
@@ -114,12 +114,23 @@ class CrearProformaController
                     $fecha = date("Y-m-d", time());
 
                     $this->crearProformaModel->registrarProforma($clienteCuit, $idViaje, $fecha);
+
+                    $nombreOrigenLocalidad= $this->crearProformaModel->devolverNombreLocalidadPorIdLocalidad($origenLocalidad);
+                    $nombreOrigenProvincia = $this->crearProformaModel->devolverNombreProvinciaPorIdLocalidad($origenLocalidad);
+                    $direccionDestino = $origenCalle . " ". $origenAltura. ", ". $nombreOrigenLocalidad.  ", ".$nombreOrigenProvincia;
+
+                    $nombreDestinoLocalidad= $this->crearProformaModel->devolverNombreLocalidadPorIdLocalidad($destinoLocalidad);
+                    $nombreDestinoProvincia = $this->crearProformaModel->devolverNombreProvinciaPorIdLocalidad($destinoLocalidad);
+                    $direccionPartida =$destinoCalle . " ". $destinoAltura. ", ". $nombreDestinoLocalidad.  ", ".$nombreDestinoProvincia;
+
+                    $tipoAcoplado= $this->crearProformaModel->obtenerTipoAcopladoPorPatente($acopladoPatente);
+                    $total = $this->calcularCosteo($direccionDestino, $direccionPartida,$hazardId, $idCarga, $tipoAcoplado, $reeferId);
                 }
             } else {
                 $camposVacios = true;
             }
 
-            $datos = array('camposVacios' => $camposVacios, 'clienteCuitExistente' => $clienteCuitExistente);
+            $datos = array('camposVacios' => $camposVacios, 'clienteCuitExistente' => $clienteCuitExistente, 'total'=>$total);
             echo json_encode($datos);
             exit();
         }
@@ -195,10 +206,10 @@ class CrearProformaController
         echo $listaImoClass;
     }
 
-    public function calcularCosteo(){
-        $distancia = $this->costeoModel->calcularDistanciaEnKilometros("Ramon Falcon 5939, villa luro, buenos aires",
-            "Calle de los Reyes Magos 19, Madrid, Espana");
-        $precio = $this->costeoModel->precioPorKilometro(null, 2, 5, null);
+    public function calcularCosteo($direccionDestino, $direccionPartida,$idImoSubClass, $idTipoCarga, $idTipoAcoplado, $idReefer ){
+        $distancia = $this->costeoModel->calcularDistanciaEnKilometros($direccionDestino,
+            $direccionPartida);
+        $precio = $this->costeoModel->precioPorKilometro($idImoSubClass, $idTipoCarga, $idTipoAcoplado, $idReefer);
         return $this->costeoModel->precioDeLaDistancia($distancia,$precio);
     }
 
