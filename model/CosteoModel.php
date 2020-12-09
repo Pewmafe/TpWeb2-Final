@@ -19,6 +19,33 @@ class CosteoModel
         return acos($dist) / $rad * 60 *  1.853;
     }
 
+    public function precioDeLaDistancia($kilometros, $idImoSubClass,
+                                     $idTipoCarga, $idTipoAcoplado, $idReefer){
+        $precioKilometros = 50;
+        $sql = "select precio_kilometro from precios
+                where id_tipo_carga = ".$idTipoCarga."
+                and id_tipo_acoplado = ". $idTipoAcoplado;
+        if($idImoSubClass!=null){
+            $sql = $sql. " and id_imo_sub_class = ". $idImoSubClass;
+        }
+        if($idReefer!=null){
+            $sql = $sql." and id_reefer = ". $idReefer;
+        }
+        $sql = $sql . ";";
+
+        $result = $this->bd->query($sql);
+        while ($fila = $result->fetch_assoc()) {
+            $precios[] = $fila;
+        }
+
+        if(!empty($precios)) {
+            if ($precios[0]['precio_kilometro'] != null) {
+                $precioKilometros = $precios[0]['precio_kilometro'];
+            }
+        }
+        return $precioKilometros * $kilometros;
+    }
+
     public function calcularDistanciaEnKilometros($direccionDestino, $direccionPartida)
     {
         $apikey="NDO-x9Q1-wRAQe2VukMxSHEhNY4ue8C5Y9ESpD_XwCk";
@@ -39,8 +66,8 @@ class CosteoModel
         $longitudDestino = $localidadDestino['items'][0]['position']['lng'];
         $kilometros = $this->calcularKilometrosConCoordenadas($latitudPartida,$longitudPartida,
             $latitudDestino,$longitudDestino);
-        //die("Kilometros: ".$kilometros);
 
+        return $kilometros;
     }
 
 }

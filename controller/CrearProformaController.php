@@ -196,8 +196,9 @@ class CrearProformaController
     }
 
     public function calcularCosteo(){
-        $this->costeoModel->calcularDistanciaEnKilometros("Ramon Falcon 5939, villa luro, buenos aires",
-            "andalgala 1431, rafael castillo, buenos aires");
+        $distancia = $this->costeoModel->calcularDistanciaEnKilometros("Ramon Falcon 5939, villa luro, buenos aires",
+            "Calle de los Reyes Magos 19, Madrid, Espana");
+        return $this->costeoModel->precioDeLaDistancia($distancia,null, 2, 5, null);
     }
 
 }
