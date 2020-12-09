@@ -19,14 +19,28 @@ class CosteoModel
         return acos($dist) / $rad * 60 *  1.853;
     }
 
-    public function calcularCosteolocalidades($localidadDestino, $localidadPartida)
+    public function calcularDistanciaEnKilometros($direccionDestino, $direccionPartida)
     {
-        $dniUsuario = $this->obtenerIdUsuario($nombreUsuario);
+        $apikey="NDO-x9Q1-wRAQe2VukMxSHEhNY4ue8C5Y9ESpD_XwCk";
+        $direccionDestino = str_replace(" ", "+", $direccionDestino);
+        $direccionPartida = str_replace(" ", "+", $direccionPartida);
+        $query = $direccionPartida. ",+Argentina";
+        $localidadPartida = file_get_contents("https://geocode.search.hereapi.com/v1/geocode?q=".$query
+            ."&apiKey=".$apikey);
+        $query = $direccionDestino. ",+Argentina";
+        $localidadDestino = file_get_contents("https://geocode.search.hereapi.com/v1/geocode?q=".$query
+            ."&apiKey=".$apikey);
+        $localidadPartida = json_decode($localidadPartida, true);
+        $latitudPartida = $localidadPartida['items'][0]['position']['lat'];
+        $longitudPartida = $localidadPartida['items'][0]['position']['lng'];
 
-        $sql = "insert into empleado(tipo_de_licencia, tipo_empleado, dni_usuario)
-                values('" . $tipoLicencia . "', " . $rolAsignar . ", " . $dniUsuario . ")";
+        $localidadDestino = json_decode($localidadDestino, true);
+        $latitudDestino = $localidadDestino['items'][0]['position']['lat'];
+        $longitudDestino = $localidadDestino['items'][0]['position']['lng'];
+        $kilometros = $this->calcularKilometrosConCoordenadas($latitudPartida,$longitudPartida,
+            $latitudDestino,$longitudDestino);
+        //die("Kilometros: ".$kilometros);
 
-        $this->bd->query($sql);
     }
 
 }

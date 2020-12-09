@@ -241,7 +241,6 @@ create table costeo(
 	fee decimal (10,2)
 );
 
-
 create table viaje(
 	id int primary key auto_increment,
 	eta datetime,
@@ -288,6 +287,20 @@ create table proforma(
 	constraint fk_cliente foreign key (cliente_cuit) references cliente(cuit),
 	constraint fk_viaje foreign key (viaje_id) references viaje(id),
 	constraint fk_proforma_costeo foreign key (costeo_id) references costeo(id)
+);
+
+create table precios(
+	id int primary key,
+	precio_kilometro decimal(10,2),
+	precio_combustible decimal(10,2),
+	id_tipo_acoplado int,
+	id_tipo_carga int,
+	id_tipo_vehiculo int,
+	id_imo_sub_class int,
+	constraint fk_precios_carga foreign key (id_tipo_carga) references tipo_carga(id_tipo_carga),
+	constraint fk_precios_acoplado foreign key (id_tipo_acoplado) references tipo_acoplado(id),
+	constraint fk_precios_vehiculo foreign key (id_tipo_vehiculo) references tipo_vehiculo(id),
+	constraint fk_precios_imo foreign key (id_imo_sub_class) references imo_sub_class(id)
 );
 
 insert into tipo_empleado(id_tipo_empleado, descripcion)
@@ -494,5 +507,6 @@ select 	ep.descripcion as 'TodosEstado',
 				join cliente cl on p.cliente_cuit = cl.cuit 
 					where p.estado = 1;
 				
+select * from precios;
 
                     

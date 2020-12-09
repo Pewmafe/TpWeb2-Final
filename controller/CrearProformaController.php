@@ -6,12 +6,14 @@ class CrearProformaController
     private $render;
     private $loginSession;
     private $crearProformaModel;
+    private $costeoModel;
 
-    public function __construct($render, $loginSession, $crearProformaModel)
+    public function __construct($render, $loginSession, $crearProformaModel, $costeoModel)
     {
         $this->render = $render;
         $this->loginSession = $loginSession;
         $this->crearProformaModel = $crearProformaModel;
+        $this->costeoModel = $costeoModel;
     }
 
     public function ejecutar()
@@ -19,6 +21,7 @@ class CrearProformaController
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         $data["titulo"] = "Proforma";
         if ($logeado) {
+            $this->calcularCosteo();
             $data["login"] = true;
 
             $tablaChoferes = $this->crearProformaModel->obtenerUsuariosChoferes();
@@ -190,6 +193,11 @@ class CrearProformaController
         $idImoClass = $_POST["idImoClass"];
         $listaImoClass = $this->crearProformaModel->obtenerImoSubClases($idImoClass);
         echo $listaImoClass;
+    }
+
+    public function calcularCosteo(){
+        $this->costeoModel->calcularDistanciaEnKilometros("Ramon Falcon 5939, villa luro, buenos aires",
+            "andalgala 1431, rafael castillo, buenos aires");
     }
 
 }

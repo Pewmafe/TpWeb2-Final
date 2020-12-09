@@ -18,7 +18,7 @@ include_once("controller/CrearProformaController.php");
 include_once("controller/QrChoferController.php");
 include_once("controller/PdfProformaController.php");
 
-
+include_once("model/CosteoModel.php");
 include_once("model/RegistroModel.php");
 include_once("model/LoginModel.php");
 include_once("model/AdministrarUsuariosModel.php");
@@ -143,7 +143,8 @@ class Configuracion
     {
         $proformaModel = $this->getCrearProformaModel();
         $loginSession = $this->getLoginSession();
-        return new CrearProformaController($this->getRender(), $loginSession, $proformaModel);
+        $costeoModel = $this->getCosteoModel();
+        return new CrearProformaController($this->getRender(), $loginSession, $proformaModel, $costeoModel);
     }
 
     public function getQrChoferController()
@@ -212,6 +213,11 @@ class Configuracion
     {
         $bd = $this->getDatabase();
         return new CrearProformaModel($bd);
+    }
+
+    private function getCosteoModel(){
+        $bd = $this->getDatabase();
+        return new CosteoModel($bd);
     }
 
 }
