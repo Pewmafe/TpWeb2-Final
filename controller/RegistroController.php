@@ -42,7 +42,7 @@ class RegistroController
         $nombreUsuarioExistente = $this->registroModel->verificarNombreUsuarioExistente($nombreUsuario);
         $dniExistente = $this->registroModel->verificarDNIUsuarioExistente($dni);
 
-        if (!($dniExistente) || !($nombreUsuarioExistente)) {
+        if (!($nombreUsuarioExistente) and !($dniExistente)) {
             $this->registroModel->registrarUsuario($nombreUsuario, $contrasenia, $dni, $nombre, $apellido, $fechaNacimiento);
         }
 
