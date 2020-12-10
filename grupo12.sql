@@ -398,14 +398,18 @@ INSERT INTO posicion (id, x, y) VALUES(9, -32.950360446533516, -60.6774113264950
 insert into localidad(id, descripcion, provincia_id, posicion)
 values
 (1, 'Bahia Blanca',1, 1),
-(2, 'El palomar',1,2),
+(2, 'El Palomar',1,2),
 (3, 'Pontevedra',1,3),
 (4, 'Amboy',2,4),
 (5, 'La Falda',2,5),
 (6, 'Pasco',2,6),
 (7, 'Pergamino',3,7),
 (8, 'Venado Tuerto',3,8),
-(9, 'Gran Rosario',3,9);
+(9, 'Gran Rosario',3,9),
+(10, 'Rafael Castillo',1, null),
+(11, 'Castelar',1, null),
+(12, 'Isidro Casanova',1, null),
+(11, 'Liniers',1, null);
 
 SELECT * from posicion;
 
