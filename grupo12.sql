@@ -409,7 +409,7 @@ values
 (10, 'Rafael Castillo',1, null),
 (11, 'Castelar',1, null),
 (12, 'Isidro Casanova',1, null),
-(11, 'Liniers',1, null);
+(13, 'Liniers',1, null);
 
 SELECT * from posicion;
 
