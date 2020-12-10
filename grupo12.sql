@@ -317,7 +317,8 @@ values(123, 'admin','202cb962ac59075b964b07152d234b70','ABC','CBA', 19940918, fa
 (126, 'cuarto','202cb962ac59075b964b07152d234b70','Armando','Rodriguez', 19981018, false),
 (127, 'quinto','202cb962ac59075b964b07152d234b70','Ramiro','Ledez', 19940923, false),
 (128, 'sexto','202cb962ac59075b964b07152d234b70','CBZ','CRT', 19920912, false),
-(129, 'pew','202cb962ac59075b964b07152d234b70','DFG','QWERTY', 19980908, false);
+(129, 'pew','202cb962ac59075b964b07152d234b70','DFG','QWERTY', 19980908, false),
+(130, 'septimo','202cb962ac59075b964b07152d234b70','DFE','QWER', 19980908, false);
 
 
 insert into empleado(id, tipo_de_licencia, tipo_empleado, dni_usuario)
@@ -325,7 +326,8 @@ values(1, 'camion', 1, 123),
 (2, 'auto', 3, 124),
 (3, 'tractor', 4, 127),
 (4, 'camion', 4, 128),
-(5, 'auto', 2, 125);
+(5, 'auto', 2, 125),
+(6, 'auto', 5, 130);
 
 insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
 values('aa123bb', 10, 100, 20000, 20150505, 'Iveco', 'Scavenger', 20180209, null, null);
