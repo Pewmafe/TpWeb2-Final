@@ -22,7 +22,7 @@
                 {{#patenteAcopladoError}}
                     <h5 class="text-danger">La patente del acoplado ya existe.</h5>
                 {{/patenteAcopladoError}}
-                <h3 class="text-dark mb-3"><i class="fas fa-truck"></i> Administrar Vehículos</h3>
+                <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-truck"></i> Administrar Vehículos</h3>
                 <a href="/agregarVehiculo" class="btn btn-outline-primary">Agregar Vehículo</a>
                 <div class="row">
                     {{#tablaCamiones}}
@@ -53,14 +53,14 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Clendario de Service</span>: {{calendario_service}}
                                 </p>
-                                <a class="btn btn-outline-primary mt-2 botonModificarCamion" data-toggle="modal" data-target="#modificarCamionModal" data-patente="{{patente}}" data-nrochasis="{{nro_chasis}}" data-nromotor="{{nro_motor}}" data-kilometraje="{{kilometraje}}" data-fabricacion="{{fabricacion}}" data-marca="{{marca}}" data-modelo="{{modelo}}" data-calendarioservice="{{calendario_service}}" type="button">Modificar Camion</a>
+                                <a class="btn btn-outline-success mt-2 botonModificarCamion" data-toggle="modal" data-target="#modificarCamionModal" data-patente="{{patente}}" data-nrochasis="{{nro_chasis}}" data-nromotor="{{nro_motor}}" data-kilometraje="{{kilometraje}}" data-fabricacion="{{fabricacion}}" data-marca="{{marca}}" data-modelo="{{modelo}}" data-calendarioservice="{{calendario_service}}" type="button">Modificar Camion</a>
                                 <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
                             </div>
                         </div>
                     {{/tablaCamiones}}
                 </div>
 
-                <h3 class="text-dark mb-3"><i class="fas fa-truck-loading"></i> Administrar Acoplados</h3>
+                <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-truck-loading"></i> Administrar Acoplados</h3>
                 <a href="/agregarAcoplado" class="btn btn-outline-primary">Agregar Acoplado</a>
                 <div class="row">
                     {{#tablaAcoplados}}
@@ -76,7 +76,7 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Tipo</span>: {{descripcion}}
                                 </p>
-                                <a href="#" class="mt-2 btn btn-outline-primary botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal" data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoacoplado="{{descripcion}}" type="button">Modificar Acoplado</a>
+                                <a href="#" class="mt-2 btn btn-outline-success botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal" data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoacoplado="{{descripcion}}" type="button">Modificar Acoplado</a>
                                 <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
                             </div>
                         </div>
