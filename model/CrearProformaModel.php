@@ -231,5 +231,36 @@ class CrearProformaModel
         return $tipoAcoplado["tipo"];
     }
 
+    public function devolverNombreTipoCargaPorIdCarga($idTipoCarga){
+        $sql = "SELECT tp.descripcion 
+                FROM tipo_carga tp
+                WHERE tp.id_tipo_carga =".$idTipoCarga;
+
+        $resultadoQuery = $this->bd->query($sql);
+        $nombreTipoCarga = $resultadoQuery->fetch_assoc();
+        return $nombreTipoCarga["descripcion"];
+    }
+
+    public function devolverReeferPorReeferId($reeferId){
+        $sql = "SELECT r.temperatura 
+                FROM reefer r
+                WHERE r.id_reefer =".$reeferId;
+
+        $resultadoQuery = $this->bd->query($sql);
+        $reeferTemperatura = $resultadoQuery->fetch_assoc();
+        return $reeferTemperatura["temperatura"];
+    }
+
+    public function devolverHazardPorHazardId($imoSubClassId){
+        $sql = "SELECT isc.descripcion as imo_sub_class, ic.descipcion as imo_class
+                FROM imo_sub_class isc JOIN imo_class ic 
+                                        ON ic.id = isc.imo_class_id
+                WHERE isc.id =".$imoSubClassId;
+
+        $resultadoQuery = $this->bd->query($sql);
+        $hazard = $resultadoQuery->fetch_assoc();
+        $datosHazard = $hazard["imo_class"] . " " . $hazard["imo_sub_class"];
+        return $datosHazard["temperatura"];
+    }
 
 }

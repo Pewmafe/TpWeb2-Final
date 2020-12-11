@@ -88,6 +88,9 @@ class CrearProformaController
             $choferID = isset($_POST["choferRadios"]) ? $_POST["choferRadios"] : false;
 
             $total = null;
+            $cantidadKilometros=null;
+            $direccionDestino=null;
+            $direccionPartida=null;
             $camposVacios = false;
             if ($clienteCuit != false and $cargaTipo != false and $cargaPeso != false and $origenLocalidad != false and $origenCalle != false and
                 $origenAltura != false and $destinoLocalidad != false and $destinoCalle != false and $destinoAltura != false and
@@ -125,12 +128,27 @@ class CrearProformaController
 
                     $tipoAcoplado= $this->crearProformaModel->obtenerTipoAcopladoPorPatente($acopladoPatente);
                     $total = $this->calcularCosteo($direccionDestino, $direccionPartida,$hazardId, $idCarga, $tipoAcoplado, $reeferId);
+                    $cantidadKilometros=calcularDistanciaEnKilometros($direccionDestino, $direccionPartida);
                 }
             } else {
                 $camposVacios = true;
             }
 
-            $datos = array('camposVacios' => $camposVacios, 'clienteCuitExistente' => $clienteCuitExistente, 'total'=>$total);
+            $nombreTipoCarga= $this->crearProformaModel->devolverNombreTipoCargaPorIdCarga($cargaTipo);
+            $datosHazard=null;
+            if($imoSubClass!=null){
+                $datosHazard= $this->crearProformaModel->devolverHazardPorHazardId($imoSubClass);
+            }
+            $datosReefer=null;
+            if($reeferId!=null){
+                $datosReefer= $this->crearProformaModel->devolverReeferPorReeferId($reeferId);
+            }
+
+            $datos = array('camposVacios' => $camposVacios, 'clienteCuitExistente' => $clienteCuitExistente, 'total'=>$total,
+                'cantidadKilometros'=>$cantidadKilometros, 'clienteCuit'=>$clienteCuit, 'hazardId'=>$hazardId, 'reeferId'=>$reeferId,
+                'direccionDestino'=>$direccionDestino, 'direccionPartida'=>$direccionPartida, 'fechaSalida'=>$fechaSalida, 'fechaLlegada'=>$fechaLlegada,
+                'vehiculoPatente'=>$vehiculoPatente, 'acopladoPatente'=>$acopladoPatente, 'cargaPeso'=>$cargaPeso, 'nombreTipoCarga'=>$nombreTipoCarga,
+                'datosHazard'=>$datosHazard, 'datosReefer'=>$datosReefer);
             echo json_encode($datos);
             exit();
         }

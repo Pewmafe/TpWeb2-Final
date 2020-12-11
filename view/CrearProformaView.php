@@ -364,7 +364,22 @@
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                             <div class="card-body">
-                                <h4>Total:<span class="text-success" id="crearProformarTotal">$0</span></h4>
+                                <h3 class="text-center">Detalles de proforma</h3>
+                                <h5>Cliente CUIT:<span id="detalleProformaCliente"></span></h5>
+                                <h5>Tipo carga:<span id="detalleProformaTipoCarga"></span></h5>
+                                <h5>Peso carga:<span id="detalleProformaPesoCarga"></span></h5>
+                                <h5>Hazard:<span id="detalleProformaHazard"></span></h5>
+                                <h5>Datos hazard:<span id="detalleProformaDatosHazard"></span></h5>
+                                <h5>Reefer:<span id="detalleProformaReefer"></span></h5>
+                                <h5>Datos reefer:<span id="detalleProformaDatosReefer"></span></h5>
+                                <h5>Viaje origen:<span id="detalleProformaViajeOrigen"></span></h5>
+                                <h5>Viaje destino:<span id="detalleProformaViajeDestino"></span></h5>
+                                <h5>Cantidad kilometros:<span id="detalleProformaCantidadKM"></span></h5>
+                                <h5>Fecha salida:<span id="detalleProformaFechaSalida"></span></h5>
+                                <h5>Fecha llegada:<span id="detalleProformaFechaLlegada"></span></h5>
+                                <h5>patente vehiculo asignado:<span id="detalleProformaVehiculoAsignado"></span></h5>
+                                <h5>patente acoplado asignado:<span id="detalleProformaAcopladoAsignado"></span></h5>
+                                <h4>Total:<span class="text-success" id="detalleProformaTotal">$0</span></h4>
                             </div>
                         </div>
                     </div>
