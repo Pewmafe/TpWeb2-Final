@@ -134,7 +134,11 @@ class CrearProformaController
                 $camposVacios = true;
             }
 
-            $nombreTipoCarga= $this->crearProformaModel->devolverNombreTipoCargaPorIdCarga($cargaTipo);
+            $nombreTipoCarga=null;
+            if($cargaTipo!=false){
+                $nombreTipoCarga= $this->crearProformaModel->devolverNombreTipoCargaPorIdCarga($cargaTipo);
+            }
+
             $datosHazard=null;
             if($imoSubClass!=null){
                 $datosHazard= $this->crearProformaModel->devolverHazardPorHazardId($imoSubClass);
