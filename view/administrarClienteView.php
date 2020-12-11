@@ -13,7 +13,7 @@
             {{#cuitClienteExistente}}
             <h5 class="text-danger">CUIT cliente ya existe.</h5>
             {{/cuitClienteExistente}}
-            <h3 class="text-dark mb-3"><i class="fas fa-user-tag"></i> Administrar clientes</h3>
+            <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-user-tag"></i> Administrar clientes</h3>
             <a href="/crearProforma" class="btn btn-outline-primary">Registar cliente</a>
             <div class="row">
                 {{#tablaClientes}}
@@ -145,8 +145,8 @@
                                 <input type="text" class="form-control inputContacto2" id="contacto2" name="contacto2" required>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-                                <button type="submit" class="btn btn-primary" id="botonModificarCliente" name="botonModificarCliente">Modificar</button>
+                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
+                                <button type="submit" class="btn btn-outline-primary" id="botonModificarCliente" name="botonModificarCliente">Modificar</button>
                             </div>
                         </form>
                     </div>
