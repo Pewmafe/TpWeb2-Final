@@ -11,7 +11,9 @@ class AdministrarClienteModel
     }
 
     public function obtenerClientes(){
-        $sql = "SELECT  * from cliente";
+        $sql = "SELECT  * 
+                from cliente c JOIN direccion d 
+                                ON d.id = c.direccion";
         $resultQuery = $this->bd->query($sql);
 
         while ($fila = $resultQuery->fetch_assoc()) {

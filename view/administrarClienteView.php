@@ -14,6 +14,7 @@
             <h5 class="text-danger">CUIT cliente ya existe.</h5>
             {{/cuitClienteExistente}}
             <h3 class="text-dark mb-3">Administrar clientes</h3>
+            <a href="/crearProforma" class="btn btn-primary">Registar cliente</a>
             <div class="row">
                 {{#tablaClientes}}
                 <div class="col-12 col-md-6 col-lg-4 p-2">
@@ -26,10 +27,7 @@
                             <span class="h5 font-weight-bold">Apellido</span>: {{apellido}}
                         </p>
                         <p class="text-light">
-                            <span class="h5 font-weight-bold">CUIT</span>: {{dni}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Fecha nacimiento</span>: {{fecha_nacimiento}}
+                            <span class="h5 font-weight-bold">CUIT</span>: {{cuit}}
                         </p>
                         <p class="text-light">
                             <span class="h5 font-weight-bold">Denominacion</span>: {{denominacion}}
@@ -41,7 +39,7 @@
                             <span class="h5 font-weight-bold">Telefono</span>: {{telefono}}
                         </p>
                         <p class="text-light">
-                            <span class="h5 font-weight-bold">Direccion</span>: {{direccion}}
+                            <span class="h5 font-weight-bold">Direccion</span>: {{calle}} {{altura}}
                         </p>
                         {{#contacto1}}
                         <p class="text-light">
@@ -63,8 +61,10 @@
                             <span class="h5 font-weight-bold">Contacto2</span>: No disponible
                         </p>
                         {{/contacto2}}
-                        <a class="mt-2 btn btn-success botonModificarUsuario" data-toggle="modal" data-target="#modificarUsuarioModal" <!--data-nombrecliente="{{nombre}}" data-nombre="{{nombre}}" data-apellido="{{apellido}}" data-dni="{{dni}}" data-fechanaci="{{fecha_nacimiento}}" type="button">Modificar</a>
-                        <a type="button" class="btn btn-danger mt-2 botonDarDeBajaUsuario" data-toggle="modal" data-target="#darDeBajaUsuarioModal" data-id="'{{dni}}'"-->>Dar de baja usuario</a>
+                        <a class="mt-2 btn btn-success botonModificarCliente" data-toggle="modal" data-target="#modificarClienteModal" data-nombre="{{nombre}}" data-apellido="{{apellido}}" data-cuit="{{cuit}}"
+                           data-denominacion="{{denominacion}}" data-email="{{email}}" data-telefono="{{telefono}}" data-calle="{{calle}}" data-altura="{{altura}}"
+                           data-contacto1="{{contacto1}}" data-contacto2="{{contacto2}}" type="button">Modificar</a>
+                        <a type="button" class="btn btn-danger mt-2 botonDarDeBajaCliente" data-toggle="modal" data-target="#darDeBajaClienteModal" data-cuit="'{{cuit}}'">Dar de baja cliente</a>
                     </div>
                 </div>
                 {{/tablaClientes}}
@@ -72,42 +72,38 @@
         </article>
     </section>
     <section>
-        <!--<div class="modal fade" id="darDeBajaUsuarioModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="darDeBajaClienteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Dar de baja usuario</h5>
+                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Dar de baja cliente</h5>
                         <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body text-dark">
-                        ¿Seguro que desea dar de baja al usuario?
+                        ¿Seguro que desea dar de baja al cliente?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-                        <form method="post" action="administrarUsuarios/darDeBajaUsuario">
-                            <button class="btn btn-danger" id="botonDarDeBajaUsuarioModal" name="botonDarDeBajaUsuarioModal">Baja</button>
+                        <form method="post" action="administrarCliente/darDeBajaCliente">
+                            <button class="btn btn-danger" id="botonDarDeBajaClienteModal" name="botonDarDeBajaClienteModal">Baja</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modificarUsuarioModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="modificarClienteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Modificar usuario</h5>
+                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Modificar cliente</h5>
                         <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body container">
-                        <form class="formularioModificarUsuario" method="POST" action="/administrarUsuarios/modificarUsuario">
-                            <div class="form-group">
-                                <label class="text-dark" for="nombreUsuario">Nombre de usuario</label>
-                                <input type="text" class="form-control inputNombreUsuario" id="nombreUsuario" name="nombreUsuario" required>
-                            </div>
+                        <form class="formularioModificarCliente" method="POST" action="/administrarCliente/modificarCliente">
                             <div class="form-group">
                                 <label class="text-dark" for="nombre">Nombre</label>
                                 <input type="text" class="form-control inputNombre" id="nombre" name="nombre" required>
@@ -117,22 +113,46 @@
                                 <input type="text" class="form-control inputApellido" id="apellido" name="apellido" required>
                             </div>
                             <div class="form-group">
-                                <label class="text-dark" for="dni">DNI</label>
-                                <input type="text" class="form-control inputDni" id="dni" name="dni" required>
+                                <label class="text-dark" for="dni">CUIT</label>
+                                <input type="number" class="form-control inputCuit" id="cuit" name="cuit" required>
                             </div>
                             <div class="form-group">
-                                <label class="text-dark" for="fechaNacimiento">Fecha nacimiento</label>
-                                <input type="date" class="form-control inputFechaNacimiento" id="fechaNacimiento" name="fechaNacimiento" required>
+                                <label class="text-dark" for="denominacion">Denominacion</label>
+                                <input type="text" class="form-control inputDenomiacion" id="denominacion" name="denominacion" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-dark" for="email">Email</label>
+                                <input type="text" class="form-control inputEmail" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-dark" for="telefono">Telefono</label>
+                                <input type="number" class="form-control inputTelefono" id="telefono" name="telefono" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-dark" for="calle">Calle</label>
+                                <input type="text" class="form-control inputCalle" id="calle" name="calle" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-dark" for="altura">Altura</label>
+                                <input type="number" class="form-control inputAltura" id="altura" name="altura" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-dark" for="contacto1">Contacto1</label>
+                                <input type="text" class="form-control inputContacto1" id="contacto1" name="contacto1" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-dark" for="contacto2">Contacto2</label>
+                                <input type="text" class="form-control inputContacto2" id="contacto2" name="contacto2" required>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-                                <button type="submit" class="btn btn-primary" id="botonModificar" name="botonModificar">Modificar</button>
+                                <button type="submit" class="btn btn-primary" id="botonModificarCliente" name="botonModificarCliente">Modificar</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>-->
+        </div>
     </section>
 </main>
 {{/usuarioSupervisor}}

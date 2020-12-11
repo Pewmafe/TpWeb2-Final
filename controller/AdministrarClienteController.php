@@ -20,8 +20,10 @@ class AdministrarClienteController
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         $data["titulo"] = "Admin Clientes";
         if ($logeado) {
+            $data["login"] = true;
             $clientes = $this->administrarClienteModel->obtenerClientes();
             $data['tablaClientes'] =$clientes;
+
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
             echo $this->render->render("view/administrarClienteView.php", $dataMerge);

@@ -22,6 +22,12 @@ $(document).ready(function() {
         $(".modal-footer #botonDarDeBajaAcopladoModal").val(primaryKey);
     });
 
+    /************************BAJA CLIENTES**********************************/
+    $(document).on("click", ".botonDarDeBajaCliente", function() {
+        var primaryKey = $(this).data('cuit');
+        $(".modal-footer #botonDarDeBajaClienteModal").val(primaryKey);
+    });
+
     /************************MODIFICACION USUARIOS**********************************/
     $(document).on("click", ".botonModificarUsuario", function() {
         var dni = $(this).data('dni');
@@ -97,6 +103,45 @@ $(document).ready(function() {
         $(".formularioModificarCamion .inputMarca").val(marca);
         $(".formularioModificarCamion .inputModelo").val(modelo);
         $(".formularioModificarCamion .inputCalendarioService").val(calendarioService);
+    });
+
+    $(document).on("click", ".botonModificarAcoplado", function() {
+        var patente = $(this).data('patente');
+        var chasis = $(this).data('chasis');
+        var tipoAcoplado = $(this).data('tipoAcoplado');
+
+
+        $(".formularioModificarAcoplado .modal-footer #botonModificarAcoplado").val(patente);
+        $(".formularioModificarAcoplado .inputChasis").val(chasis);
+        $(".formularioModificarAcoplado .inputTipoAcoplado").val(tipoAcoplado);
+        $(".formularioModificarAcoplado .inputPatente").val(patente);
+
+    });
+
+    /************************MODIFICACION CLIENTE**********************************/
+    $(document).on("click", ".botonModificarCliente", function() {
+        var nombre = $(this).data('nombre');
+        var apellido = $(this).data('apellido');
+        var cuit = $(this).data('cuit');
+        var denominacion = $(this).data('denominacion');
+        var email = $(this).data('email');
+        var telefono = $(this).data('telefono');
+        var calle = $(this).data('calle');
+        var altura = $(this).data('altura');
+        var contacto1 = $(this).data('contacto1');
+        var contacto2 = $(this).data('contacto2');
+
+        $(".formularioModificarCliente .modal-footer #botonModificarCliente").val(cuit);
+        $(".formularioModificarCliente .inputNombre").val(nombre);
+        $(".formularioModificarCliente .inputApellido").val(apellido);
+        $(".formularioModificarCliente .inputCuit").val(cuit);
+        $(".formularioModificarCliente .inputDenomiacion").val(denominacion);
+        $(".formularioModificarCliente .inputEmail").val(email);
+        $(".formularioModificarCliente .inputTelefono").val(telefono);
+        $(".formularioModificarCliente .inputCalle").val(calle);
+        $(".formularioModificarCliente .inputAltura").val(altura);
+        $(".formularioModificarCliente .inputContacto1").val(contacto1);
+        $(".formularioModificarCliente .inputContacto2").val(contacto2);
     });
 
     $(document).on("click", ".botonModificarAcoplado", function() {
