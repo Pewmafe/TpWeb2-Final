@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <button type="submit" class="btn btn-primary btn-block mb-2">Registrar cliente</button>
+                                    <button type="submit" class="btn btn-outline-primary btn-block mb-2">Registrar cliente</button>
                                     <h5 class="text-danger" id="clienteRegistroError"></h5>
                                     <h5 class="text-success" id="clienteRegistroExitoso"></h5>
                                 </div>
@@ -109,13 +109,13 @@
                         <div class="card-header text-center bg-dark" id="headingTwo">
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed text-light" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    CREAR PROFORMAR
+                                    CREAR PROFORMA
                                 </button>
                             </h5>
                         </div>
                         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
                             <h3 class="text-center">Crear proforma</h3>
-                            <form class="form-horizontal row container" id="crearProformaFormulario" role="form" action="/crearProforma/crearProforma" method="post">
+                            <form class="form-horizontal row container m-auto" id="crearProformaFormulario" role="form" action="/crearProforma/crearProforma" method="post">
                                 <div class="col-12">
                                     <h4 class="text-white">Cliente</h4>
                                 </div>
@@ -346,7 +346,7 @@
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <button type="submit" class="btn btn-primary btn-block">Crear proforma</button>
+                                    <button type="submit" class="btn btn-outline-primary btn-block">Crear proforma</button>
                                     <h5 class="text-danger" id="errorClienteCuit"></h5>
                                     <h5 class="text-danger" id="errorCamposVacios"></h5>
                                     <h5 class="text-success" id="crearProformaExito"></h5>

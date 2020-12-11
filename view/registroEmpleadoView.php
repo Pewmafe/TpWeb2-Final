@@ -49,7 +49,7 @@
                             <span class="help-block alert alert-info">*Campos requeridos</span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                    <button type="submit" class="btn btn-outline-primary btn-block">Registrar</button>
                 </form>
             </article>
 
