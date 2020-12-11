@@ -221,6 +221,7 @@ create table cliente(
 	denominacion varchar(100),
 	contacto1 varchar(100),
 	contacto2 varchar(100),
+	eliminado BOOLEAN,
 	constraint fk_cliente_direccion
 	foreign key (direccion)
 	references direccion(id)
@@ -426,8 +427,9 @@ values (1,"Ventura Bustos", 1223,1),
 (2,"falsa",1212,1),
 (3,"verdadera",2223,8);
 
-insert into cliente (cuit, nombre, apellido,telefono, direccion, denominacion,email)
-values (123,"Roberto", "Mangera", 12345678, 1, "Coca Cola","cocacola@email.com");
+insert into cliente (cuit, nombre, apellido,telefono, direccion, denominacion,email, eliminado)
+values (123,"Roberto", "Mangera", 12345678, 1, "Coca Cola","cocacola@email.com", false),
+(234,"Carlos", "Rodracio", 23456789, 2, "Pepsi","pepsi@email.com", false);
 
 insert into estado_proforma 
 values (1,'ACTIVO'),

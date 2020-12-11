@@ -10,10 +10,11 @@ class AdministrarClienteModel
         $this->bd = $bd;
     }
 
-    public function obtenerClientes(){
+    public function obtenerClientesNoDadosDeBaja(){
         $sql = "SELECT  * 
                 from cliente c JOIN direccion d 
-                                ON d.id = c.direccion";
+                                ON d.id = c.direccion
+                WHERE c.eliminado = 0";
         $resultQuery = $this->bd->query($sql);
 
         while ($fila = $resultQuery->fetch_assoc()) {
@@ -50,6 +51,11 @@ class AdministrarClienteModel
 
     public function borrarCliente($cuit){
         $sql = "DELETE FROM cliente WHERE cuit=".$cuit;
+        $this->bd->query($sql);
+    }
+
+    public function darDeBajaCliente($cuit){
+        $sql = "UPDATE cliente SET eliminado = '1' WHERE cliente.cuit = ".$cuit;
         $this->bd->query($sql);
     }
 

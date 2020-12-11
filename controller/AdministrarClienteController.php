@@ -21,8 +21,10 @@ class AdministrarClienteController
         $data["titulo"] = "Admin Clientes";
         if ($logeado) {
             $data["login"] = true;
-            $clientes = $this->administrarClienteModel->obtenerClientes();
+            $clientes = $this->administrarClienteModel->obtenerClientesNoDadosDeBaja();
             $data['tablaClientes'] =$clientes;
+
+            $data["bajaCliente"] = isset($_GET["bajaCliente"]) ? $_GET["bajaCliente"] : false;
 
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
@@ -33,7 +35,15 @@ class AdministrarClienteController
 
     }
 
-    public function guardarCliente(){
+    public function darDeBajaCliente(){
+        $cuit = $_POST["botonDarDeBajaClienteModal"];
+        $this->administrarClienteModel->darDeBajaCliente($cuit);
+
+        header("Location: /administrarCliente?bajaCliente=true");
+        exit();
+    }
+
+    public function modificarCliente(){
 
     }
 
