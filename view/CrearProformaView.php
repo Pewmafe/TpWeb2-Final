@@ -77,7 +77,7 @@
                                 <div class="form-group col-12 col-md-6">
                                     <label for="clienteEmail" class="col-12 control-label"><span class="text-info">*</span>Email</label>
                                     <div class="col-12">
-                                        <input type="text" id="clienteEmail" name="clienteEmail" placeholder="email@email.com" class="form-control">
+                                        <input type="email" id="clienteEmail" name="clienteEmail" placeholder="email@email.com" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group col-12 col-md-6">
@@ -117,7 +117,7 @@
                             <h3 class="text-center">Crear proforma</h3>
                             <form class="form-horizontal row container m-auto" id="crearProformaFormulario" role="form" action="/crearProforma/crearProforma" method="post">
                                 <div class="col-12">
-                                    <h4 class="text-white">Cliente</h4>
+                                    <h4 class="">Cliente</h4>
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="clienteRegistradoCuit" class="col-12 control-label"><span class="text-info">*</span>Cuit</label>
