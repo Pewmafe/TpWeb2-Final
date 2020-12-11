@@ -1,5 +1,5 @@
 {{> header}}
-{{#usuarioAdmin}}
+{{#usuarioSupervisor}}
     <main>
         <section class="row justify-content-center m-3 ancho">
             <article class=" justify-content-center mt-4 ancho2">
@@ -22,8 +22,8 @@
                 {{#patenteAcopladoError}}
                     <h5 class="text-danger">La patente del acoplado ya existe.</h5>
                 {{/patenteAcopladoError}}
-                <h3 class="text-dark mb-3">Administrar Vehículos</h3>
-                <a href="/agregarVehiculo" class="btn btn-primary">Agregar Vehículo</a>
+                <h3 class="text-dark mb-3"><i class="fas fa-truck"></i> Administrar Vehículos</h3>
+                <a href="/agregarVehiculo" class="btn btn-outline-primary">Agregar Vehículo</a>
                 <div class="row">
                     {{#tablaCamiones}}
                         <div class="col-12 col-md-6 col-lg-4 p-2">
@@ -53,15 +53,15 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Clendario de Service</span>: {{calendario_service}}
                                 </p>
-                                <a class="btn btn-primary mt-2 botonModificarCamion" data-toggle="modal" data-target="#modificarCamionModal" data-patente="{{patente}}" data-nrochasis="{{nro_chasis}}" data-nromotor="{{nro_motor}}" data-kilometraje="{{kilometraje}}" data-fabricacion="{{fabricacion}}" data-marca="{{marca}}" data-modelo="{{modelo}}" data-calendarioservice="{{calendario_service}}" type="button">Modificar Camion</a>
-                                <a type="button" class="btn btn-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
+                                <a class="btn btn-outline-primary mt-2 botonModificarCamion" data-toggle="modal" data-target="#modificarCamionModal" data-patente="{{patente}}" data-nrochasis="{{nro_chasis}}" data-nromotor="{{nro_motor}}" data-kilometraje="{{kilometraje}}" data-fabricacion="{{fabricacion}}" data-marca="{{marca}}" data-modelo="{{modelo}}" data-calendarioservice="{{calendario_service}}" type="button">Modificar Camion</a>
+                                <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
                             </div>
                         </div>
                     {{/tablaCamiones}}
                 </div>
 
-                <h3 class="text-dark mb-3">Administrar Acoplados</h3>
-                <a href="/agregarAcoplado" class="btn btn-primary">Agregar Acoplado</a>
+                <h3 class="text-dark mb-3"><i class="fas fa-truck-loading"></i> Administrar Acoplados</h3>
+                <a href="/agregarAcoplado" class="btn btn-outline-primary">Agregar Acoplado</a>
                 <div class="row">
                     {{#tablaAcoplados}}
                         <div class="col-12 col-md-6 col-lg-4 p-2">
@@ -76,8 +76,8 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Tipo</span>: {{descripcion}}
                                 </p>
-                                <a href="#" class="mt-2 btn btn-primary botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal" data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoacoplado="{{descripcion}}" type="button">Modificar Acoplado</a>
-                                <a type="button" class="btn btn-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
+                                <a href="#" class="mt-2 btn btn-outline-primary botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal" data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoacoplado="{{descripcion}}" type="button">Modificar Acoplado</a>
+                                <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
                             </div>
                         </div>
                     {{/tablaAcoplados}}
@@ -100,9 +100,9 @@
                             ¿Seguro que desea dar de baja el camion?
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
                             <form method="post" action="/administrarEquipos/eliminarVehiculo">
-                                <button class="btn btn-danger" id="botonDarDeBajaCamionModal" name="botonDarDeBajaCamionModal">Baja</button>
+                                <button class="btn btn-outline-danger" id="botonDarDeBajaCamionModal" name="botonDarDeBajaCamionModal">Baja</button>
                             </form>
                         </div>
                     </div>
@@ -121,9 +121,9 @@
                             ¿Seguro que desea dar de baja el acoplado?
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
                             <form method="post" action="/administrarEquipos/eliminarAcoplado">
-                                <button class="btn btn-danger" id="botonDarDeBajaAcopladoModal" name="botonDarDeBajaAcopladoModal">Baja</button>
+                                <button class="btn btn-outline-danger" id="botonDarDeBajaAcopladoModal" name="botonDarDeBajaAcopladoModal">Baja</button>
                             </form>
                         </div>
                     </div>
@@ -173,8 +173,8 @@
                                     <input type="date" class="form-control inputCalendarioService" id="calendarioService" name="calendarioService" required>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-                                    <button type="submit" class="btn btn-primary" id="botonModificarCamion" name="botonModificarCamion">Modificar</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
+                                    <button type="submit" class="btn btn-outline-primary" id="botonModificarCamion" name="botonModificarCamion">Modificar</button>
                                 </div>
                             </form>
                         </div>
@@ -212,8 +212,8 @@
                                     </select>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-                                    <button type="submit" class="btn btn-primary" id="botonModificarAcoplado" name="botonModificarAcoplado">Modificar</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
+                                    <button type="submit" class="btn btn-outline-primary" id="botonModificarAcoplado" name="botonModificarAcoplado">Modificar</button>
                                 </div>
                             </form>
                         </div>
@@ -222,8 +222,8 @@
             </div>
         </section>
     </main>
-{{/usuarioAdmin}}
-{{^usuarioAdmin}}
+{{/usuarioSupervisor}}
+{{^usuarioSupervisor}}
     {{> error404}}
-{{/usuarioAdmin}}
+{{/usuarioSupervisor}}
 {{> footer}}

@@ -32,30 +32,37 @@ class ChoferController
             $data["tablaProforma"] = $tablaProforma;
             $data["dirQR"] = $this->generarQR();
             $data["idChofer"] = $_SESSION["idEmpleado"];
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+
+
             if (isset($_SESSION["idEmpleado"])) {
 
-                $tablaDeViajesActivo = ($this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]) : null;
-                $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
-
-                $tablaDeViajesPendientes = ($this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"]) : null;
-                $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
-
-                $tablaDeViajesFinalizados = ($this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]) : null;
-                $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
+                if (isset($data2["usuarioSupervisor"]) ? $data2["usuarioSupervisor"] : false) {
+                    $tablaDeViajesActivo = ($this->ChoferModel->obtenerViajePorEstado(activo)) != null ? $this->ChoferModel->obtenerViajePorEstado(activo) : null;
+                    $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
 
 
-                $tablaDeTodosLosViajesActivos = ($this->ChoferModel->obtenerViajePorEstado(activo)) != null ? $this->ChoferModel->obtenerViajePorEstado(activo) : null;
-                $data["tablaDeTodosLosViajesActivos"] = $tablaDeTodosLosViajesActivos;
+                    $tablaDeViajesPendientes = ($this->ChoferModel->obtenerViajePorEstado(pendiente)) != null ? $this->ChoferModel->obtenerViajePorEstado(pendiente) : null;
+                    $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
 
+                    $tablaDeViajesFinalizados = ($this->ChoferModel->obtenerViajePorEstado(finalizado)) != null ? $this->ChoferModel->obtenerViajePorEstado(finalizado) : null;
+                    $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
 
-                $tablaDeTodosLosViajesPendientes = ($this->ChoferModel->obtenerViajePorEstado(pendiente)) != null ? $this->ChoferModel->obtenerViajePorEstado(pendiente) : null;
-                $data["tablaDeTodosLosViajesPendientes"] = $tablaDeTodosLosViajesPendientes;
+                } else {
 
-                $tablaDeTodosLosViajesActivos = ($this->ChoferModel->obtenerViajePorEstado(finalizado)) != null ? $this->ChoferModel->obtenerViajePorEstado(finalizado) : null;
-                $data["tablaDeTodosLosViajesActivos"] = $tablaDeTodosLosViajesActivos;
+                    $tablaDeViajesActivo = ($this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]) : null;
+                    $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
+
+                    $tablaDeViajesPendientes = ($this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"]) : null;
+                    $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
+
+                    $tablaDeViajesFinalizados = ($this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]) : null;
+                    $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
+
+                }
             }
 
-            $data2 = $this->loginSession->verificarQueUsuarioRol();
+
             $dataMerge = array_merge($data, $data2);
             echo $this->render->render("view/choferView.php", $dataMerge);
             exit();

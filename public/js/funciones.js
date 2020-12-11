@@ -248,7 +248,9 @@ $(document).ready(function() {
         var form_data = $(this).serialize();
 
         $.post(post_url, form_data, function(errorRegistro) {
+            console.log(errorRegistro);
             var json_data = jQuery.parseJSON(errorRegistro);
+
             $("#nombreUsuarioError").html("");
             $("#dniUsuarioError").html("");
             $("#registroExitoso").html("");
