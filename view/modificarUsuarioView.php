@@ -2,7 +2,8 @@
 {{#login}}
     <main>
         <section>
-            <h3 class="text-center p-2">Bienvenido a la Configuraci&oacute;n</h3>
+            <h3 class="text-center p-2">Bienvenido {{nombreDelUsuario}} {{apellidoUsuario}}</h3>
+            <h6 class="text-center">Rol: {{rol}}</h6>
         </section>
         <section class="ancho p-3 row">
             <article class="col-12 col-md-3">

@@ -29,6 +29,7 @@ class ModificarUsuarioController
             $data["apellidoUsuario"] = $_SESSION["apellido"];
             $data["licenciaEmpleado"] = $_SESSION["licenciaEmpleado"];
             $data["nacimientoUsuario"] = $_SESSION["fecha_nacimiento"];
+            $data["rol"]=isset($_SESSION["rol"])? $_SESSION["rol"] : "Sin Rol";
 
 
             $data["nombreExistente"] = isset($_GET["nombreExistente"]) ? $_GET["nombreExistente"] : false;

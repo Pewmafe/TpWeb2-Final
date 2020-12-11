@@ -16,7 +16,7 @@ class LoginModel
         $contraseniaEncriptada = md5($contrasenia);
         $table = $this->bd->devolverDatos("usuario");
         for ($i = 0; $i < sizeof($table); $i++) {
-            $usuarioEmpleado=$this->verificarSiUsuarioEsEmpleado($table[$i]["dni"]);
+            $usuarioEmpleado = $this->verificarSiUsuarioEsEmpleado($table[$i]["dni"]);
             if ($table[$i]["nombreUsuario"] == $nombre && $table[$i]["contrasenia"] == $contraseniaEncriptada
                 && $usuarioEmpleado) {
                 if ($table[$i]["eliminado"] == false) {
@@ -67,49 +67,17 @@ class LoginModel
         return $rolString;
     }
 
-    public function verificarSiUsuarioEsEmpleado($dni){
-        $resultado= false;
+    public function verificarSiUsuarioEsEmpleado($dni)
+    {
+        $resultado = false;
         $table = $this->bd->devolverDatos("empleado");
         for ($i = 0; $i < sizeof($table); $i++) {
             if ($table[$i]["dni_usuario"] == $dni) {
-                $resultado= true;
+                $resultado = true;
             }
         }
         return $resultado;
     }
-
-    /*public function obtenerDniEmpleado($nombreUsuario)
-    {
-        $sql = "SELECT dni FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
-        $resultado = $this->bd->query($sql);
-        $arrayRol = $resultado->fetch_assoc();
-        $result = isset($arrayRol["dni"]) ? $arrayRol["dni"] : null;
-
-        return $result;
-    }
-
-    public function obtenerNombreEmpleado($nombreUsuario)
-    {
-        $sql = "SELECT nombre FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
-        $resultado = $this->bd->query($sql);
-        $arrayRol = $resultado->fetch_assoc();
-        $result = isset($arrayRol["nombre"]) ? $arrayRol["nombre"] : null;
-
-        return $result;
-
-    }
-
-    public function obtenerApellidoEmpleado($nombreUsuario)
-    {
-        $sql = "SELECT apellido FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
-        $resultado = $this->bd->query($sql);
-        $arrayRol = $resultado->fetch_assoc();
-        $result = isset($arrayRol["apellido"]) ? $arrayRol["apellido"] : null;
-
-        return $result;
-
-    }*/
-
 
     public function obtenerLicenciaEmpleado($nombreUsuario)
 
@@ -134,16 +102,4 @@ class LoginModel
         return $result;
 
     }
-
-
-    /* public function obtenerNacimientoEmpleado($nombreUsuario)
-     {
-         $sql = "SELECT nacimiento FROM empleado JOIN usuario ON usuario.id = empleado.id_usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
-         $resultado = $this->bd->query($sql);
-         $arrayRol = $resultado->fetch_assoc();
-         $result = isset($arrayRol["nacimiento"]) ? $arrayRol["nacimiento"] : null;
-
-         return $result;
-
-     }*/
 }
