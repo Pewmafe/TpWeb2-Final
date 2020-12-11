@@ -343,7 +343,6 @@ values (1, 'Auto'),
 (2, 'Camion'),
 (3, 'Tractor');
 
-
 insert into tipo_acoplado(id, descripcion)
 values (1, 'Araña'),
 (2, 'CarCarrier'), 
