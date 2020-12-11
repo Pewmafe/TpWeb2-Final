@@ -17,6 +17,7 @@ include_once("controller/ChoferController.php");
 include_once("controller/CrearProformaController.php");
 include_once("controller/QrChoferController.php");
 include_once("controller/PdfProformaController.php");
+include_once("controller/AdministrarClienteController.php");
 
 include_once("model/CosteoModel.php");
 include_once("model/RegistroModel.php");
@@ -28,6 +29,8 @@ include_once("model/AgregarVehiculoModel.php");
 include_once("model/AgregarAcopladoModel.php");
 include_once("model/ChoferModel.php");
 include_once("model/CrearProformaModel.php");
+include_once("model/AdministrarDireccionModel.php");
+include_once("model/AdministrarClienteModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -191,7 +194,7 @@ class Configuracion
     }
 
 
-    private function getModificarUsuarioModel()
+    public function getModificarUsuarioModel()
     {
         $bd = $this->getDatabase();
         return new ModificarUsuarioModel($bd);
@@ -203,21 +206,39 @@ class Configuracion
         return new AdministrarEquiposModel($bd);
     }
 
-    private function getChoferModel()
+    public function getChoferModel()
     {
         $bd = $this->getDatabase();
         return new ChoferModel($bd);
     }
 
-    private function getCrearProformaModel()
+    public function getCrearProformaModel()
     {
         $bd = $this->getDatabase();
         return new CrearProformaModel($bd);
     }
 
-    private function getCosteoModel(){
+    public function getCosteoModel(){
         $bd = $this->getDatabase();
         return new CosteoModel($bd);
+    }
+
+    public function getAdministrarClienteModel(){
+        $bd = $this->getDatabase();
+        return new AdministrarClienteModel($bd);
+    }
+
+    public function getAdministrarDireccionModel(){
+        $bd = $this->getDatabase();
+        return new AdministrarDireccionModel($bd);
+    }
+
+    public function getAdministrarClienteController(){
+        $loginSession = $this->getLoginSession();
+        $render = $this->getRender();
+        $cliente = $this->getAdministrarClienteModel();
+        $direccion = $this->getAdministrarDireccionModel();
+        return new AdministrarClienteController($render,$loginSession, $cliente, $direccion);
     }
 
 }

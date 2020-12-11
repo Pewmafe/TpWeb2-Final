@@ -1,7 +1,7 @@
 <?php
 
 
-class AdministrarDIreccionModel
+class AdministrarDireccionModel
 {
     private $bd;
 
