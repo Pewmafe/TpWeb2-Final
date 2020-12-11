@@ -184,12 +184,12 @@ create table posicion(
 );
 
 create table provincia(
-	id int primary key,
+	id int primary key auto_increment,
 	descripcion varchar(100)
 );
 
 create table localidad(
-	id int primary key,
+	id int primary key auto_increment,
 	descripcion varchar(100),
 	provincia_id int,
 	posicion int,
