@@ -107,7 +107,7 @@ class PdfProformaController
 
                 //Chofer a cargo
                 $pdf->SetFont('Times', 'B', 13);
-                $pdf->Cell(189, 6, "Datos del Chofer", 1, 1,);
+                $pdf->Cell(189, 6, "Datos del Chofer", 1, 1);
                 $pdf->SetFont('Arial', '', 12);
 
                 $pdf->Cell(94, 6, 'Nombre: '.utf8_decode($tablaDatosProforma[0]["nombre_chofer"]), 1, 0);
