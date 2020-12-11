@@ -1,5 +1,5 @@
 {{> header}}
-{{#usuarioAdmin}}
+{{#usuarioSupervisor}}
     <main>
         <section class="row justify-content-center m-3 ancho">
             <article class=" justify-content-center mt-4 ancho2">
@@ -50,8 +50,8 @@
 
         </section>
     </main>
-{{/usuarioAdmin}}
-{{^usuarioAdmin}}
+{{/usuarioSupervisor}}
+{{^usuarioSupervisor}}
     {{> error404}}
-{{/usuarioAdmin}}
+{{/usuarioSupervisor}}
 {{> footer}}
