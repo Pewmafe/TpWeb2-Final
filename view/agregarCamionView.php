@@ -67,7 +67,7 @@
                             <span class="help-block alert alert-info"><span class="text-info">*</span>Campos requeridos</span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Agregar Vehículo</button>
+                    <button type="submit" class="btn btn-outline-primary btn-block">Agregar Vehículo</button>
                 </form>
             </article>
 

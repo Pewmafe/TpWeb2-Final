@@ -53,7 +53,7 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Clendario de Service</span>: {{calendario_service}}
                                 </p>
-                                <a class="btn btn-outline-primary mt-2 botonModificarCamion" data-toggle="modal" data-target="#modificarCamionModal" data-patente="{{patente}}" data-nrochasis="{{nro_chasis}}" data-nromotor="{{nro_motor}}" data-kilometraje="{{kilometraje}}" data-fabricacion="{{fabricacion}}" data-marca="{{marca}}" data-modelo="{{modelo}}" data-calendarioservice="{{calendario_service}}" type="button">Modificar Camion</a>
+                                <a class="btn btn-outline-success mt-2 botonModificarCamion" data-toggle="modal" data-target="#modificarCamionModal" data-patente="{{patente}}" data-nrochasis="{{nro_chasis}}" data-nromotor="{{nro_motor}}" data-kilometraje="{{kilometraje}}" data-fabricacion="{{fabricacion}}" data-marca="{{marca}}" data-modelo="{{modelo}}" data-calendarioservice="{{calendario_service}}" type="button">Modificar Camion</a>
                                 <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Tipo</span>: {{descripcion}}
                                 </p>
-                                <a href="#" class="mt-2 btn btn-outline-primary botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal" data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoacoplado="{{descripcion}}" type="button">Modificar Acoplado</a>
+                                <a href="#" class="mt-2 btn btn-outline-success botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal" data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoacoplado="{{descripcion}}" type="button">Modificar Acoplado</a>
                                 <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
                             </div>
                         </div>

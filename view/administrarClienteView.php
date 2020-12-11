@@ -13,8 +13,8 @@
             {{#cuitClienteExistente}}
             <h5 class="text-danger">CUIT cliente ya existe.</h5>
             {{/cuitClienteExistente}}
-            <h3 class="text-dark mb-3">Administrar clientes</h3>
-            <a href="/crearProforma" class="btn btn-primary">Registar cliente</a>
+            <h3 class="text-dark mb-3"><i class="fas fa-user-tag"></i> Administrar clientes</h3>
+            <a href="/crearProforma" class="btn btn-outline-primary">Registar cliente</a>
             <div class="row">
                 {{#tablaClientes}}
                 <div class="col-12 col-md-6 col-lg-4 p-2">
@@ -61,10 +61,10 @@
                             <span class="h5 font-weight-bold">Contacto2</span>: No disponible
                         </p>
                         {{/contacto2}}
-                        <a class="mt-2 btn btn-success botonModificarCliente" data-toggle="modal" data-target="#modificarClienteModal" data-nombre="{{nombre}}" data-apellido="{{apellido}}" data-cuit="{{cuit}}"
+                        <a class="mt-2 btn btn-outline-success botonModificarCliente" data-toggle="modal" data-target="#modificarClienteModal" data-nombre="{{nombre}}" data-apellido="{{apellido}}" data-cuit="{{cuit}}"
                            data-denominacion="{{denominacion}}" data-email="{{email}}" data-telefono="{{telefono}}" data-calle="{{calle}}" data-altura="{{altura}}"
                            data-contacto1="{{contacto1}}" data-contacto2="{{contacto2}}" type="button">Modificar</a>
-                        <a type="button" class="btn btn-danger mt-2 botonDarDeBajaCliente" data-toggle="modal" data-target="#darDeBajaClienteModal" data-cuit="'{{cuit}}'">Dar de baja cliente</a>
+                        <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaCliente" data-toggle="modal" data-target="#darDeBajaClienteModal" data-cuit="'{{cuit}}'">Dar de baja cliente</a>
                     </div>
                 </div>
                 {{/tablaClientes}}
