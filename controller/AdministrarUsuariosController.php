@@ -28,6 +28,8 @@ class AdministrarUsuariosController
             $data["dniExistente"] = isset($_GET["dniExistente"]) ? $_GET["dniExistente"] : false;
             $data["modificarUsuario"] = isset($_GET["modificarUsuario"]) ? $_GET["modificarUsuario"] : false;
             $data["modificarEmpleado"] = isset($_GET["modificarEmpleado"]) ? $_GET["modificarEmpleado"] : false;
+            $data["empleadoChoferOcupado"] = isset($_GET["empleadoChoferOcupado"]) ? $_GET["empleadoChoferOcupado"] : false;
+
 
             $tablaUsuarios = $this->administrarUsuarioModel->obtenerUsuariosNoEmpleados();
             $tablaUsuariosEmpleados = $this->administrarUsuarioModel->obtenerUsuariosEmpleados();
@@ -47,6 +49,14 @@ class AdministrarUsuariosController
     {
         $idEmpleadoAEliminar = $_POST["botonDarDeBajaEmpleadoModal"];
 
+        $empleadoChofer = $this->administrarUsuarioModel->verificarSiUnEmpleadoEsUnChofer($idEmpleadoAEliminar);
+        if($empleadoChofer){
+            $choferViaje = $this->administrarUsuarioModel->verificarSiChoferEstaEnViajeActivoOPendiente($idEmpleadoAEliminar);
+            if($choferViaje){
+                header("Location: /administrarUsuarios?empleadoChoferOcupado=true");
+                exit();
+            }
+        }
         $this->administrarUsuarioModel->eliminarEmpleado($idEmpleadoAEliminar);
 
         header("Location: /administrarUsuarios?bajaEmpleado=true");

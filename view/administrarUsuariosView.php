@@ -22,6 +22,9 @@
                 {{#dniExistente}}
                     <h5 class="text-danger">DNI de usuario ya existe.</h5>
                 {{/dniExistente}}
+                {{#empleadoChoferOcupado}}
+                <h5 class="text-danger">No se puede dar de baja un chofer con un viaje activo o pendiente.</h5>
+                {{/empleadoChoferOcupado}}
                 <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-user"></i> Administrar usuarios</h3>
                 <div class="row">
                     {{#tablaUsuarios}}

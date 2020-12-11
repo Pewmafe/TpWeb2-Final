@@ -160,4 +160,47 @@ class AdministrarUsuariosModel
         }
         return $resultado;
     }
+
+    public function  verificarSiUnEmpleadoEsUnChofer($id){
+        $resultado = false;
+
+        $sql = "SELECT tp.descripcion 
+                 FROM tipo_empleado tp JOIN empleado e
+                                        ON e.tipo_empleado = tp.id_tipo_empleado
+                 WHERE e.id = ". $id;
+        $resultadoQuery = $this->bd->query($sql);
+
+        $empleadoChofer = $resultadoQuery->fetch_assoc();
+
+        if($empleadoChofer["descripcion"] == "chofer"){
+            $resultado=true;
+        }
+        return $resultado;
+    }
+
+    public function verificarSiChoferEstaEnViajeActivoOPendiente($id){
+        $resultado = false;
+        $sql = "SELECT ep.descripcion 
+                 FROM empleado e JOIN viaje v
+                                    ON v.chofer_id = e.id
+                                  JOIN proforma p
+                                    ON p.viaje_id = v.id
+                                  JOIN estado_proforma ep
+                                    ON ep.id = p.estado
+                 WHERE e.id = ". $id;
+
+        $resultadoQuery = $this->bd->query($sql);
+
+        while ($fila = $resultadoQuery->fetch_assoc()) {
+            $tablaEstadoProforma[] = $fila;
+        }
+
+        for ($i = 0; $i < sizeof($tablaEstadoProforma); $i++) {
+            if ($tablaEstadoProforma[$i]["descripcion"] == "PENDIENTE" or
+                $tablaEstadoProforma[$i]["descripcion"] == "ACTIVO") {
+                $resultado = true;
+            }
+        }
+        return $resultado;
+    }
 }
