@@ -330,7 +330,6 @@ $(document).ready(function() {
         var form_datos = $(this).serialize();
 
         $.post(post_url, form_datos, function(datos) {
-            console.log(datos);
             var jsonErrorRegistro = jQuery.parseJSON(datos);
             $("#errorClienteCuit").html("");
             $("#errorCamposVacios").html("");

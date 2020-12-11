@@ -57,7 +57,7 @@ class ModificarUsuarioController
     {
         $nombreUsuario = $_POST["nombre"];
         $nombreUsuarioExistente = $this->ModificarUsuarioModel->verificarNombreUsuarioExistente($nombreUsuario);
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {
@@ -82,7 +82,7 @@ class ModificarUsuarioController
     public function modificarPasswordUsuario()
     {
         $contrasenia = $_POST["pass"];
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {
@@ -99,7 +99,7 @@ class ModificarUsuarioController
     public function modificarNombreDelUsuario()
     {
         $nombre = $_POST["nombreDelUsuario"];
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {
@@ -115,7 +115,7 @@ class ModificarUsuarioController
     public function modificarApellidoUsuario()
     {
         $apellido = $_POST["apellidoUsuario"];
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {
@@ -131,7 +131,7 @@ class ModificarUsuarioController
     public function modificarDniUsuario()
     {
         $dniUsuario = $_POST["dniUsuario"];
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         $dniExistente = $this->ModificarUsuarioModel->verificarDniExistente($dniUsuario);
         if ($logeado) {
             $data["login"] = true;
@@ -154,7 +154,7 @@ class ModificarUsuarioController
     public function modificarNacimientoUsuario()
     {
         $nacimiento = $_POST["nacimientoUsuario"];
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {
@@ -173,7 +173,7 @@ class ModificarUsuarioController
 
         $licencia = $_POST["licenciaEmpleado"];
 
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {
