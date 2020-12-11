@@ -22,7 +22,7 @@
                 {{#dniExistente}}
                     <h5 class="text-danger">DNI de usuario ya existe.</h5>
                 {{/dniExistente}}
-                <h3 class="text-dark mb-3"><i class="fas fa-user"></i> Administrar usuarios</h3>
+                <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-user"></i> Administrar usuarios</h3>
                 <div class="row">
                     {{#tablaUsuarios}}
                         <div class="col-12 col-md-6 col-lg-4 p-2">
@@ -50,7 +50,7 @@
                         </div>
                     {{/tablaUsuarios}}
                 </div>
-                <h3 class="text-dark mb-3"><i class="fas fa-user-tie"></i> Administrar empleados</h3>
+                <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-user-tie"></i> Administrar empleados</h3>
                 <div class="row">
                     {{#tablaUsuariosEmpleados}}
                         <div class="col-12 col-md-6 col-lg-4 p-2">
@@ -220,9 +220,9 @@
                                     </select>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
                                     <input type="hidden" class="idEmpleado" id="idEmpleado" name="idEmpleado">
-                                    <button type="submit" class="btn btn-primary" id="botonModificar" name="botonModificar">Modificar</button>
+                                    <button type="submit" class="btn btn-outline-primary" id="botonModificar" name="botonModificar">Modificar</button>
                                 </div>
                             </form>
                         </div>
