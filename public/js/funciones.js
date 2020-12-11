@@ -365,7 +365,34 @@ $(document).ready(function() {
                 $('td[name ="vehiculoRadios"]').prop("checked", false);
                 $('td[name ="acopladoRadios"]').prop("checked", false);
                 $('td[name ="choferRadios"]').prop("checked", false);
-                $('#crearProformarTotal').html("$"+jsonErrorRegistro.total);
+
+                $('#detalleProformaCliente').html(jsonErrorRegistro.clienteCuit);
+                $('#detalleProformaTipoCarga').html(jsonErrorRegistro.nombreTipoCarga);
+                $('#detalleProformaPesoCarga').html(jsonErrorRegistro.cargaPeso + " Kilos");
+                if(jsonErrorRegistro.hazardId == null){
+                    $('#detalleProformaHazard').html("NO");
+                    $('#detalleProformaDatosHazard').html("-");
+                }else{
+                    $('#detalleProformaHazard').html("SI");
+                    $('#detalleProformaDatosHazard').html(jsonErrorRegistro.datosHazard);
+                }
+
+                if(jsonErrorRegistro.reeferId == null){
+                    $('#detalleProformaReefer').html("NO");
+                    $('#detalleProformaDatosReefer').html("-");
+                }else{
+                    $('#detalleProformaReefer').html("SI");
+                    $('#detalleProformaDatosReefer').html(jsonErrorRegistro.datosReefer+"°C");
+                }
+                $('#detalleProformaViajeOrigen').html(jsonErrorRegistro.direccionPartida);
+                $('#detalleProformaViajeDestino').html(jsonErrorRegistro.direccionDestino);
+                $('#detalleProformaCantidadKM').html(jsonErrorRegistro.cantidadKilometros +" km");
+                $('#detalleProformaFechaSalida').html(jsonErrorRegistro.fechaSalida);
+                $('#detalleProformaFechaLlegada').html(jsonErrorRegistro.fechaLlegada);
+                $('#detalleProformaVehiculoAsignado').html(jsonErrorRegistro.vehiculoPatente);
+                $('#detalleProformaAcopladoAsignado').html(jsonErrorRegistro.acopladoPatente);
+                $('#detalleProformaTotal').html("$"+jsonErrorRegistro.total);
+
             }
         });
     });
