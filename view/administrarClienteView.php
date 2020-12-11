@@ -5,11 +5,14 @@
         <article class=" justify-content-center mt-4 ancho2">
             <h2 class="text-dark mb-3 text-center">Administrar todos los clientes</h2>
             {{#bajaCliente}}
-            <h5 class="text-success">Se dio de baja el cliente con exito.</h5>
+                <h5 class="text-success">Se dio de baja el cliente con exito.</h5>
             {{/bajaCliente}}
             {{#modificarCliente}}
-            <h5 class="text-success">Se modifico al cliente con exito.</h5>
+                <h5 class="text-success">Se modifico al cliente con exito.</h5>
             {{/modificarCliente}}
+            {{#cuitExistente}}
+                <h5 class="text-danger">El cuit del cliente ya esta en uso.</h5>
+            {{/cuitExistente}}
             <h3 class="text-dark mb-3">Administrar clientes</h3>
             <a href="/crearProforma" class="btn btn-primary">Registar cliente</a>
             <div class="row">
@@ -135,11 +138,11 @@
                             </div>
                             <div class="form-group">
                                 <label class="text-dark" for="contacto1">Contacto1</label>
-                                <input type="text" class="form-control inputContacto1" id="contacto1" name="contacto1" required>
+                                <input type="text" class="form-control inputContacto1" id="contacto1" name="contacto1">
                             </div>
                             <div class="form-group">
                                 <label class="text-dark" for="contacto2">Contacto2</label>
-                                <input type="text" class="form-control inputContacto2" id="contacto2" name="contacto2" required>
+                                <input type="text" class="form-control inputContacto2" id="contacto2" name="contacto2">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>

@@ -34,10 +34,10 @@ class AdministrarClienteModel
         return $tablaCliente;
     }
 
-    public function modificarCliente($cuit, $email, $nombre, $apellido, $telefono, $direccion, $denominacion){
+    public function modificarCliente($cuitAModificar, $email, $nombre, $apellido, $telefono, $denominacion,$contacto1, $contacto2, $cuit){
         $sql = "UPDATE cliente
                 SET email='".$email."', nombre='".$nombre."', apellido='".$apellido."', telefono=".$telefono.", 
-                direccion=".$direccion.", denominacion='".$denominacion."'
+                denominacion='".$denominacion."', contacto1 = '".$contacto1."', contacto2= '".$contacto2."', cuit=".$cuitAModificar."
                 WHERE cuit=".$cuit;
         $this->bd->query($sql);
     }
@@ -59,4 +59,22 @@ class AdministrarClienteModel
         $this->bd->query($sql);
     }
 
+    public function  verificarCuitClienteExistente($cuit, $cuitAModificar){
+        $resultado = false;
+
+        $sql = "SELECT cuit FROM cliente 
+                WHERE cuit <>" . $cuit;
+
+        $resultadoQuery = $this->bd->query($sql);
+
+        while ($fila = $resultadoQuery->fetch_assoc()) {
+            $tablaClientes[] = $fila;
+        }
+        for ($i = 0; $i < sizeof($tablaClientes); $i++) {
+            if ($tablaClientes[$i]["cuit"] == $cuitAModificar) {
+                $resultado = true;
+            }
+        }
+        return $resultado;
+    }
 }
