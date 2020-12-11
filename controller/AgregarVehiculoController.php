@@ -34,7 +34,7 @@ class AgregarVehiculoController
 
     public function agregarVehiculo()
     {
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {

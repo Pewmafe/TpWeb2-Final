@@ -336,6 +336,11 @@ values('ab145bb', 11, 101, 15000, 20160608, 'Iveco', 'Scavenger', 20191011, null
 insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
 values('ba531aa', 12, 102, 18000, 20191108, 'Scania', 'g150', 20200201, null, null);
 
+insert into tipo_vehiculo(id, descripcion)
+values (1, 'Auto'),
+(2, 'Camion'),
+(3, 'Tractor');
+
 
 insert into tipo_acoplado(id, descripcion)
 values (1, 'Araña'),
