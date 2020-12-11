@@ -15,6 +15,9 @@
                         {{#registroExitoso}}
                             <h5 class="text-success">Se registro el empleado con exito.</h5>
                         {{/registroExitoso}}
+                        {{#camposVacios}}
+                            <h5 class="text-danger">Debe completar todos los campos.</h5>
+                        {{/camposVacios}}
                         <label for="nombreUsuario" class="col-12 control-label"><span class="text-info">*</span>Nombre de usuario</label>
                         <div class="col-12">
                             <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre de Usuario" class="form-control" value="{{nombreUsuario}}" required>

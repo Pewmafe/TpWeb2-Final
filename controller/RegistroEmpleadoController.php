@@ -24,6 +24,7 @@ class RegistroEmpleadoController
             $data["nombreUsuarioError"] = isset($_GET["nombreUsuarioError"]) ? $_GET["nombreUsuarioError"] : false;
             $data["registroExitoso"] = isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
             $data["nombreUsuario"] = isset($_GET["nombreUsuario"]) ? $_GET["nombreUsuario"] : false;
+            $data["camposVacios"] = isset($_GET["camposVacios"]) ? $_GET["camposVacios"] : false;
 
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
@@ -38,9 +39,9 @@ class RegistroEmpleadoController
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
 
-            $tipoLicencia = $_POST["tipoLicencia"];
-            $rolAsignar = $_POST["rolAsignar"];
-            $nombreUsuario = $_POST["nombreUsuario"];
+            $tipoLicencia = isset($_POST["tipoLicencia"]) ? $_POST["tipoLicencia"] : null;
+            $rolAsignar = isset($_POST["rolAsignar"]) ? $_POST["rolAsignar"] : null;
+            $nombreUsuario = isset($_POST["nombreUsuario"]) ? $_POST["nombreUsuario"] : null;
 
             $nombreUsuarioExistente = $this->registroEmpleadoModel->verificarNombreUsuarioExistente($nombreUsuario);
 
@@ -49,7 +50,13 @@ class RegistroEmpleadoController
                 exit();
             }
 
-            $this->registroEmpleadoModel->registrarEmpleado($tipoLicencia, $rolAsignar, $nombreUsuario);
+            if($tipoLicencia != null and $rolAsignar != null and $nombreUsuario != null){
+                $this->registroEmpleadoModel->registrarEmpleado($tipoLicencia, $rolAsignar, $nombreUsuario);
+            }else{
+                header("Location: /registroEmpleado?camposVacios=true");
+                exit();
+            }
+
 
             $data["registroExitoso"] = true;
             header("Location: /registroEmpleado?registroExitoso=true");
