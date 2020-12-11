@@ -24,7 +24,7 @@ class AdministrarEquiposModel
 
     public function obtenerAcoplados()
     {
-        $sql = 'SELECT acoplado.patente, acoplado.chasis, tipo_acoplado.descripcion
+        $sql = 'SELECT acoplado.patente, acoplado.chasis, tipo_acoplado.descripcion, tipo_acoplado.id
             FROM acoplado join tipo_acoplado on acoplado.tipo = tipo_acoplado.id';
         $resultQuery = $this->bd->query($sql);
 
