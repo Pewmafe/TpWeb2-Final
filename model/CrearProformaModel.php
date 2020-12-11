@@ -252,15 +252,15 @@ class CrearProformaModel
     }
 
     public function devolverHazardPorHazardId($imoSubClassId){
-        $sql = "SELECT isc.descripcion as imo_sub_class, ic.descipcion as imo_class
+        $sql = "SELECT isc.descripcion as imo_sub_class, ic.descripcion as imo_class
                 FROM imo_sub_class isc JOIN imo_class ic 
                                         ON ic.id = isc.imo_class_id
                 WHERE isc.id =".$imoSubClassId;
 
         $resultadoQuery = $this->bd->query($sql);
         $hazard = $resultadoQuery->fetch_assoc();
-        $datosHazard = $hazard["imo_class"] . " " . $hazard["imo_sub_class"];
-        return $datosHazard["temperatura"];
+        $datosHazard = $hazard["imo_class"] . " - " . $hazard["imo_sub_class"];
+        return $datosHazard;
     }
 
 }

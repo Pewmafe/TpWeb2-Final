@@ -128,7 +128,7 @@ class CrearProformaController
 
                     $tipoAcoplado= $this->crearProformaModel->obtenerTipoAcopladoPorPatente($acopladoPatente);
                     $total = $this->calcularCosteo($direccionDestino, $direccionPartida,$hazardId, $idCarga, $tipoAcoplado, $reeferId);
-                    $cantidadKilometros=calcularDistanciaEnKilometros($direccionDestino, $direccionPartida);
+                    $cantidadKilometros= $this->costeoModel->calcularDistanciaEnKilometros($direccionDestino, $direccionPartida);
                 }
             } else {
                 $camposVacios = true;

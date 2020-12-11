@@ -368,7 +368,7 @@ $(document).ready(function() {
 
                 $('#detalleProformaCliente').html(jsonErrorRegistro.clienteCuit);
                 $('#detalleProformaTipoCarga').html(jsonErrorRegistro.nombreTipoCarga);
-                $('#detalleProformaPesoCarga').html(jsonErrorRegistro.cargaPeso);
+                $('#detalleProformaPesoCarga').html(jsonErrorRegistro.cargaPeso + " Kilos");
                 if(jsonErrorRegistro.hazardId == null){
                     $('#detalleProformaHazard').html("NO");
                     $('#detalleProformaDatosHazard').html("-");

@@ -358,28 +358,28 @@
                         <div class="card-header text-center bg-dark" id="headingThree">
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed text-light" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    TOTAL
+                                    DETALLES PROFORMA
                                 </button>
                             </h5>
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                             <div class="card-body">
-                                <h3 class="text-center">Detalles de proforma</h3>
-                                <h5>Cliente CUIT:<span id="detalleProformaCliente"></span></h5>
-                                <h5>Tipo carga:<span id="detalleProformaTipoCarga"></span></h5>
-                                <h5>Peso carga:<span id="detalleProformaPesoCarga"></span></h5>
-                                <h5>Hazard:<span id="detalleProformaHazard"></span></h5>
-                                <h5>Datos hazard:<span id="detalleProformaDatosHazard"></span></h5>
-                                <h5>Reefer:<span id="detalleProformaReefer"></span></h5>
-                                <h5>Datos reefer:<span id="detalleProformaDatosReefer"></span></h5>
-                                <h5>Viaje origen:<span id="detalleProformaViajeOrigen"></span></h5>
-                                <h5>Viaje destino:<span id="detalleProformaViajeDestino"></span></h5>
-                                <h5>Cantidad kilometros:<span id="detalleProformaCantidadKM"></span></h5>
-                                <h5>Fecha salida:<span id="detalleProformaFechaSalida"></span></h5>
-                                <h5>Fecha llegada:<span id="detalleProformaFechaLlegada"></span></h5>
-                                <h5>patente vehiculo asignado:<span id="detalleProformaVehiculoAsignado"></span></h5>
-                                <h5>patente acoplado asignado:<span id="detalleProformaAcopladoAsignado"></span></h5>
-                                <h4>Total:<span class="text-success" id="detalleProformaTotal">$0</span></h4>
+                                <h3 class="text-center">Detalles de proforma creada</h3>
+                                <h5>Cliente CUIT: <span class="text-info" id="detalleProformaCliente"></span></h5>
+                                <h5>Tipo carga: <span class="text-info" id="detalleProformaTipoCarga"></span></h5>
+                                <h5>Peso carga: <span class="text-info" id="detalleProformaPesoCarga"></span></h5>
+                                <h5>Hazard: <span class="text-info" id="detalleProformaHazard"></span></h5>
+                                <h5>Datos hazard: <span class="text-info" id="detalleProformaDatosHazard"></span></h5>
+                                <h5>Reefer: <span class="text-info" id="detalleProformaReefer"></span></h5>
+                                <h5>Datos reefer: <span class="text-info" id="detalleProformaDatosReefer"></span></h5>
+                                <h5>Viaje origen: <span class="text-info" id="detalleProformaViajeOrigen"></span></h5>
+                                <h5>Viaje destino: <span class="text-info" id="detalleProformaViajeDestino"></span></h5>
+                                <h5>Cantidad kilometros: <span class="text-info" id="detalleProformaCantidadKM"></span></h5>
+                                <h5>Fecha salida: <span class="text-info" id="detalleProformaFechaSalida"></span></h5>
+                                <h5>Fecha llegada: <span class="text-info" id="detalleProformaFechaLlegada"></span></h5>
+                                <h5>Patente vehiculo asignado: <span class="text-info" id="detalleProformaVehiculoAsignado"></span></h5>
+                                <h5>Patente acoplado asignado: <span class="text-info" id="detalleProformaAcopladoAsignado"></span></h5>
+                                <h4>Total: <span class="text-success" id="detalleProformaTotal">$0</span></h4>
                             </div>
                         </div>
                     </div>
