@@ -113,7 +113,7 @@ $(document).ready(function() {
 
         $(".formularioModificarAcoplado .modal-footer #botonModificarAcoplado").val(patente);
         $(".formularioModificarAcoplado .inputChasis").val(chasis);
-        $(".formularioModificarAcoplado .inputTipoAcoplado").val(tipoAcoplado);
+        $(".formularioModificarAcoplado .selectTipoAcoplado").val(tipoAcoplado);
         $(".formularioModificarAcoplado .inputPatente").val(patente);
 
     });
@@ -147,12 +147,12 @@ $(document).ready(function() {
     $(document).on("click", ".botonModificarAcoplado", function() {
         var patente = $(this).data('patente');
         var chasis = $(this).data('chasis');
-        var tipoAcoplado = $(this).data('tipoAcoplado');
-
+        var tipoAcoplado = $(this).data('tipoacoplado');
+        console.log(tipoAcoplado);
 
         $(".formularioModificarAcoplado .modal-footer #botonModificarAcoplado").val(patente);
         $(".formularioModificarAcoplado .inputChasis").val(chasis);
-        $(".formularioModificarAcoplado .inputTipoAcoplado").val(tipoAcoplado);
+        $(".formularioModificarAcoplado .selectTipoAcoplado").val(tipoAcoplado);
         $(".formularioModificarAcoplado .inputPatente").val(patente);
 
     });

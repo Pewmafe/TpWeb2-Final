@@ -76,7 +76,7 @@
                                 <p class="text-light">
                                     <span class="h5 font-weight-bold">Tipo</span>: {{descripcion}}
                                 </p>
-                                <a href="#" class="mt-2 btn btn-outline-success botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal" data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoacoplado="{{descripcion}}" type="button">Modificar Acoplado</a>
+                                <a href="#" class="mt-2 btn btn-outline-success botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal" data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoacoplado="{{id}}" type="button">Modificar Acoplado</a>
                                 <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
                             </div>
                         </div>
@@ -202,8 +202,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="text-dark" for="tipoAcoplado">Tipo de Acoplado</label>
-                                    <select name="tipoAcoplado" id="tipoAcoplado" class="custom-select form-control selectRol">
-                                        <option selected disabled>-</option>
+                                    <select name="tipoAcoplado" id="tipoAcoplado" class="custom-select form-control selectTipoAcoplado">
+                                        <option disabled>-</option>
                                         <option value="1">Araña</option>
                                         <option value="2">CarCarrier</option>
                                         <option value="3">Jaula</option>
