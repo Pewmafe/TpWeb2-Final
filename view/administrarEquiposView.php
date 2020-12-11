@@ -22,7 +22,7 @@
                 {{#patenteAcopladoError}}
                     <h5 class="text-danger">La patente del acoplado ya existe.</h5>
                 {{/patenteAcopladoError}}
-                <h3 class="text-dark mb-3"><i class="fas fa-truck"></i> Administrar Vehículos</h3>
+                <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-truck"></i> Administrar Vehículos</h3>
                 <a href="/agregarVehiculo" class="btn btn-outline-primary">Agregar Vehículo</a>
                 <div class="row">
                     {{#tablaCamiones}}
@@ -60,7 +60,7 @@
                     {{/tablaCamiones}}
                 </div>
 
-                <h3 class="text-dark mb-3"><i class="fas fa-truck-loading"></i> Administrar Acoplados</h3>
+                <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-truck-loading"></i> Administrar Acoplados</h3>
                 <a href="/agregarAcoplado" class="btn btn-outline-primary">Agregar Acoplado</a>
                 <div class="row">
                     {{#tablaAcoplados}}
