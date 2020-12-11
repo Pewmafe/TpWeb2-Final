@@ -80,6 +80,17 @@ footer {
     box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46);
 }
 
+.referencia-mapita {
+    border: 1px solid #000!important;
+    -webkit-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46)!important;
+    -moz-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46)!important;
+    box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46)!important;
+}
+
+.borde-login i {
+    font-size: medium;
+}
+
 .c-pointer {
     cursor: pointer;
     text-decoration: none;
