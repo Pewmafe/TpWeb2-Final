@@ -10,9 +10,6 @@
             {{#modificarCliente}}
             <h5 class="text-success">Se modifico al cliente con exito.</h5>
             {{/modificarCliente}}
-            {{#cuitClienteExistente}}
-            <h5 class="text-danger">CUIT cliente ya existe.</h5>
-            {{/cuitClienteExistente}}
             <h3 class="text-dark mb-3">Administrar clientes</h3>
             <a href="/crearProforma" class="btn btn-primary">Registar cliente</a>
             <div class="row">

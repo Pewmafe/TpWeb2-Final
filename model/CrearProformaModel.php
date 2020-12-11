@@ -86,9 +86,9 @@ class CrearProformaModel
     {
         $contacto1 = isset($contact1) ? $contact1 : "NULL";
         $contacto2 = isset($contact2) ? $contact2 : "NULL";
-        $sql = "INSERT INTO cliente(cuit, telefono, direccion, denominacion, nombre, apellido, email, contacto1, contacto2) 
+        $sql = "INSERT INTO cliente(cuit, telefono, direccion, denominacion, nombre, apellido, email, contacto1, contacto2, eliminado) 
         values (" . $cuit . "," . $telefono . "," . $idDireccion . ",'" . $denominacion . "', '" . $nombre . "', '" . $apellido . "','" . $email . "',
-        '" . $contacto1 . "', '" . $contacto2 . "')";
+        '" . $contacto1 . "', '" . $contacto2 . "', false)";
 
         $this->bd->query($sql);
 
