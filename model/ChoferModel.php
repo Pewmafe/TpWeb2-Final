@@ -151,7 +151,9 @@ class ChoferModel
         $resultado = $this->bd->query($sql);
 
         $resultado1 = $this->bd->query($sql);
+
         $verificacion = $resultado1->fetch_assoc();
+
         if ($verificacion == null) {
             $tablaDeViajes = null;
         } else {
