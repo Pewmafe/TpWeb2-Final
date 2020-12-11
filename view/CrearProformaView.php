@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="form-group col-12 col-md-6">
                                     <label for="cargaPeso" class="col-12 control-label"><span class="text-info">*</span>Peso en kilos</label>
-                                    <input type="number" id="cargaPeso" name="cargaPeso" placeholder="" class="form-control" required>
+                                    <input type="number" id="cargaPeso" name="cargaPeso" placeholder="" class="form-control">
                                 </div>
                                 <div class="col-12">
                                     <h4>Hazard</h4>
@@ -246,13 +246,13 @@
                                 <div class="form-group col-12">
                                     <label for="fechaSalida" class="col-12 control-label"><span class="text-info">*</span>Fecha de salida</label>
 
-                                    <input type="datetime-local" id="fechaSalida" name="fechaSalida" class="form-control" required>
+                                    <input type="datetime-local" id="fechaSalida" name="fechaSalida" class="form-control">
 
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="fechaLlegada" class="col-12 control-label"><span class="text-info">*</span>Fecha de llegada</label>
 
-                                    <input type="datetime-local" id="fechaLlegada" name="fechaLlegada" class="form-control" required>
+                                    <input type="datetime-local" id="fechaLlegada" name="fechaLlegada" class="form-control">
 
                                 </div>
 
