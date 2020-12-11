@@ -77,7 +77,7 @@
             <div class="referencia m-1">
                 <img src="/public/img/camion.jfif" alt="Camion" srcset="" class="img-fluid" style="width: 100%">
             </div>
-            <div id="map" class="referencia-mapita m-1"></div>
+            <div id="map" class="referencia-mapita m-1" ></div>
         </article>
     </section>
     <br>
