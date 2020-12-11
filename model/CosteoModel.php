@@ -20,7 +20,7 @@ class CosteoModel
     }
 
     public function precioPorKilometro ($idImoSubClass, $idTipoCarga, $idTipoAcoplado, $idReefer){
-        $precioKilometros = 50;
+        $precioKilometros = 250;
         $sql = "select precio_kilometro from precios
                 where id_tipo_carga = ".$idTipoCarga."
                 and id_tipo_acoplado = ". $idTipoAcoplado;
@@ -46,7 +46,7 @@ class CosteoModel
     }
 
     public function precioDeLaDistancia($kilometros, $precioKilometros){
-        return $precioKilometros * $kilometros;
+        return round($precioKilometros * $kilometros, 2);
     }
 
     public function calcularDistanciaEnKilometros($direccionDestino, $direccionPartida)
