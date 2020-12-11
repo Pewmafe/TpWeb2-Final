@@ -116,7 +116,7 @@ create table vehiculo(
 	fabricacion date,
 	marca varchar(100),
 	modelo varchar(100),
-	calendario_service datetime,
+	calendario_service date,
 	estado int,
 	tipo int,
 	constraint fk_vehiculo_estado

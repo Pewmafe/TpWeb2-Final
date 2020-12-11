@@ -93,6 +93,8 @@ $(document).ready(function() {
         var marca = $(this).data('marca');
         var modelo = $(this).data('modelo');
         var calendarioService = $(this).data('calendarioservice');
+        console.log(calendarioService);
+        console.log(fabricacion);
 
         $(".formularioModificarCamion .modal-footer #botonModificarCamion").val(patente);
         $(".formularioModificarCamion .inputNroChasis").val(nroChasis);
@@ -148,7 +150,6 @@ $(document).ready(function() {
         var patente = $(this).data('patente');
         var chasis = $(this).data('chasis');
         var tipoAcoplado = $(this).data('tipoacoplado');
-        console.log(tipoAcoplado);
 
         $(".formularioModificarAcoplado .modal-footer #botonModificarAcoplado").val(patente);
         $(".formularioModificarAcoplado .inputChasis").val(chasis);
