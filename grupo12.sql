@@ -297,10 +297,12 @@ create table precios(
 	id_tipo_carga int,
 	id_tipo_vehiculo int,
 	id_imo_sub_class int,
+	id_reefeer int,
 	constraint fk_precios_carga foreign key (id_tipo_carga) references tipo_carga(id_tipo_carga),
 	constraint fk_precios_acoplado foreign key (id_tipo_acoplado) references tipo_acoplado(id),
 	constraint fk_precios_vehiculo foreign key (id_tipo_vehiculo) references tipo_vehiculo(id),
-	constraint fk_precios_imo foreign key (id_imo_sub_class) references imo_sub_class(id)
+	constraint fk_precios_imo foreign key (id_imo_sub_class) references imo_sub_class(id),
+	constraint fk_precios_reefer foreign key (id_reefeer) references reefer(id_reefer)
 );
 
 insert into tipo_empleado(id_tipo_empleado, descripcion)
@@ -513,6 +515,5 @@ select 	ep.descripcion as 'TodosEstado',
 				join cliente cl on p.cliente_cuit = cl.cuit 
 					where p.estado = 1;
 				
-select * from precios;
-
+select * from proforma;				
                     
