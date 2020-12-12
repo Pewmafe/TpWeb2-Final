@@ -15,62 +15,6 @@
                 {{/cuitExistente}}
                 <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-user-tag"></i> Administrar clientes</h3>
                 <a href="/crearProforma" class="btn btn-outline-primary">Registar cliente</a>
-                <!--
-            <div class="row">
-                {{#tablaClientes}}
-                <div class="col-12 col-md-6 col-lg-4 p-2">
-                    <div class="card mb-4 p-3 bg-dark">
-                        <h3 class="text-center border-bottom border-secondary text-light">Descripcion</h3>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Nombre</span>: {{nombre}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Apellido</span>: {{apellido}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">CUIT</span>: {{cuit}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Denominacion</span>: {{denominacion}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Email</span>: {{email}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Telefono</span>: {{telefono}}
-                        </p>
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Direccion</span>: {{calle}} {{altura}}
-                        </p>
-                        {{#contacto1}}
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Contacto1</span>: {{contacto1}}
-                        </p>
-                        {{/contacto1}}
-                        {{^contacto1}}
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Contacto1</span>: No disponible
-                        </p>
-                        {{/contacto1}}
-                        {{#contacto2}}
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Contacto2</span>: {{contacto2}}
-                        </p>
-                        {{/contacto2}}
-                        {{^contacto2}}
-                        <p class="text-light">
-                            <span class="h5 font-weight-bold">Contacto2</span>: No disponible
-                        </p>
-                        {{/contacto2}}
-                        <a class="mt-2 btn btn-outline-success botonModificarCliente" data-toggle="modal" data-target="#modificarClienteModal" data-nombre="{{nombre}}" data-apellido="{{apellido}}" data-cuit="{{cuit}}"
-                           data-denominacion="{{denominacion}}" data-email="{{email}}" data-telefono="{{telefono}}" data-calle="{{calle}}" data-altura="{{altura}}"
-                           data-contacto1="{{contacto1}}" data-contacto2="{{contacto2}}" type="button">Modificar</a>
-                        <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaCliente" data-toggle="modal" data-target="#darDeBajaClienteModal" data-cuit="'{{cuit}}'">Dar de baja cliente</a>
-                    </div>
-                </div>
-                {{/tablaClientes}}
-            </div>
--->
                 <div class="container table-responsive mb-5 mt-3">
                     <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableClientes">
                         <thead>

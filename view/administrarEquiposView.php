@@ -24,63 +24,89 @@
                 {{/patenteAcopladoError}}
                 <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-truck"></i> Administrar Vehículos</h3>
                 <a href="/agregarVehiculo" class="btn btn-outline-primary">Agregar Vehículo</a>
-                <div class="row">
-                    {{#tablaCamiones}}
-                        <div class="col-12 col-md-6 col-lg-4 p-2">
-                            <div class="card mb-4 p-3 bg-dark">
-                                <h3 class="text-center border-bottom border-secondary text-light">Descripcion</h3>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Patente</span>: {{patente}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Nro de Chasis</span>: {{nro_chasis}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Nro de Motor</span>: {{nro_motor}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Kilometraje</span>: {{kilometraje}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Fabricacion</span>: {{fabricacion}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Marca</span>: {{marca}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Modelo</span>: {{modelo}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Clendario de Service</span>: {{calendario_service}}
-                                </p>
-                                <a class="btn btn-outline-success mt-2 botonModificarCamion" data-toggle="modal" data-target="#modificarCamionModal" data-patente="{{patente}}" data-nrochasis="{{nro_chasis}}" data-nromotor="{{nro_motor}}" data-kilometraje="{{kilometraje}}" data-fabricacion="{{fabricacion}}" data-marca="{{marca}}" data-modelo="{{modelo}}" data-calendarioservice="{{calendario_service}}" type="button">Modificar Camion</a>
-                                <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
-                            </div>
-                        </div>
-                    {{/tablaCamiones}}
-                </div>
 
+                <div class="container table-responsive mb-5 mt-3">
+                    <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableVehiculos">
+                        <thead>
+                            <tr>
+                                <th>Patente</th>
+                                <th>Nro Chasis</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#tablaCamiones}}
+                                <tr>
+                                    <td>{{patente}}</td>
+                                    <td>{{nro_chasis}}</td>
+                                    <td>{{marca}}</td>
+                                    <td>{{modelo}}</td>
+                                    <td class="dropdown dropleft">
+                                        <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{patente}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        </a>
+                                        <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{patente}}" style="right: 1em;">
+                                            <a class="btn btn-outline-success mt-2 botonModificarCamion" data-toggle="modal" data-target="#modificarCamionModal" data-patente="{{patente}}" data-nrochasis="{{nro_chasis}}" data-nromotor="{{nro_motor}}" data-kilometraje="{{kilometraje}}" data-fabricacion="{{fabricacion}}" data-marca="{{marca}}" data-modelo="{{modelo}}" data-calendarioservice="{{calendario_service}}" type="button">Modificar Camion</a>
+                                            <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaCamion" data-toggle="modal" data-target="#darDeBajaCamionModal" data-id="'{{patente}}'">Dar de baja Camion</a>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            {{/tablaCamiones}}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Patente</th>
+                                <th>Nro Chasis</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </article>
+            <article class=" justify-content-center mt-2 ancho2">
                 <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-truck-loading"></i> Administrar Acoplados</h3>
                 <a href="/agregarAcoplado" class="btn btn-outline-primary">Agregar Acoplado</a>
-                <div class="row">
-                    {{#tablaAcoplados}}
-                        <div class="col-12 col-md-6 col-lg-4 p-2">
-                            <div class="card mb-4 p-3 bg-dark">
-                                <h3 class="text-center border-bottom border-secondary text-light">Descripcion</h3>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Patente</span>: {{patente}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Chasis</span>: {{chasis}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Tipo</span>: {{descripcion}}
-                                </p>
-                                <a href="#" class="mt-2 btn btn-outline-success botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal" data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoacoplado="{{id}}" type="button">Modificar Acoplado</a>
-                                <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
-                            </div>
-                        </div>
-                    {{/tablaAcoplados}}
+                <div class="container table-responsive mb-5 mt-3">
+                    <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableEmpleados">
+                        <thead>
+                            <tr>
+                                <th>Patente</th>
+                                <th>Chasis</th>
+                                <th>Tipo</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#tablaAcoplados}}
+                                <tr>
+                                    <td>{{patente}}</td>
+                                    <td>{{chasis}}</td>
+                                    <td>{{descripcion}}</td>
+                                    <td class="dropdown dropleft">
+                                        <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{patente}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        </a>
+                                        <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{patente}}" style="right: 1em;">
+                                            <a href="#" class="mt-2 btn btn-outline-success btn-block botonModificarAcoplado" data-toggle="modal" data-target="#modificarAcopladoModal" data-patente="{{patente}}" data-chasis="{{chasis}}" data-tipoacoplado="{{id}}" type="button">Modificar Acoplado</a>
+                                            <a type="button" class="btn btn-outline-danger mt-2 btn-block botonDarDeBajaAcoplado" data-toggle="modal" data-target="#darDeBajaAcopladoModal" data-id="'{{patente}}'">Dar de baja acoplado</a>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            {{/tablaAcoplados}}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Patente</th>
+                                <th>Chasis</th>
+                                <th>Tipo</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
 
             </article>
