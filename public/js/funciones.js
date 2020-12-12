@@ -226,7 +226,7 @@ $(document).ready(function() {
 
         $("#reefer").collapse('hide');
     });
-    
+
     /************************AJAX LOGIN**********************************/
     $("#loginFormulario").submit(function(event) {
         event.preventDefault();
@@ -289,9 +289,9 @@ $(document).ready(function() {
 
             if (jsonErrorRegistro.clienteCuitExistente == true) {
                 $("#clienteRegistroError").html("<span>El CUIT del cliente ya existe.</span>");
-            }else if(jsonErrorRegistro.clienteDenominacion == false || jsonErrorRegistro.clienteNombre == false || jsonErrorRegistro.clienteApellido == false || jsonErrorRegistro.clienteCuit == false
-                || jsonErrorRegistro.clienteLocalidad == false || jsonErrorRegistro.clienteCalle == false || jsonErrorRegistro.clienteAltura == false || jsonErrorRegistro.clienteTelefono == false
-                || jsonErrorRegistro.clienteEmail == false){
+            } else if (jsonErrorRegistro.clienteDenominacion == false || jsonErrorRegistro.clienteNombre == false || jsonErrorRegistro.clienteApellido == false || jsonErrorRegistro.clienteCuit == false ||
+                jsonErrorRegistro.clienteLocalidad == false || jsonErrorRegistro.clienteCalle == false || jsonErrorRegistro.clienteAltura == false || jsonErrorRegistro.clienteTelefono == false ||
+                jsonErrorRegistro.clienteEmail == false) {
                 $("#clienteRegistroError").html("<span>Debe completar todos los campos.</span>");
             } else {
                 $("#clienteRegistroExitoso").html("<span>Se registro el cliente con exito</span>");
@@ -417,32 +417,48 @@ $(document).ready(function() {
                 $('#detalleProformaCliente').html(jsonErrorRegistro.clienteCuit);
                 $('#detalleProformaTipoCarga').html(jsonErrorRegistro.nombreTipoCarga);
                 $('#detalleProformaPesoCarga').html(jsonErrorRegistro.cargaPeso + " Kilos");
-                if(jsonErrorRegistro.hazardId == null){
+                if (jsonErrorRegistro.hazardId == null) {
                     $('#detalleProformaHazard').html("NO");
                     $('#detalleProformaDatosHazard').html("-");
-                }else{
+                } else {
                     $('#detalleProformaHazard').html("SI");
                     $('#detalleProformaDatosHazard').html(jsonErrorRegistro.datosHazard);
                 }
 
-                if(jsonErrorRegistro.reeferId == null){
+                if (jsonErrorRegistro.reeferId == null) {
                     $('#detalleProformaReefer').html("NO");
                     $('#detalleProformaDatosReefer').html("-");
-                }else{
+                } else {
                     $('#detalleProformaReefer').html("SI");
-                    $('#detalleProformaDatosReefer').html(jsonErrorRegistro.datosReefer+"°C");
+                    $('#detalleProformaDatosReefer').html(jsonErrorRegistro.datosReefer + "°C");
                 }
                 $('#detalleProformaViajeOrigen').html(jsonErrorRegistro.direccionPartida);
                 $('#detalleProformaViajeDestino').html(jsonErrorRegistro.direccionDestino);
-                $('#detalleProformaCantidadKM').html(jsonErrorRegistro.cantidadKilometros +" km");
+                $('#detalleProformaCantidadKM').html(jsonErrorRegistro.cantidadKilometros + " km");
                 $('#detalleProformaFechaSalida').html(jsonErrorRegistro.fechaSalida);
                 $('#detalleProformaFechaLlegada').html(jsonErrorRegistro.fechaLlegada);
                 $('#detalleProformaVehiculoAsignado').html(jsonErrorRegistro.vehiculoPatente);
                 $('#detalleProformaAcopladoAsignado').html(jsonErrorRegistro.acopladoPatente);
-                $('#detalleProformaTotal').html("$"+jsonErrorRegistro.total);
+                $('#detalleProformaTotal').html("$" + jsonErrorRegistro.total);
 
             }
         });
     });
-});
 
+    /************************Tabla Usuarios**********************************/
+
+    $('#mydatatable').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+    /************************Tabla Empleados**********************************/
+
+    $('#mydatatableDos').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+});

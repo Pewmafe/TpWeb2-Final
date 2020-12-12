@@ -81,10 +81,10 @@ footer {
 }
 
 .referencia-mapita {
-    border: 1px solid #000!important;
-    -webkit-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46)!important;
-    -moz-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46)!important;
-    box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46)!important;
+    border: 1px solid #000 !important;
+    -webkit-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46) !important;
+    -moz-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46) !important;
+    box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46) !important;
 }
 
 .borde-login i {
@@ -125,6 +125,44 @@ nav-item:hover c-pointer {
     background: grey;
     max-width: 100%;
 }
+
+.botonesABMUsuario .btn-outline-primary {
+    border: 0px;
+    border-radius: 0px;
+    border-bottom: 1px #007bff solid;
+    transition: 0.45s;
+}
+
+.botonesABMUsuario .btn-outline-primary:hover {
+    border-radius: .25rem;
+}
+
+.botonesABMUsuario .btn-outline-danger {
+    border: 0px;
+    border-radius: 0px;
+    border-bottom: 1px #dc3545 solid;
+    transition: 0.45s;
+}
+
+.botonesABMUsuario .btn-outline-danger:hover {
+    border-radius: .25rem;
+}
+
+.botonesABMUsuario .btn-outline-success {
+    border: 0px;
+    border-radius: 0px;
+    border-bottom: 1px #28a745 solid;
+    transition: 0.45s;
+}
+
+.botonesABMUsuario .btn-outline-success:hover {
+    border-radius: .25rem;
+}
+
+
+/*#mydatatable td {
+    background-color: #454d55!important;
+}*/
 
 @media screen and (max-width: 768px) {
     .borde-login {
