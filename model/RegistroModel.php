@@ -12,8 +12,8 @@ class RegistroModel
     public function registrarUsuario($nombreUsuario, $contrasenia, $dni, $nombre, $apellido, $fechaNacimiento)
     {
         $contraseniaEncriptada = md5($contrasenia);
-        $sql = "INSERT INTO grupo12.usuario(dni, nombreUsuario, contrasenia, nombre, apellido, fecha_nacimiento)
-            VALUES (" . $dni . ",'" . $nombreUsuario . "','" . $contraseniaEncriptada . "','" . $nombre . "','" . $apellido . "','" . $fechaNacimiento . "')";
+        $sql = "INSERT INTO grupo12.usuario(dni, nombreUsuario, contrasenia, nombre, apellido, fecha_nacimiento,eliminado)
+            VALUES (" . $dni . ",'" . $nombreUsuario . "','" . $contraseniaEncriptada . "','" . $nombre . "','" . $apellido . "','" . $fechaNacimiento . "', false)";
         return $this->bd->query($sql);
     }
 

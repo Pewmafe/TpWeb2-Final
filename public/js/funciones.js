@@ -22,6 +22,12 @@ $(document).ready(function() {
         $(".modal-footer #botonDarDeBajaAcopladoModal").val(primaryKey);
     });
 
+    /************************BAJA CLIENTES**********************************/
+    $(document).on("click", ".botonDarDeBajaCliente", function() {
+        var primaryKey = $(this).data('cuit');
+        $(".modal-footer #botonDarDeBajaClienteModal").val(primaryKey);
+    });
+
     /************************MODIFICACION USUARIOS**********************************/
     $(document).on("click", ".botonModificarUsuario", function() {
         var dni = $(this).data('dni');
@@ -87,6 +93,8 @@ $(document).ready(function() {
         var marca = $(this).data('marca');
         var modelo = $(this).data('modelo');
         var calendarioService = $(this).data('calendarioservice');
+        console.log(calendarioService);
+        console.log(fabricacion);
 
         $(".formularioModificarCamion .modal-footer #botonModificarCamion").val(patente);
         $(".formularioModificarCamion .inputNroChasis").val(nroChasis);
@@ -107,7 +115,45 @@ $(document).ready(function() {
 
         $(".formularioModificarAcoplado .modal-footer #botonModificarAcoplado").val(patente);
         $(".formularioModificarAcoplado .inputChasis").val(chasis);
-        $(".formularioModificarAcoplado .inputTipoAcoplado").val(tipoAcoplado);
+        $(".formularioModificarAcoplado .selectTipoAcoplado").val(tipoAcoplado);
+        $(".formularioModificarAcoplado .inputPatente").val(patente);
+
+    });
+
+    /************************MODIFICACION CLIENTE**********************************/
+    $(document).on("click", ".botonModificarCliente", function() {
+        var nombre = $(this).data('nombre');
+        var apellido = $(this).data('apellido');
+        var cuit = $(this).data('cuit');
+        var denominacion = $(this).data('denominacion');
+        var email = $(this).data('email');
+        var telefono = $(this).data('telefono');
+        var calle = $(this).data('calle');
+        var altura = $(this).data('altura');
+        var contacto1 = $(this).data('contacto1');
+        var contacto2 = $(this).data('contacto2');
+
+        $(".formularioModificarCliente .modal-footer #botonModificarCliente").val(cuit);
+        $(".formularioModificarCliente .inputNombre").val(nombre);
+        $(".formularioModificarCliente .inputApellido").val(apellido);
+        $(".formularioModificarCliente .inputCuit").val(cuit);
+        $(".formularioModificarCliente .inputDenomiacion").val(denominacion);
+        $(".formularioModificarCliente .inputEmail").val(email);
+        $(".formularioModificarCliente .inputTelefono").val(telefono);
+        $(".formularioModificarCliente .inputCalle").val(calle);
+        $(".formularioModificarCliente .inputAltura").val(altura);
+        $(".formularioModificarCliente .inputContacto1").val(contacto1);
+        $(".formularioModificarCliente .inputContacto2").val(contacto2);
+    });
+
+    $(document).on("click", ".botonModificarAcoplado", function() {
+        var patente = $(this).data('patente');
+        var chasis = $(this).data('chasis');
+        var tipoAcoplado = $(this).data('tipoacoplado');
+
+        $(".formularioModificarAcoplado .modal-footer #botonModificarAcoplado").val(patente);
+        $(".formularioModificarAcoplado .inputChasis").val(chasis);
+        $(".formularioModificarAcoplado .selectTipoAcoplado").val(tipoAcoplado);
         $(".formularioModificarAcoplado .inputPatente").val(patente);
 
     });
@@ -180,17 +226,7 @@ $(document).ready(function() {
 
         $("#reefer").collapse('hide');
     });
-
-    $(document).on("click", ".inputRegistrarCliente", function() {
-
-        $("#registrarCliente").collapse('show');
-    });
-
-    $(document).on("click", ".inputIngresarCuit", function() {
-
-        $("#registrarCliente").collapse('hide');
-    });
-
+    
     /************************AJAX LOGIN**********************************/
     $("#loginFormulario").submit(function(event) {
         event.preventDefault();
@@ -213,7 +249,9 @@ $(document).ready(function() {
         var form_data = $(this).serialize();
 
         $.post(post_url, form_data, function(errorRegistro) {
+            console.log(errorRegistro);
             var json_data = jQuery.parseJSON(errorRegistro);
+
             $("#nombreUsuarioError").html("");
             $("#dniUsuarioError").html("");
             $("#registroExitoso").html("");
@@ -338,6 +376,7 @@ $(document).ready(function() {
         var form_datos = $(this).serialize();
 
         $.post(post_url, form_datos, function(datos) {
+            console.log(datos);
             var jsonErrorRegistro = jQuery.parseJSON(datos);
             $("#errorClienteCuit").html("");
             $("#errorCamposVacios").html("");
@@ -374,7 +413,36 @@ $(document).ready(function() {
                 $('td[name ="vehiculoRadios"]').prop("checked", false);
                 $('td[name ="acopladoRadios"]').prop("checked", false);
                 $('td[name ="choferRadios"]').prop("checked", false);
+
+                $('#detalleProformaCliente').html(jsonErrorRegistro.clienteCuit);
+                $('#detalleProformaTipoCarga').html(jsonErrorRegistro.nombreTipoCarga);
+                $('#detalleProformaPesoCarga').html(jsonErrorRegistro.cargaPeso + " Kilos");
+                if(jsonErrorRegistro.hazardId == null){
+                    $('#detalleProformaHazard').html("NO");
+                    $('#detalleProformaDatosHazard').html("-");
+                }else{
+                    $('#detalleProformaHazard').html("SI");
+                    $('#detalleProformaDatosHazard').html(jsonErrorRegistro.datosHazard);
+                }
+
+                if(jsonErrorRegistro.reeferId == null){
+                    $('#detalleProformaReefer').html("NO");
+                    $('#detalleProformaDatosReefer').html("-");
+                }else{
+                    $('#detalleProformaReefer').html("SI");
+                    $('#detalleProformaDatosReefer').html(jsonErrorRegistro.datosReefer+"°C");
+                }
+                $('#detalleProformaViajeOrigen').html(jsonErrorRegistro.direccionPartida);
+                $('#detalleProformaViajeDestino').html(jsonErrorRegistro.direccionDestino);
+                $('#detalleProformaCantidadKM').html(jsonErrorRegistro.cantidadKilometros +" km");
+                $('#detalleProformaFechaSalida').html(jsonErrorRegistro.fechaSalida);
+                $('#detalleProformaFechaLlegada').html(jsonErrorRegistro.fechaLlegada);
+                $('#detalleProformaVehiculoAsignado').html(jsonErrorRegistro.vehiculoPatente);
+                $('#detalleProformaAcopladoAsignado').html(jsonErrorRegistro.acopladoPatente);
+                $('#detalleProformaTotal').html("$"+jsonErrorRegistro.total);
+
             }
         });
     });
 });
+

@@ -14,6 +14,7 @@ class HomeController
     public function ejecutar()
     {
         $data["registroExitoso"] = isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
+        $data["titulo"] = "Inicio";
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;

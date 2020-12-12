@@ -23,6 +23,7 @@ class ChoferController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        $data["titulo"] = "Viajes";
         if ($logeado) {
             $data["login"] = true;
             $data["nombreUsuario"] = $_SESSION["nombreUsuario"];
@@ -30,18 +31,38 @@ class ChoferController
             $tablaProforma = $this->ChoferModel->obtenerProformas();
             $data["tablaProforma"] = $tablaProforma;
             $data["dirQR"] = $this->generarQR();
-
-            $tablaDeViajesActivo = $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]);
-            $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
-
-            $tablaDeViajesPendientes = $this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"]);
-            $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
-
-            $tablaDeViajesFinalizados = $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]);
-            $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
-
-
+            $data["idChofer"] = $_SESSION["idEmpleado"];
             $data2 = $this->loginSession->verificarQueUsuarioRol();
+
+
+            if (isset($_SESSION["idEmpleado"])) {
+
+                if (isset($data2["usuarioSupervisor"]) ? $data2["usuarioSupervisor"] : false) {
+                    $tablaDeViajesActivo = ($this->ChoferModel->obtenerViajePorEstado(activo)) != null ? $this->ChoferModel->obtenerViajePorEstado(activo) : null;
+                    $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
+
+
+                    $tablaDeViajesPendientes = ($this->ChoferModel->obtenerViajePorEstado(pendiente)) != null ? $this->ChoferModel->obtenerViajePorEstado(pendiente) : null;
+                    $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
+
+                    $tablaDeViajesFinalizados = ($this->ChoferModel->obtenerViajePorEstado(finalizado)) != null ? $this->ChoferModel->obtenerViajePorEstado(finalizado) : null;
+                    $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
+
+                } else {
+
+                    $tablaDeViajesActivo = ($this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]) : null;
+                    $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
+
+                    $tablaDeViajesPendientes = ($this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(pendiente, $_SESSION["idEmpleado"]) : null;
+                    $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
+
+                    $tablaDeViajesFinalizados = ($this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]) : null;
+                    $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
+
+                }
+            }
+
+
             $dataMerge = array_merge($data, $data2);
             echo $this->render->render("view/choferView.php", $dataMerge);
             exit();
@@ -71,8 +92,5 @@ class ChoferController
 
 
         return $filename;
-
-
     }
 }
-

@@ -6,17 +6,20 @@ class CrearProformaController
     private $render;
     private $loginSession;
     private $crearProformaModel;
+    private $costeoModel;
 
-    public function __construct($render, $loginSession, $crearProformaModel)
+    public function __construct($render, $loginSession, $crearProformaModel, $costeoModel)
     {
         $this->render = $render;
         $this->loginSession = $loginSession;
         $this->crearProformaModel = $crearProformaModel;
+        $this->costeoModel = $costeoModel;
     }
 
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        $data["titulo"] = "Proforma";
         if ($logeado) {
             $data["login"] = true;
 
@@ -84,6 +87,10 @@ class CrearProformaController
 
             $choferID = isset($_POST["choferRadios"]) ? $_POST["choferRadios"] : false;
 
+            $total = null;
+            $cantidadKilometros=null;
+            $direccionDestino=null;
+            $direccionPartida=null;
             $camposVacios = false;
             if ($clienteCuit != false and $cargaTipo != false and $cargaPeso != false and $origenLocalidad != false and $origenCalle != false and
                 $origenAltura != false and $destinoLocalidad != false and $destinoCalle != false and $destinoAltura != false and
@@ -106,13 +113,46 @@ class CrearProformaController
 
                     $idViaje = $this->crearProformaModel->registrarViaje($idCarga, $acopladoPatente, $vehiculoPatente, $choferID, $fechaSalida, $fechaLlegada, $idDireccionDestino, $idDireccionOrigen);
 
-                    $this->crearProformaModel->registrarProforma($clienteCuit, $idViaje);
+                    ini_set("date.timezone", "America/Argentina/Buenos_Aires");
+                    $fecha = date("Y-m-d", time());
+
+                    $this->crearProformaModel->registrarProforma($clienteCuit, $idViaje, $fecha);
+
+                    $nombreOrigenLocalidad= $this->crearProformaModel->devolverNombreLocalidadPorIdLocalidad($origenLocalidad);
+                    $nombreOrigenProvincia = $this->crearProformaModel->devolverNombreProvinciaPorIdLocalidad($origenLocalidad);
+                    $direccionDestino = $origenCalle . " ". $origenAltura. ", ". $nombreOrigenLocalidad.  ", ".$nombreOrigenProvincia;
+
+                    $nombreDestinoLocalidad= $this->crearProformaModel->devolverNombreLocalidadPorIdLocalidad($destinoLocalidad);
+                    $nombreDestinoProvincia = $this->crearProformaModel->devolverNombreProvinciaPorIdLocalidad($destinoLocalidad);
+                    $direccionPartida =$destinoCalle . " ". $destinoAltura. ", ". $nombreDestinoLocalidad.  ", ".$nombreDestinoProvincia;
+
+                    $tipoAcoplado= $this->crearProformaModel->obtenerTipoAcopladoPorPatente($acopladoPatente);
+                    $total = $this->calcularCosteo($direccionDestino, $direccionPartida,$hazardId, $idCarga, $tipoAcoplado, $reeferId);
+                    $cantidadKilometros= $this->costeoModel->calcularDistanciaEnKilometros($direccionDestino, $direccionPartida);
                 }
             } else {
                 $camposVacios = true;
             }
 
-            $datos = array('camposVacios' => $camposVacios, 'clienteCuitExistente' => $clienteCuitExistente);
+            $nombreTipoCarga=null;
+            if($cargaTipo!=false){
+                $nombreTipoCarga= $this->crearProformaModel->devolverNombreTipoCargaPorIdCarga($cargaTipo);
+            }
+
+            $datosHazard=null;
+            if($imoSubClass!=null){
+                $datosHazard= $this->crearProformaModel->devolverHazardPorHazardId($imoSubClass);
+            }
+            $datosReefer=null;
+            if($reeferId!=null){
+                $datosReefer= $this->crearProformaModel->devolverReeferPorReeferId($reeferId);
+            }
+
+            $datos = array('camposVacios' => $camposVacios, 'clienteCuitExistente' => $clienteCuitExistente, 'total'=>$total,
+                'cantidadKilometros'=>$cantidadKilometros, 'clienteCuit'=>$clienteCuit, 'hazardId'=>$hazardId, 'reeferId'=>$reeferId,
+                'direccionDestino'=>$direccionDestino, 'direccionPartida'=>$direccionPartida, 'fechaSalida'=>$fechaSalida, 'fechaLlegada'=>$fechaLlegada,
+                'vehiculoPatente'=>$vehiculoPatente, 'acopladoPatente'=>$acopladoPatente, 'cargaPeso'=>$cargaPeso, 'nombreTipoCarga'=>$nombreTipoCarga,
+                'datosHazard'=>$datosHazard, 'datosReefer'=>$datosReefer);
             echo json_encode($datos);
             exit();
         }
@@ -128,33 +168,33 @@ class CrearProformaController
             $clienteNombre = isset($_POST["clienteNombre"]) ? $_POST["clienteNombre"] : false;
             $clienteApellido = isset($_POST["clienteApellido"]) ? $_POST["clienteApellido"] : false;
             $clienteCuit = isset($_POST["clienteCuit"]) ? $_POST["clienteCuit"] : false;
-            $clienteLocalidad = isset($_POST["clienteLocalidad"]) ? $_POST["clienteLocalidad"]: false;
-            $clienteCalle = isset($_POST["clienteCalle"]) ? $_POST["clienteCalle"]: false;
-            $clienteAltura = isset($_POST["clienteAltura"]) ? $_POST["clienteAltura"]: false;
-            $clienteTelefono = isset($_POST["clienteTelefono"]) ? $_POST["clienteTelefono"]: false;
-            $clienteEmail = isset($_POST["clienteEmail"]) ? $_POST["clienteEmail"]: false;
-            $contacto1 =  isset($_POST["clienteContacto1"]) ? $_POST["clienteContacto1"]: null;
-            $contacto2 = isset($_POST["clienteContacto2"]) ? $_POST["clienteContacto2"]: null;
+            $clienteLocalidad = isset($_POST["clienteLocalidad"]) ? $_POST["clienteLocalidad"] : false;
+            $clienteCalle = isset($_POST["clienteCalle"]) ? $_POST["clienteCalle"] : false;
+            $clienteAltura = isset($_POST["clienteAltura"]) ? $_POST["clienteAltura"] : false;
+            $clienteTelefono = isset($_POST["clienteTelefono"]) ? $_POST["clienteTelefono"] : false;
+            $clienteEmail = isset($_POST["clienteEmail"]) ? $_POST["clienteEmail"] : false;
+            $contacto1 = isset($_POST["clienteContacto1"]) ? $_POST["clienteContacto1"] : null;
+            $contacto2 = isset($_POST["clienteContacto2"]) ? $_POST["clienteContacto2"] : null;
 
-            $clienteCuitExistente=false;
-            if(isset($_POST["clienteCuit"])){
-                $clienteCuitExistente=$this->crearProformaModel->verificarCuitClienteExistente($clienteCuit);
+            $clienteCuitExistente = false;
+            if (isset($_POST["clienteCuit"])) {
+                $clienteCuitExistente = $this->crearProformaModel->verificarCuitClienteExistente($clienteCuit);
             }
 
 
-            if($clienteDenominacion!=false and $clienteNombre!=false and $clienteApellido!=false and $clienteCuit!=false and
-                $clienteLocalidad!=false and $clienteCalle!=false and $clienteAltura!=false and $clienteTelefono!=false and
-                $clienteEmail != false and $clienteCuitExistente==false){
+            if ($clienteDenominacion != false and $clienteNombre != false and $clienteApellido != false and $clienteCuit != false and
+                $clienteLocalidad != false and $clienteCalle != false and $clienteAltura != false and $clienteTelefono != false and
+                $clienteEmail != false and $clienteCuitExistente == false) {
 
                 $idDireccionCliente = $this->crearProformaModel->registrarDireccion($clienteCalle, $clienteAltura, $clienteLocalidad);
 
                 $this->crearProformaModel->registrarClienteConDireccion($idDireccionCliente, $clienteDenominacion,
-                    $clienteNombre, $clienteApellido ,$clienteCuit, $clienteTelefono, $clienteEmail, $contacto1, $contacto2);
+                    $clienteNombre, $clienteApellido, $clienteCuit, $clienteTelefono, $clienteEmail, $contacto1, $contacto2);
             }
 
-            $datos =array('clienteDenominacion'=>$clienteDenominacion, 'clienteNombre'=>$clienteNombre, 'clienteApellido'=>$clienteApellido,
-                'clienteCuit'=>$clienteCuit, 'clienteLocalidad'=>$clienteLocalidad, 'clienteCalle'=>$clienteCalle, 'clienteAltura'=>$clienteAltura,
-                'clienteTelefono'=>$clienteTelefono, 'clienteEmail'=>$clienteEmail, 'clienteCuitExistente'=>$clienteCuitExistente);
+            $datos = array('clienteDenominacion' => $clienteDenominacion, 'clienteNombre' => $clienteNombre, 'clienteApellido' => $clienteApellido,
+                'clienteCuit' => $clienteCuit, 'clienteLocalidad' => $clienteLocalidad, 'clienteCalle' => $clienteCalle, 'clienteAltura' => $clienteAltura,
+                'clienteTelefono' => $clienteTelefono, 'clienteEmail' => $clienteEmail, 'clienteCuitExistente' => $clienteCuitExistente);
 
             echo json_encode($datos);
             exit();
@@ -186,6 +226,13 @@ class CrearProformaController
         $idImoClass = $_POST["idImoClass"];
         $listaImoClass = $this->crearProformaModel->obtenerImoSubClases($idImoClass);
         echo $listaImoClass;
+    }
+
+    public function calcularCosteo($direccionDestino, $direccionPartida,$idImoSubClass, $idTipoCarga, $idTipoAcoplado, $idReefer ){
+        $distancia = $this->costeoModel->calcularDistanciaEnKilometros($direccionDestino,
+            $direccionPartida);
+        $precio = $this->costeoModel->precioPorKilometro($idImoSubClass, $idTipoCarga, $idTipoAcoplado, $idReefer);
+        return $this->costeoModel->precioDeLaDistancia($distancia,$precio);
     }
 
 }
