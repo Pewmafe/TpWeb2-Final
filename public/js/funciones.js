@@ -440,7 +440,7 @@ $(document).ready(function() {
                 $('#detalleProformaVehiculoAsignado').html(jsonErrorRegistro.vehiculoPatente);
                 $('#detalleProformaAcopladoAsignado').html(jsonErrorRegistro.acopladoPatente);
                 $('#detalleProformaTotal').html("$"+jsonErrorRegistro.total);
-
+                $('#botonVerPdfProforma').attr('href','/pdfProforma?idChofer='+jsonErrorRegistro.choferID+'&proformaID='+jsonErrorRegistro.proformaId);
             }
         });
     });

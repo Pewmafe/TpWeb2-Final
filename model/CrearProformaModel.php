@@ -132,7 +132,8 @@ class CrearProformaModel
     {
         $sql = "INSERT INTO proforma(cliente_cuit, viaje_id, estado, fechaCreacion) 
         values (" . $clienteCuit . "," . $viajeId . ", 2, '".$fechaCreacion."')";
-        $this->bd->query($sql);
+        $idProforma = $this->bd->queryQueDevuelveId($sql);
+        return $idProforma;
     }
 
     public function verificarCuitClienteExistente($cuit)

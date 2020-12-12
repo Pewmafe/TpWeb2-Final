@@ -505,24 +505,28 @@
                             </h5>
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div class="card-body row">
-                                <h3 class="col-12 text-center">Detalles de proforma creada</h3>
-                                <h5 class="col-12 col-md-6">Cliente CUIT: <span class="text-info" id="detalleProformaCliente"></span></h5>
-                                <h5 class="col-12 col-md-6">Tipo carga: <span class="text-info" id="detalleProformaTipoCarga"></span></h5>
-                                <h5 class="col-12 col-md-6">Peso carga: <span class="text-info" id="detalleProformaPesoCarga"></span></h5>
-                                <h5 class="col-12 col-md-6">Hazard: <span class="text-info" id="detalleProformaHazard"></span></h5>
-                                <h5 class="col-12 col-md-6">Datos hazard: <span class="text-info" id="detalleProformaDatosHazard"></span></h5>
-                                <h5 class="col-12 col-md-6">Reefer: <span class="text-info" id="detalleProformaReefer"></span></h5>
-                                <h5 class="col-12 col-md-6">Datos reefer: <span class="text-info" id="detalleProformaDatosReefer"></span></h5>
-                                <h5 class="col-12 col-md-6">Viaje origen: <span class="text-info" id="detalleProformaViajeOrigen"></span></h5>
-                                <h5 class="col-12 col-md-6">Viaje destino: <span class="text-info" id="detalleProformaViajeDestino"></span></h5>
-                                <h5 class="col-12 col-md-6">Cantidad kilometros: <span class="text-info" id="detalleProformaCantidadKM"></span></h5>
-                                <h5 class="col-12 col-md-6">Fecha salida: <span class="text-info" id="detalleProformaFechaSalida"></span></h5>
-                                <h5 class="col-12 col-md-6">Fecha llegada: <span class="text-info" id="detalleProformaFechaLlegada"></span></h5>
-                                <h5 class="col-12 col-md-6">Patente vehiculo asignado: <span class="text-info" id="detalleProformaVehiculoAsignado"></span></h5>
-                                <h5 class="col-12 col-md-6">Patente acoplado asignado: <span class="text-info" id="detalleProformaAcopladoAsignado"></span></h5>
-                                <h4 class="col-12 col-md-6">Total: <span class="text-success" id="detalleProformaTotal">$0</span></h4>
+                            <div class="card-body">
+                                <div class="row">
+                                    <h3 class="col-12 text-center">Detalles de proforma creada</h3>
+                                    <h5 class="col-12 col-md-6">Cliente CUIT: <span class="text-info" id="detalleProformaCliente"></span></h5>
+                                    <h5 class="col-12 col-md-6">Tipo carga: <span class="text-info" id="detalleProformaTipoCarga"></span></h5>
+                                    <h5 class="col-12 col-md-6">Peso carga: <span class="text-info" id="detalleProformaPesoCarga"></span></h5>
+                                    <h5 class="col-12 col-md-6">Datos hazard: <span class="text-info" id="detalleProformaDatosHazard"></span></h5>
+                                    <h5 class="col-12 col-md-6">Hazard: <span class="text-info" id="detalleProformaHazard"></span></h5>
+                                    <h5 class="col-12 col-md-6">Datos reefer: <span class="text-info" id="detalleProformaDatosReefer"></span></h5>
+                                    <h5 class="col-12 col-md-6">Reefer: <span class="text-info" id="detalleProformaReefer"></span></h5>
+                                    <h5 class="col-12 col-md-6">Viaje origen: <span class="text-info" id="detalleProformaViajeOrigen"></span></h5>
+                                    <h5 class="col-12 col-md-6">Viaje destino: <span class="text-info" id="detalleProformaViajeDestino"></span></h5>
+                                    <h5 class="col-12 col-md-6">Cantidad kilometros: <span class="text-info" id="detalleProformaCantidadKM"></span></h5>
+                                    <h5 class="col-12 col-md-6">Fecha salida: <span class="text-info" id="detalleProformaFechaSalida"></span></h5>
+                                    <h5 class="col-12 col-md-6">Fecha llegada: <span class="text-info" id="detalleProformaFechaLlegada"></span></h5>
+                                    <h5 class="col-12 col-md-6">Patente vehiculo asignado: <span class="text-info" id="detalleProformaVehiculoAsignado"></span></h5>
+                                    <h5 class="col-12 col-md-6">Patente acoplado asignado: <span class="text-info" id="detalleProformaAcopladoAsignado"></span></h5>
+                                    <h4 class="col-12 col-md-6">Total: <span class="text-success" id="detalleProformaTotal">$0</span></h4>
+                                </div>
+                                <a class="btn btn-outline-secondary" id="botonVerPdfProforma">Ver pdf</a>
                             </div>
+
                         </div>
                     </div>
                 </div>
