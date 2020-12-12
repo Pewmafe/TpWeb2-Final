@@ -475,7 +475,7 @@ $(document).ready(function() {
 
     /************************Tabla Usuarios**********************************/
 
-    $('#mydatatable').DataTable({
+    $('#mydatatableUsuarios').DataTable({
         "language": {
             "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
         }
@@ -483,7 +483,15 @@ $(document).ready(function() {
     });
     /************************Tabla Empleados**********************************/
 
-    $('#mydatatableDos').DataTable({
+    $('#mydatatableEmpleados').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+    /************************Tabla Clientes**********************************/
+
+    $('#mydatatableClientes').DataTable({
         "language": {
             "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
         }

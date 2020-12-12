@@ -31,7 +31,7 @@
                     usuarios
                 </h3>
                 <div class="container table-responsive mb-5 mt-3">
-                    <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatable">
+                    <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableUsuarios">
                         <thead>
                             <tr>
                                 <th>Dni</th>
@@ -78,7 +78,7 @@
                     <i class="fas fa-user-tie"></i> Administrar empleados
                 </h3>
                 <div class="container table-responsive mb-5 mt-3">
-                    <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableDos">
+                    <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableEmpleados">
                         <thead>
                             <tr>
                                 <th>Dni</th>
