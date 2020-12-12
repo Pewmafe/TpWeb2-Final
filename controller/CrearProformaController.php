@@ -92,6 +92,7 @@ class CrearProformaController
             $direccionDestino=null;
             $direccionPartida=null;
             $camposVacios = false;
+            $proformaId= null;
             if ($clienteCuit != false and $cargaTipo != false and $cargaPeso != false and $origenLocalidad != false and $origenCalle != false and
                 $origenAltura != false and $destinoLocalidad != false and $destinoCalle != false and $destinoAltura != false and
                 $fechaSalida != false and $fechaLlegada != false and $vehiculoPatente != false and $acopladoPatente != false and
@@ -116,7 +117,7 @@ class CrearProformaController
                     ini_set("date.timezone", "America/Argentina/Buenos_Aires");
                     $fecha = date("Y-m-d", time());
 
-                    $this->crearProformaModel->registrarProforma($clienteCuit, $idViaje, $fecha);
+                    $proformaId = $this->crearProformaModel->registrarProforma($clienteCuit, $idViaje, $fecha);
 
                     $nombreOrigenLocalidad= $this->crearProformaModel->devolverNombreLocalidadPorIdLocalidad($origenLocalidad);
                     $nombreOrigenProvincia = $this->crearProformaModel->devolverNombreProvinciaPorIdLocalidad($origenLocalidad);
@@ -152,7 +153,7 @@ class CrearProformaController
                 'cantidadKilometros'=>$cantidadKilometros, 'clienteCuit'=>$clienteCuit, 'hazardId'=>$hazardId, 'reeferId'=>$reeferId,
                 'direccionDestino'=>$direccionDestino, 'direccionPartida'=>$direccionPartida, 'fechaSalida'=>$fechaSalida, 'fechaLlegada'=>$fechaLlegada,
                 'vehiculoPatente'=>$vehiculoPatente, 'acopladoPatente'=>$acopladoPatente, 'cargaPeso'=>$cargaPeso, 'nombreTipoCarga'=>$nombreTipoCarga,
-                'datosHazard'=>$datosHazard, 'datosReefer'=>$datosReefer);
+                'datosHazard'=>$datosHazard, 'datosReefer'=>$datosReefer, 'choferID'=>$choferID, 'proformaId'=>$proformaId);
             echo json_encode($datos);
             exit();
         }
@@ -233,6 +234,15 @@ class CrearProformaController
             $direccionPartida);
         $precio = $this->costeoModel->precioPorKilometro($idImoSubClass, $idTipoCarga, $idTipoAcoplado, $idReefer);
         return $this->costeoModel->precioDeLaDistancia($distancia,$precio);
+    }
+
+    public function mostrarClientesPorCuit()
+    {
+        $cuit = isset($_POST["clienteCuit"]) ? $_POST["clienteCuit"] : null;
+        if($cuit!=null){
+            $listaClientes = $this->crearProformaModel->obtenerNombreApellidoClientesPorCuit($cuit);
+            echo $listaClientes;
+        }
     }
 
 }

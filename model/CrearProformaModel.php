@@ -132,7 +132,8 @@ class CrearProformaModel
     {
         $sql = "INSERT INTO proforma(cliente_cuit, viaje_id, estado, fechaCreacion) 
         values (" . $clienteCuit . "," . $viajeId . ", 2, '".$fechaCreacion."')";
-        $this->bd->query($sql);
+        $idProforma = $this->bd->queryQueDevuelveId($sql);
+        return $idProforma;
     }
 
     public function verificarCuitClienteExistente($cuit)
@@ -263,4 +264,18 @@ class CrearProformaModel
         return $datosHazard;
     }
 
+    public function obtenerNombreApellidoClientesPorCuit($cuit){
+        $sql = "SELECT c.nombre, c.apellido, c.cuit
+                FROM cliente c";
+
+        $resultadoQuery = $this->bd->query($sql);
+
+        $listaClientes= null;
+        while ($fila = $resultadoQuery->fetch_assoc()) {
+            if(strpos($fila["cuit"], $cuit) !== false){
+                $listaClientes .= "<h4 class='text-info'>".$fila["nombre"] . " ". $fila["apellido"]."</h4>";
+            }
+        }
+        return $listaClientes;
+    }
 }

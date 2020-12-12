@@ -25,7 +25,7 @@
                 {{#empleadoChoferOcupado}}
                     <h5 class="text-danger">No se puede dar de baja un chofer con un viaje activo o pendiente.</h5>
                 {{/empleadoChoferOcupado}}
-                
+
                 <h3 class="text-center text-md-left text-dark mb-3 col-12">
                     <i class="fas fa-user"></i> Administrar
                     usuarios
@@ -118,7 +118,7 @@
                         </tfoot>
                     </table>
                 </div>
-                
+
             </article>
         </section>
         <section>

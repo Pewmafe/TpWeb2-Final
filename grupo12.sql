@@ -392,7 +392,7 @@ values(1, '1.1', 1),
 insert into provincia(id, descripcion)
 values(1, 'Buenos Aires'),
 (2, 'Cordoba'),
-(3, 'Rosario');
+(3, 'Santa Fe');
 
 INSERT INTO posicion (id, x, y) VALUES(1, -38.70409384939385, -62.25307383646255);
 INSERT INTO posicion (id, x, y) VALUES(2, -34.605708677680184, -58.601590778904544);
