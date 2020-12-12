@@ -444,5 +444,29 @@ $(document).ready(function() {
             }
         });
     });
+
+    /************************AJAX MOSTRAR CLIENTE POR CUIT PROFORMA**********************************/
+    $("#clienteRegistradoCuit").keyup(function(){
+        var cuit = $("#clienteRegistradoCuit").val();
+        var post_url = "/crearProforma/mostrarClientesPorCuit";
+        /*$.post(post_url,{
+            clienteCuit : cuit
+        }, function (data,status){
+            $("nombreApellidoCliente").html(data);
+        });*/
+
+        $.ajax({
+            type: 'POST',
+            url: post_url,
+            data: {
+                'clienteCuit': cuit
+            }
+        }).done(function(datos) {
+            $("#nombreApellidoCliente").html(datos);
+        }).fail(function() {
+            console.log("error al traer clientes por cuit");
+        });
+    });
+
 });
 

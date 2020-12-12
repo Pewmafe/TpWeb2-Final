@@ -263,4 +263,18 @@ class CrearProformaModel
         return $datosHazard;
     }
 
+    public function obtenerNombreApellidoClientesPorCuit($cuit){
+        $sql = "SELECT c.nombre, c.apellido, c.cuit
+                FROM cliente c";
+
+        $resultadoQuery = $this->bd->query($sql);
+
+        $listaClientes= null;
+        while ($fila = $resultadoQuery->fetch_assoc()) {
+            if(strpos($fila["cuit"], $cuit) !== false){
+                $listaClientes .= "<h4 class='text-info'>".$fila["nombre"] . " ". $fila["apellido"]."</h4>";
+            }
+        }
+        return $listaClientes;
+    }
 }

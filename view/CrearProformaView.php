@@ -122,6 +122,9 @@
                                 <div class="form-group col-12">
                                     <label for="clienteRegistradoCuit" class="col-12 control-label"><span class="text-info">*</span>Cuit</label>
                                     <input type="number" id="clienteRegistradoCuit" name="clienteRegistradoCuit" placeholder="CUIT" class="form-control">
+                                    <div class="mt-2 text-center" id="nombreApellidoCliente">
+
+                                    </div>
                                 </div>
                                 <hr>
                                 <div class="col-12">

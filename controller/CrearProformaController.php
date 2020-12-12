@@ -235,4 +235,13 @@ class CrearProformaController
         return $this->costeoModel->precioDeLaDistancia($distancia,$precio);
     }
 
+    public function mostrarClientesPorCuit()
+    {
+        $cuit = isset($_POST["clienteCuit"]) ? $_POST["clienteCuit"] : null;
+        if($cuit!=null){
+            $listaClientes = $this->crearProformaModel->obtenerNombreApellidoClientesPorCuit($cuit);
+            echo $listaClientes;
+        }
+    }
+
 }
