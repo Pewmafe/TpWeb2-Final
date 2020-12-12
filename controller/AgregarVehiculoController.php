@@ -5,25 +5,28 @@ class AgregarVehiculoController
 {
     private $render;
     private $agregarVehiculoModel;
+    private $loginSession;
 
-    public function __construct($render, $agregarVehiculoModel)
+    public function __construct($render, $loginSession, $agregarVehiculoModel)
     {
         $this->render = $render;
+        $this->loginSession = $loginSession;
         $this->agregarVehiculoModel = $agregarVehiculoModel;
     }
 
     public function ejecutar()
     {
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        $data["titulo"] = "Agregar vehiculo";
         if ($logeado) {
             $data["login"] = true;
-            if ($_SESSION["rol"] == "admin") {
-                $data["usuarioAdmin"] = true;
-            }
-            $data["patenteVehiculoError"]= isset($_GET["patenteVehiculoError"]) ? $_GET["patenteVehiculoError"] : false;
-            $data["agregoVehExitosamente"]= isset($_GET["agregoVehExitosamente"]) ? $_GET["agregoVehExitosamente"] : false;
 
-            echo $this->render->render("view/agregarCamionView.php", $data);
+            $data["patenteVehiculoError"] = isset($_GET["patenteVehiculoError"]) ? $_GET["patenteVehiculoError"] : false;
+            $data["agregoVehExitosamente"] = isset($_GET["agregoVehExitosamente"]) ? $_GET["agregoVehExitosamente"] : false;
+
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+            $dataMerge = array_merge($data, $data2);
+            echo $this->render->render("view/agregarCamionView.php", $dataMerge);
             exit();
         }
         echo $this->render->render("view/agregarCamionView.php");
@@ -31,7 +34,7 @@ class AgregarVehiculoController
 
     public function agregarVehiculo()
     {
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
             if ($_SESSION["rol"] == "admin") {
@@ -70,14 +73,5 @@ class AgregarVehiculoController
             exit();
         }
 
-    }
-
-    public function verificarQueUsuarioEsteLogeado()
-    {
-        $logeado = isset($_SESSION["logeado"]) ? $_SESSION["logeado"] : null;
-        if ($logeado == 1) {
-            return true;
-        }
-        return false;
     }
 }

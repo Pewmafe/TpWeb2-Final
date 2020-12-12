@@ -12,43 +12,19 @@
                         {{#nombreUsuarioError}}
                             <h5 class="text-danger">El nombre de usuario no existe.</h5>
                         {{/nombreUsuarioError}}
-                        {{#dniUsuarioError}}
-                            <h5 class="text-danger">El dni de empleado ya existe.</h5>
-                        {{/dniUsuarioError}}
                         {{#registroExitoso}}
                             <h5 class="text-success">Se registro el empleado con exito.</h5>
                         {{/registroExitoso}}
-                        <label for="nombreUsuario" class="col-12 control-label">*Nombre de usuario</label>
+                        {{#camposVacios}}
+                            <h5 class="text-danger">Debe completar todos los campos.</h5>
+                        {{/camposVacios}}
+                        <label for="nombreUsuario" class="col-12 control-label"><span class="text-info">*</span>Nombre de usuario</label>
                         <div class="col-12">
-                            <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre de Usuario" class="form-control" required>
+                            <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre de Usuario" class="form-control" value="{{nombreUsuario}}" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="nombre" class="col-12 control-label">*Nombre</label>
-                        <div class="col-12">
-                            <input type="text" id="nombre" name="nombre" placeholder="Nombre/s" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="apellido" class="col-12 control-label">*Apellido</label>
-                        <div class="col-12">
-                            <input type="text" id="apellido" name="apellido" placeholder="Apellido/s" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="fechaNacimiento" class="col-12 control-label">*Fecha de Nacimiento</label>
-                        <div class="col-12">
-                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="dni" class="col-12 control-label">*Dni</label>
-                        <div class="col-12">
-                            <input type="number" id="dni" name="dni" placeholder="DNI" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="tipoLicencia" class="col-12 control-label">*Tipo de licencia</label>
+                        <label for="tipoLicencia" class="col-12 control-label"><span class="text-info">*</span>Tipo de licencia</label>
                         <div class="col-12">
                             <select name="tipoLicencia" id="tipoLicencia" class="custom-select form-control">
                                 <option selected disabled>-</option>
@@ -59,7 +35,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="rolAsignar" class="col-12 control-label">*Rol a asignar</label>
+                        <label for="rolAsignar" class="col-12 control-label"><span class="text-info">*</span>Rol a asignar</label>
                         <div class="col-12">
                             <select name="rolAsignar" id="rolAsignar" class="custom-select form-control">
                                 <option selected disabled>-</option>
@@ -76,7 +52,7 @@
                             <span class="help-block alert alert-info">*Campos requeridos</span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                    <button type="submit" class="btn btn-outline-primary btn-block">Registrar</button>
                 </form>
             </article>
 
@@ -84,9 +60,6 @@
     </main>
 {{/usuarioAdmin}}
 {{^usuarioAdmin}}
-    <main class="text-center">
-        <h1>ERROR 404 PAGINA NO ENCONTRADA</h1>
-        <a class="btn btn-outline-danger" href="/home">Volver al Inicio</a>
-    </main>
+    {{> error404}}
 {{/usuarioAdmin}}
 {{> footer}}

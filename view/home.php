@@ -18,15 +18,15 @@
                 <div class="carousel-item">
                     <img src="/public/img/slider2.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
-                        <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
+                        <h5 class="bg-dark d-inline-block">La mejor calidad</h5> <br>
+                        <p class="bg-dark d-inline-block">Las marcas mas caras de camiones y acoplados</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="/public/img/slider3.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5 class="bg-dark d-inline-block">Los mejores camiones</h5> <br>
-                        <p class="bg-dark d-inline-block">Nuestros camiones son los mejores</p>
+                        <h5 class="bg-dark d-inline-block">Seguridad ante todo</h5> <br>
+                        <p class="bg-dark d-inline-block">Contamos con todas las medidas de seguridad que existen</p>
                     </div>
                 </div>
             </div>
@@ -41,13 +41,11 @@
         </div>
     </section>
     {{#registroExitoso}}
-        <h5 class="text-success text-center">Se registro con exito.</h5>
-    {{/registroExitoso}}
-    {{#agregoVehExitosamente}}
-        <h5 class="text-success text-center">Se agregó el vehículo exitosamente.</h5>
-    {{/agregoVehExitosamente}}
-    {{#agregoAcopladoExitosamente}}
-        <h5 class="text-success text-center">Se agregó el acoplado exitosamente.</h5>
+    <h5 class="text-success text-center">Se registro con exito.</h5>
+    {{/registroExitoso}} {{#agregoVehExitosamente}}
+    <h5 class="text-success text-center">Se agregó el vehículo exitosamente.</h5>
+    {{/agregoVehExitosamente}} {{#agregoAcopladoExitosamente}}
+    <h5 class="text-success text-center">Se agregó el acoplado exitosamente.</h5>
     {{/agregoAcopladoExitosamente}}
     <div class="text-center p-4">
         <h2 class="text-center d-inline-block border-bottom text-center">Bienvenido a Camionardo</h2>
@@ -55,23 +53,33 @@
     <section class="row justify-content-center m-3 ancho ">
         <article class="col-12 col-md-6 border-right borde-login">
 
-            <p class="p-1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis repellat perferendis
-                nesciunt laudantium non, at quisquam suscipit natus obcaecati autem necessitatibus ut a. Aliquid
-                fugit animi hic voluptatum reprehenderit amet!</p>
-            <p class="p-1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis repellat perferendis
-                nesciunt laudantium non, at quisquam suscipit natus obcaecati autem necessitatibus ut a. Aliquid
-                fugit animi hic voluptatum reprehenderit amet!</p>
-            <p class="p-1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis repellat perferendis
-                nesciunt laudantium non, at quisquam suscipit natus obcaecati autem necessitatibus ut a. Aliquid
-                fugit animi hic voluptatum reprehenderit amet!</p>
+            <h3> <i class="fas fa-circle"></i> EL NEGOCIO</h3>
+            <p class="p-1">Camionardo nace como una empresa de Servicios Logísticos Integrales para Campañas Promocionales dirigidas al Consumo Masivo, con una filosofía de negocio que se adapta a los nuevos entornos económicos y empresariales. Nuestra especialidad
+                es efectuar la colocación de sus productos y materiales promocionales en los diferentes puntos de venta, un servicio con una demanda al alza que ofrecemos apostando por la calidad, la profesionalidad y los precios ajustados.</P>
+
+            <h3><i class="fas fa-circle"></i> NUESTRA EXPERIENCIA</h3>
+            <p class="p-1">Este proyecto surge a partir de la experiencia de más de 10 años acumulada por sus fundadores en el sector de Servicios de Tercerización Logística. Ambos somos profesionales de esta actividad y deseamos emprender una nueva etapa profesional
+                con nuestra empresa. Nuestra estrategia se basa en ofrecer servicios de movimientos de carga en la forma más eficiente.</P>
+
+            <h3><i class="fas fa-circle"></i> GESTIÓN DEL TIEMPO</h3>
+            <p class="p-1">La administración del tiempo, es nuestra principal propuesta como empresa de Servicios de Logística y por sobre todo tener la flexibilidad necesaria para poder elegir el modo de transporte e implementación más eficaz para cada tarea.
+
+                <h3><i class="fas fa-circle"></i> RECURSOS HUMANOS</h3>
+                <p class="p-1">Contamos con una plantilla de personal calificado para efectuar la colocación de productos y material promocional y una flota de vehículos eficaz y diversificada que nos permitirá ofrecer al cliente la mejor solución para sus envíos en
+                    función del tipo de mercancía, la zona de entrega, el tráfico, la urgencia, etc.</P>
+
+                <h3><i class="fas fa-circle"></i> ALIANZAS ESTRATÉGICAS</h3>
+                <p class="p-1">Esto será posible mediante un modelo de negocio que combina los recursos propios con la colaboración de transportistas autónomos y acuerdos con empresas nacionales. Este sistema nos permitirá centrarnos en nuestro nicho de mercado (la
+                    prestación de servicios de Soluciones Logísticas Integrales para Campañas Promocionales dirigidas al Consumo Masivo) al tiempo que ofrecemos un servicio integral que satisface todas las necesidades del cliente.</P>
 
         </article>
         <article class="col-12 col-md-6 justify-content-center">
-            <div class="referencia">
+            <div class="referencia m-1">
                 <img src="/public/img/camion.jfif" alt="Camion" srcset="" class="img-fluid" style="width: 100%">
             </div>
+            <div id="map" class="referencia-mapita m-1" ></div>
         </article>
     </section>
-
+    <br>
 </main>
 {{> footer}}

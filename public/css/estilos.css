@@ -25,6 +25,11 @@ footer {
     margin: auto;
 }
 
+.anchoProforma {
+    width: 90%;
+    margin: auto;
+}
+
 .login .form-control {
     background-color: #fff;
     border-radius: 0;
@@ -73,6 +78,52 @@ footer {
     -webkit-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46);
     -moz-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46);
     box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46);
+}
+
+.referencia-mapita {
+    border: 1px solid #000!important;
+    -webkit-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46)!important;
+    -moz-box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46)!important;
+    box-shadow: 10px 10px 12px -8px rgba(0, 0, 0, 0.46)!important;
+}
+
+.borde-login i {
+    font-size: medium;
+}
+
+.c-pointer {
+    cursor: pointer;
+    text-decoration: none;
+    color: #999;
+}
+
+c-pointer:hover {
+    color: #000;
+}
+
+nav-item:hover c-pointer {
+    color: #000 !important;
+}
+
+.mt--6 {
+    margin-top: -6px;
+}
+
+.chofer-hidden {
+    display: none;
+    transition: 2s;
+}
+
+.img-qr {
+    width: 500px;
+    height: auto;
+}
+
+#map {
+    width: 100%;
+    height: 450px;
+    background: grey;
+    max-width: 100%;
 }
 
 @media screen and (max-width: 768px) {

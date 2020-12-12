@@ -5,26 +5,30 @@ class RegistroEmpleadoController
 {
     private $render;
     private $registroEmpleadoModel;
+    private $loginSession;
 
-    public function __construct($render , $registroEmpleadoModel)
+    public function __construct($render, $loginSession, $registroEmpleadoModel)
     {
         $this->render = $render;
+        $this->loginSession = $loginSession;
         $this->registroEmpleadoModel = $registroEmpleadoModel;
     }
 
     public function ejecutar()
     {
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
-        if($logeado){
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        $data["titulo"] = "Hacerlo empleado";
+        if ($logeado) {
             $data["login"] = true;
-            if($_SESSION["rol"] == "admin"){
-                $data["usuarioAdmin"] = true;
-            }
-            $data["dniUsuarioError"]= isset($_GET["dniUsuarioError"]) ? $_GET["dniUsuarioError"] : false;
-            $data["nombreUsuarioError"]= isset($_GET["nombreUsuarioError"]) ? $_GET["nombreUsuarioError"] : false;
-            $data["registroExitoso"]= isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
 
-            echo $this->render->render("view/registroEmpleadoView.php", $data);
+            $data["nombreUsuarioError"] = isset($_GET["nombreUsuarioError"]) ? $_GET["nombreUsuarioError"] : false;
+            $data["registroExitoso"] = isset($_GET["registroExitoso"]) ? $_GET["registroExitoso"] : false;
+            $data["nombreUsuario"] = isset($_GET["nombreUsuario"]) ? $_GET["nombreUsuario"] : false;
+            $data["camposVacios"] = isset($_GET["camposVacios"]) ? $_GET["camposVacios"] : false;
+
+            $data2 = $this->loginSession->verificarQueUsuarioRol();
+            $dataMerge = array_merge($data, $data2);
+            echo $this->render->render("view/registroEmpleadoView.php", $dataMerge);
             exit();
         }
         echo $this->render->render("view/registroEmpleadoView.php");
@@ -32,50 +36,32 @@ class RegistroEmpleadoController
 
     public function registroEmpleado()
     {
-        $logeado = $this->verificarQueUsuarioEsteLogeado();
-        if($logeado){
-            $dni = $_POST["dni"];
-            $nombre = $_POST["nombre"];
-            $apellido = $_POST["apellido"];
-            $fechaNacimiento = $_POST["fechaNacimiento"];
-            $tipoLicencia = $_POST["tipoLicencia"];
-            $rolAsignar =  $_POST["rolAsignar"];
-            $nombreUsuario = $_POST["nombreUsuario"];
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        if ($logeado) {
+
+            $tipoLicencia = isset($_POST["tipoLicencia"]) ? $_POST["tipoLicencia"] : null;
+            $rolAsignar = isset($_POST["rolAsignar"]) ? $_POST["rolAsignar"] : null;
+            $nombreUsuario = isset($_POST["nombreUsuario"]) ? $_POST["nombreUsuario"] : null;
 
             $nombreUsuarioExistente = $this->registroEmpleadoModel->verificarNombreUsuarioExistente($nombreUsuario);
-            $dniExistente = $this->registroEmpleadoModel->verificarDNIUsuarioExistente($dni);
 
-            if(!$nombreUsuarioExistente and $dniExistente){
-                header("Location: /registroEmpleado?nombreUsuarioError=true&dniUsuarioError=true");
-                exit();
-            }elseif ($dniExistente){
-                header("Location: /registroEmpleado?dniUsuarioError=true");
-                exit();
-            }elseif (!$nombreUsuarioExistente){
+            if (!$nombreUsuarioExistente) {
                 header("Location: /registroEmpleado?nombreUsuarioError=true");
                 exit();
             }
 
-            $this->registroEmpleadoModel->registrarEmpleado($dni,
-                $nombre,
-                $apellido,
-                $fechaNacimiento,
-                $tipoLicencia,
-                $rolAsignar,
-                $nombreUsuario);
+            if($tipoLicencia != null and $rolAsignar != null and $nombreUsuario != null){
+                $this->registroEmpleadoModel->registrarEmpleado($tipoLicencia, $rolAsignar, $nombreUsuario);
+            }else{
+                header("Location: /registroEmpleado?camposVacios=true");
+                exit();
+            }
+
 
             $data["registroExitoso"] = true;
             header("Location: /registroEmpleado?registroExitoso=true");
             exit();
         }
 
-    }
-
-    public function verificarQueUsuarioEsteLogeado(){
-        $logeado = isset( $_SESSION["logeado"]) ?  $_SESSION["logeado"] : null;
-        if($logeado == 1){
-            return true;
-        }
-        return false;
     }
 }

@@ -9,23 +9,26 @@ class RegistroModel
         $this->bd = $bd;
     }
 
-    public function registrarUsuario($nombre, $contrasenia)
+    public function registrarUsuario($nombreUsuario, $contrasenia, $dni, $nombre, $apellido, $fechaNacimiento)
     {
         $contraseniaEncriptada = md5($contrasenia);
-        $sql = "INSERT INTO grupo12.usuario(nombreUsuario, contrasenia)
-            VALUES ('" . $nombre . "','" . $contraseniaEncriptada . "')";
+        $sql = "INSERT INTO grupo12.usuario(dni, nombreUsuario, contrasenia, nombre, apellido, fecha_nacimiento,eliminado)
+            VALUES (" . $dni . ",'" . $nombreUsuario . "','" . $contraseniaEncriptada . "','" . $nombre . "','" . $apellido . "','" . $fechaNacimiento . "', false)";
         return $this->bd->query($sql);
     }
 
-    public function  registrarEmpleado($dni, $nombre, $apellido, $fechaNacimiento, $tipoLicencia, $rolAsignar, $nombreUsuario){
-        $idUsuario = $this->obtenerIdUsuario($nombreUsuario);
+    public function registrarEmpleado($tipoLicencia, $rolAsignar, $nombreUsuario)
+    {
+        $dniUsuario = $this->obtenerIdUsuario($nombreUsuario);
 
-        $sql = "insert into empleado(dni, nombre, apellido, nacimiento, tipo_de_licencia, tipo, id_usuario)
-                values(".$dni.",'".$nombre."','".$apellido."', '".$fechaNacimiento."', '".$tipoLicencia."', ".$rolAsignar.", ".$idUsuario.")";
+        $sql = "insert into empleado(tipo_de_licencia, tipo_empleado, dni_usuario)
+                values('" . $tipoLicencia . "', " . $rolAsignar . ", " . $dniUsuario . ")";
+
         $this->bd->query($sql);
     }
 
-    public function verificarNombreUsuarioExistente($NombreUsuario){
+    public function verificarNombreUsuarioExistente($NombreUsuario)
+    {
         $resultado = false;
 
         $table = $this->bd->devolverDatos("usuario");
@@ -37,10 +40,11 @@ class RegistroModel
         return $resultado;
     }
 
-    public function verificarDNIUsuarioExistente($dni){
+    public function verificarDNIUsuarioExistente($dni)
+    {
         $resultado = false;
 
-        $table = $this->bd->devolverDatos("empleado");
+        $table = $this->bd->devolverDatos("usuario");
         for ($i = 0; $i < sizeof($table); $i++) {
             if ($table[$i]["dni"] == $dni) {
                 $resultado = true;
@@ -49,12 +53,13 @@ class RegistroModel
         return $resultado;
     }
 
-    public function obtenerIdUsuario($nombreUsuario){
-        $sql = "SELECT id FROM usuario WHERE usuario.nombreUsuario = '".$nombreUsuario."'";
+    public function obtenerIdUsuario($nombreUsuario)
+    {
+        $sql = "SELECT dni FROM usuario WHERE usuario.nombreUsuario = '" . $nombreUsuario . "'";
         $resultado = $this->bd->query($sql);
-        $arrayRol = $resultado-> fetch_assoc();
-        $idUsuario = $arrayRol["id"];
+        $arrayRol = $resultado->fetch_assoc();
+        $dniUsuario = $arrayRol["dni"];
 
-        return $idUsuario;
+        return $dniUsuario;
     }
 }
