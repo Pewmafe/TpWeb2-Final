@@ -21,8 +21,11 @@ class ServiceController
         if ($logeado) {
             $data["login"] = true;
 
-            $tablaCamiones = $this->serviceModel->obtenerListaCamionesLibres();
-            $data['tablaCamiones'] = $tablaCamiones;
+            $tablaCamionesLibres = $this->serviceModel->obtenerListaCamionesLibres();
+            $data['tablaCamionesLibres'] = $tablaCamionesLibres;
+
+            $tablaCamionesService = $this->serviceModel->obtenerListaCamionesEnService();
+            $data['tablaCamionesService'] = $tablaCamionesService;
 
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
