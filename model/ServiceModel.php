@@ -38,5 +38,4 @@ class ServiceModel
         return $tablaCamiones;
     }
 
-
 }

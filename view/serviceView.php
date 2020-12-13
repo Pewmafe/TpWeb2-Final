@@ -29,7 +29,7 @@
                             <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{patente}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             </a>
                             <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{patente}}" style="right: 1em;">
-                                <a class="btn btn-outline-success mt-2 botonModificarCamion" data-toggle="modal" data-target="#modificarCamionModal"  type="button">Mandar a service</a>
+                                <a class="btn btn-outline-success mt-2" data-toggle="modal" data-target="#"  type="button">Mandar a service</a>
                             </div>
                         </td>
                     </tr>

@@ -34,4 +34,8 @@ class ServiceController
         }
         echo $this->render->render("view/serviceView.php");
     }
+
+    public function mandarUnVehiculoAMantenimiento(){
+
+    }
 }

@@ -21,6 +21,8 @@ class MantenimientoController
         if ($logeado) {
             $data["login"] = true;
 
+            $tablaCamionesService = $this->mantenimientoModel->obtenerListaCamionesEnService();
+            $data['tablaCamionesService'] = $tablaCamionesService;
 
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
