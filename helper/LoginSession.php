@@ -19,6 +19,8 @@ class LoginSession
             $data["usuarioAdmin"] = true;
             $data["usuarioSupervisor"] = true;
             $data["usuarioChofer"] = true;
+            $data["usuarioEncargado"] = true;
+            $data["usuarioMecanico"] = true;
         }
 
         if ($this->verificarQueUsuarioEsSupervisor()) {
@@ -28,6 +30,15 @@ class LoginSession
         if ($this->verificarQueUsuarioEsChofer()) {
             $data["usuarioChofer"] = true;
         }
+
+        if ($this->verificarQueUsuarioEsEncargado()) {
+            $data["usuarioEncargado"] = true;
+        }
+
+        if ($this->verificarQueUsuarioEsMecanico()) {
+            $data["usuarioMecanico"] = true;
+        }
+
         return $data;
     }
 
@@ -56,6 +67,24 @@ class LoginSession
             $usuarioChofer = true;
         }
         return $usuarioChofer;
+    }
+
+    public function verificarQueUsuarioEsEncargado()
+    {
+        $usuarioEncargado = false;
+        if ($_SESSION["rol"] == "encargado") {
+            $usuarioEncargado = true;
+        }
+        return $usuarioEncargado;
+    }
+
+    public function verificarQueUsuarioEsMecanico()
+    {
+        $usuarioMecanico = false;
+        if ($_SESSION["rol"] == "mecanico") {
+            $usuarioMecanico = true;
+        }
+        return $usuarioMecanico;
     }
 
 

@@ -70,6 +70,16 @@
                         <a class="nav-link text-white" href="/chofer">Viajes</a>
                     </li>
                 {{/usuarioChofer}}
+                {{#usuarioEncargado}}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/service">Service</a>
+                    </li>
+                {{/usuarioEncargado}}
+                {{#usuarioMecanico}}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/mantenimiento">Mantenimiento</a>
+                    </li>
+                {{/usuarioMecanico}}
                 {{#login}}
                     <li class="nav-item">
                         <a class="nav-link text-white " href="/modificarUsuario">Configuracion</a>

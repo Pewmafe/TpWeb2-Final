@@ -18,6 +18,8 @@ include_once("controller/CrearProformaController.php");
 include_once("controller/QrChoferController.php");
 include_once("controller/PdfProformaController.php");
 include_once("controller/AdministrarClienteController.php");
+include_once("controller/ServiceController.php");
+include_once("controller/MantenimientoController.php");
 
 include_once("model/CosteoModel.php");
 include_once("model/RegistroModel.php");
@@ -31,6 +33,8 @@ include_once("model/ChoferModel.php");
 include_once("model/CrearProformaModel.php");
 include_once("model/AdministrarDireccionModel.php");
 include_once("model/AdministrarClienteModel.php");
+include_once("model/MantenimientoModel.php");
+include_once("model/ServiceModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -163,6 +167,22 @@ class Configuracion
         return new PdfProformaController($this->getRender(), $loginSession, $choferModel);
     }
 
+    public function getServiceController()
+    {
+        $serviceModel = $this->getServiceModel();
+        $loginSession = $this->getLoginSession();
+        $render = $this->getRender();
+        return new ServiceController($render, $loginSession, $serviceModel);
+    }
+
+    public function getMantenimientoController()
+    {
+        $mantenimientoModel = $this->getMantenimientoModel();
+        $loginSession = $this->getLoginSession();
+        $render = $this->getRender();
+        return new MantenimientoController($render, $loginSession, $mantenimientoModel);
+    }
+
     public function getAgregarAcopladoModel()
     {
         $bd = $this->getDatabase();
@@ -241,4 +261,13 @@ class Configuracion
         return new AdministrarClienteController($render,$loginSession, $cliente, $direccion);
     }
 
+    public function getServiceModel(){
+        $bd = $this->getDatabase();
+        return new ServiceModel($bd);
+    }
+
+    public function getMantenimientoModel(){
+        $bd = $this->getDatabase();
+        return new MantenimientoModel($bd);
+    }
 }
