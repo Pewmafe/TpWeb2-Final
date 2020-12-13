@@ -48,7 +48,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                            <th>Cuit</th>
+                                <th>Cuit</th>
                                 <th>Nombre Apellido</th>
                                 <th>Denominacion</th>
                                 <th>Email</th>

@@ -1,6 +1,6 @@
 /************************MAPA**********************************/
-function moveMapToArgentina(map){
-    map.setCenter({lat:-34.60372097922263, lng:-58.38157026170721});
+function moveMapToArgentina(map) {
+    map.setCenter({ lat: -34.60372097922263, lng: -58.38157026170721 });
     map.setZoom(12);
 }
 
@@ -17,8 +17,8 @@ var defaultLayers = platform.createDefaultLayers();
 
 //Step 2: initialize a map - this map is centered over Europe
 var map = new H.Map(document.getElementById('map'),
-    defaultLayers.vector.normal.map,{
-        center: {lat:50, lng:5},
+    defaultLayers.vector.normal.map, {
+        center: { lat: 50, lng: 5 },
         zoom: 4,
         pixelRatio: window.devicePixelRatio || 1
     });
@@ -34,7 +34,7 @@ var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 var ui = H.ui.UI.createDefault(map, defaultLayers);
 
 // Now use the map as required...
-window.onload = function () {
+window.onload = function() {
     moveMapToArgentina(map);
 }
 
@@ -42,11 +42,8 @@ window.onload = function () {
 
 // Create an icon, an object holding the latitude and longitude, and a marker:
 var icon = new H.map.Icon('../img/camionardo.ico');
-    coords = {lat: -34.6050, lng: -58.3836},
-    marker = new H.map.Marker(coords, {icon: icon});
+coords = { lat: -34.6050, lng: -58.3836 },
+    marker = new H.map.Marker(coords, { icon: icon });
 
 // Add the marker to the map and center the map at the location of the marker:
 map.addObject(marker);
-
-
-

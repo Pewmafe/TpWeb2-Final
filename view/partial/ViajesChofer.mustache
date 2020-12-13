@@ -21,29 +21,27 @@
         <div class="table-responsive mb-5 mt-3">
             <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableViajesA">
                 <thead>
-                <tr>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Desde</th>
-                    <th scope="col">Hacia</th>
-                    <th scope="col">Duracion Aproximada</th>
-                    <th scope="col"></th>
-                </tr>
+                    <tr>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Desde</th>
+                        <th scope="col">Hacia</th>
+                        <th scope="col">Duracion Aproximada</th>
+                        <th scope="col"></th>
+                    </tr>
                 </thead>
                 <tbody>
-                {{#tablaDeViajesActivo}}
+                    {{#tablaDeViajesActivo}}
                     <tr>
                         <td class="text-success">{{estado}}</td>
                         <td>{{partida}}</td>
                         <td>{{destino}}</td>
                         <td>{{tiempo_estimado}}</td>
                         <td class="text-right">
-                            <a class="btn btn-outline-secondary p-1 mt--6"
-                               href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
-                            mas</a>
+                            <a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
+                                mas</a>
                         </td>
                     </tr>
-                {{/tablaDeViajesActivo}}
-                {{^tablaDeViajesActivo}}
+                    {{/tablaDeViajesActivo}} {{^tablaDeViajesActivo}}
                     <td class="text-success">(vacio)</td>
                     <td>(vacio)</td>
                     <td>(vacio)</td>
@@ -51,16 +49,16 @@
                     <td class="text-right">
                         <a class="btn btn-outline-secondary p-1 mt--6" href="/Chofer">Ver mas</a>
                     </td>
-                {{/tablaDeViajesActivo}}
+                    {{/tablaDeViajesActivo}}
                 </tbody>
                 <tfoot>
-                <tr>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Desde</th>
-                    <th scope="col">Hacia</th>
-                    <th scope="col">Duracion Aproximada</th>
-                    <th scope="col"></th>
-                </tr>
+                    <tr>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Desde</th>
+                        <th scope="col">Hacia</th>
+                        <th scope="col">Duracion Aproximada</th>
+                        <th scope="col"></th>
+                    </tr>
                 </tfoot>
             </table>
         </div>
@@ -69,29 +67,27 @@
         <div class="table-responsive mb-5 mt-3">
             <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableViajesP">
                 <thead>
-                <tr>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Desde</th>
-                    <th scope="col">Hacia</th>
-                    <th scope="col">Duracion Aproximada</th>
-                    <th scope="col"></th>
-                </tr>
+                    <tr>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Desde</th>
+                        <th scope="col">Hacia</th>
+                        <th scope="col">Duracion Aproximada</th>
+                        <th scope="col"></th>
+                    </tr>
                 </thead>
                 <tbody>
-                {{#tablaDeViajesPendientes}}
+                    {{#tablaDeViajesPendientes}}
                     <tr>
                         <td class="text-secondary">{{estado}}</td>
                         <td>{{partida}}</td>
                         <td>{{destino}}</td>
                         <td>{{tiempo_estimado}}</td>
                         <td class="text-right">
-                            <a class="btn btn-outline-secondary p-1 mt--6"
-                               href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
-                            mas</a>
+                            <a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
+                                mas</a>
                         </td>
                     </tr>
-                {{/tablaDeViajesPendientes}}
-                {{^tablaDeViajesPendientes}}
+                    {{/tablaDeViajesPendientes}} {{^tablaDeViajesPendientes}}
                     <td class="text-secondary">(vacio)</td>
                     <td>(vacio)</td>
                     <td>(vacio)</td>
@@ -99,16 +95,16 @@
                     <td class="text-right">
                         <a class="btn btn-outline-secondary p-1 mt--6" href="/Chofer">Ver mas</a>
                     </td>
-                {{/tablaDeViajesPendientes}}
+                    {{/tablaDeViajesPendientes}}
                 </tbody>
                 <tfoot>
-                <tr>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Desde</th>
-                    <th scope="col">Hacia</th>
-                    <th scope="col">Duracion Aproximada</th>
-                    <th scope="col"></th>
-                </tr>
+                    <tr>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Desde</th>
+                        <th scope="col">Hacia</th>
+                        <th scope="col">Duracion Aproximada</th>
+                        <th scope="col"></th>
+                    </tr>
                 </tfoot>
             </table>
         </div>
@@ -117,29 +113,27 @@
         <div class="table-responsive mb-5 mt-3">
             <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableViajesF">
                 <thead>
-                <tr>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Desde</th>
-                    <th scope="col">Hacia</th>
-                    <th scope="col">Duracion Aproximada</th>
-                    <th scope="col"></th>
-                </tr>
+                    <tr>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Desde</th>
+                        <th scope="col">Hacia</th>
+                        <th scope="col">Duracion Aproximada</th>
+                        <th scope="col"></th>
+                    </tr>
                 </thead>
                 <tbody>
-                {{#tablaDeViajesFinalizados}}
+                    {{#tablaDeViajesFinalizados}}
                     <tr>
                         <td class="text-danger">{{estado}}</td>
                         <td>{{partida}}</td>
                         <td>{{destino}}</td>
                         <td>{{tiempo_estimado}}</td>
                         <td class="text-right">
-                            <a class="btn btn-outline-secondary p-1 mt--6"
-                               href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
-                            mas</a>
+                            <a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
+                                mas</a>
                         </td>
                     </tr>
-                {{/tablaDeViajesFinalizados}}
-                {{^tablaDeViajesFinalizados}}
+                    {{/tablaDeViajesFinalizados}} {{^tablaDeViajesFinalizados}}
                     <td class="text-danger">(vacio)</td>
                     <td>(vacio)</td>
                     <td>(vacio)</td>
@@ -147,16 +141,16 @@
                     <td class="text-right">
                         <a class="btn btn-outline-secondary p-1 mt--6" href="/Chofer">Ver mas</a>
                     </td>
-                {{/tablaDeViajesFinalizados}}
+                    {{/tablaDeViajesFinalizados}}
                 </tbody>
                 <tfoot>
-                <tr>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Desde</th>
-                    <th scope="col">Hacia</th>
-                    <th scope="col">Duracion Aproximada</th>
-                    <th scope="col"></th>
-                </tr>
+                    <tr>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Desde</th>
+                        <th scope="col">Hacia</th>
+                        <th scope="col">Duracion Aproximada</th>
+                        <th scope="col"></th>
+                    </tr>
                 </tfoot>
             </table>
         </div>

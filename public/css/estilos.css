@@ -159,11 +159,6 @@ nav-item:hover c-pointer {
     border-radius: .25rem;
 }
 
-
-/*#mydatatable td {
-    background-color: #454d55!important;
-}*/
-
 @media screen and (max-width: 768px) {
     .borde-login {
         border: 0 !important;
