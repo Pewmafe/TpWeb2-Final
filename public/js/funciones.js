@@ -472,8 +472,9 @@ $(document).ready(function() {
         });
     });
 
+    /************************Tablas Nuevas ABM/VIAJES*********************************/
 
-    /************************Tabla Usuarios**********************************/
+    /***********Tabla Usuarios***********/
 
     $('#mydatatableUsuarios').DataTable({
         "language": {
@@ -481,7 +482,7 @@ $(document).ready(function() {
         }
 
     });
-    /************************Tabla Empleados**********************************/
+    /***********Tabla Empleados***********/
 
     $('#mydatatableEmpleados').DataTable({
         "language": {
@@ -489,7 +490,7 @@ $(document).ready(function() {
         }
 
     });
-    /************************Tabla Clientes**********************************/
+    /***********Tabla Clientes***********/
 
     $('#mydatatableClientes').DataTable({
         "language": {
@@ -497,7 +498,7 @@ $(document).ready(function() {
         }
 
     });
-    /************************Tabla Vehiculos**********************************/
+    /***********Tabla Vehiculos***********/
 
     $('#mydatatableVehiculos').DataTable({
         "language": {
@@ -505,5 +506,23 @@ $(document).ready(function() {
         }
 
     });
+    /***********Tabla Viajes***********/
+    $('#mydatatableViajesA').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
 
+    });
+    $('#mydatatableViajesP').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+    $('#mydatatableViajesF').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
 });
