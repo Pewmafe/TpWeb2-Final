@@ -41,7 +41,6 @@ class ChoferController
                     $tablaDeViajesActivo = ($this->ChoferModel->obtenerViajePorEstado(activo)) != null ? $this->ChoferModel->obtenerViajePorEstado(activo) : null;
                     $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
 
-
                     $tablaDeViajesPendientes = ($this->ChoferModel->obtenerViajePorEstado(pendiente)) != null ? $this->ChoferModel->obtenerViajePorEstado(pendiente) : null;
                     $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
 
@@ -49,7 +48,6 @@ class ChoferController
                     $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
 
                 } else {
-
                     $tablaDeViajesActivo = ($this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]) : null;
                     $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
 

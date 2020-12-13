@@ -96,9 +96,10 @@ class PdfProformaController
                 $pdf->Cell(10, 5, '', 0, 0);
                 $pdf->Cell(90, 5, "Denominacion: '" . utf8_decode($tablaDatosProforma[0]["denominacion_cliente"]) . "'", 0, 1);
 
-                $pdf->Image('public/qr/temp/test.png', 140, 50, -220);
-                $pdf->Cell(189, 10, '', 0, 1);//end of line
-
+                if ($tablaDatosProforma[0]["estado_proforma"] == 1) {
+                    $pdf->Image('public/qr/temp/test.png', 140, 50, -220);
+                    $pdf->Cell(189, 10, '', 0, 1);//end of line
+                }
 
                 $pdf->SetFont('Arial', 'B', 14);
 
