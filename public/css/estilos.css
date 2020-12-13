@@ -159,12 +159,25 @@ nav-item:hover c-pointer {
     border-radius: .25rem;
 }
 
+.borde-activo {
+    border-bottom: #28a745 solid 2px;
+}
+
+.borde-pendiente {
+    border-bottom: #6c757d solid 2px;
+}
+
+.borde-finalizado {
+    border-bottom: #dc3545 solid 2px;
+}
+
 @media screen and (max-width: 768px) {
     .borde-login {
         border: 0 !important;
         border-bottom: 1px solid #d4dcdf !important;
         margin-bottom: 1em;
     }
+
     .intDatos {
         text-align: center;
     }
