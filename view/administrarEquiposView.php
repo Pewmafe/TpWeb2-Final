@@ -26,7 +26,7 @@
                 <a href="/agregarVehiculo" class="btn btn-outline-primary">Agregar Vehículo</a>
 
                 <div class="container table-responsive mb-5 mt-3">
-                    <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableVehiculos">
+                    <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableVehiculosService">
                         <thead>
                             <tr>
                                 <th>Patente</th>

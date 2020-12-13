@@ -9,4 +9,17 @@ class ServiceModel
     {
         $this->bd = $bd;
     }
+
+    public function obtenerListaCamionesLibres(){
+        $sql = 'SELECT patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service
+            FROM vehiculo v JOIN estado_equipo ee 
+                            ON v.estado = ee.id
+            WHERE ee.descripcion = "libre"';
+        $resultQuery = $this->bd->query($sql);
+
+        while ($fila = $resultQuery->fetch_assoc()) {
+            $tablaCamiones[] = $fila;
+        }
+        return $tablaCamiones;
+    }
 }

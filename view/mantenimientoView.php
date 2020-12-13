@@ -1,8 +1,8 @@
 {{> header}}
 {{#usuarioMecanico}}
 <main>
+    <h1 class="text-dark text-center">Mantenimiento</h1>
     <section>
-        <h1>Mantenimiento</h1>
     </section>
 </main>
 {{/usuarioMecanico}}
