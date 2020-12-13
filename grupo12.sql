@@ -7,13 +7,22 @@ create table tipo_acoplado(
 	descripcion varchar(100)
 );
 
+create table estado_equipo(
+    id int primary key,
+    descripcion varchar(50)
+);
+
 create table acoplado(
 	patente varchar(10) primary key,
 	chasis varchar(50),
 	tipo int,
+	estado int,
 	constraint fk_acoplado_tipo
 	foreign key (tipo)
-	references tipo_acoplado(id)
+	references tipo_acoplado(id),
+	constraint fk_acoplado_estado
+	foreign key (estado)
+	references estado_equipo(id)
 );
 
 create table tipo_carga(
@@ -98,11 +107,6 @@ create table tipo_mantenimiento(
 	descripcion varchar(100)
 );
 
-create table estado_vehiculo(
-	id int primary key,
-	descripcion varchar(100)
-);
-
 create table tipo_vehiculo(
 	id int primary key,
 	descripcion varchar(100)
@@ -121,7 +125,7 @@ create table vehiculo(
 	tipo int,
 	constraint fk_vehiculo_estado
 	foreign key (estado)
-	references estado_vehiculo(id),
+	references estado_equipo(id),
 	constraint fk_vehiculo_tipo
 	foreign key (tipo)
 	references tipo_vehiculo(id)
@@ -332,19 +336,25 @@ values(1, 'camion', 1, 123),
 (5, 'auto', 2, 125),
 (6, 'auto', 5, 130);
 
-insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
-values('aa123bb', 10, 100, 20000, 20150505, 'Iveco', 'Scavenger', 20180209, null, null);
-
-insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
-values('ab145bb', 11, 101, 15000, 20160608, 'Iveco', 'Scavenger', 20191011, null, null);
-
-insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
-values('ba531aa', 12, 102, 18000, 20191108, 'Scania', 'g150', 20200201, null, null);
+insert into estado_equipo(id, descripcion)
+values('1','libre'),
+('2', 'viaje'),
+('3', 'mantenimiento');
 
 insert into tipo_vehiculo(id, descripcion)
 values (1, 'Auto'),
 (2, 'Camion'),
 (3, 'Tractor');
+
+insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
+values('aa123bb', 10, 100, 20000, 20150505, 'Iveco', 'Scavenger', 20180209, 1, 3);
+
+insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
+values('ab145bb', 11, 101, 15000, 20160608, 'Iveco', 'Scavenger', 20191011, 1, 2);
+
+insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
+values('ba531aa', 12, 102, 18000, 20191108, 'Scania', 'g150', 20200201, 1, 3);
+
 
 insert into tipo_acoplado(id, descripcion)
 values (1, 'Araña'),
@@ -354,9 +364,9 @@ values (1, 'Araña'),
 (5, 'Tanque');
 
 
-insert into acoplado(patente, chasis, tipo)
-values('aa159yy', 123789, 1), 
-('ab456uu', 456789, 3);
+insert into acoplado(patente, chasis, tipo, estado)
+values('aa159yy', 123789, 1, 1),
+('ab456uu', 456789, 3, 1);
 
 
 insert into tipo_carga(id_tipo_carga, descripcion)
