@@ -7,19 +7,19 @@
     <article>
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link c-pointer" id="Activos">Activos</a>
+                <a class="nav-link c-pointer text-success" id="Activos">Activos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link c-pointer" id="Pendientes">Pendientes</a>
+                <a class="nav-link c-pointer text-secondary" id="Pendientes">Pendientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link c-pointer" id="Finalizados">Finalizados</a>
+                <a class="nav-link c-pointer text-danger" id="Finalizados">Finalizados</a>
             </li>
         </ul>
     </article>
     <article class="popup1">
-        <div class="table-responsive">
-            <table class="table table-hover table-dark">
+        <div class="table-responsive mb-5 mt-3">
+            <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableViajesA">
                 <thead>
                 <tr>
                     <th scope="col">Estado</th>
@@ -32,8 +32,8 @@
                 <tbody>
                 {{#tablaDeViajesActivo}}
                     <tr>
-                        <th scope="row" class="text-success">{{estado}}</th>
-                        <td class="p-auto">{{partida}}</td>
+                        <td class="text-success">{{estado}}</td>
+                        <td>{{partida}}</td>
                         <td>{{destino}}</td>
                         <td>{{tiempo_estimado}}</td>
                         <td class="text-right">
@@ -42,9 +42,10 @@
                             mas</a>
                         </td>
                     </tr>
-                {{/tablaDeViajesActivo}} {{^tablaDeViajesActivo}}
-                    <th scope="row" class="text-success">(vacio)</th>
-                    <td class="p-auto">(vacio)</td>
+                {{/tablaDeViajesActivo}}
+                {{^tablaDeViajesActivo}}
+                    <td class="text-success">(vacio)</td>
+                    <td>(vacio)</td>
                     <td>(vacio)</td>
                     <td>(vacio)</td>
                     <td class="text-right">
@@ -52,12 +53,21 @@
                     </td>
                 {{/tablaDeViajesActivo}}
                 </tbody>
+                <tfoot>
+                <tr>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Desde</th>
+                    <th scope="col">Hacia</th>
+                    <th scope="col">Duracion Aproximada</th>
+                    <th scope="col"></th>
+                </tr>
+                </tfoot>
             </table>
         </div>
     </article>
     <article class="chofer-hidden popup2">
-        <div class="table-responsive">
-            <table class="table table-hover table-dark">
+        <div class="table-responsive mb-5 mt-3">
+            <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableViajesP">
                 <thead>
                 <tr>
                     <th scope="col">Estado</th>
@@ -70,8 +80,8 @@
                 <tbody>
                 {{#tablaDeViajesPendientes}}
                     <tr>
-                        <th scope="row" class="text-secondary">{{estado}}</th>
-                        <td class="p-auto">{{partida}}</td>
+                        <td class="text-secondary">{{estado}}</td>
+                        <td>{{partida}}</td>
                         <td>{{destino}}</td>
                         <td>{{tiempo_estimado}}</td>
                         <td class="text-right">
@@ -80,9 +90,10 @@
                             mas</a>
                         </td>
                     </tr>
-                {{/tablaDeViajesPendientes}} {{^tablaDeViajesPendientes}}
-                    <th scope="row" class="text-secondary">(vacio)</th>
-                    <td class="p-auto">(vacio)</td>
+                {{/tablaDeViajesPendientes}}
+                {{^tablaDeViajesPendientes}}
+                    <td class="text-secondary">(vacio)</td>
+                    <td>(vacio)</td>
                     <td>(vacio)</td>
                     <td>(vacio)</td>
                     <td class="text-right">
@@ -90,12 +101,21 @@
                     </td>
                 {{/tablaDeViajesPendientes}}
                 </tbody>
+                <tfoot>
+                <tr>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Desde</th>
+                    <th scope="col">Hacia</th>
+                    <th scope="col">Duracion Aproximada</th>
+                    <th scope="col"></th>
+                </tr>
+                </tfoot>
             </table>
         </div>
     </article>
     <article class="chofer-hidden popup3">
-        <div class="table-responsive">
-            <table class="table table-hover table-dark">
+        <div class="table-responsive mb-5 mt-3">
+            <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableViajesF">
                 <thead>
                 <tr>
                     <th scope="col">Estado</th>
@@ -108,8 +128,8 @@
                 <tbody>
                 {{#tablaDeViajesFinalizados}}
                     <tr>
-                        <th scope="row" class="text-danger">{{estado}}</th>
-                        <td class="p-auto">{{partida}}</td>
+                        <td class="text-danger">{{estado}}</td>
+                        <td>{{partida}}</td>
                         <td>{{destino}}</td>
                         <td>{{tiempo_estimado}}</td>
                         <td class="text-right">
@@ -118,15 +138,26 @@
                             mas</a>
                         </td>
                     </tr>
-                {{/tablaDeViajesFinalizados}} {{^tablaDeViajesFinalizados}}
-                    <th scope="row" class="text-danger">(vacio)</th>
-                    <td class="p-auto">(vacio)</td>
+                {{/tablaDeViajesFinalizados}}
+                {{^tablaDeViajesFinalizados}}
+                    <td class="text-danger">(vacio)</td>
                     <td>(vacio)</td>
                     <td>(vacio)</td>
-                    <td class="text-right"><a class="btn btn-outline-secondary p-1 mt--6" href="/Chofer">Ver mas</a>
+                    <td>(vacio)</td>
+                    <td class="text-right">
+                        <a class="btn btn-outline-secondary p-1 mt--6" href="/Chofer">Ver mas</a>
                     </td>
                 {{/tablaDeViajesFinalizados}}
                 </tbody>
+                <tfoot>
+                <tr>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Desde</th>
+                    <th scope="col">Hacia</th>
+                    <th scope="col">Duracion Aproximada</th>
+                    <th scope="col"></th>
+                </tr>
+                </tfoot>
             </table>
         </div>
     </article>
