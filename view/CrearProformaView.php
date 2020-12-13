@@ -113,7 +113,7 @@
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <h3 class="text-center">Crear proforma</h3>
                             <form class="form-horizontal row container m-auto" id="crearProformaFormulario" role="form" action="/crearProforma/crearProforma" method="post">
                                 <div class="col-12">
