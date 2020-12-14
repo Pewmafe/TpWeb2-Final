@@ -69,5 +69,31 @@ class ServiceModel
 
     }
 
+    public function obtenerKmVehiculoPorPatente($patenteVehiculo){
+        $sql = "SELECT v.kilometraje
+                FROM vehiculo v
+                WHERE v.patente='".$patenteVehiculo."'";
+
+        $resultadoQuery = $this->bd->query($sql);
+
+        $kilometraje = $resultadoQuery->fetch_assoc();
+        return $kilometraje["kilometraje"];
+    }
+
+    public function registrarUnMantenimiento($idMecanico, $patenteVehiculo, $kmVehiculo){
+        $sql = "INSERT INTO mantenimiento(km_unidad, patente_vehiculo, id_mecanico)
+                VALUES(".$kmVehiculo.",'".$patenteVehiculo."',".$idMecanico.")";
+
+        $this->bd->query($sql);
+    }
+
+    public function setearEstadoVehiculoEnMantenimientoPorPatente($patenteVehiculo){
+        $sql = "UPDATE vehiculo SET estado = 3 WHERE vehiculo.patente = '".$patenteVehiculo."'";
+
+        $this->bd->query($sql);
+    }
+
+
+
 
 }

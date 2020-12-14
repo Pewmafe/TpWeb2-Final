@@ -22,6 +22,8 @@ class ServiceController
             $data["login"] = true;
 
             $data["errorDatos"] = isset($_GET["errorDatos"]) ? $_GET["errorDatos"] : false;
+            $data["registroMantenimientoExitoso"] = isset($_GET["registroMantenimientoExitoso"]) ? $_GET["registroMantenimientoExitoso"] : false;
+
 
             $tablaCamionesLibres = $this->serviceModel->obtenerListaCamionesLibres();
             $data['tablaCamionesLibres'] = $tablaCamionesLibres;
@@ -47,8 +49,11 @@ class ServiceController
                 header('Location: /service?errorDatos=true');
                 exit();
             }
-            $this->serviceModel->registrarUnMantenimiento($idMecanico, $patenteVehiculo);
-            header('Location: /service');
+            $kmVehiculo = $this->serviceModel->obtenerKmVehiculoPorPatente($patenteVehiculo);
+
+            $this->serviceModel->registrarUnMantenimiento($idMecanico, $patenteVehiculo, $kmVehiculo);
+            $this->serviceModel->setearEstadoVehiculoEnMantenimientoPorPatente($patenteVehiculo);
+            header('Location: /service?registroMantenimientoExitoso=true');
             exit();
         }
         header('Location: /service');

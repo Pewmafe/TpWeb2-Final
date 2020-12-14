@@ -148,17 +148,18 @@ create table reporte_estadistico(
 );
 
 create table mantenimiento(
-	id int primary key,
+	id int primary key auto_increment,
 	km_unidad int,
-	service_interno_externo smallint,
-	costo decimal(10,2),
-	fecha_service datetime,
-	repuestos_cambiados varchar(500),
+	fecha_service date,
 	tipo int,
 	patente_vehiculo varchar(10),
+	id_mecanico int,
 	constraint fk_mantemiento_tipo
 	foreign key (tipo)
 	references tipo_mantenimiento(id_tipo_mantenimiento),
+	constraint fk_id_empleado
+	foreign key (id_mecanico)
+	references empleado(id),
 	constraint fk_mantenimiento_vehiculo
 	foreign key(patente_vehiculo)
 	references vehiculo(patente)

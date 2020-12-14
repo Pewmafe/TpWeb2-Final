@@ -12,6 +12,14 @@
                 </button>
             </div>
             {{/errorDatos}}
+            {{#registroMantenimientoExitoso}}
+            <div class="container alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Se registro el service correctamente.</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/registroMantenimientoExitoso}}
             <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-truck"></i>Vehículos libres</h3>
             <div class="container table-responsive mb-5 mt-3">
                 <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableVehiculosService">
