@@ -539,4 +539,25 @@ $(document).ready(function() {
 
     });
 
+    $('#mydatatableVehiculosProforma').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+
+    $('#mydatatableChoferProforma').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+
+    $('#mydatatableAcopladoProforma').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+
 });

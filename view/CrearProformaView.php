@@ -265,7 +265,7 @@
                                 <div class="col-12">
                                     <h4 class="text-center"><span class="text-info">*</span>Vehiculo</h4>
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table" id="mydatatableVehiculosProforma">
                                             <thead class="thead-dark">
                                             <tr>
                                                 <th scope="col">Patente</th>
@@ -292,54 +292,12 @@
                                             {{/tablaVehiculos}}
                                             </tbody>
                                         </table>
-                                        <div class="float-right pagination">
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link"><<</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link"><</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">1</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">2</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">3</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link">...</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">></a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">>></a>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <h4 class="text-center"><span class="text-info">*</span>Acoplado</h4>
+                                    <h4 class="text-center"><span class="text-info" >*</span>Acoplado</h4>
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table" id="mydatatableAcopladoProforma">
                                             <thead class="thead-dark">
                                             <tr>
                                                 <th scope="col">Patente</th>
@@ -362,55 +320,12 @@
                                             {{/tablaAcoplados}}
                                             </tbody>
                                         </table>
-                                        <div class="float-right pagination">
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link"><<</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link"><</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">1</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">2</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">3</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link">...</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">></a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">>></a>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
-                                <hr>
                                 <div class="col-12">
                                     <h4 class="text-center"><span class="text-info">*</span>Chofer a asignar</h4>
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table" id="mydatatableChoferProforma">
                                             <thead class="thead-dark">
                                             <tr>
                                                 <th scope="col">Nombre</th>
@@ -438,48 +353,6 @@
                                                 {{/tablaChoferes}}
                                             </tbody>
                                         </table>
-                                        <div class="float-right pagination">
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link"><<</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link"><</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">1</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">2</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">3</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link">...</a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">></a>
-                                                </li>
-                                            </ul>
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link">>></a>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group col-12 p-3">
