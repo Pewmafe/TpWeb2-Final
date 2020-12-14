@@ -453,11 +453,6 @@ $(document).ready(function() {
     $("#clienteRegistradoCuit").keyup(function() {
         var cuit = $("#clienteRegistradoCuit").val();
         var post_url = "/crearProforma/mostrarClientesPorCuit";
-        /*$.post(post_url,{
-            clienteCuit : cuit
-        }, function (data,status){
-            $("nombreApellidoCliente").html(data);
-        });*/
 
         $.ajax({
             type: 'POST',
@@ -469,6 +464,37 @@ $(document).ready(function() {
             $("#nombreApellidoCliente").html(datos);
         }).fail(function() {
             console.log("error al traer clientes por cuit");
+        });
+    });
+
+    /************************AJAX MANDAR A SERIVICE*********************************/
+    $(".mandarAServiceBoton").click(function (){
+        var post_url = "/service/obtenerEmpleadosMecanicos";
+
+        $.ajax({
+            url: post_url
+        }).done(function(datos) {
+            $("#mecanicosParaService").html(datos);
+        }).fail(function() {
+            console.log("error al traer empleados mecanicos");
+        });
+    });
+
+    $("#mecanicosParaService").on('change', function() {
+        var mecanicoId = $("#mecanicosParaService").val();
+        var post_url = "/service/obtenerDatosDelMecanicoPorID";
+        $.ajax({
+            type: 'POST',
+            url: post_url,
+            data: {
+                'mecanicoId': mecanicoId
+            }
+        }).done(function(datos) {
+            var jsonDatosEmpleado = jQuery.parseJSON(datos);
+            $('#mecanicoDatos').html("<h5>Datos de mecanico seleccionado:</h5><p>Apellido y nombre: " +jsonDatosEmpleado.apellido+" " +jsonDatosEmpleado.nombre+"</p>" +
+                                        "<p>DNI: " +jsonDatosEmpleado.dni+"</p>");
+        }).fail(function() {
+            alert("error al cargar datos mecanico");
         });
     });
 

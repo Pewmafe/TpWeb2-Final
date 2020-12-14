@@ -38,4 +38,36 @@ class ServiceModel
         return $tablaCamiones;
     }
 
+    public function obtenerListaEmpleadosMecanicos(){
+        $sql = "SELECT *
+                FROM empleado e JOIN tipo_empleado te
+                                ON te.id_tipo_empleado = e.tipo_empleado
+                                JOIN usuario u
+                                ON u.dni = e.dni_usuario
+                WHERE te.descripcion = 'mecanico'";
+        $resultadoQuery = $this->bd->query($sql);
+
+        $lista = '<option selected disabled>-</option>';
+        while ($fila = $resultadoQuery->fetch_assoc()) {
+            $lista .= "<option value='$fila[id]'>$fila[apellido] $fila[nombre] $fila[dni]</option>";
+        }
+        return $lista;
+    }
+
+    public function obtenerDatosEmpleadoMecanicoPorId($id){
+        $sql = "SELECT u.nombre, u.apellido, u.dni
+                FROM usuario u JOIN empleado e
+                                ON e.dni_usuario = u.dni
+                WHERE e.id =".$id;
+
+        $resultadoQuery = $this->bd->query($sql);
+
+        while ($fila = $resultadoQuery->fetch_assoc()) {
+            $datosEmpleado = $fila;
+        }
+        return $datosEmpleado;
+
+    }
+
+
 }

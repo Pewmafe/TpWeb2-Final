@@ -29,7 +29,8 @@
                             <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{patente}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             </a>
                             <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{patente}}" style="right: 1em;">
-                                <a class="btn btn-outline-success mt-2" data-toggle="modal" data-target="#"  type="button">Mandar a service</a>
+                                <a class="btn btn-outline-success mt-2 mandarAServiceBoton" data-toggle="modal" data-target="#mandarAServiceModal"  type="button">Mandar a service</a>
+                                <a class="btn btn-outline-success mt-2" data-toggle="modal" data-target="#"  type="button">Historial de service</a>
                             </div>
                         </td>
                     </tr>
@@ -82,6 +83,38 @@
                 </table>
             </div>
         </article>
+    </section>
+    <section>
+        <div class="modal fade" id="mandarAServiceModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Modificar usuario</h5>
+                        <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body container">
+                        <form class="mandarAServiceFormulario" method="POST" action="">
+                            <div class="form-group">
+                                <label class="text-dark" for="mecanicosParaService">Mecanicos</label>
+                                <select id="mecanicosParaService" name="mecanicosParaService" class="form-control">
+                                </select>
+                            </div>
+                            <div id="mecanicoDatos">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver
+                                </button>
+                                <button type="submit" class="btn btn-outline-primary" id="botonMandarAService" name="botonMandarAService">Mandar a service
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
 {{/usuarioEncargado}}

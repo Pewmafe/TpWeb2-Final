@@ -38,4 +38,17 @@ class ServiceController
     public function mandarUnVehiculoAMantenimiento(){
 
     }
+
+    public function obtenerEmpleadosMecanicos()
+    {
+        $listaMecanicos = $this->serviceModel->obtenerListaEmpleadosMecanicos();
+        echo $listaMecanicos;
+    }
+
+    public function obtenerDatosDelMecanicoPorID()
+    {
+        $idMecanico = $_POST["mecanicoId"];
+        $datosMecanico = $this->serviceModel->obtenerDatosEmpleadoMecanicoPorId($idMecanico);
+        echo(json_encode($datosMecanico));
+    }
 }
