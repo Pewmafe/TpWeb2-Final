@@ -14,6 +14,7 @@
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Ultimo service</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,6 +25,13 @@
                         <td>{{marca}}</td>
                         <td>{{modelo}}</td>
                         <td>{{calendario_service}}</td>
+                        <td class="dropdown dropleft">
+                            <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{patente}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                            <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{patente}}" style="right: 1em;">
+                                <a class="btn btn-outline-success mt-2 botonFinalizarMantenimientoVehiculo" data-toggle="modal" data-target="#finalizarMantenimientoModal" data-patente="{{patente}}" type="button">Finalizar service</a>
+                            </div>
+                        </td>
                     </tr>
                     {{/tablaCamionesService}}
                     </tbody>
@@ -34,11 +42,36 @@
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Ultimo service</th>
+                        <th></th>
                     </tr>
                     </tfoot>
                 </table>
             </div>
         </article>
+    </section>
+    <section>
+        <div class="modal fade" id="finalizarMantenimientoModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Finalizar mantenimiento</h5>
+                        <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-dark">
+                        ¿Seguro que desea finalizar el mantenimiento?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
+                        <form method="post" action="/mantenimientoController/finalizarServiceDeUnVehiculo">
+                            <button class="btn btn-outline-danger" id="botonFinalizarServiceDeUnVehiculoModal" name="botonFinalizarServiceDeUnVehiculoModal">Finalizar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
 {{/usuarioMecanico}}

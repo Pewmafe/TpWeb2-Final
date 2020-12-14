@@ -41,4 +41,8 @@ class MantenimientoController
         }
         echo $this->render->render("view/mantenimientoView.php");
     }
+
+    public function finalizarServiceDeUnVehiculo(){
+
+    }
 }
