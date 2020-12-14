@@ -21,6 +21,8 @@ class ServiceController
         if ($logeado) {
             $data["login"] = true;
 
+            $data["errorDatos"] = isset($_GET["errorDatos"]) ? $_GET["errorDatos"] : false;
+
             $tablaCamionesLibres = $this->serviceModel->obtenerListaCamionesLibres();
             $data['tablaCamionesLibres'] = $tablaCamionesLibres;
 
@@ -36,7 +38,21 @@ class ServiceController
     }
 
     public function mandarUnVehiculoAMantenimiento(){
+        $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        if ($logeado) {
+            $idMecanico = isset($_POST["mecanicosParaService"])? $_POST["mecanicosParaService"] : null;
+            $patenteVehiculo = isset($_POST["botonMandarAService"])? $_POST["botonMandarAService"] : null;
 
+            if($idMecanico==null or $patenteVehiculo==null){
+                header('Location: /service?errorDatos=true');
+                exit();
+            }
+            $this->serviceModel->registrarUnMantenimiento($idMecanico, $patenteVehiculo);
+            header('Location: /service');
+            exit();
+        }
+        header('Location: /service');
+        exit();
     }
 
     public function obtenerEmpleadosMecanicos()

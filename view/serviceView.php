@@ -4,6 +4,14 @@
     <h1 class="text-dark text-center">Service</h1>
     <section class="row justify-content-center m-3 ancho">
         <article class=" justify-content-center mt-4 ancho2">
+            {{#errorDatos}}
+            <div class="container alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Ocurrio un error. Vuelva a intentarlo.</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/errorDatos}}
             <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-truck"></i>Vehículos libres</h3>
             <div class="container table-responsive mb-5 mt-3">
                 <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableVehiculosService">
@@ -29,7 +37,7 @@
                             <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{patente}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             </a>
                             <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{patente}}" style="right: 1em;">
-                                <a class="btn btn-outline-success mt-2 mandarAServiceBoton" data-toggle="modal" data-target="#mandarAServiceModal"  type="button">Mandar a service</a>
+                                <a class="btn btn-outline-success mt-2 mandarAServiceBoton" data-toggle="modal" data-target="#mandarAServiceModal"  data-patente="{{patente}}" type="button">Mandar a service</a>
                                 <a class="btn btn-outline-success mt-2" data-toggle="modal" data-target="#"  type="button">Historial de service</a>
                             </div>
                         </td>
@@ -95,7 +103,7 @@
                         </button>
                     </div>
                     <div class="modal-body container">
-                        <form class="mandarAServiceFormulario" method="POST" action="">
+                        <form class="mandarAServiceFormulario" method="POST" action="/service/mandarUnVehiculoAMantenimiento">
                             <div class="form-group">
                                 <label class="text-dark" for="mecanicosParaService">Mecanicos</label>
                                 <select id="mecanicosParaService" name="mecanicosParaService" class="form-control">
@@ -105,8 +113,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver
                                 </button>
-                                <button type="submit" class="btn btn-outline-primary" id="botonMandarAService" name="botonMandarAService">Mandar a service
-                                </button>
+                                <button type="submit" class="btn btn-outline-primary botonMandarAService" id="botonMandarAService" name="botonMandarAService">Mandar a service</button>
                             </div>
                         </form>
                     </div>

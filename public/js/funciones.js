@@ -474,6 +474,9 @@ $(document).ready(function() {
         $.ajax({
             url: post_url
         }).done(function(datos) {
+            var patente = $('.mandarAServiceBoton').data('patente');
+            $('#mecanicoDatos').html("");
+            $('.mandarAServiceFormulario .modal-footer #botonMandarAService').val(patente);
             $("#mecanicosParaService").html(datos);
         }).fail(function() {
             console.log("error al traer empleados mecanicos");
