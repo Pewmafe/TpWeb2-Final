@@ -501,6 +501,11 @@ $(document).ready(function() {
         });
     });
 
+    $("#botonFinalizarMantenimientoVehiculo").on('click', function (){
+        var patenteVehiculo = $($this).data('patente');
+        
+    });
+
     /************************Tablas Nuevas ABM/VIAJES*********************************/
 
     /***********Tabla Usuarios***********/
