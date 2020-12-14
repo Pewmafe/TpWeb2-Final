@@ -101,9 +101,7 @@
                                 <select id="mecanicosParaService" name="mecanicosParaService" class="form-control">
                                 </select>
                             </div>
-                            <div id="mecanicoDatos">
-
-                            </div>
+                            <div id="mecanicoDatos"></div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver
                                 </button>
