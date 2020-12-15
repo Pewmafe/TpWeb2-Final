@@ -5,25 +5,60 @@
             <article class=" justify-content-center mt-4 ancho2">
                 <h2 class="text-dark mb-3 text-center">Administrar todos los usuarios</h2>
                 {{#bajaUsuario}}
-                    <h5 class="text-success">Se dio de baja el usuario con exito.</h5>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Se dio de baja el usuario con exito.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/bajaUsuario}}
                 {{#bajaEmpleado}}
-                    <h5 class="text-success">Se dio de baja el empleado con exito.</h5>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Se dio de baja el empleado con exito.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/bajaEmpleado}}
                 {{#modificarUsuario}}
-                    <h5 class="text-success">Se modifico al usuario con exito.</h5>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Se modifico al usuario con exito.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/modificarUsuario}}
                 {{#modificarEmpleado}}
-                    <h5 class="text-success">Se modifico al empleado con exito.</h5>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Se modifico al usuario con exito.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/modificarEmpleado}}
                 {{#nombreUsuarioExistente}}
-                    <h5 class="text-danger">Nombre de usuario ya existe.</h5>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Nombre de usuario ya existe</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/nombreUsuarioExistente}}
                 {{#dniExistente}}
-                    <h5 class="text-danger">DNI de usuario ya existe.</h5>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Dni de usuario ya existe</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/dniExistente}}
                 {{#empleadoChoferOcupado}}
-                    <h5 class="text-danger">No se puede dar de baja un chofer con un viaje activo o pendiente.</h5>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>No se puede dar de baja un chofer con un viaje activo o pendiente.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/empleadoChoferOcupado}}
 
                 <h3 class="text-center text-md-left text-dark mb-3 col-12">
@@ -55,7 +90,8 @@
 
                                             <a class="col-12 btn btn-outline-success btn-block botonModificarUsuario my-1" data-toggle="modal" data-target="#modificarUsuarioModal" data-nombreusuario="{{nombreUsuario}}" data-nombre="{{nombre}}" data-apellido="{{apellido}}" data-dni="{{dni}}" data-fechanaci="{{fecha_nacimiento}}" type="button">Modificar</a>
 
-                                            <a type="button" class="col-12 btn btn-outline-danger btn-block botonDarDeBajaUsuario my-1" data-toggle="modal" data-target="#darDeBajaUsuarioModal" data-id="'{{dni}}'">Dar de baja usuario</a>
+                                            <a type="button" class="col-12 btn btn-outline-danger btn-block botonDarDeBajaUsuario my-1" data-toggle="modal" data-target="#darDeBajaUsuarioModal" data-id="'{{dni}}'">Dar de
+                                                baja usuario</a>
                                         </div>
 
                                     </td>
@@ -101,7 +137,8 @@
                                         <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{id}}" style="right: 1em;">
                                             <a class="my-2 btn btn-outline-success btn-block botonModificarEmpleado" data-toggle="modal" data-target="#modificarEmpleadoModal" data-nombreusuario="{{nombreUsuario}}" data-nombre="{{nombre}}" data-apellido="{{apellido}}" data-dni="{{dni}}" data-id="{{id}}" data-fechanaci="{{fecha_nacimiento}}" data-tipolicencia="{{tipo_de_licencia}}" data-rol="{{descripcion}}" type="button">Modificar</a>
 
-                                            <a type="button" class="btn btn-outline-danger btn-block my-2 botonDarDeBajaEmpleado" data-toggle="modal" data-target="#darDeBajaEmpleadoModal" data-id="'{{id}}'">Dar de baja empleado</a>
+                                            <a type="button" class="btn btn-outline-danger btn-block my-2 botonDarDeBajaEmpleado" data-toggle="modal" data-target="#darDeBajaEmpleadoModal" data-id="'{{id}}'">Dar de
+                                                baja empleado</a>
                                         </div>
 
                                     </td>
