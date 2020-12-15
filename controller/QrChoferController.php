@@ -36,7 +36,7 @@ class QrChoferController
             }
         }
         echo $this->render->render("view/chofer?errorQR=true.php");
-        
+
     }
 
     public function decodificarQr()
@@ -58,4 +58,25 @@ class QrChoferController
         echo $this->render->render("view/home.php");
     }
 
+    public function crearSeguimiento()
+    {
+
+        $combustible = isset($_POST["combustible"]) ? $_POST["combustible"] : null;
+        $kilometros = isset($_POST["kilometros"]) ? $_POST["kilometros"] : null;
+        $peajes = isset($_POST["peajes"]) ? $_POST["peajes"] : null;
+        $latitud = isset($_POST["latitud_actual"]) ? $_POST["latitud_actual"] : null;
+        $longitud = isset($_POST["longitud_actual"]) ? $_POST["longitud_actual"] : null;
+        $idProforma = isset($_POST["idProforma"]) ? $_POST["idProforma"] : null;
+
+        ini_set("date.timezone", "America/Argentina/Buenos_Aires");
+        $fecha = date("Y-m-d H:i:s", time());
+
+        $this->qrModel->guardarSeguimiento($idProforma, $combustible, $latitud, $longitud, $kilometros,
+            $peajes, $fecha);
+
+        header("Location: /chofer?seguimientoCreado=true");
+        exit();
+
+
+    }
 }

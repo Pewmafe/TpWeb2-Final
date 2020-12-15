@@ -271,7 +271,7 @@ create table viaje(
 );
 
 create table seguimiento(
-	id int primary key,
+	id int primary key auto_increment,
 	combustible_consumido int,
 	posicion_actual int,
 	km_recorridos int,
@@ -507,19 +507,18 @@ select 	ep.descripcion as 'TodosEstado',
         UCh.nombre as 'nombre_chofer',
         UCh.apellido as 'apellido_chofer',
         cl.denominacion as 'denominacion_cliente'
-			from proforma p
-				join viaje v on p.viaje_id = v.id
-                join direccion dp on v.partida_id = dp.id
-                join direccion dd on v.destino_id = dd.id
-                join localidad lp on lp.id = dp.localidad
-                join localidad ld on ld.id = dd.localidad
-                join provincia pp on pp.id = lp.provincia_id
-                join provincia pd on pd.id = ld.provincia_id
-                join estado_proforma ep on ep.id = p.estado
-                join empleado ECh on ECh.id = v.chofer_id
-                join usuario UCh on UCh.dni = ECh.dni_usuario
-				join cliente cl on p.cliente_cuit = cl.cuit 
-					where p.estado = 1;
+#			from proforma p
+#				join viaje v on p.viaje_id = v.id
+#                join direccion dp on v.partida_id = dp.id
+#               join direccion dd on v.destino_id = dd.id
+#                join localidad lp on lp.id = dp.localidad
+#                join localidad ld on ld.id = dd.localidad
+#                join provincia pp on pp.id = lp.provincia_id
+#             join estado_proforma ep on ep.id = p.estado
+#              join empleado ECh on ECh.id = v.chofer_id
+#               join usuario UCh on UCh.dni = ECh.dni_usuario
+#				join cliente cl on p.cliente_cuit = cl.cuit 
+#					where p.estado = 1;
 			
 				
 select * from seguimiento;

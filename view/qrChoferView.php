@@ -33,7 +33,9 @@
                     <div class="col-12 col-md-6 form-group">
                         <button type="submit" class=" btn btn-outline-success form-control">Relizar reporte </button>
                     </div>
-
+                    <div>
+                        <input type="hidden" name="idProforma" value="{{id_proforma}}">
+                    </div>
                 </form>
                 <p id="resultado" class="text-danger"></p>
                 <script>
@@ -51,13 +53,13 @@
 
 
                     function showPosition(position) {
-                        latitudDiv.innerHTML = ' <label for="latitud">latitud</label><input disabled class="form-control col-12" type="text" id="latitud" name="latitud" value="' +
+                        latitudDiv.innerHTML = ' <label for="latitud_actual">Latitud</label><input readonly class="form-control col-12" type="text" id="latitud_actual" name="latitud_actual" value="' +
                             position.coords.latitude + '">';
-                        longitudDiv.innerHTML = '<label for="longitud">longitud</label><input disabled class="form-control col-12" type="text" id="longitud" name="longitud" value="' +
+                        longitudDiv.innerHTML = '<label for="longitud_actual">Longitud</label><input readonly class="form-control col-12" type="text" id="longitud_actual" name="longitud_actual" value="' +
                             position.coords.longitude + '">';
                         loadMap(position.coords.latitude, position.coords.longitude);
                         document.getElementById("latitud").value(position.coords.latitude);
-                        document.getElementById("longitud").value = position.coords.longitude;
+                        document.getElementById("longitud").value(position.coords.longitude);
                     }
 
                     function showError(error) {
@@ -80,7 +82,7 @@
             </article>
             <article class="row">
                 <div class="col-6">
-                <a class="col-12 btn btn-outline-secondary btn-block p-1 my-1" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver Pdf De Proforma</a>
+                    <a class="col-12 btn btn-outline-secondary btn-block p-1 my-1" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver Pdf De Proforma</a>
                 </div>
             </article>
         </section>
