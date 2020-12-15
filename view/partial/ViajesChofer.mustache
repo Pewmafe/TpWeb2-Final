@@ -62,11 +62,19 @@
                         <td>{{partida}}</td>
                         <td>{{destino}}</td>
                         <td>{{tiempo_estimado}}</td>
-                        <td class="text-right">
-                            <a class="btn btn-outline-danger p-1 mt--6"
-                               href="/Chofer/finalizarProforma?&proformaID={{id_proforma}}">Finalizar</a>
-                            <a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
-                            mas</a>
+                        <td class="dropdown dropleft">
+                            <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{dni}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            </a>
+
+                            <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{dni}}" style="right: 1em;">
+                                <a class="col-12 btn btn-outline-success btn-block p-1 my-1">Cargar pdf</a>
+                                <a class="col-12 btn btn-outline-danger btn-block p-1 my-1"
+                                   href="/Chofer/finalizarProforma?&proformaID={{id_proforma}}">Finalizar</a>
+                                <a class="col-12 btn btn-outline-secondary btn-block p-1 my-1" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
+                                mas</a>
+                            </div>
+
                         </td>
                     </tr>
                     <div>
