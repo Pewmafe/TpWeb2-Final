@@ -5,13 +5,28 @@
             <article class=" justify-content-center mt-4 ancho2">
                 <h2 class="text-dark mb-3 text-center">Administrar todos los clientes</h2>
                 {{#bajaCliente}}
-                    <h5 class="text-success">Se dio de baja el cliente con exito.</h5>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Se dio de baja el cliente con exito.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/bajaCliente}}
                 {{#modificarCliente}}
-                    <h5 class="text-success">Se modifico al cliente con exito.</h5>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Se modifico al cliente con exito.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/modificarCliente}}
                 {{#cuitExistente}}
-                    <h5 class="text-danger">El cuit del cliente ya esta en uso.</h5>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>El CUIT del cliente ya esta en uso.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/cuitExistente}}
                 <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-user-tag"></i> Administrar clientes</h3>
                 <a href="/crearProforma" class="btn btn-outline-primary">Registar cliente</a>
