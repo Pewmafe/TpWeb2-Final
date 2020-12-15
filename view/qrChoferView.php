@@ -25,6 +25,48 @@
 
                 </div>
             </article>
+            <article>
+                <h3>Presione el boton para obtener las coordenadas a traves del navegador</h3>
+
+                <button class="btn btn-warning" onclick="getLocation()">Obtener</button>
+
+                <p id="resultado"></p>
+                <script>
+                    var x = document.getElementById("resultado");
+
+                    function getLocation() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(showPosition, showError);
+                        } else {
+                            x.innerHTML = "La Geolocalizacion no esta soportada en este browser.";
+                        }
+                    }
+
+                    function showPosition(position) {
+                        x.innerHTML = "Latitud: " + position.coords.latitude +
+                            "<br>Longitud: " + position.coords.longitude;
+                        loadMap(position.coords.latitude, position.coords.longitude);
+                    }
+
+                    function showError(error) {
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                x.innerHTML = "El Usuario a denegado el acceso a la Geolocalizacion."
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                x.innerHTML = "La Informacion no esta disponible."
+                                break;
+                            case error.TIMEOUT:
+                                x.innerHTML = "Time Out."
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                x.innerHTML = "Error desconocido."
+                                break;
+                        }
+                    }
+
+                </script>
+            </article>
         </section>
     </main>
 {{/usuarioChofer}}
