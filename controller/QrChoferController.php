@@ -20,7 +20,12 @@ class QrChoferController
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
+            $datos = $this->qrModel->mostrarNombreChofer($_GET["idChofer"]);
 
+            $data["nombreChofer"] = $datos[0]["nombre"];
+            $data["apellidoChofer"] = $datos[0]["apellido"];
+            $data["idChofer"] = $_GET["idChofer"];
+            $data["id_proforma"] = $_GET["idProforma"];
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
 
@@ -49,15 +54,4 @@ class QrChoferController
         echo $this->render->render("view/escaneoQrView.php");
     }
 
-    public function crearSeguimiento()
-    {
-        $combustible = $_POST["combustible"];
-        $kilometros = $_POST["kilometros"];
-        $peajes = $_POST["peajes"];
-        $latitud = $_POST["latitud"];
-        $longitud = $_POST["longitud"];
-
-
-
-    }
 }

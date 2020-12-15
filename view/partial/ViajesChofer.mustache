@@ -63,16 +63,24 @@
                         <td>{{destino}}</td>
                         <td>{{tiempo_estimado}}</td>
                         <td class="dropdown dropleft">
-                            <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{dni}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn btn-outline-info dropdown-toggle" href="#" role="button"
+                               id="dropdownMenuLink{{dni}}" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
 
                             </a>
 
-                            <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{dni}}" style="right: 1em;">
-                                <a class="col-12 btn btn-outline-success btn-block p-1 my-1">Cargar pdf</a>
+                            <div class="bg-dark dropdown-menu dropdown-menu-right row p-2"
+                                 aria-labelledby="dropdownMenuLink{{dni}}" style="right: 1em;">
+                                <button class="col-12 btn btn-outline-success btn-block p-1 my-1" data-toggle="modal"
+                                        data-target="#exampleModal">Cargar QR
+                                </button>
                                 <a class="col-12 btn btn-outline-danger btn-block p-1 my-1"
                                    href="/Chofer/finalizarProforma?&proformaID={{id_proforma}}">Finalizar</a>
-                                <a class="col-12 btn btn-outline-secondary btn-block p-1 my-1" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
+                                <a class="col-12 btn btn-outline-secondary btn-block p-1 my-1"
+                                   href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
                                 mas</a>
+
+
                             </div>
 
                         </td>
@@ -83,7 +91,7 @@
                         <input type="hidden" value="{{latitud_destino}}" id="latitud_destino">
                         <input type="hidden" value="{{longitud_destino}}" id="longitud_destino">
                     </div>
-                    {{/tablaDeViajesActivo}} {{^tablaDeViajesActivo}}
+                {{/tablaDeViajesActivo}} {{^tablaDeViajesActivo}}
                     <td class="text-success">(vacio)</td>
                     <td>(vacio)</td>
                     <td>(vacio)</td>
@@ -201,7 +209,30 @@
             </table>
         </div>
     </article>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cargar QR</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Subir Qr para enviar reporte</p>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="my-2">
+                            <input type="file" name="qrimage" id="qrimage" class="" required=""><br>
+                        </div>
+                        <div class="my-2">
+                            <input type="submit" class="btn btn-outline-success" value="Decodificar QR" name="">
+                        </div>
+                    </form>
+                </div>
 
+            </div>
+        </div>
+    </div>
 </section>
 <section class="container">
     <div id="map"></div>

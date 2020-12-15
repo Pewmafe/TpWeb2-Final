@@ -2,7 +2,7 @@
 {{#usuarioChofer}}
     <main>
         <section class="container justify-content-center m-3 ancho">
-            <h3 class="mt-2">Bienvenido a la seccion de reportes {{nombreChofer}}</h3>
+            <h3 class="mt-2">Bienvenido a la seccion de reportes {{nombreChofer}} {{apellidoChofer}}</h3>
 
             <article>
                 <form class="row" action="/qrChofer/crearSeguimiento" method="POST">
@@ -31,7 +31,7 @@
 
                     </div>
                     <div class="col-12 col-md-6 form-group">
-                        <button type="submit" class="col-6 btn btn-outline-success form-control">Relizar reporte </button>
+                        <button type="submit" class=" btn btn-outline-success form-control">Relizar reporte </button>
                     </div>
 
                 </form>
@@ -78,10 +78,10 @@
                     }
                 </script>
             </article>
-            <article>
-
-
-
+            <article class="row">
+                <div class="col-6">
+                <a class="col-12 btn btn-outline-secondary btn-block p-1 my-1" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver Pdf De Proforma</a>
+                </div>
             </article>
         </section>
     </main>

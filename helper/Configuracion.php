@@ -154,7 +154,8 @@ class Configuracion
         $proformaModel = $this->getCrearProformaModel();
         $loginSession = $this->getLoginSession();
         $costeoModel = $this->getCosteoModel();
-        return new CrearProformaController($this->getRender(), $loginSession, $proformaModel, $costeoModel);
+        $qrChoferModel = $this->getQrChoferModel();
+        return new CrearProformaController($this->getRender(), $loginSession, $proformaModel, $costeoModel, $qrChoferModel);
     }
 
     public function getQrChoferController()
@@ -256,40 +257,47 @@ class Configuracion
         return new CrearProformaModel($bd);
     }
 
-    public function getCosteoModel(){
+    public function getCosteoModel()
+    {
         $bd = $this->getDatabase();
         return new CosteoModel($bd);
     }
 
-    public function getAdministrarClienteModel(){
+    public function getAdministrarClienteModel()
+    {
         $bd = $this->getDatabase();
         return new AdministrarClienteModel($bd);
     }
 
-    public function getAdministrarDireccionModel(){
+    public function getAdministrarDireccionModel()
+    {
         $bd = $this->getDatabase();
         return new AdministrarDireccionModel($bd);
     }
 
-    public function getAdministrarClienteController(){
+    public function getAdministrarClienteController()
+    {
         $loginSession = $this->getLoginSession();
         $render = $this->getRender();
         $cliente = $this->getAdministrarClienteModel();
         $direccion = $this->getAdministrarDireccionModel();
-        return new AdministrarClienteController($render,$loginSession, $cliente, $direccion);
+        return new AdministrarClienteController($render, $loginSession, $cliente, $direccion);
     }
 
-    public function getServiceModel(){
+    public function getServiceModel()
+    {
         $bd = $this->getDatabase();
         return new ServiceModel($bd);
     }
 
-    public function getMantenimientoModel(){
+    public function getMantenimientoModel()
+    {
         $bd = $this->getDatabase();
         return new MantenimientoModel($bd);
     }
 
-    public function getServiceHistorialModel(){
+    public function getServiceHistorialModel()
+    {
         $bd = $this->getDatabase();
         return new ServiceHistorialModel($bd);
     }
