@@ -224,6 +224,7 @@ class ChoferModel
 
     public function ultimaPosicionChofer($chofer)
     {
+        $posicion = array();
         $sql = "select p.x as 'latitud_chofer', p.y as 'longitud_chofer' from viaje v 
                 join proforma pro on pro.viaje_id = v.id
                 left join seguimiento s on s.viaje = v.id 
