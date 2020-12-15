@@ -10,7 +10,7 @@ class SeguimientoModel
         $this->bd = $bd;
     }
 
-    public function obtenerSeguimientoPorViajeYChofer($idViaje, $idChofer)
+    public function obtenerSeguimientosPorViajeYChofer($idViaje, $idChofer)
     {
         $sql = "select * from seguimiento s 
                 join viaje v on s.viaje = v.id 
@@ -24,13 +24,15 @@ class SeguimientoModel
         return $seguimientos;
     }
 
-    public function guardarSeguimiento($viaje, $combustibleConsumido, $latitudActual, $longitudActual, $kmRecorridos){
+    public function guardarSeguimiento($viaje, $combustibleConsumido, $latitudActual, $longitudActual, $kmRecorridos,
+        $peaje, $fecha){
 
         $sqlPosicion = "INSERT INTO posicion (x, y) VALUES(" . $latitudActual . ", " . $longitudActual . ");";
         $idPosicion = $this->bd->queryQueDevuelveId($sqlPosicion);
 
-        $sql = "INSERT INTO seguimiento (combustible_consumido, posicion_actual, km_recorridos, viaje) 
-                VALUES(".$combustibleConsumido.", ".$idPosicion.", ".$kmRecorridos.", ".$viaje.");";
+        $sql = "INSERT INTO seguimiento (combustible_consumido, posicion_actual, km_recorridos, viaje, peaje, fecha) 
+                VALUES(".$combustibleConsumido.", ".$idPosicion.", ".$kmRecorridos.", ".$viaje.", ".$peaje.", 
+                '".$fecha."');";
 
         return $this->bd->queryQueDevuelveId($sql);
     }

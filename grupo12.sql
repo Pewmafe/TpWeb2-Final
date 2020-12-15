@@ -540,7 +540,6 @@ select 	ep.descripcion as 'TodosEstado',
 				
 select * from seguimiento;
 select * from viaje;
-INSERT INTO seguimiento (id, combustible_consumido, posicion_actual, km_recorridos, viaje) VALUES(1, 10, 2, 12, 1);
 
 select * from seguimiento s 
 join viaje v on s.viaje = v.id 

@@ -195,8 +195,7 @@ class ChoferModel
     public function finalizarProforma($idProforma)
     {
         $patentes = $this->obtenerPatenteDeVehiculoYCargaPorIdProforma($idProforma);
-        $sql = "UPDATE proforma SET estado = '3' WHERE id = '" . $idProforma . "';
-                ";
+        $sql = "UPDATE proforma SET estado = '3' WHERE id = '" . $idProforma . "';";
         $this->bd->query($sql);
 
         $sql = " UPDATE acoplado SET estado = '1' WHERE patente = '" . $patentes[0]["acoplado_patente"] . "';";
@@ -220,6 +219,22 @@ class ChoferModel
         $sql = " UPDATE vehiculo SET estado = '2' WHERE patente = '" . $patentes[0]["vehiculo_patente"] . "';";
         $this->bd->query($sql);
 
+    }
+
+    public function ultimaPosicionChofer($chofer){
+        $sql = "select p.x as 'latitud_chofer', p.y as 'longitud_chofer' from viaje v 
+                join proforma pro on pro.viaje_id = v.id
+                left join seguimiento s on s.viaje = v.id 
+                join posicion p on s.posicion_actual = p.id 
+                where v.chofer_id = 4
+                and pro.estado = 1
+                and s.id = (select MAX(s2.id) from seguimiento s2 where s2.viaje = v.id);";
+
+        $resultadoQuery = $this->bd->query($sql);
+        while ($fila = $resultadoQuery->fetch_assoc()) {
+            $posicion[] = $fila;
+        }
+        return $posicion;
     }
 
     public function verificarSiUnChoferTieneViajesActivos($dniUsuario)
