@@ -21,12 +21,12 @@ class QrChoferModel
         return $text;
     }
 
-    public function generarQr($idViaje)
+    public function generarQr($idProforma, $idChofer)
     {
         $direccion = 'public/qr/imgQr';
-        $nombre = $idViaje . '.png';
+        $nombre ='qrProforma'.  $idProforma . '.png';
 
-        QRcode::png("idViaje=$idViaje", $direccion . $nombre, QR_ECLEVEL_H);
+        QRcode::png("http://localhost/qrChofer&idProforma=$idProforma&idChofer=$idChofer", $direccion . $nombre, QR_ECLEVEL_H);
     }
 
 
