@@ -5,22 +5,52 @@
             <article class=" justify-content-center mt-4 ancho2">
                 <h2 class="text-dark mb-3 text-center">Administrar los Equipos</h2>
                 {{#bajaVehiculo}}
-                    <h5 class="text-success">Se dio de baja el vehículo con éxito.</h5>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Se dio de baja el vehiculo con exito.</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 {{/bajaVehiculo}}
                 {{#bajaAcoplado}}
-                    <h5 class="text-success">Se dio de baja el acoplado con éxito.</h5>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Se dio de baja el aclopado con exito.</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 {{/bajaAcoplado}}
                 {{#modificarCamionExitosamente}}
-                    <h5 class="text-success">Se modifico el vehículo con exito.</h5>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Se modifico el vehiculo con exito.</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 {{/modificarCamionExitosamente}}
                 {{#modificarAcopladoExitosamente}}
-                    <h5 class="text-success">Se modifico el acoplado con exito.</h5>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Se modifico el acoplado con exito.</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 {{/modificarAcopladoExitosamente}}
                 {{#patenteVehiculoError}}
-                    <h5 class="text-danger">La patente del vehículo ya existe.</h5>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>La patente del vehiculo ya existe</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 {{/patenteVehiculoError}}
                 {{#patenteAcopladoError}}
-                    <h5 class="text-danger">La patente del acoplado ya existe.</h5>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>La petente del acoplado ya existe.</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 {{/patenteAcopladoError}}
                 <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-truck"></i> Administrar Vehículos</h3>
                 <a href="/agregarVehiculo" class="btn btn-outline-primary">Agregar Vehículo</a>
