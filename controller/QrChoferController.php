@@ -24,10 +24,10 @@ class QrChoferController
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
 
-            echo $this->render->render("view/qrChofer.php", $dataMerge);
+            echo $this->render->render("view/qrChoferView.php", $dataMerge);
             exit();
         }
-        echo $this->render->render("view/qrChofer.php");
+        echo $this->render->render("view/qrChoferView.php");
     }
 
     public function decodificarQr(){
@@ -45,7 +45,7 @@ class QrChoferController
             header("Location: " . $textDecodificado);
             exit();
         }
-        echo $this->render->render("view/escaneoQrView.php");
+        echo $this->render->render("view/home.php");
     }
 
 }

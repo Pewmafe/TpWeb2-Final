@@ -57,11 +57,12 @@ window.onload = function () {
     moveMapToArgentina(map);
     lat = document.getElementById("latitud_partida").value;
     lng = document.getElementById("longitud_partida").value;
-    lat2 = document.getElementById("longitud_destino").value;
+    lat2 = document.getElementById("latitud_destino").value;
     lng2 = document.getElementById("longitud_destino").value;
     partidaYDestino(map, lat, lng , "P");
     partidaYDestino(map, lat2, lng2, "D");
     addMarkersToMap(map, lat2, lng2);
+    console.log(lat + " " + lng + " " + " " + lat2 + " " + lng2);
 }
 
 
