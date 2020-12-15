@@ -265,9 +265,9 @@ create table seguimiento(
 	combustible_consumido int,
 	posicion_actual int,
 	km_recorridos int,
-	vehiculo varchar(10),
+	peaje int,
+	fecha datetime,
 	viaje int,
-	constraint fk_seguimiento_vehiculo foreign key (vehiculo) references vehiculo(patente),
 	constraint fk_seguimiento_viaje foreign key (viaje) references viaje(id),
 	constraint fk_seguimiento_posicion foreign key (posicion_actual) references posicion(id)
 );
@@ -519,8 +519,14 @@ select 	ep.descripcion as 'TodosEstado',
                 join usuario UCh on UCh.dni = ECh.dni_usuario
 				join cliente cl on p.cliente_cuit = cl.cuit 
 					where p.estado = 1;
+			
 				
+select * from seguimiento;
+select * from viaje;
+INSERT INTO seguimiento (id, combustible_consumido, posicion_actual, km_recorridos, viaje) VALUES(1, 10, 2, 12, 1);
 
-
+select * from seguimiento s 
+join viaje v on s.viaje = v.id 
+where v.id = 1 and chofer_id = 4;
 
                     
