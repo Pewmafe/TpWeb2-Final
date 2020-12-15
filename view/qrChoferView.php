@@ -1,16 +1,29 @@
 {{>header}}
 {{#usuarioChofer}}
     <main>
-        <section class="row justify-content-center m-3 ancho">
-            <article class=" justify-content-center mt-4 ancho2">
-                <h3 class="text-dark mb-3">Agregar combustible</h3>
-                <form action="#" class="agregar" name="form" id="agregarCombustible" method="post">
-                    <div class="form-group col-md-6">
-                        <label for="agregarCombustible">*Cantidad de combustible</label>
-                        <input type="number" class="form-control" id="agregarCombustible" name="agregarCombustible">
-                        <button type="submit" class="btn btn-primary btn-block">Agregar</button>
-                    </div>
-                </form>
+        <section class="container justify-content-center m-3 ancho">
+            <h3 class="mt-2">Bienvenido a la seccion de reportes {{nombreChofer}}</h3>
+
+            <article class="row">
+                <div class="col-12 col-md-6 form-group">
+                    <label for="combustible">Combustible cargado hasta ahora</label>
+                    <input type="number" class="form-control" id="combustible" name="combustible">
+                </div>
+                <div class="col-12 col-md-6 form-group">
+                    <label for="kilometros">Kilometros recorridos hasta ahora</label>
+                    <input type="number" class="form-control" id="kilometros" name="kilometros">
+                </div>
+                <div class="col-12 col-md-6 form-group">
+                    <label for="peajes">Pejaes abonados hasta ahora</label>
+                    <input type="number" class="form-control" id="peajes" name="peajes">
+                </div>
+                <div class="col-12 col-md-6 form-group">
+                    <label for="combustible">Combustible cargado hasta ahora</label>
+                    <input type="number" class="form-control" id="combustible" name="combustible">
+                </div>
+                <div class="col-12 col-md-6 form-group">
+
+                </div>
             </article>
         </section>
     </main>
