@@ -257,14 +257,39 @@ $(document).ready(function() {
             $("#registroExitoso").html("");
 
             if (json_data.nombreUsuarioError == true && json_data.dniError == true) {
-                $("#nombreUsuarioError").html("<span>Nombre de usuario ya existente</span>");
-                $("#dniUsuarioError").html("<span>DNI de usuario ya existente</span>");
+                $("#nombreUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Nombre de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
+                $("#dniUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Dni de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else if (json_data.nombreUsuarioError) {
-                $("#nombreUsuarioError").html("<span>Nombre de usuario ya existente</span>");
+                $("#nombreUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Nombre de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else if (json_data.dniError == true) {
-                $("#dniUsuarioError").html("<span>DNI de usuario ya existente</span>");
+                $("#dniUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Dni de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else {
-                $("#registroExitoso").html("<span>Se registro con exito</span>");
+                $("#registroExitoso").html("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Se registro con exito</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 $("#NombreUsuario").val('');
                 $("#nombre").val('');
                 $("#apellido").val('');
