@@ -453,22 +453,6 @@ values (1,'ACTIVO'),
 (2,'PENDIENTE'),
 (3,'FINALIZADO');
 
-insert into hazard(id, imo_sub_class_id)
-values (1, 2);
-
-insert into reefer(id_reefer, temperatura)
-values (1, 123);
-
-insert into carga(id, hazard_id, peso_neto, reefer_id, tipo)
-values(1, 1, 12.00, 1, 1);
-
-insert into viaje (id, eta, etd, carga_id, acoplado_patente, vehiculo_patente, chofer_id, destino_id, partida_id)
-values(1, "2020/12/12 16:02:00", "2020/11/01 03:40:00", 1, "ab456uu", "aa123bb", 4, 3, 2);
-
-insert into proforma (id,cliente_cuit,viaje_id,estado,fechaCreacion)
-values(1, 123, 1, 2, '2020-03-21'),
-(2, 123, 1, 1, '2020-08-15'),
-(3, 123, 1, 3, '2020-12-01');
 
 UPDATE grupo12.direccion SET calle='falsa', altura=1212, localidad=1, posicion=8 WHERE id=2;
 

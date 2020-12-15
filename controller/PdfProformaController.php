@@ -32,7 +32,8 @@ class PdfProformaController
             exit();
         } else {
             $data2 = $this->loginSession->verificarQueUsuarioRol();
-            if (isset($data2["usuarioChofer"]) and $data2["usuarioChofer"]) {
+            if (isset($data2["usuarioChofer"]) and $data2["usuarioChofer"] or
+                isset($data2["usuarioSupervisor"]) and $data2["usuarioSupervisor"]) {
                 $IdChofer = $_GET["idChofer"];
                 $idProforma = $_GET["proformaID"];
                 $tablaDatosProforma = $this->choferModel->obtenerTodosLosDatosDeLaProformaSegunIDChofer($IdChofer, $idProforma);

@@ -12,6 +12,7 @@ class ChoferModel
 
     public function obtenerProformas()
     {
+        $tablaProforma = array();
         $sql = "SELECT p.id, c.nombre, c.apellido
                 FROM proforma as p JOIN cliente as c 
                                     ON c.cuit = p.cliente_cuit
