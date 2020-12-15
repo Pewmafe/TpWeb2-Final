@@ -20,17 +20,23 @@ class QrChoferController
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
             $data["login"] = true;
+            $datos = $this->qrModel->mostrarNombreChofer($_GET["idChofer"]);
 
+            $data["nombreChofer"] = $datos[0]["nombre"];
+            $data["apellidoChofer"] = $datos[0]["apellido"];
+            $data["idChofer"] = $_GET["idChofer"];
+            $data["id_proforma"] = $_GET["idProforma"];
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
 
-            echo $this->render->render("view/qrChofer.php", $dataMerge);
+            echo $this->render->render("view/qrChoferView.php", $dataMerge);
             exit();
         }
-        echo $this->render->render("view/qrChofer.php");
+        echo $this->render->render("view/qrChoferView.php");
     }
 
-    public function decodificarQr(){
+    public function decodificarQr()
+    {
 
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {

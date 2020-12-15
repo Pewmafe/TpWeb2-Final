@@ -23,10 +23,24 @@ class QrChoferModel
 
     public function generarQr($idProforma, $idChofer)
     {
-        $direccion = 'public/qr/imgQr';
-        $nombre ='qrProforma'.  $idProforma . '.png';
+        $direccion = 'public/qr/imgQr/';
+        $nombre = 'qrProforma' . $idProforma . '.png';
 
         QRcode::png("http://localhost/qrChofer&idProforma=$idProforma&idChofer=$idChofer", $direccion . $nombre, QR_ECLEVEL_H);
+    }
+
+    public function mostrarNombreChofer($idChofer)
+    {
+        $sql = "select UCh.nombre, UCh.apellido from empleado e 
+                    join usuario UCh on e.dni_usuario = UCh.dni
+                    where e.id = " . $idChofer;
+        $resultadoQuery = $this->bd->query($sql);
+
+        while ($fila = $resultadoQuery->fetch_assoc()) {
+            $datos[] = $fila;
+        }
+
+        return $datos;
     }
 
 
