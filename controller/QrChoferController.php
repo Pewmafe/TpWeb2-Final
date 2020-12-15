@@ -19,6 +19,7 @@ class QrChoferController
 
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
+
             if ($_SESSION["idEmpleado"] == $_GET["idChofer"] or $_SESSION["rol"] == "admin") {
                 $data["login"] = true;
                 $datos = $this->qrModel->mostrarNombreChofer($_GET["idChofer"]);
@@ -35,6 +36,7 @@ class QrChoferController
             }
         }
         echo $this->render->render("view/chofer?errorQR=true.php");
+        
     }
 
     public function decodificarQr()
