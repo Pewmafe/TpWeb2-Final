@@ -65,11 +65,35 @@ class CrearProformaModel
         return $tablaTipoDeCarga;
     }
 
-
     public function registrarDireccion($calle, $altura, $localidad)
     {
-        $sql = "INSERT INTO direccion(calle, altura, localidad) values ('" . $calle . "'," . $altura . "," . $localidad . ")";
-        $idDireccion = $this->bd->queryQueDevuelveId($sql);
+        $apikey = "NDO-x9Q1-wRAQe2VukMxSHEhNY4ue8C5Y9ESpD_XwCk";
+        $nombreLocalidad = $this->devolverNombreLocalidadPorIdLocalidad($localidad);
+        $nombreProvincia = $this->devolverNombreProvinciaPorIdLocalidad($localidad);
+        $direccionString = $calle . " " . $altura . ", " . $nombreLocalidad . ", " . $nombreProvincia;
+
+        $direccionDestino = str_replace(" ", "+", $direccionString);
+        $query = $direccionDestino . ",+Argentina";
+        $localidadDestino = file_get_contents("https://geocode.search.hereapi.com/v1/geocode?q=" . $query
+            . "&apiKey=" . $apikey);
+        if(!empty($localidadDestino)){
+
+            $localidadDestino = json_decode($localidadDestino, true);
+            $latitudDestino = $localidadDestino['items'][0]['position']['lat'];
+            $longitudDestino = $localidadDestino['items'][0]['position']['lng'];
+
+            $sqlPosicion = "INSERT INTO posicion (x, y) VALUES(" . $latitudDestino . ", " . $longitudDestino . ");";
+            $idPosicion = $this->bd->queryQueDevuelveId($sqlPosicion);
+
+            $sql = "INSERT INTO direccion(calle, altura, localidad, posicion) 
+                values ('" . $calle . "'," . $altura . "," . $localidad . "," . $idPosicion . ")";
+            $idDireccion = $this->bd->queryQueDevuelveId($sql);
+        }else{
+            $sql = "INSERT INTO direccion(calle, altura, localidad) 
+                values ('" . $calle . "'," . $altura . "," . $localidad . ")";
+            $idDireccion = $this->bd->queryQueDevuelveId($sql);
+        }
+
         return $idDireccion;
     }
 
@@ -128,10 +152,10 @@ class CrearProformaModel
         return $idViaje;
     }
 
-    public function registrarProforma($clienteCuit, $viajeId,$fechaCreacion)
+    public function registrarProforma($clienteCuit, $viajeId, $fechaCreacion)
     {
         $sql = "INSERT INTO proforma(cliente_cuit, viaje_id, estado, fechaCreacion) 
-        values (" . $clienteCuit . "," . $viajeId . ", 2, '".$fechaCreacion."')";
+        values (" . $clienteCuit . "," . $viajeId . ", 2, '" . $fechaCreacion . "')";
         $idProforma = $this->bd->queryQueDevuelveId($sql);
         return $idProforma;
     }
@@ -201,62 +225,68 @@ class CrearProformaModel
         return $lista;
     }
 
-    public function devolverNombreLocalidadPorIdLocalidad($localidad){
+    public function devolverNombreLocalidadPorIdLocalidad($localidad)
+    {
         $sql = "SELECT l.descripcion 
                 FROM localidad l 
-                WHERE l.id =".$localidad;
+                WHERE l.id =" . $localidad;
 
         $resultadoQuery = $this->bd->query($sql);
         $nombreLocalidad = $resultadoQuery->fetch_assoc();
         return $nombreLocalidad["descripcion"];
     }
 
-    public function devolverNombreProvinciaPorIdLocalidad($localidad){
+    public function devolverNombreProvinciaPorIdLocalidad($localidad)
+    {
         $sql = "SELECT p.descripcion 
                 FROM localidad l JOIN provincia p
                                 ON l.provincia_id = p.id 
-                WHERE l.id =".$localidad;
+                WHERE l.id =" . $localidad;
 
         $resultadoQuery = $this->bd->query($sql);
         $nombreProvincia = $resultadoQuery->fetch_assoc();
         return $nombreProvincia["descripcion"];
     }
 
-    public function obtenerTipoAcopladoPorPatente($acopladoPatente){
+    public function obtenerTipoAcopladoPorPatente($acopladoPatente)
+    {
         $sql = "SELECT a.tipo 
                 FROM acoplado a 
-                WHERE a.patente = '".$acopladoPatente."'";
+                WHERE a.patente = '" . $acopladoPatente . "'";
 
         $resultadoQuery = $this->bd->query($sql);
         $tipoAcoplado = $resultadoQuery->fetch_assoc();
         return $tipoAcoplado["tipo"];
     }
 
-    public function devolverNombreTipoCargaPorIdCarga($idTipoCarga){
+    public function devolverNombreTipoCargaPorIdCarga($idTipoCarga)
+    {
         $sql = "SELECT tp.descripcion 
                 FROM tipo_carga tp
-                WHERE tp.id_tipo_carga =".$idTipoCarga;
+                WHERE tp.id_tipo_carga =" . $idTipoCarga;
 
         $resultadoQuery = $this->bd->query($sql);
         $nombreTipoCarga = $resultadoQuery->fetch_assoc();
         return $nombreTipoCarga["descripcion"];
     }
 
-    public function devolverReeferPorReeferId($reeferId){
+    public function devolverReeferPorReeferId($reeferId)
+    {
         $sql = "SELECT r.temperatura 
                 FROM reefer r
-                WHERE r.id_reefer =".$reeferId;
+                WHERE r.id_reefer =" . $reeferId;
 
         $resultadoQuery = $this->bd->query($sql);
         $reeferTemperatura = $resultadoQuery->fetch_assoc();
         return $reeferTemperatura["temperatura"];
     }
 
-    public function devolverHazardPorHazardId($imoSubClassId){
+    public function devolverHazardPorHazardId($imoSubClassId)
+    {
         $sql = "SELECT isc.descripcion as imo_sub_class, ic.descripcion as imo_class
                 FROM imo_sub_class isc JOIN imo_class ic 
                                         ON ic.id = isc.imo_class_id
-                WHERE isc.id =".$imoSubClassId;
+                WHERE isc.id =" . $imoSubClassId;
 
         $resultadoQuery = $this->bd->query($sql);
         $hazard = $resultadoQuery->fetch_assoc();
@@ -264,16 +294,17 @@ class CrearProformaModel
         return $datosHazard;
     }
 
-    public function obtenerNombreApellidoClientesPorCuit($cuit){
+    public function obtenerNombreApellidoClientesPorCuit($cuit)
+    {
         $sql = "SELECT c.nombre, c.apellido, c.cuit
                 FROM cliente c";
 
         $resultadoQuery = $this->bd->query($sql);
 
-        $listaClientes= null;
+        $listaClientes = null;
         while ($fila = $resultadoQuery->fetch_assoc()) {
-            if(strpos($fila["cuit"], $cuit) !== false){
-                $listaClientes .= "<h4 class='text-info'>".$fila["nombre"] . " ". $fila["apellido"]."</h4>";
+            if (strpos($fila["cuit"], $cuit) !== false) {
+                $listaClientes .= "<h4 class='text-info'>" . $fila["nombre"] . " " . $fila["apellido"] . "</h4>";
             }
         }
         return $listaClientes;

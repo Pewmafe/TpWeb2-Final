@@ -16,6 +16,9 @@
 
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                             <h3 class="text-center">Registro cliente</h3>
+                            <div class="container" id="clienteRegistroError"></div>
+                            <div class="container" id="clienteRegistroExitoso"></div>
+
                             <form class="form-horizontal row" role="form" id="clienteRegistroFormulario" action="/crearProforma/registrarCliente" method="post">
                                 <div class="form-group col-12 col-md-6">
                                     <label for="clienteDenominacion" class="col-12 control-label"><span class="text-info">*</span>Denominacion</label>
@@ -98,9 +101,9 @@
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <button type="submit" class="btn btn-outline-primary btn-block mb-2">Registrar cliente</button>
-                                    <h5 class="text-danger" id="clienteRegistroError"></h5>
-                                    <h5 class="text-success" id="clienteRegistroExitoso"></h5>
+                                    <button type="submit" class="btn btn-outline-primary btn-block mb-2">Registrar cliente
+                                    </button>
+
                                 </div>
                             </form>
                         </div>
@@ -131,16 +134,18 @@
                                     <h4>Carga</h4>
                                 </div>
                                 <div class="form-group col-12 col-md-6">
-                                    <label for="cargaTipo" class="col-12 control-label"><span class="text-info">*</span>Tipo de carga</label>
+                                    <label for="cargaTipo" class="col-12 control-label"><span class="text-info">*</span>Tipo
+                                        de carga</label>
                                     <select name="cargaTipo" id="cargaTipo" class="custom-select form-control">
                                         <option selected disabled>-</option>
                                         {{#tablaTiposDeCarga}}
-                                        <option value="{{id_tipo_carga}}">{{descripcion}}</option>
+                                            <option value="{{id_tipo_carga}}">{{descripcion}}</option>
                                         {{/tablaTiposDeCarga}}
                                     </select>
                                 </div>
                                 <div class="form-group col-12 col-md-6">
-                                    <label for="cargaPeso" class="col-12 control-label"><span class="text-info">*</span>Peso en kilos</label>
+                                    <label for="cargaPeso" class="col-12 control-label"><span class="text-info">*</span>Peso
+                                        en kilos</label>
                                     <input type="number" id="cargaPeso" name="cargaPeso" placeholder="" class="form-control">
                                 </div>
                                 <div class="col-12">
@@ -163,7 +168,8 @@
                                 </div>
                                 <div id="hazard" class="collapse form-group col-12">
                                     <div class="form-group col-12">
-                                        <label for="imoClass" class="col-12 control-label"><span class="text-info">*</span>IMO class</label>
+                                        <label for="imoClass" class="col-12 control-label"><span class="text-info">*</span>IMO
+                                            class</label>
                                         <select id="imoClass" name="imoClass" class="form-control col-12">
                                         </select>
                                     </div>
@@ -247,13 +253,15 @@
                                 </div>
 
                                 <div class="form-group col-12">
-                                    <label for="fechaSalida" class="col-12 control-label"><span class="text-info">*</span>Fecha de salida</label>
+                                    <label for="fechaSalida" class="col-12 control-label"><span class="text-info">*</span>Fecha
+                                        de salida</label>
 
                                     <input type="datetime-local" id="fechaSalida" name="fechaSalida" class="form-control">
 
                                 </div>
                                 <div class="form-group col-12">
-                                    <label for="fechaLlegada" class="col-12 control-label"><span class="text-info">*</span>Fecha de llegada</label>
+                                    <label for="fechaLlegada" class="col-12 control-label"><span class="text-info">*</span>Fecha
+                                        de llegada</label>
 
                                     <input type="datetime-local" id="fechaLlegada" name="fechaLlegada" class="form-control">
 
@@ -267,57 +275,57 @@
                                     <div class="table-responsive">
                                         <table class="table" id="mydatatableVehiculosProforma">
                                             <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">Patente</th>
-                                                <th scope="col">Marca</th>
-                                                <th scope="col">Modelo</th>
-                                                <th scope="col">Calendario service</th>
-                                                <th scope="col"><i class="fas fa-check-circle"></i></th>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">Patente</th>
+                                                    <th scope="col">Marca</th>
+                                                    <th scope="col">Modelo</th>
+                                                    <th scope="col">Calendario service</th>
+                                                    <th scope="col"><i class="fas fa-check-circle"></i></th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            {{#tablaVehiculos}}
-                                            <tr>
-                                                <td>{{patente}}</td>
-                                                <td>{{marca}}</td>
-                                                <td>{{modelo}}</td>
-                                                <td>{{calendario_service}}</td>
-                                                <td>
-                                                    <div class="form-check text-center">
-                                                        <input class="form-check-input" type="radio" name="vehiculoRadios" id="vehiculoRadios{{patente}}" value="{{patente}}">
-                                                        <label class="form-check-label" for="vehiculoRadios{{patente}}"></label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            {{/tablaVehiculos}}
+                                                {{#tablaVehiculos}}
+                                                    <tr>
+                                                        <td>{{patente}}</td>
+                                                        <td>{{marca}}</td>
+                                                        <td>{{modelo}}</td>
+                                                        <td>{{calendario_service}}</td>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <input class="form-check-input" type="radio" name="vehiculoRadios" id="vehiculoRadios{{patente}}" value="{{patente}}">
+                                                                <label class="form-check-label" for="vehiculoRadios{{patente}}"></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                {{/tablaVehiculos}}
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <h4 class="text-center"><span class="text-info" >*</span>Acoplado</h4>
+                                    <h4 class="text-center"><span class="text-info">*</span>Acoplado</h4>
                                     <div class="table-responsive">
                                         <table class="table" id="mydatatableAcopladoProforma">
                                             <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">Patente</th>
-                                                <th scope="col">Tipo</th>
-                                                <th scope="col"><i class="fas fa-check-circle"></i></th>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">Patente</th>
+                                                    <th scope="col">Tipo</th>
+                                                    <th scope="col"><i class="fas fa-check-circle"></i></th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            {{#tablaAcoplados}}
-                                            <tr>
-                                                <td>{{patente}}</td>
-                                                <td>{{descripcion}}</td>
-                                                <td>
-                                                    <div class="form-check text-center">
-                                                        <input class="form-check-input" type="radio" name="acopladoRadios" id="acopladoRadios{{patente}}" value="{{patente}}">
-                                                        <label class="form-check-label" for="acopladoRadios{{patente}}"></label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            {{/tablaAcoplados}}
+                                                {{#tablaAcoplados}}
+                                                    <tr>
+                                                        <td>{{patente}}</td>
+                                                        <td>{{descripcion}}</td>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <input class="form-check-input" type="radio" name="acopladoRadios" id="acopladoRadios{{patente}}" value="{{patente}}">
+                                                                <label class="form-check-label" for="acopladoRadios{{patente}}"></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                {{/tablaAcoplados}}
                                             </tbody>
                                         </table>
                                     </div>
@@ -327,13 +335,13 @@
                                     <div class="table-responsive">
                                         <table class="table" id="mydatatableChoferProforma">
                                             <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Apellido</th>
-                                                <th scope="col">DNI</th>
-                                                <th scope="col">Tipo de licencia</th>
-                                                <th scope="col"><i class="fas fa-check-circle"></i></th>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Apellido</th>
+                                                    <th scope="col">DNI</th>
+                                                    <th scope="col">Tipo de licencia</th>
+                                                    <th scope="col"><i class="fas fa-check-circle"></i></th>
+                                                </tr>
                                             </thead>
                                             <tbody>
                                                 {{#tablaChoferes}}
@@ -362,9 +370,11 @@
                                 </div>
                                 <div class="container">
                                     <button type="submit" class="btn btn-outline-primary btn-block">Crear proforma</button>
-                                    <h5 class="text-danger" id="errorClienteCuit"></h5>
-                                    <h5 class="text-danger" id="errorCamposVacios"></h5>
-                                    <h5 class="text-success" id="crearProformaExito"></h5>
+                                    <div class="m-3">
+                                        <h5 class="text-danger" id="errorClienteCuit"></h5>
+                                        <h5 class="text-danger" id="errorCamposVacios"></h5>
+                                        <h5 class="text-success" id="crearProformaExito"></h5>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -384,18 +394,28 @@
                                     <h5 class="col-12 col-md-6">Cliente CUIT: <span class="text-info" id="detalleProformaCliente"></span></h5>
                                     <h5 class="col-12 col-md-6">Tipo carga: <span class="text-info" id="detalleProformaTipoCarga"></span></h5>
                                     <h5 class="col-12 col-md-6">Peso carga: <span class="text-info" id="detalleProformaPesoCarga"></span></h5>
-                                    <h5 class="col-12 col-md-6">Datos hazard: <span class="text-info" id="detalleProformaDatosHazard"></span></h5>
+                                    <h5 class="col-12 col-md-6">Datos hazard: <span class="text-info" id="detalleProformaDatosHazard"></span>
+                                    </h5>
                                     <h5 class="col-12 col-md-6">Hazard: <span class="text-info" id="detalleProformaHazard"></span></h5>
-                                    <h5 class="col-12 col-md-6">Datos reefer: <span class="text-info" id="detalleProformaDatosReefer"></span></h5>
+                                    <h5 class="col-12 col-md-6">Datos reefer: <span class="text-info" id="detalleProformaDatosReefer"></span>
+                                    </h5>
                                     <h5 class="col-12 col-md-6">Reefer: <span class="text-info" id="detalleProformaReefer"></span></h5>
-                                    <h5 class="col-12 col-md-6">Viaje origen: <span class="text-info" id="detalleProformaViajeOrigen"></span></h5>
-                                    <h5 class="col-12 col-md-6">Viaje destino: <span class="text-info" id="detalleProformaViajeDestino"></span></h5>
-                                    <h5 class="col-12 col-md-6">Cantidad kilometros: <span class="text-info" id="detalleProformaCantidadKM"></span></h5>
-                                    <h5 class="col-12 col-md-6">Fecha salida: <span class="text-info" id="detalleProformaFechaSalida"></span></h5>
-                                    <h5 class="col-12 col-md-6">Fecha llegada: <span class="text-info" id="detalleProformaFechaLlegada"></span></h5>
-                                    <h5 class="col-12 col-md-6">Patente vehiculo asignado: <span class="text-info" id="detalleProformaVehiculoAsignado"></span></h5>
-                                    <h5 class="col-12 col-md-6">Patente acoplado asignado: <span class="text-info" id="detalleProformaAcopladoAsignado"></span></h5>
-                                    <h4 class="col-12 col-md-6">Total: <span class="text-success" id="detalleProformaTotal">$0</span></h4>
+                                    <h5 class="col-12 col-md-6">Viaje origen: <span class="text-info" id="detalleProformaViajeOrigen"></span>
+                                    </h5>
+                                    <h5 class="col-12 col-md-6">Viaje destino: <span class="text-info" id="detalleProformaViajeDestino"></span>
+                                    </h5>
+                                    <h5 class="col-12 col-md-6">Cantidad kilometros: <span class="text-info" id="detalleProformaCantidadKM"></span>
+                                    </h5>
+                                    <h5 class="col-12 col-md-6">Fecha salida: <span class="text-info" id="detalleProformaFechaSalida"></span>
+                                    </h5>
+                                    <h5 class="col-12 col-md-6">Fecha llegada: <span class="text-info" id="detalleProformaFechaLlegada"></span>
+                                    </h5>
+                                    <h5 class="col-12 col-md-6">Patente vehiculo asignado: <span class="text-info" id="detalleProformaVehiculoAsignado"></span>
+                                    </h5>
+                                    <h5 class="col-12 col-md-6">Patente acoplado asignado: <span class="text-info" id="detalleProformaAcopladoAsignado"></span>
+                                    </h5>
+                                    <h4 class="col-12 col-md-6">Total: <span class="text-success" id="detalleProformaTotal">$0</span>
+                                    </h4>
                                 </div>
                                 <a class="btn btn-outline-secondary" id="botonVerPdfProforma">Ver pdf</a>
                             </div>

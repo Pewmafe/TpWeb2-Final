@@ -235,7 +235,12 @@ $(document).ready(function() {
 
         $.post(post_url, form_data, function(errorLogin) {
             if (errorLogin == true) {
-                $("#loginError").html("<span>Error en el usuario o la contrasenia</span>");
+                $("#loginError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Error en el usuario o contraseña</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else {
                 window.location = "/";
             }
@@ -257,14 +262,39 @@ $(document).ready(function() {
             $("#registroExitoso").html("");
 
             if (json_data.nombreUsuarioError == true && json_data.dniError == true) {
-                $("#nombreUsuarioError").html("<span>Nombre de usuario ya existente</span>");
-                $("#dniUsuarioError").html("<span>DNI de usuario ya existente</span>");
+                $("#nombreUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Nombre de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
+                $("#dniUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Dni de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else if (json_data.nombreUsuarioError) {
-                $("#nombreUsuarioError").html("<span>Nombre de usuario ya existente</span>");
+                $("#nombreUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Nombre de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else if (json_data.dniError == true) {
-                $("#dniUsuarioError").html("<span>DNI de usuario ya existente</span>");
+                $("#dniUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Dni de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else {
-                $("#registroExitoso").html("<span>Se registro con exito</span>");
+                $("#registroExitoso").html("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Se registro con exito</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 $("#NombreUsuario").val('');
                 $("#nombre").val('');
                 $("#apellido").val('');
@@ -288,13 +318,28 @@ $(document).ready(function() {
             $("#clienteRegistroExitoso").html("");
 
             if (jsonErrorRegistro.clienteCuitExistente == true) {
-                $("#clienteRegistroError").html("<span>El CUIT del cliente ya existe.</span>");
+                $("#clienteRegistroError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>El CUIT del cliente ya existe.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else if (jsonErrorRegistro.clienteDenominacion == false || jsonErrorRegistro.clienteNombre == false || jsonErrorRegistro.clienteApellido == false || jsonErrorRegistro.clienteCuit == false ||
                 jsonErrorRegistro.clienteLocalidad == false || jsonErrorRegistro.clienteCalle == false || jsonErrorRegistro.clienteAltura == false || jsonErrorRegistro.clienteTelefono == false ||
                 jsonErrorRegistro.clienteEmail == false) {
-                $("#clienteRegistroError").html("<span>Debe completar todos los campos.</span>");
+                $("#clienteRegistroError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Debe completar todos los campos.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else {
-                $("#clienteRegistroExitoso").html("<span>Se registro el cliente con exito</span>");
+                $("#clienteRegistroExitoso").html("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Se registro el cliente con exito.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 $("#clienteDenominacion").val('');
                 $("#clienteNombre").val('');
                 $("#clienteApellido").val('');
@@ -384,17 +429,32 @@ $(document).ready(function() {
 
             var registroExitoso = true;
             if (jsonErrorRegistro.clienteCuitExistente == false) {
-                $("#errorClienteCuit").html("<span>No se encuentra registrado un cliente con ese CUIT.</span>");
+                $("#errorClienteCuit").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>No se encuentra un cliente registrado con ese CUIT.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 registroExitoso = false;
             }
 
             if (jsonErrorRegistro.camposVacios == true) {
-                $("#errorCamposVacios").html("<span>Debe completar todos los campos.</span>");
+                $("#errorCamposVacios").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Debe completar todos los campos</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 registroExitoso = false;
             }
 
             if (registroExitoso) {
-                $("#crearProformaExito").html("<span>Se registro la proforma con exito</span>");
+                $("#crearProformaExito").html("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Se registro la proforma con exito.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 $("#clienteRegistradoCuit").val('');
                 $("#cargaTipo").val('');
                 $("#cargaPeso").val('');
@@ -468,7 +528,7 @@ $(document).ready(function() {
     });
 
     /************************AJAX MANDAR A SERIVICE*********************************/
-    $(".mandarAServiceBoton").click(function (){
+    $(".mandarAServiceBoton").click(function() {
         var post_url = "/service/obtenerEmpleadosMecanicos";
 
         $.ajax({
@@ -494,11 +554,16 @@ $(document).ready(function() {
             }
         }).done(function(datos) {
             var jsonDatosEmpleado = jQuery.parseJSON(datos);
-            $('#mecanicoDatos').html("<h5>Datos de mecanico seleccionado:</h5><p>Apellido y nombre: " +jsonDatosEmpleado.apellido+" " +jsonDatosEmpleado.nombre+"</p>" +
-                                        "<p>DNI: " +jsonDatosEmpleado.dni+"</p>");
+            $('#mecanicoDatos').html("<h5>Datos de mecanico seleccionado:</h5><p>Apellido y nombre: " + jsonDatosEmpleado.apellido + " " + jsonDatosEmpleado.nombre + "</p>" +
+                "<p>DNI: " + jsonDatosEmpleado.dni + "</p>");
         }).fail(function() {
             alert("error al cargar datos mecanico");
         });
+    });
+
+    $(document).on("click", ".botonFinalizarMantenimientoVehiculo", function() {
+        var patenteVehiculo = $(this).data('patente');
+        $('.modal-footer #botonFinalizarServiceDeUnVehiculoModal').val(patenteVehiculo);
     });
 
     /************************Tablas Nuevas ABM/VIAJES*********************************/

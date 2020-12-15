@@ -34,7 +34,11 @@ class ChoferModel
                         pp.descripcion as 'partida',
                         j.eta, 
                         j.etd,
-                        p.id as 'id_proforma'
+                        p.id as 'id_proforma',
+                        gp.x as 'latitud_partida',
+                        gp.y as 'longitud_partida',
+                        gd.x as 'latitud_destino',
+                        gd.y as 'longitud_destino'
                     from proforma p
                         join viaje j on p.viaje_id = j.id
                         join direccion dp on j.partida_id = dp.id
@@ -44,6 +48,8 @@ class ChoferModel
                         join provincia pp on pp.id = lp.provincia_id
                         join provincia pd on pd.id = ld.provincia_id
                         join estado_proforma ep on ep.id = p.estado
+                        left join posicion gp on dp.posicion = gp.id 
+                        left join posicion gd on dd.posicion = gd.id
                             where j.chofer_id =" . $idChofer . "
                             and p.estado = " . $estado;
 
@@ -167,7 +173,7 @@ class ChoferModel
         return $tablaDeViajes;
     }
 
-    public function obtenerPatenteDeVehiculoYCarga($idProforma)
+    public function obtenerPatenteDeVehiculoYCargaPorIdProforma($idProforma)
     {
         $sql = "select 	ve.patente as 'vehiculo_patente',  	a.patente as 'acoplado_patente'		
                     from proforma p 
@@ -188,7 +194,7 @@ class ChoferModel
 
     public function finalizarProforma($idProforma)
     {
-        $patentes = $this->obtenerPatenteDeVehiculoYCarga($idProforma);
+        $patentes = $this->obtenerPatenteDeVehiculoYCargaPorIdProforma($idProforma);
         $sql = "UPDATE proforma SET estado = '3' WHERE id = '" . $idProforma . "';
                 ";
         $this->bd->query($sql);
@@ -200,5 +206,44 @@ class ChoferModel
         $this->bd->query($sql);
 
     }
-    
+
+    public function iniciarProforma($idProforma)
+    {
+        $patentes = $this->obtenerPatenteDeVehiculoYCargaPorIdProforma($idProforma);
+        $sql = "UPDATE proforma SET estado = '1' WHERE id = '" . $idProforma . "';
+                ";
+        $this->bd->query($sql);
+
+        $sql = " UPDATE acoplado SET estado = '2' WHERE patente = '" . $patentes[0]["acoplado_patente"] . "';";
+        $this->bd->query($sql);
+
+        $sql = " UPDATE vehiculo SET estado = '2' WHERE patente = '" . $patentes[0]["vehiculo_patente"] . "';";
+        $this->bd->query($sql);
+
+    }
+
+    public function verificarSiUnChoferTieneViajesActivos($dniUsuario)
+    {
+        $sql = "select p.estado
+                    from proforma p 
+                        join viaje v on p.viaje_id = v.id
+                        join empleado ECh on ECh.id = v.chofer_id
+                        join usuario UCh on UCh.dni = ECh.dni_usuario
+                        where  ECh.dni_usuario = " . $dniUsuario . ";";
+        $resultadoQuery = $this->bd->query($sql);
+
+        while ($fila = $resultadoQuery->fetch_assoc()) {
+            $estados[] = $fila;
+        }
+
+        $resultado = 0;
+
+        for ($i = 0; $i < sizeof($estados); $i++) {
+            if ($estados[$i]["estado"] == 1) {
+                $resultado = 1;
+            }
+        }
+        return $resultado;
+    }
+
 }

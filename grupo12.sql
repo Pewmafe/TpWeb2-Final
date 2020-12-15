@@ -319,14 +319,15 @@ values(1, "administrador"),
 (5,"mecanico");
 
 insert into usuario(dni, nombreUsuario, contrasenia, nombre, apellido, fecha_nacimiento,eliminado)
-values(123, 'admin','202cb962ac59075b964b07152d234b70','ABC','CBA', 19940918, false),
-(124, 'segundo','202cb962ac59075b964b07152d234b70','Pewmafe','Fefar', 19940918, false),
+values(123, 'admin','202cb962ac59075b964b07152d234b70','Marcos','Galperin', 19940918, false),
+(124, 'encargado','202cb962ac59075b964b07152d234b70','Pewmafe','Fefar', 19940918, false),
 (125, 'tercero','202cb962ac59075b964b07152d234b70','Pedro', 'Roco', 19940918, false),
 (126, 'cuarto','202cb962ac59075b964b07152d234b70','Armando','Rodriguez', 19981018, false),
 (127, 'quinto','202cb962ac59075b964b07152d234b70','Ramiro','Ledez', 19940923, false),
-(128, 'sexto','202cb962ac59075b964b07152d234b70','CBZ','CRT', 19920912, false),
-(129, 'pew','202cb962ac59075b964b07152d234b70','DFG','QWERTY', 19980908, false),
-(130, 'septimo','202cb962ac59075b964b07152d234b70','DFE','QWER', 19980908, false);
+(128, 'Fagli','202cb962ac59075b964b07152d234b70','Santiago','Fagliano', 20010321, false),
+(129, 'pew','202cb962ac59075b964b07152d234b70','Matias','Sanchez', 19980908, false),
+(130, 'mecanico','202cb962ac59075b964b07152d234b70','DFE','QWER', 19980908, false),
+(131, 'mecanico1','202cb962ac59075b964b07152d234b70','Pedro','Swuarcheneguerr', 19980908, false);
 
 
 insert into empleado(id, tipo_de_licencia, tipo_empleado, dni_usuario)
@@ -335,7 +336,8 @@ values(1, 'camion', 1, 123),
 (3, 'tractor', 4, 127),
 (4, 'camion', 4, 128),
 (5, 'auto', 2, 125),
-(6, 'auto', 5, 130);
+(6, 'auto', 5, 130),
+(7, 'auto', 5, 131);
 
 insert into estado_equipo(id, descripcion)
 values('1','libre'),

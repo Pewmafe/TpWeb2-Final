@@ -10,6 +10,22 @@
             </button>
         </div>
     {{/finalizarProforma}}
+    {{#iniciarProforma}}
+        <div class="container alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Iniciaste la proforma correctamente</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/iniciarProforma}}
+    {{#errorViajeActivo}}
+        <div class="container alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>No puedes activar esta proforma, tienes una proforma activa</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/errorViajeActivo}}
 
 </section>
 <section class="p-3">
@@ -46,15 +62,28 @@
                         <td>{{partida}}</td>
                         <td>{{destino}}</td>
                         <td>{{tiempo_estimado}}</td>
-                        <td class="text-right">
-                            <a class="btn btn-outline-danger p-1 mt--6"
-                               href="/Chofer/finalizarProforma?&proformaID={{id_proforma}}">Finalizar</a>
-                            <a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}
-                            &proformaID={{id_proforma}}">Ver
-                            mas</a>
+                        <td class="dropdown dropleft">
+                            <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{dni}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            </a>
+
+                            <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{dni}}" style="right: 1em;">
+                                <a class="col-12 btn btn-outline-success btn-block p-1 my-1">Cargar pdf</a>
+                                <a class="col-12 btn btn-outline-danger btn-block p-1 my-1"
+                                   href="/Chofer/finalizarProforma?&proformaID={{id_proforma}}">Finalizar</a>
+                                <a class="col-12 btn btn-outline-secondary btn-block p-1 my-1" href="/pdfProforma?idChofer={{idChofer}}&proformaID={{id_proforma}}">Ver
+                                mas</a>
+                            </div>
+
                         </td>
                     </tr>
-                {{/tablaDeViajesActivo}} {{^tablaDeViajesActivo}}
+                    <div>
+                        <input type="hidden" value="{{latitud_partida}}" id="latitud_partida">
+                        <input type="hidden" value="{{longitud_partida}}" id="longitud_partida">
+                        <input type="hidden" value="{{latitud_destino}}" id="latitud_destino">
+                        <input type="hidden" value="{{longitud_destino}}" id="longitud_destino">
+                    </div>
+                    {{/tablaDeViajesActivo}} {{^tablaDeViajesActivo}}
                     <td class="text-success">(vacio)</td>
                     <td>(vacio)</td>
                     <td>(vacio)</td>
@@ -96,6 +125,8 @@
                         <td>{{destino}}</td>
                         <td>{{tiempo_estimado}}</td>
                         <td class="text-right">
+                            <a class="btn btn-outline-success p-1 mt--6"
+                               href="/Chofer/iniciarProforma?&proformaID={{id_proforma}}">Iniciar</a>
                             <a class="btn btn-outline-secondary p-1 mt--6" href="/pdfProforma?idChofer={{idChofer}}
                             &proformaID={{id_proforma}}">Ver
                             mas</a>

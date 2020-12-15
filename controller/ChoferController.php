@@ -24,6 +24,8 @@ class ChoferController
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         $data["finalizarProforma"] = isset($_GET["finalizarProforma"]) ? $_GET["finalizarProforma"] : false;
+        $data["iniciarProforma"] = isset($_GET["iniciarProforma"]) ? $_GET["iniciarProforma"] : false;
+        $data["errorViajeActivo"] = isset($_GET["errorViajeActivo"]) ? $_GET["errorViajeActivo"] : false;
         $data["titulo"] = "Viajes";
         if ($logeado) {
             $data["login"] = true;
@@ -63,6 +65,7 @@ class ChoferController
 
 
             $dataMerge = array_merge($data, $data2);
+            //die(var_dump($dataMerge));
             echo $this->render->render("view/choferView.php", $dataMerge);
             exit();
         }
@@ -92,11 +95,28 @@ class ChoferController
 
         return $filename;
     }
-    public function finalizarProforma(){
+
+    public function finalizarProforma()
+    {
         $idProforma = $_GET["proformaID"];
         $this->ChoferModel->finalizarProforma($idProforma);
         header("Location: /chofer&finalizarProforma=true");
         exit();
+
+    }
+
+    public function iniciarProforma()
+    {
+        $verificar = $this->ChoferModel->verificarSiUnChoferTieneViajesActivos($_SESSION["dniUsuario"]);
+        if (json_encode($verificar) != 1) {
+            $idProforma = $_GET["proformaID"];
+            $this->ChoferModel->iniciarProforma($idProforma);
+            header("Location: /chofer&iniciarProforma=true");
+            exit();
+        } else {
+            header("Location: /chofer&errorViajeActivo=false");
+            exit();
+        }
 
     }
 }

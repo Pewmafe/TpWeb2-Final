@@ -1,37 +1,86 @@
 {{> header}}
 {{#login}}
     <main>
-        <section>
+        <section class="container">
             <h3 class="text-center p-2">Bienvenido {{nombreDelUsuario}} {{apellidoUsuario}}</h3>
             <h6 class="text-center">Rol: {{rol}}</h6>
+            {{#cambioNombre}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Nombre de Usuario cambiado exitosamente</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {{/cambioNombre}}
+            {{#cambioPassword}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Contraseña de Usuario cambiado exitosamente</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {{/cambioPassword}}
+            {{#nombreExistente}}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Nombre de usuario Existente</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {{/nombreExistente}}
+            {{#dniExistente}}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Dni de usuario Existente</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {{/dniExistente}}
+            {{#cambioNombreDelUsuario}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Nombre del Usuario Cambiado exitosamente</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {{/cambioNombreDelUsuario}}
+            {{#cambioApellidoUsuario}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Apellido de Usuario Cambiado exitosamente</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {{/cambioApellidoUsuario}}
+            {{#cambioDniUsuario}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Dni del Usuario Cambiado exitosamente</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {{/cambioDniUsuario}}
+            {{#cambioNacimientoUsuario}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Nacimiento del Usuario Cambiado exitosamente</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {{/cambioNacimientoUsuario}}
+            {{#licenciaEmpleadoModificado}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Licencia de Empleado Cambiado exitosamente</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {{/licenciaEmpleadoModificado}}
         </section>
         <section class="ancho p-3 row">
             <article class="col-12 col-md-3">
                 <h4><i class="fas fa-caret-right"></i> Configuracion de Usuario</h4>
-                {{#cambioNombre}}
-                    <h6 class="text-success">Nombre de Usuario cambiado exitosamente</h6>
-                {{/cambioNombre}}
-                {{#cambioPassword}}
-                    <h6 class="text-success">Contraseña de Usuario cambiado exitosamente</h6>
-                {{/cambioPassword}}
-                {{#nombreExistente}}
-                    <h6 class="text-danger">Nombre de usuario Existente</h6>
-                {{/nombreExistente}}
-                {{#dniExistente}}
-                    <h6 class="text-danger">Dni de usuario Existente</h6>
-                {{/dniExistente}}
-                {{#cambioNombreDelUsuario}}
-                    <h6 class="text-success">Nombre del Usuario Cambiado exitosamente</h6>
-                {{/cambioNombreDelUsuario}}
-                {{#cambioApellidoUsuario}}
-                    <h6 class="text-success">Apellido de Usuario Cambiado exitosamente</h6>
-                {{/cambioApellidoUsuario}}
-                {{#cambioDniUsuario}}
-                    <h6 class="text-success">Dni del Usuario Cambiado exitosamente</h6>
-                {{/cambioDniUsuario}}
-                {{#cambioNacimientoUsuario}}
-                    <h6 class="text-success">Nacimiento del Usuario Cambiado exitosamente</h6>
-                {{/cambioNacimientoUsuario}}
+
             </article>
             <article class="col-12 col-md-9 pt-4">
 
@@ -289,9 +338,6 @@
             {{#usuarioEsEmpleado}}
                 <article class="col-12 col-md-3">
                     <h4><i class="fas fa-caret-right"></i> Configuracion de Empleado</h4>
-                    {{#licenciaEmpleadoModificado}}
-                        <h6 class="text-success">Licencia de Empleado Cambiado exitosamente</h6>
-                    {{/licenciaEmpleadoModificado}}
 
                 </article>
 

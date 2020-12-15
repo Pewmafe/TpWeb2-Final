@@ -12,7 +12,7 @@ class AdministrarClienteModel
 
     public function obtenerClientesNoDadosDeBaja()
     {
-        $tablaCliente[] = array();
+        $tablaCliente = array();
         $sql = "SELECT  * 
                 from cliente c JOIN direccion d 
                                 ON d.id = c.direccion
