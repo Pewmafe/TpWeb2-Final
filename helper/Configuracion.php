@@ -20,6 +20,7 @@ include_once("controller/PdfProformaController.php");
 include_once("controller/AdministrarClienteController.php");
 include_once("controller/ServiceController.php");
 include_once("controller/MantenimientoController.php");
+include_once("controller/ServiceHistorialController.php");
 
 include_once("model/CosteoModel.php");
 include_once("model/RegistroModel.php");
@@ -35,6 +36,7 @@ include_once("model/AdministrarDireccionModel.php");
 include_once("model/AdministrarClienteModel.php");
 include_once("model/MantenimientoModel.php");
 include_once("model/ServiceModel.php");
+include_once("model/ServiceHistorialModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -183,6 +185,14 @@ class Configuracion
         return new MantenimientoController($render, $loginSession, $mantenimientoModel);
     }
 
+    public function getServiceHistorialController()
+    {
+        $serviceHistorialModel = $this->getServiceHistorialModel();
+        $loginSession = $this->getLoginSession();
+        $render = $this->getRender();
+        return new ServiceHistorialController($render, $loginSession, $serviceHistorialModel);
+    }
+
     public function getAgregarAcopladoModel()
     {
         $bd = $this->getDatabase();
@@ -269,5 +279,10 @@ class Configuracion
     public function getMantenimientoModel(){
         $bd = $this->getDatabase();
         return new MantenimientoModel($bd);
+    }
+
+    public function getServiceHistorialModel(){
+        $bd = $this->getDatabase();
+        return new ServiceHistorialModel($bd);
     }
 }

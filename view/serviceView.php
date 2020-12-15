@@ -20,7 +20,7 @@
                 </button>
             </div>
             {{/registroMantenimientoExitoso}}
-            <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-truck"></i>Vehículos libres</h3>
+            <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-truck"></i> Vehículos libres</h3>
             <div class="container table-responsive mb-5 mt-3">
                 <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableVehiculosService">
                     <thead>
@@ -46,7 +46,7 @@
                             </a>
                             <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{patente}}" style="right: 1em;">
                                 <a class="btn btn-outline-success mt-2 mandarAServiceBoton" data-toggle="modal" data-target="#mandarAServiceModal"  data-patente="{{patente}}" type="button">Mandar a service</a>
-                                <a class="btn btn-outline-success mt-2" data-toggle="modal" data-target="#"  type="button">Historial de service</a>
+                                <a class="btn btn-outline-success mt-2" href="/serviceHistorial?patente={{patente}}" type="button">Historial de service</a>
                             </div>
                         </td>
                     </tr>
@@ -64,7 +64,7 @@
                     </tfoot>
                 </table>
             </div>
-            <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-tools"></i>Vehículos en mantenimiento</h3>
+            <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-tools"></i> Vehículos en mantenimiento</h3>
             <div class="container table-responsive mb-5 mt-3">
                 <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableVehiculosEnService">
                     <thead>
