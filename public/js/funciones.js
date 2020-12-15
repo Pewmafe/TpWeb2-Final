@@ -528,7 +528,7 @@ $(document).ready(function() {
     });
 
     /************************AJAX MANDAR A SERIVICE*********************************/
-    $(".mandarAServiceBoton").click(function (){
+    $(".mandarAServiceBoton").click(function() {
         var post_url = "/service/obtenerEmpleadosMecanicos";
 
         $.ajax({
@@ -554,16 +554,16 @@ $(document).ready(function() {
             }
         }).done(function(datos) {
             var jsonDatosEmpleado = jQuery.parseJSON(datos);
-            $('#mecanicoDatos').html("<h5>Datos de mecanico seleccionado:</h5><p>Apellido y nombre: " +jsonDatosEmpleado.apellido+" " +jsonDatosEmpleado.nombre+"</p>" +
-                                        "<p>DNI: " +jsonDatosEmpleado.dni+"</p>");
+            $('#mecanicoDatos').html("<h5>Datos de mecanico seleccionado:</h5><p>Apellido y nombre: " + jsonDatosEmpleado.apellido + " " + jsonDatosEmpleado.nombre + "</p>" +
+                "<p>DNI: " + jsonDatosEmpleado.dni + "</p>");
         }).fail(function() {
             alert("error al cargar datos mecanico");
         });
     });
 
-    $("#botonFinalizarMantenimientoVehiculo").on('click', function (){
+    $("#botonFinalizarMantenimientoVehiculo").on('click', function() {
         var patenteVehiculo = $($this).data('patente');
-        
+
     });
 
     /************************Tablas Nuevas ABM/VIAJES*********************************/
