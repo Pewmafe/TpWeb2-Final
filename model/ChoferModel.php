@@ -34,7 +34,11 @@ class ChoferModel
                         pp.descripcion as 'partida',
                         j.eta, 
                         j.etd,
-                        p.id as 'id_proforma'
+                        p.id as 'id_proforma',
+                        gp.x as 'latitud_partida',
+                        gp.y as 'longitud_partida',
+                        gd.x as 'latitud_destino',
+                        gd.y as 'longitud_destino'
                     from proforma p
                         join viaje j on p.viaje_id = j.id
                         join direccion dp on j.partida_id = dp.id
@@ -44,6 +48,8 @@ class ChoferModel
                         join provincia pp on pp.id = lp.provincia_id
                         join provincia pd on pd.id = ld.provincia_id
                         join estado_proforma ep on ep.id = p.estado
+                        left join posicion gp on dp.posicion = gp.id 
+                        left join posicion gd on dd.posicion = gd.id
                             where j.chofer_id =" . $idChofer . "
                             and p.estado = " . $estado;
 

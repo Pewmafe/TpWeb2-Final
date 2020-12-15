@@ -65,6 +65,7 @@ class ChoferController
 
 
             $dataMerge = array_merge($data, $data2);
+            //die(var_dump($dataMerge));
             echo $this->render->render("view/choferView.php", $dataMerge);
             exit();
         }
