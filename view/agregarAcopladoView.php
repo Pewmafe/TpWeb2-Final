@@ -10,20 +10,20 @@
                     </div>
                     <div class="form-group">
                         {{#patenteAcopladoError}}
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>La patente ya esta registrada.</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>La patente ya esta registrada.</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         {{/patenteAcopladoError}}
                         {{#agregoAcopladoExitosamente}}
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Se agrego el acoplado correctamente.</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Se agrego el acoplado correctamente.</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         {{/agregoAcopladoExitosamente}}
                         <label for="patente" class="col-12 control-label"><span class="text-info">*</span>Patente</label>
                         <div class="col-12">
