@@ -41,4 +41,34 @@ class MantenimientoModel
         return $tablaCamiones;
     }
 
+    public function setearEstadoVehiculoEnLibrePorPatente($patenteVehiculo){
+        $sql = "UPDATE vehiculo SET estado = 1 WHERE vehiculo.patente = '".$patenteVehiculo."'";
+
+        $this->bd->query($sql);
+    }
+
+    public function obtenerElIdDeUnMantenimientoPorMecanicoYVehiculo($idEmpleado, $patenteVehiculo){
+        $sql = "SELECT m.id 
+                FROM mantenimiento m
+                WHERE m.id_mecanico=".$idEmpleado."
+                AND m.patente_vehiculo ='".$patenteVehiculo."'";
+
+        $resultado =$this->bd->query($sql);
+        $idMantenimiento = $resultado->fetch_assoc();
+        return $idMantenimiento["id"];
+    }
+
+
+    public function setearFechaDelServiceEnMantenimiento($fechaFinalizacion , $idMantenimiento){
+        $sql = "UPDATE mantenimiento SET fecha_service = '".$fechaFinalizacion."' WHERE mantenimiento.id = ".$idMantenimiento;
+
+        $this->bd->query($sql);
+    }
+
+    public function setearFechaDelUltimoServiceEnVehiculoPorPatente($patenteVehiculo,$fechaFinalizacion){
+        $sql = "UPDATE vehiculo SET calendario_service = '".$fechaFinalizacion."' WHERE vehiculo.patente = '".$patenteVehiculo."'";
+
+        $this->bd->query($sql);
+    }
+
 }

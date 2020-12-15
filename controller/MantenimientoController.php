@@ -24,6 +24,8 @@ class MantenimientoController
             $usuarioAdmin=isset($data2["usuarioAdmin"]) ? isset($data2["usuarioAdmin"]) : null;
             $usuarioMecanico = isset($data2["usuarioMecanico"]) ? isset($data2["usuarioMecanico"]) : null;
 
+            $data["mantenimientoExito"] = isset($_GET["mantenimientoExito"]) ? $_GET["mantenimientoExito"] : false;
+
             if($usuarioAdmin !=null){
                 $tablaCamionesService = $this->mantenimientoModel->obtenerListaCamionesEnService();
                 $data['tablaCamionesService'] = $tablaCamionesService;
@@ -43,6 +45,15 @@ class MantenimientoController
     }
 
     public function finalizarServiceDeUnVehiculo(){
+        $patenteVehiculo = $_POST["botonFinalizarServiceDeUnVehiculoModal"];
+        $fechaFinalizacion = date("Y-m-d", time());
 
+        $this->mantenimientoModel->setearEstadoVehiculoEnLibrePorPatente($patenteVehiculo);
+
+        $idMantenimiento = $this->mantenimientoModel->obtenerElIdDeUnMantenimientoPorMecanicoYVehiculo($_SESSION["idEmpleado"],$patenteVehiculo);
+        $this->mantenimientoModel->setearFechaDelServiceEnMantenimiento($fechaFinalizacion, $idMantenimiento);
+        $this->mantenimientoModel->setearFechaDelUltimoServiceEnVehiculoPorPatente($patenteVehiculo,$fechaFinalizacion);
+
+        header("Location: /mantenimiento?mantenimientoExito=true");
     }
 }

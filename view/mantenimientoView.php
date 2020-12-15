@@ -4,6 +4,14 @@
     <h1 class="text-dark text-center">Mantenimiento</h1>
     <section class="row justify-content-center m-3 ancho">
         <article class=" justify-content-center mt-4 ancho2">
+            {{#mantenimientoExito}}
+            <div class="container alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Se finalizo el mantenimiento con exito.</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/mantenimientoExito}}
             <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-tools"></i>Vehículos a mantener</h3>
             <div class="container table-responsive mb-5 mt-3">
                 <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableVehiculosEnService">
@@ -64,7 +72,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
-                        <form method="post" action="/mantenimientoController/finalizarServiceDeUnVehiculo">
+                        <form method="post" action="/mantenimiento/finalizarServiceDeUnVehiculo">
                             <button class="btn btn-outline-danger" id="botonFinalizarServiceDeUnVehiculoModal" name="botonFinalizarServiceDeUnVehiculoModal">Finalizar
                             </button>
                         </form>

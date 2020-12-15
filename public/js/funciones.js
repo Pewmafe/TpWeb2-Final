@@ -546,9 +546,9 @@ $(document).ready(function() {
         });
     });
 
-    $("#botonFinalizarMantenimientoVehiculo").on('click', function (){
-        var patenteVehiculo = $($this).data('patente');
-        
+    $(document).on("click", ".botonFinalizarMantenimientoVehiculo", function() {
+        var patenteVehiculo = $(this).data('patente');
+        $('.modal-footer #botonFinalizarServiceDeUnVehiculoModal').val(patenteVehiculo);
     });
 
     /************************Tablas Nuevas ABM/VIAJES*********************************/
