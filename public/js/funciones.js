@@ -235,7 +235,12 @@ $(document).ready(function() {
 
         $.post(post_url, form_data, function(errorLogin) {
             if (errorLogin == true) {
-                $("#loginError").html("<span>Error en el usuario o la contrasenia</span>");
+                $("#loginError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Error en el usuario o contraseña</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else {
                 window.location = "/";
             }
