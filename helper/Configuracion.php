@@ -30,6 +30,7 @@ include_once("model/AdministrarEquiposModel.php");
 include_once("model/AgregarVehiculoModel.php");
 include_once("model/AgregarAcopladoModel.php");
 include_once("model/ChoferModel.php");
+include_once("model/QrChoferModel.php");
 include_once("model/CrearProformaModel.php");
 include_once("model/AdministrarDireccionModel.php");
 include_once("model/AdministrarClienteModel.php");
@@ -157,7 +158,8 @@ class Configuracion
     public function getQrChoferController()
     {
         $loginSession = $this->getLoginSession();
-        return new QrChoferController($this->getRender(), $loginSession);
+        $qrChoferModel = $this->getQrChoferModel();
+        return new QrChoferController($this->getRender(), $qrChoferModel, $loginSession);
     }
 
     public function getPdfProformaController()
@@ -230,6 +232,12 @@ class Configuracion
     {
         $bd = $this->getDatabase();
         return new ChoferModel($bd);
+    }
+
+    public function getQrChoferModel()
+    {
+        $bd = $this->getDatabase();
+        return new QrChoferModel($bd);
     }
 
     public function getCrearProformaModel()

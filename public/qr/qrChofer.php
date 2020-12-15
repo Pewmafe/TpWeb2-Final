@@ -20,7 +20,6 @@ require_once("phpqrcode/qrlib.php");
     QRcode::png($contenido, $filename, $level, $tamanio, $frameSize);
 
 
-
     echo '<img src="'.$filename.'" />';
 
 ?>
