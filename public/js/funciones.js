@@ -429,17 +429,32 @@ $(document).ready(function() {
 
             var registroExitoso = true;
             if (jsonErrorRegistro.clienteCuitExistente == false) {
-                $("#errorClienteCuit").html("<span>No se encuentra registrado un cliente con ese CUIT.</span>");
+                $("#errorClienteCuit").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>No se encuentra un cliente registrado con ese CUIT.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 registroExitoso = false;
             }
 
             if (jsonErrorRegistro.camposVacios == true) {
-                $("#errorCamposVacios").html("<span>Debe completar todos los campos.</span>");
+                $("#errorCamposVacios").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Debe completar todos los campos</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 registroExitoso = false;
             }
 
             if (registroExitoso) {
-                $("#crearProformaExito").html("<span>Se registro la proforma con exito</span>");
+                $("#crearProformaExito").html("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Se registro la proforma con exito.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 $("#clienteRegistradoCuit").val('');
                 $("#cargaTipo").val('');
                 $("#cargaPeso").val('');
