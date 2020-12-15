@@ -16,6 +16,9 @@
 
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                             <h3 class="text-center">Registro cliente</h3>
+                            <div class="container" id="clienteRegistroError"></div>
+                            <div class="container" id="clienteRegistroExitoso"></div>
+                            
                             <form class="form-horizontal row" role="form" id="clienteRegistroFormulario" action="/crearProforma/registrarCliente" method="post">
                                 <div class="form-group col-12 col-md-6">
                                     <label for="clienteDenominacion" class="col-12 control-label"><span class="text-info">*</span>Denominacion</label>
@@ -99,8 +102,7 @@
                                 </div>
                                 <div class="container">
                                     <button type="submit" class="btn btn-outline-primary btn-block mb-2">Registrar cliente</button>
-                                    <h5 class="text-danger" id="clienteRegistroError"></h5>
-                                    <h5 class="text-success" id="clienteRegistroExitoso"></h5>
+
                                 </div>
                             </form>
                         </div>

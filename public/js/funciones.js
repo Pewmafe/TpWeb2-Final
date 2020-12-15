@@ -318,13 +318,28 @@ $(document).ready(function() {
             $("#clienteRegistroExitoso").html("");
 
             if (jsonErrorRegistro.clienteCuitExistente == true) {
-                $("#clienteRegistroError").html("<span>El CUIT del cliente ya existe.</span>");
+                $("#clienteRegistroError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>El CUIT del cliente ya existe.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else if (jsonErrorRegistro.clienteDenominacion == false || jsonErrorRegistro.clienteNombre == false || jsonErrorRegistro.clienteApellido == false || jsonErrorRegistro.clienteCuit == false ||
                 jsonErrorRegistro.clienteLocalidad == false || jsonErrorRegistro.clienteCalle == false || jsonErrorRegistro.clienteAltura == false || jsonErrorRegistro.clienteTelefono == false ||
                 jsonErrorRegistro.clienteEmail == false) {
-                $("#clienteRegistroError").html("<span>Debe completar todos los campos.</span>");
+                $("#clienteRegistroError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Debe completar todos los campos.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else {
-                $("#clienteRegistroExitoso").html("<span>Se registro el cliente con exito</span>");
+                $("#clienteRegistroExitoso").html("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Se registro el cliente con exito.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 $("#clienteDenominacion").val('');
                 $("#clienteNombre").val('');
                 $("#clienteApellido").val('');
