@@ -55,7 +55,6 @@ function partidaYDestino(map, lat, lng , letra){
 
 window.onload = function () {
     moveMapToArgentina(map);
-    alert(document.getElementById("latitud_partida").value);
     lat = document.getElementById("latitud_partida").value;
     lng = document.getElementById("longitud_partida").value;
     lat2 = document.getElementById("longitud_destino").value;
