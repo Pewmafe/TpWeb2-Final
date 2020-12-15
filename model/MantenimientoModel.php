@@ -12,9 +12,11 @@ class MantenimientoModel
 
     public function obtenerListaCamionesEnService(){
         $tablaCamiones=array();
-        $sql = 'SELECT patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service
+        $sql = 'SELECT patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, m.id_mecanico
             FROM vehiculo v JOIN estado_equipo ee 
                             ON v.estado = ee.id
+                            JOIN mantenimiento m
+                            ON m.patente_vehiculo = v.patente
             WHERE ee.descripcion = "mantenimiento"';
         $resultQuery = $this->bd->query($sql);
 
@@ -26,7 +28,7 @@ class MantenimientoModel
 
     public function obtenerListaCamionesEnServicePorMecanicoId($idMecanico){
         $tablaCamiones=array();
-        $sql = 'SELECT patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service
+        $sql = 'SELECT patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service ,m.id_mecanico
             FROM vehiculo v JOIN estado_equipo ee 
                             ON v.estado = ee.id
                             JOIN mantenimiento m 
