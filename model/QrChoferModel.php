@@ -28,6 +28,6 @@ class QrChoferModel
 
         QRcode::png("http://localhost/qrChofer&idProforma=$idProforma&idChofer=$idChofer", $direccion . $nombre, QR_ECLEVEL_H);
     }
-
+    
 
 }

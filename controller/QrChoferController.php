@@ -30,7 +30,8 @@ class QrChoferController
         echo $this->render->render("view/qrChoferView.php");
     }
 
-    public function decodificarQr(){
+    public function decodificarQr()
+    {
 
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
         if ($logeado) {
@@ -48,4 +49,15 @@ class QrChoferController
         echo $this->render->render("view/escaneoQrView.php");
     }
 
+    public function crearSeguimiento()
+    {
+        $combustible = $_POST["combustible"];
+        $kilometros = $_POST["kilometros"];
+        $peajes = $_POST["peajes"];
+        $latitud = $_POST["latitud"];
+        $longitud = $_POST["longitud"];
+
+
+
+    }
 }
