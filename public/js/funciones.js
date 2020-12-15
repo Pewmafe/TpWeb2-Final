@@ -530,11 +530,10 @@ $(document).ready(function() {
     /************************AJAX MANDAR A SERIVICE*********************************/
     $(".mandarAServiceBoton").click(function() {
         var post_url = "/service/obtenerEmpleadosMecanicos";
-
+        var patente = $(this).data('patente');
         $.ajax({
             url: post_url
         }).done(function(datos) {
-            var patente = $('.mandarAServiceBoton').data('patente');
             $('#mecanicoDatos').html("");
             $('.mandarAServiceFormulario .modal-footer #botonMandarAService').val(patente);
             $("#mecanicosParaService").html(datos);
@@ -563,7 +562,10 @@ $(document).ready(function() {
 
     $(document).on("click", ".botonFinalizarMantenimientoVehiculo", function() {
         var patenteVehiculo = $(this).data('patente');
+        var idMecanico = $(this).data('idmecanico');
         $('.modal-footer #botonFinalizarServiceDeUnVehiculoModal').val(patenteVehiculo);
+        $('.modal-footer #idMecanicoAFinalizarService').val(idMecanico);
+
     });
 
     /************************Tablas Nuevas ABM/VIAJES*********************************/

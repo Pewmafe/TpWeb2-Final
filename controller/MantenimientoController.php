@@ -47,10 +47,10 @@ class MantenimientoController
     public function finalizarServiceDeUnVehiculo(){
         $patenteVehiculo = $_POST["botonFinalizarServiceDeUnVehiculoModal"];
         $fechaFinalizacion = date("Y-m-d", time());
-
+        $idMecanico = $_POST["idMecanicoAFinalizarService"];
         $this->mantenimientoModel->setearEstadoVehiculoEnLibrePorPatente($patenteVehiculo);
 
-        $idMantenimiento = $this->mantenimientoModel->obtenerElIdDeUnMantenimientoPorMecanicoYVehiculo($_SESSION["idEmpleado"],$patenteVehiculo);
+        $idMantenimiento = $this->mantenimientoModel->obtenerElIdDeUnMantenimientoPorMecanicoYVehiculo($idMecanico,$patenteVehiculo);
         $this->mantenimientoModel->setearFechaDelServiceEnMantenimiento($fechaFinalizacion, $idMantenimiento);
         $this->mantenimientoModel->setearFechaDelUltimoServiceEnVehiculoPorPatente($patenteVehiculo,$fechaFinalizacion);
 

@@ -45,7 +45,7 @@
                             <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{patente}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             </a>
                             <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{patente}}" style="right: 1em;">
-                                <a class="btn btn-outline-success mt-2 mandarAServiceBoton" data-toggle="modal" data-target="#mandarAServiceModal"  data-patente="{{patente}}" type="button">Mandar a service</a>
+                                <a class="btn btn-outline-success mt-2 mandarAServiceBoton" id="mandarAService{{patente}}" data-toggle="modal" data-target="#mandarAServiceModal"  data-patente="{{patente}}" type="button">Mandar a service</a>
                                 <a class="btn btn-outline-success mt-2" href="/serviceHistorial?patente={{patente}}" type="button">Historial de service</a>
                             </div>
                         </td>

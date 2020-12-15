@@ -7,13 +7,22 @@ create table tipo_acoplado(
 	descripcion varchar(100)
 );
 
+create table estado_equipo(
+    id int primary key,
+    descripcion varchar(50)
+);
+
 create table acoplado(
 	patente varchar(10) primary key,
 	chasis varchar(50),
 	tipo int,
+	estado int,
 	constraint fk_acoplado_tipo
 	foreign key (tipo)
-	references tipo_acoplado(id)
+	references tipo_acoplado(id),
+	constraint fk_acoplado_estado
+	foreign key (estado)
+	references estado_equipo(id)
 );
 
 create table tipo_carga(
@@ -121,7 +130,7 @@ create table vehiculo(
 	tipo int,
 	constraint fk_vehiculo_estado
 	foreign key (estado)
-	references estado_vehiculo(id),
+	references estado_equipo(id),
 	constraint fk_vehiculo_tipo
 	foreign key (tipo)
 	references tipo_vehiculo(id)
@@ -144,17 +153,18 @@ create table reporte_estadistico(
 );
 
 create table mantenimiento(
-	id int primary key,
+	id int primary key auto_increment,
 	km_unidad int,
-	service_interno_externo smallint,
-	costo decimal(10,2),
-	fecha_service datetime,
-	repuestos_cambiados varchar(500),
+	fecha_service date,
 	tipo int,
 	patente_vehiculo varchar(10),
+	id_mecanico int,
 	constraint fk_mantemiento_tipo
 	foreign key (tipo)
 	references tipo_mantenimiento(id_tipo_mantenimiento),
+	constraint fk_id_empleado
+	foreign key (id_mecanico)
+	references empleado(id),
 	constraint fk_mantenimiento_vehiculo
 	foreign key(patente_vehiculo)
 	references vehiculo(patente)
@@ -314,14 +324,15 @@ values(1, "administrador"),
 (5,"mecanico");
 
 insert into usuario(dni, nombreUsuario, contrasenia, nombre, apellido, fecha_nacimiento,eliminado)
-values(123, 'admin','202cb962ac59075b964b07152d234b70','ABC','CBA', 19940918, false),
-(124, 'segundo','202cb962ac59075b964b07152d234b70','Pewmafe','Fefar', 19940918, false),
-(125, 'tercero','202cb962ac59075b964b07152d234b70','Pedro', 'Roco', 19940918, false),
+values(123, 'admin','202cb962ac59075b964b07152d234b70','Marcos','Galperin', 19940918, false),
+(124, 'encargado','202cb962ac59075b964b07152d234b70','Pewmafe','Fefar', 19940918, false),
+(125, 'supervisor','202cb962ac59075b964b07152d234b70','Pedro', 'Roco', 19940918, false),
 (126, 'cuarto','202cb962ac59075b964b07152d234b70','Armando','Rodriguez', 19981018, false),
-(127, 'quinto','202cb962ac59075b964b07152d234b70','Ramiro','Ledez', 19940923, false),
-(128, 'sexto','202cb962ac59075b964b07152d234b70','CBZ','CRT', 19920912, false),
-(129, 'pew','202cb962ac59075b964b07152d234b70','DFG','QWERTY', 19980908, false),
-(130, 'septimo','202cb962ac59075b964b07152d234b70','DFE','QWER', 19980908, false);
+(127, 'chofer','202cb962ac59075b964b07152d234b70','Ramiro','Ledez', 19940923, false),
+(128, 'chofer1','202cb962ac59075b964b07152d234b70','Santiago','Fagliano', 20010321, false),
+(129, 'pew','202cb962ac59075b964b07152d234b70','Matias','Sanchez', 19980908, false),
+(130, 'mecanico','202cb962ac59075b964b07152d234b70','DFE','QWER', 19980908, false),
+(131, 'mecanico1','202cb962ac59075b964b07152d234b70','Pedro','Swuarcheneguerr', 19980908, false);
 
 
 insert into empleado(id, tipo_de_licencia, tipo_empleado, dni_usuario)
@@ -330,21 +341,27 @@ values(1, 'camion', 1, 123),
 (3, 'tractor', 4, 127),
 (4, 'camion', 4, 128),
 (5, 'auto', 2, 125),
-(6, 'auto', 5, 130);
+(6, 'auto', 5, 130),
+(7, 'auto', 5, 131);
 
-insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
-values('aa123bb', 10, 100, 20000, 20150505, 'Iveco', 'Scavenger', 20180209, null, null);
-
-insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
-values('ab145bb', 11, 101, 15000, 20160608, 'Iveco', 'Scavenger', 20191011, null, null);
-
-insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
-values('ba531aa', 12, 102, 18000, 20191108, 'Scania', 'g150', 20200201, null, null);
+insert into estado_equipo(id, descripcion)
+values('1','libre'),
+('2', 'viaje'),
+('3', 'mantenimiento');
 
 insert into tipo_vehiculo(id, descripcion)
 values (1, 'Auto'),
 (2, 'Camion'),
 (3, 'Tractor');
+
+insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
+values('aa123bb', 10, 100, 20000, 20150505, 'Iveco', 'Scavenger', 20180209, 1, 3);
+
+insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
+values('ab145bb', 11, 101, 15000, 20160608, 'Iveco', 'Scavenger', 20191011, 1, 2);
+
+insert into vehiculo(patente, nro_chasis, nro_motor, kilometraje, fabricacion, marca, modelo, calendario_service, estado, tipo)
+values('ba531aa', 12, 102, 18000, 20191108, 'Scania', 'g150', 20200201, 1, 3);
 
 insert into tipo_acoplado(id, descripcion)
 values (1, 'Araña'),
@@ -354,9 +371,9 @@ values (1, 'Araña'),
 (5, 'Tanque');
 
 
-insert into acoplado(patente, chasis, tipo)
-values('aa159yy', 123789, 1), 
-('ab456uu', 456789, 3);
+insert into acoplado(patente, chasis, tipo, estado)
+values('aa159yy', 123789, 1, 1),
+('ab456uu', 456789, 3, 1);
 
 
 insert into tipo_carga(id_tipo_carga, descripcion)

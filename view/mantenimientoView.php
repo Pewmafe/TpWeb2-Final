@@ -37,7 +37,7 @@
                             <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{patente}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             </a>
                             <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{patente}}" style="right: 1em;">
-                                <a class="btn btn-outline-success mt-2 botonFinalizarMantenimientoVehiculo" data-toggle="modal" data-target="#finalizarMantenimientoModal" data-patente="{{patente}}" type="button">Finalizar service</a>
+                                <a class="btn btn-outline-success mt-2 botonFinalizarMantenimientoVehiculo" data-toggle="modal" data-target="#finalizarMantenimientoModal" data-patente="{{patente}}" data-idmecanico="{{id_mecanico}}" type="button">Finalizar service</a>
                             </div>
                         </td>
                     </tr>
@@ -73,6 +73,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
                         <form method="post" action="/mantenimiento/finalizarServiceDeUnVehiculo">
+                            <input type="hidden" id="idMecanicoAFinalizarService" name="idMecanicoAFinalizarService" >
                             <button class="btn btn-outline-danger" id="botonFinalizarServiceDeUnVehiculoModal" name="botonFinalizarServiceDeUnVehiculoModal">Finalizar
                             </button>
                         </form>
