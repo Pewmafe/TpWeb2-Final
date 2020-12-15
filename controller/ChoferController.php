@@ -26,6 +26,8 @@ class ChoferController
         $data["finalizarProforma"] = isset($_GET["finalizarProforma"]) ? $_GET["finalizarProforma"] : false;
         $data["iniciarProforma"] = isset($_GET["iniciarProforma"]) ? $_GET["iniciarProforma"] : false;
         $data["errorViajeActivo"] = isset($_GET["errorViajeActivo"]) ? $_GET["errorViajeActivo"] : false;
+        $data["errorQR"] = isset($_GET["errorQR"]) ? $_GET["errorQR"] : false;
+
         $data["titulo"] = "Viajes";
         if ($logeado) {
             $data["login"] = true;

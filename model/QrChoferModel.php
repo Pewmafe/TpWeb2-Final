@@ -26,7 +26,7 @@ class QrChoferModel
         $direccion = 'public/qr/imgQr/';
         $nombre = 'qrProforma' . $idProforma . '.png';
 
-        QRcode::png("http://localhost/qrChofer&idProforma=$idProforma&idChofer=$idChofer", $direccion . $nombre, QR_ECLEVEL_H);
+        QRcode::png("http://localhost/qrChofer?idProforma=$idProforma&idChofer=$idChofer", $direccion . $nombre, QR_ECLEVEL_H);
     }
 
     public function mostrarNombreChofer($idChofer)
