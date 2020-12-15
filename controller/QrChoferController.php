@@ -5,14 +5,13 @@ class QrChoferController
 {
     private $render;
     private $qrModel;
-    private $loginModel;
     private $loginSession;
 
-    public function __construct($render, $qrModel, $loginModel)
+    public function __construct($render, $qrModel, $loginSession)
     {
         $this->render = $render;
         $this->qrModel = $qrModel;
-        $this->loginModel = $loginModel;
+        $this->loginSession = $loginSession;
     }
 
     public function ejecutar()
@@ -25,10 +24,10 @@ class QrChoferController
             $data2 = $this->loginSession->verificarQueUsuarioRol();
             $dataMerge = array_merge($data, $data2);
 
-            echo $this->render->render("view/escaneoQrView.php", $dataMerge);
+            echo $this->render->render("view/qrChofer.php", $dataMerge);
             exit();
         }
-        echo $this->render->render("view/escaneoQrView.php");
+        echo $this->render->render("view/qrChofer.php");
     }
 
     public function decodificarQr(){
