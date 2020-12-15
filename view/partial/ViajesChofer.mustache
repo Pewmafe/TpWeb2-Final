@@ -105,6 +105,8 @@
                         <input type="hidden" value="{{longitud_partida}}" id="longitud_partida">
                         <input type="hidden" value="{{latitud_destino}}" id="latitud_destino">
                         <input type="hidden" value="{{longitud_destino}}" id="longitud_destino">
+
+
                     </div>
                 {{/tablaDeViajesActivo}} {{^tablaDeViajesActivo}}
                     <td class="text-success">(vacio)</td>
@@ -224,6 +226,12 @@
             </table>
         </div>
     </article>
+    <div>
+        {{#posicionChofer}}
+            <input type="hidden" value="{{latitud_chofer}}" id="latitud_chofer">
+            <input type="hidden" value="{{longitud_chofer}}" id="longitud_chofer">
+        {{/posicionChofer}}
+    </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

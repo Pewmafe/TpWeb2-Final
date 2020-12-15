@@ -62,7 +62,7 @@ class ChoferController
 
                     $tablaDeViajesFinalizados = ($this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]) : null;
                     $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
-
+                    $data["posicionChofer"] = $this->ChoferModel->ultimaPosicionChofer($_SESSION["idEmpleado"]);
                 }
             }
 

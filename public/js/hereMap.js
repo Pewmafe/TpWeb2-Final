@@ -59,9 +59,11 @@ window.onload = function () {
     lng = document.getElementById("longitud_partida").value;
     lat2 = document.getElementById("latitud_destino").value;
     lng2 = document.getElementById("longitud_destino").value;
+    latChofer = document.getElementById("latitud_chofer").value;
+    longChofer = document.getElementById("longitud_chofer").value;
     partidaYDestino(map, lat, lng , "P");
     partidaYDestino(map, lat2, lng2, "D");
-    addMarkersToMap(map, lat2, lng2);
+    addMarkersToMap(map, latChofer, longChofer);
     console.log(lat + " " + lng + " " + " " + lat2 + " " + lng2);
 }
 

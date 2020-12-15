@@ -222,12 +222,13 @@ class ChoferModel
 
     }
 
-    public function ultimaPosicionChofer($chofer){
+    public function ultimaPosicionChofer($chofer)
+    {
         $sql = "select p.x as 'latitud_chofer', p.y as 'longitud_chofer' from viaje v 
                 join proforma pro on pro.viaje_id = v.id
                 left join seguimiento s on s.viaje = v.id 
                 join posicion p on s.posicion_actual = p.id 
-                where v.chofer_id = 4
+                where v.chofer_id = " . $chofer . "
                 and pro.estado = 1
                 and s.id = (select MAX(s2.id) from seguimiento s2 where s2.viaje = v.id);";
 
