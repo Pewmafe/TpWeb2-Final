@@ -18,6 +18,9 @@ include_once("controller/CrearProformaController.php");
 include_once("controller/QrChoferController.php");
 include_once("controller/PdfProformaController.php");
 include_once("controller/AdministrarClienteController.php");
+include_once("controller/ServiceController.php");
+include_once("controller/MantenimientoController.php");
+include_once("controller/ServiceHistorialController.php");
 
 include_once("model/CosteoModel.php");
 include_once("model/RegistroModel.php");
@@ -28,9 +31,13 @@ include_once("model/AdministrarEquiposModel.php");
 include_once("model/AgregarVehiculoModel.php");
 include_once("model/AgregarAcopladoModel.php");
 include_once("model/ChoferModel.php");
+include_once("model/QrChoferModel.php");
 include_once("model/CrearProformaModel.php");
 include_once("model/AdministrarDireccionModel.php");
 include_once("model/AdministrarClienteModel.php");
+include_once("model/MantenimientoModel.php");
+include_once("model/ServiceModel.php");
+include_once("model/ServiceHistorialModel.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -147,13 +154,15 @@ class Configuracion
         $proformaModel = $this->getCrearProformaModel();
         $loginSession = $this->getLoginSession();
         $costeoModel = $this->getCosteoModel();
-        return new CrearProformaController($this->getRender(), $loginSession, $proformaModel, $costeoModel);
+        $qrChoferModel = $this->getQrChoferModel();
+        return new CrearProformaController($this->getRender(), $loginSession, $proformaModel, $costeoModel, $qrChoferModel);
     }
 
     public function getQrChoferController()
     {
         $loginSession = $this->getLoginSession();
-        return new QrChoferController($this->getRender(), $loginSession);
+        $qrChoferModel = $this->getQrChoferModel();
+        return new QrChoferController($this->getRender(), $qrChoferModel, $loginSession);
     }
 
     public function getPdfProformaController()
@@ -161,6 +170,30 @@ class Configuracion
         $choferModel = $this->getChoferModel();
         $loginSession = $this->getLoginSession();
         return new PdfProformaController($this->getRender(), $loginSession, $choferModel);
+    }
+
+    public function getServiceController()
+    {
+        $serviceModel = $this->getServiceModel();
+        $loginSession = $this->getLoginSession();
+        $render = $this->getRender();
+        return new ServiceController($render, $loginSession, $serviceModel);
+    }
+
+    public function getMantenimientoController()
+    {
+        $mantenimientoModel = $this->getMantenimientoModel();
+        $loginSession = $this->getLoginSession();
+        $render = $this->getRender();
+        return new MantenimientoController($render, $loginSession, $mantenimientoModel);
+    }
+
+    public function getServiceHistorialController()
+    {
+        $serviceHistorialModel = $this->getServiceHistorialModel();
+        $loginSession = $this->getLoginSession();
+        $render = $this->getRender();
+        return new ServiceHistorialController($render, $loginSession, $serviceHistorialModel);
     }
 
     public function getAgregarAcopladoModel()
@@ -212,33 +245,60 @@ class Configuracion
         return new ChoferModel($bd);
     }
 
+    public function getQrChoferModel()
+    {
+        $bd = $this->getDatabase();
+        return new QrChoferModel($bd);
+    }
+
     public function getCrearProformaModel()
     {
         $bd = $this->getDatabase();
         return new CrearProformaModel($bd);
     }
 
-    public function getCosteoModel(){
+    public function getCosteoModel()
+    {
         $bd = $this->getDatabase();
         return new CosteoModel($bd);
     }
 
-    public function getAdministrarClienteModel(){
+    public function getAdministrarClienteModel()
+    {
         $bd = $this->getDatabase();
         return new AdministrarClienteModel($bd);
     }
 
-    public function getAdministrarDireccionModel(){
+    public function getAdministrarDireccionModel()
+    {
         $bd = $this->getDatabase();
         return new AdministrarDireccionModel($bd);
     }
 
-    public function getAdministrarClienteController(){
+    public function getAdministrarClienteController()
+    {
         $loginSession = $this->getLoginSession();
         $render = $this->getRender();
         $cliente = $this->getAdministrarClienteModel();
         $direccion = $this->getAdministrarDireccionModel();
-        return new AdministrarClienteController($render,$loginSession, $cliente, $direccion);
+        return new AdministrarClienteController($render, $loginSession, $cliente, $direccion);
     }
 
+    public function getServiceModel()
+    {
+        $bd = $this->getDatabase();
+        return new ServiceModel($bd);
+    }
+
+    public function getMantenimientoModel()
+    {
+        $bd = $this->getDatabase();
+        return new MantenimientoModel($bd);
+    }
+
+    public function getServiceHistorialModel()
+    {
+        $bd = $this->getDatabase();
+        return new ServiceHistorialModel($bd);
+    }
 }

@@ -5,87 +5,157 @@
             <article class=" justify-content-center mt-4 ancho2">
                 <h2 class="text-dark mb-3 text-center">Administrar todos los usuarios</h2>
                 {{#bajaUsuario}}
-                    <h5 class="text-success">Se dio de baja el usuario con exito.</h5>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Se dio de baja el usuario con exito.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/bajaUsuario}}
                 {{#bajaEmpleado}}
-                    <h5 class="text-success">Se dio de baja el empleado con exito.</h5>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Se dio de baja el empleado con exito.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/bajaEmpleado}}
                 {{#modificarUsuario}}
-                    <h5 class="text-success">Se modifico al usuario con exito.</h5>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Se modifico al usuario con exito.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/modificarUsuario}}
                 {{#modificarEmpleado}}
-                    <h5 class="text-success">Se modifico al empleado con exito.</h5>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Se modifico al usuario con exito.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/modificarEmpleado}}
                 {{#nombreUsuarioExistente}}
-                    <h5 class="text-danger">Nombre de usuario ya existe.</h5>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Nombre de usuario ya existe</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/nombreUsuarioExistente}}
                 {{#dniExistente}}
-                    <h5 class="text-danger">DNI de usuario ya existe.</h5>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Dni de usuario ya existe</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/dniExistente}}
                 {{#empleadoChoferOcupado}}
-                <h5 class="text-danger">No se puede dar de baja un chofer con un viaje activo o pendiente.</h5>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>No se puede dar de baja un chofer con un viaje activo o pendiente.</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {{/empleadoChoferOcupado}}
-                <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-user"></i> Administrar usuarios</h3>
-                <div class="row">
-                    {{#tablaUsuarios}}
-                        <div class="col-12 col-md-6 col-lg-4 p-2">
-                            <div class="card mb-4 p-3 bg-dark">
-                                <h3 class="text-center border-bottom border-secondary text-light">Descripcion</h3>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Nombre de Usuario</span>: {{nombreUsuario}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Nombre</span>: {{nombre}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Apellido</span>: {{apellido}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">DNI</span>: {{dni}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Fecha nacimiento</span>: {{fecha_nacimiento}}
-                                </p>
-                                <a href="registroEmpleado?nombreUsuario={{nombreUsuario}}" class="btn btn-outline-primary">Hacerlo empleado</a>
-                                <a class="mt-2 btn btn-outline-success botonModificarUsuario" data-toggle="modal" data-target="#modificarUsuarioModal" data-nombreusuario="{{nombreUsuario}}" data-nombre="{{nombre}}" data-apellido="{{apellido}}" data-dni="{{dni}}" data-fechanaci="{{fecha_nacimiento}}" type="button">Modificar</a>
-                                <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaUsuario" data-toggle="modal" data-target="#darDeBajaUsuarioModal" data-id="'{{dni}}'">Dar de baja usuario</a>
-                            </div>
-                        </div>
-                    {{/tablaUsuarios}}
+
+                <h3 class="text-center text-md-left text-dark mb-3 col-12">
+                    <i class="fas fa-user"></i> Administrar
+                    usuarios
+                </h3>
+                <div class="container table-responsive mb-5 mt-3">
+                    <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableUsuarios">
+                        <thead>
+                            <tr>
+                                <th>Dni</th>
+                                <th>Nombre Usuario</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#tablaUsuarios}}
+                                <tr>
+                                    <td>{{dni}}</td>
+                                    <td>{{nombreUsuario}}</td>
+                                    <td class="dropdown dropleft">
+                                        <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{dni}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                        </a>
+
+                                        <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{dni}}" style="right: 1em;">
+                                            <a href="registroEmpleado?nombreUsuario={{nombreUsuario}}" class="col-12 btn btn-outline-primary btn-block my-1">Hacerlo
+                                                empleado</a>
+
+                                            <a class="col-12 btn btn-outline-success btn-block botonModificarUsuario my-1" data-toggle="modal" data-target="#modificarUsuarioModal" data-nombreusuario="{{nombreUsuario}}" data-nombre="{{nombre}}" data-apellido="{{apellido}}" data-dni="{{dni}}" data-fechanaci="{{fecha_nacimiento}}" type="button">Modificar</a>
+
+                                            <a type="button" class="col-12 btn btn-outline-danger btn-block botonDarDeBajaUsuario my-1" data-toggle="modal" data-target="#darDeBajaUsuarioModal" data-id="'{{dni}}'">Dar de
+                                                baja usuario</a>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            {{/tablaUsuarios}}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Dni</th>
+                                <th>Nombre Usuario</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
-                <h3 class="text-center text-md-left text-dark mb-3"><i class="fas fa-user-tie"></i> Administrar empleados</h3>
-                <div class="row">
-                    {{#tablaUsuariosEmpleados}}
-                        <div class="col-12 col-md-6 col-lg-4 p-2">
-                            <div class="card mb-4 p-3 bg-dark">
-                                <h3 class="text-center border-bottom border-secondary text-light">Descripcion</h3>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Nombre de usuario </span>: {{nombreUsuario}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Nombre </span>: {{nombre}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Apellido </span>: {{apellido}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">DNI </span>: {{dni}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Fecha nacimiento</span>: {{fecha_nacimiento}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Tipo de licencia </span>: {{tipo_de_licencia}}
-                                </p>
-                                <p class="text-light">
-                                    <span class="h5 font-weight-bold">Rol </span>: {{descripcion}}
-                                </p>
-                                <a class="mt-2 btn btn-outline-success botonModificarEmpleado" data-toggle="modal" data-target="#modificarEmpleadoModal" data-nombreusuario="{{nombreUsuario}}" data-nombre="{{nombre}}" data-apellido="{{apellido}}" data-dni="{{dni}}" data-id="{{id}}" data-fechanaci="{{fecha_nacimiento}}" data-tipolicencia="{{tipo_de_licencia}}" data-rol="{{descripcion}}" type="button">Modificar</a>
-                                <a type="button" class="btn btn-outline-danger mt-2 botonDarDeBajaEmpleado" data-toggle="modal" data-target="#darDeBajaEmpleadoModal" data-id="'{{id}}'">Dar de baja empleado</a>
-                            </div>
-                        </div>
-                    {{/tablaUsuariosEmpleados}}
+            </article>
+
+            <article class="justify-content-center mt-4 ancho2">
+                <h3 class="col-12 text-center text-md-left text-dark mb-3">
+                    <i class="fas fa-user-tie"></i> Administrar empleados
+                </h3>
+                <div class="container table-responsive mb-5 mt-3">
+                    <table class="table table-dark table-striped table-bordered" style="width: 100%;" id="mydatatableEmpleados">
+                        <thead>
+                            <tr>
+                                <th>Dni</th>
+                                <th>Nombre Usuario</th>
+                                <th>Rol</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#tablaUsuariosEmpleados}}
+                                <tr>
+                                    <td>{{dni}}</td>
+                                    <td>{{nombreUsuario}}</td>
+                                    <td>{{descripcion}}</td>
+                                    <td class="dropdown dropleft">
+                                        <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                        </a>
+
+                                        <div class="bg-dark dropdown-menu dropdown-menu-right row p-2" aria-labelledby="dropdownMenuLink{{id}}" style="right: 1em;">
+                                            <a class="my-2 btn btn-outline-success btn-block botonModificarEmpleado" data-toggle="modal" data-target="#modificarEmpleadoModal" data-nombreusuario="{{nombreUsuario}}" data-nombre="{{nombre}}" data-apellido="{{apellido}}" data-dni="{{dni}}" data-id="{{id}}" data-fechanaci="{{fecha_nacimiento}}" data-tipolicencia="{{tipo_de_licencia}}" data-rol="{{descripcion}}" type="button">Modificar</a>
+
+                                            <a type="button" class="btn btn-outline-danger btn-block my-2 botonDarDeBajaEmpleado" data-toggle="modal" data-target="#darDeBajaEmpleadoModal" data-id="'{{id}}'">Dar de
+                                                baja empleado</a>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            {{/tablaUsuariosEmpleados}}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Dni</th>
+                                <th>Nombre Usuario</th>
+                                <th>Rol</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
+
             </article>
         </section>
         <section>
@@ -104,7 +174,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
                             <form method="post" action="administrarUsuarios/darDeBajaUsuario">
-                                <button class="btn btn-outline-danger" id="botonDarDeBajaUsuarioModal" name="botonDarDeBajaUsuarioModal">Baja</button>
+                                <button class="btn btn-outline-danger" id="botonDarDeBajaUsuarioModal" name="botonDarDeBajaUsuarioModal">Baja
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -125,7 +196,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
                             <form method="post" action="administrarUsuarios/darDeBajaEmpleado">
-                                <button class="btn btn-outline-danger" id="botonDarDeBajaEmpleadoModal" name="botonDarDeBajaEmpleadoModal">Baja</button>
+                                <button class="btn btn-outline-danger" id="botonDarDeBajaEmpleadoModal" name="botonDarDeBajaEmpleadoModal">Baja
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -163,8 +235,10 @@
                                     <input type="date" class="form-control inputFechaNacimiento" id="fechaNacimiento" name="fechaNacimiento" required>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
-                                    <button type="submit" class="btn btn-outline-primary" id="botonModificar" name="botonModificar">Modificar</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver
+                                    </button>
+                                    <button type="submit" class="btn btn-outline-primary" id="botonModificar" name="botonModificar">Modificar
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -223,9 +297,11 @@
                                     </select>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Volver
+                                    </button>
                                     <input type="hidden" class="idEmpleado" id="idEmpleado" name="idEmpleado">
-                                    <button type="submit" class="btn btn-outline-primary" id="botonModificar" name="botonModificar">Modificar</button>
+                                    <button type="submit" class="btn btn-outline-primary" id="botonModificar" name="botonModificar">Modificar
+                                    </button>
                                 </div>
                             </form>
                         </div>

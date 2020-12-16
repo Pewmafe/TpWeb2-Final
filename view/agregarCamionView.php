@@ -10,10 +10,20 @@
                     </div>
                     <div class="form-group">
                         {{#patenteVehiculoError}}
-                            <h5 class="text-danger">La patente ya está registrada.</h5>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>La patente ya esta registrada</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         {{/patenteVehiculoError}}
                         {{#agregoVehExitosamente}}
-                            <h5 class="text-success">Se agregó el vehículo correctamente.</h5>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Se agrego el vehiculo correctamente.</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         {{/agregoVehExitosamente}}
                         <label for="patente" class="col-12 control-label">*Patente</label>
                         <div class="col-12">

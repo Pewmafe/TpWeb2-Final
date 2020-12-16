@@ -41,11 +41,11 @@
         </div>
     </section>
     {{#registroExitoso}}
-    <h5 class="text-success text-center">Se registro con exito.</h5>
+        <h5 class="text-success text-center">Se registro con exito.</h5>
     {{/registroExitoso}} {{#agregoVehExitosamente}}
-    <h5 class="text-success text-center">Se agregó el vehículo exitosamente.</h5>
+        <h5 class="text-success text-center">Se agregó el vehículo exitosamente.</h5>
     {{/agregoVehExitosamente}} {{#agregoAcopladoExitosamente}}
-    <h5 class="text-success text-center">Se agregó el acoplado exitosamente.</h5>
+        <h5 class="text-success text-center">Se agregó el acoplado exitosamente.</h5>
     {{/agregoAcopladoExitosamente}}
     <div class="text-center p-4">
         <h2 class="text-center d-inline-block border-bottom text-center">Bienvenido a Camionardo</h2>
@@ -77,7 +77,7 @@
             <div class="referencia m-1">
                 <img src="/public/img/camion.jfif" alt="Camion" srcset="" class="img-fluid" style="width: 100%">
             </div>
-            <div id="map" class="referencia-mapita m-1" ></div>
+            <div id="map" class="referencia-mapita m-1"></div>
         </article>
     </section>
     <br>
