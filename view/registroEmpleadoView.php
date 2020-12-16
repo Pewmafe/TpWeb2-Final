@@ -10,13 +10,28 @@
                     </div>
                     <div class="form-group">
                         {{#nombreUsuarioError}}
-                            <h5 class="text-danger">El nombre de usuario no existe.</h5>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>El nombre de usuario no existe.</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         {{/nombreUsuarioError}}
                         {{#registroExitoso}}
-                            <h5 class="text-success">Se registro el empleado con exito.</h5>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Se registro el empleado con exito.</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         {{/registroExitoso}}
                         {{#camposVacios}}
-                            <h5 class="text-danger">Debe completar todos los campos.</h5>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Se debe completar todos los campos.</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         {{/camposVacios}}
                         <label for="nombreUsuario" class="col-12 control-label"><span class="text-info">*</span>Nombre de usuario</label>
                         <div class="col-12">

@@ -23,6 +23,12 @@ class ChoferController
     public function ejecutar()
     {
         $logeado = $this->loginSession->verificarQueUsuarioEsteLogeado();
+        $data["finalizarProforma"] = isset($_GET["finalizarProforma"]) ? $_GET["finalizarProforma"] : false;
+        $data["iniciarProforma"] = isset($_GET["iniciarProforma"]) ? $_GET["iniciarProforma"] : false;
+        $data["errorViajeActivo"] = isset($_GET["errorViajeActivo"]) ? $_GET["errorViajeActivo"] : false;
+        $data["errorQR"] = isset($_GET["errorQR"]) ? $_GET["errorQR"] : false;
+        $data["seguimientoCreado"] = isset($_GET["seguimientoCreado"]) ? $_GET["seguimientoCreado"] : false;
+
         $data["titulo"] = "Viajes";
         if ($logeado) {
             $data["login"] = true;
@@ -41,7 +47,6 @@ class ChoferController
                     $tablaDeViajesActivo = ($this->ChoferModel->obtenerViajePorEstado(activo)) != null ? $this->ChoferModel->obtenerViajePorEstado(activo) : null;
                     $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
 
-
                     $tablaDeViajesPendientes = ($this->ChoferModel->obtenerViajePorEstado(pendiente)) != null ? $this->ChoferModel->obtenerViajePorEstado(pendiente) : null;
                     $data["tablaDeViajesPendientes"] = $tablaDeViajesPendientes;
 
@@ -49,7 +54,6 @@ class ChoferController
                     $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
 
                 } else {
-
                     $tablaDeViajesActivo = ($this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(activo, $_SESSION["idEmpleado"]) : null;
                     $data["tablaDeViajesActivo"] = $tablaDeViajesActivo;
 
@@ -58,12 +62,13 @@ class ChoferController
 
                     $tablaDeViajesFinalizados = ($this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"])) != null ? $this->ChoferModel->obtenerViajePorEstadoYChofer(finalizado, $_SESSION["idEmpleado"]) : null;
                     $data["tablaDeViajesFinalizados"] = $tablaDeViajesFinalizados;
-
+                    $data["posicionChofer"] = $this->ChoferModel->ultimaPosicionChofer($_SESSION["idEmpleado"]);
                 }
             }
 
 
             $dataMerge = array_merge($data, $data2);
+            //die(var_dump($dataMerge));
             echo $this->render->render("view/choferView.php", $dataMerge);
             exit();
         }
@@ -92,5 +97,29 @@ class ChoferController
 
 
         return $filename;
+    }
+
+    public function finalizarProforma()
+    {
+        $idProforma = $_GET["proformaID"];
+        $this->ChoferModel->finalizarProforma($idProforma);
+        header("Location: /chofer&finalizarProforma=true");
+        exit();
+
+    }
+
+    public function iniciarProforma()
+    {
+        $verificar = $this->ChoferModel->verificarSiUnChoferTieneViajesActivos($_SESSION["dniUsuario"]);
+        if (json_encode($verificar) != 1) {
+            $idProforma = $_GET["proformaID"];
+            $this->ChoferModel->iniciarProforma($idProforma);
+            header("Location: /chofer&iniciarProforma=true");
+            exit();
+        } else {
+            header("Location: /chofer&errorViajeActivo=false");
+            exit();
+        }
+
     }
 }

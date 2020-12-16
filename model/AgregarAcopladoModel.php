@@ -13,8 +13,8 @@ class AgregarAcopladoModel
     public function agregarAcoplado($patente, $chasis, $tipoAcoplado)
     {
 
-        $sql = "INSERT INTO grupo12.acoplado(patente, chasis, tipo)
-                VALUES ('" . $patente . "'," . $chasis . ",'" . $tipoAcoplado . "')";
+        $sql = "INSERT INTO grupo12.acoplado(patente, chasis, tipo, estado)
+                VALUES ('" . $patente . "'," . $chasis . ",'" . $tipoAcoplado . "', 1)";
         return $this->bd->query($sql);
     }
 

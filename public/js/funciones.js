@@ -226,7 +226,7 @@ $(document).ready(function() {
 
         $("#reefer").collapse('hide');
     });
-    
+
     /************************AJAX LOGIN**********************************/
     $("#loginFormulario").submit(function(event) {
         event.preventDefault();
@@ -235,7 +235,12 @@ $(document).ready(function() {
 
         $.post(post_url, form_data, function(errorLogin) {
             if (errorLogin == true) {
-                $("#loginError").html("<span>Error en el usuario o la contrasenia</span>");
+                $("#loginError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Error en el usuario o contraseña</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else {
                 window.location = "/";
             }
@@ -257,14 +262,39 @@ $(document).ready(function() {
             $("#registroExitoso").html("");
 
             if (json_data.nombreUsuarioError == true && json_data.dniError == true) {
-                $("#nombreUsuarioError").html("<span>Nombre de usuario ya existente</span>");
-                $("#dniUsuarioError").html("<span>DNI de usuario ya existente</span>");
+                $("#nombreUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Nombre de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
+                $("#dniUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Dni de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else if (json_data.nombreUsuarioError) {
-                $("#nombreUsuarioError").html("<span>Nombre de usuario ya existente</span>");
+                $("#nombreUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Nombre de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else if (json_data.dniError == true) {
-                $("#dniUsuarioError").html("<span>DNI de usuario ya existente</span>");
+                $("#dniUsuarioError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Dni de usuario ya existente</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else {
-                $("#registroExitoso").html("<span>Se registro con exito</span>");
+                $("#registroExitoso").html("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Se registro con exito</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 $("#NombreUsuario").val('');
                 $("#nombre").val('');
                 $("#apellido").val('');
@@ -288,13 +318,28 @@ $(document).ready(function() {
             $("#clienteRegistroExitoso").html("");
 
             if (jsonErrorRegistro.clienteCuitExistente == true) {
-                $("#clienteRegistroError").html("<span>El CUIT del cliente ya existe.</span>");
-            }else if(jsonErrorRegistro.clienteDenominacion == false || jsonErrorRegistro.clienteNombre == false || jsonErrorRegistro.clienteApellido == false || jsonErrorRegistro.clienteCuit == false
-                || jsonErrorRegistro.clienteLocalidad == false || jsonErrorRegistro.clienteCalle == false || jsonErrorRegistro.clienteAltura == false || jsonErrorRegistro.clienteTelefono == false
-                || jsonErrorRegistro.clienteEmail == false){
-                $("#clienteRegistroError").html("<span>Debe completar todos los campos.</span>");
+                $("#clienteRegistroError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>El CUIT del cliente ya existe.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
+            } else if (jsonErrorRegistro.clienteDenominacion == false || jsonErrorRegistro.clienteNombre == false || jsonErrorRegistro.clienteApellido == false || jsonErrorRegistro.clienteCuit == false ||
+                jsonErrorRegistro.clienteLocalidad == false || jsonErrorRegistro.clienteCalle == false || jsonErrorRegistro.clienteAltura == false || jsonErrorRegistro.clienteTelefono == false ||
+                jsonErrorRegistro.clienteEmail == false) {
+                $("#clienteRegistroError").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Debe completar todos los campos.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
             } else {
-                $("#clienteRegistroExitoso").html("<span>Se registro el cliente con exito</span>");
+                $("#clienteRegistroExitoso").html("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Se registro el cliente con exito.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 $("#clienteDenominacion").val('');
                 $("#clienteNombre").val('');
                 $("#clienteApellido").val('');
@@ -384,17 +429,32 @@ $(document).ready(function() {
 
             var registroExitoso = true;
             if (jsonErrorRegistro.clienteCuitExistente == false) {
-                $("#errorClienteCuit").html("<span>No se encuentra registrado un cliente con ese CUIT.</span>");
+                $("#errorClienteCuit").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>No se encuentra un cliente registrado con ese CUIT.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 registroExitoso = false;
             }
 
             if (jsonErrorRegistro.camposVacios == true) {
-                $("#errorCamposVacios").html("<span>Debe completar todos los campos.</span>");
+                $("#errorCamposVacios").html("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Debe completar todos los campos</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 registroExitoso = false;
             }
 
             if (registroExitoso) {
-                $("#crearProformaExito").html("<span>Se registro la proforma con exito</span>");
+                $("#crearProformaExito").html("<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+                    "            <strong>Se registro la proforma con exito.</strong>\n" +
+                    "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                    "                <span aria-hidden=\"true\">&times;</span>\n" +
+                    "            </button>\n" +
+                    "        </div>");
                 $("#clienteRegistradoCuit").val('');
                 $("#cargaTipo").val('');
                 $("#cargaPeso").val('');
@@ -417,32 +477,183 @@ $(document).ready(function() {
                 $('#detalleProformaCliente').html(jsonErrorRegistro.clienteCuit);
                 $('#detalleProformaTipoCarga').html(jsonErrorRegistro.nombreTipoCarga);
                 $('#detalleProformaPesoCarga').html(jsonErrorRegistro.cargaPeso + " Kilos");
-                if(jsonErrorRegistro.hazardId == null){
+                if (jsonErrorRegistro.hazardId == null) {
                     $('#detalleProformaHazard').html("NO");
                     $('#detalleProformaDatosHazard').html("-");
-                }else{
+                } else {
                     $('#detalleProformaHazard').html("SI");
                     $('#detalleProformaDatosHazard').html(jsonErrorRegistro.datosHazard);
                 }
 
-                if(jsonErrorRegistro.reeferId == null){
+                if (jsonErrorRegistro.reeferId == null) {
                     $('#detalleProformaReefer').html("NO");
                     $('#detalleProformaDatosReefer').html("-");
-                }else{
+                } else {
                     $('#detalleProformaReefer').html("SI");
-                    $('#detalleProformaDatosReefer').html(jsonErrorRegistro.datosReefer+"°C");
+                    $('#detalleProformaDatosReefer').html(jsonErrorRegistro.datosReefer + "°C");
                 }
                 $('#detalleProformaViajeOrigen').html(jsonErrorRegistro.direccionPartida);
                 $('#detalleProformaViajeDestino').html(jsonErrorRegistro.direccionDestino);
-                $('#detalleProformaCantidadKM').html(jsonErrorRegistro.cantidadKilometros +" km");
+                $('#detalleProformaCantidadKM').html(jsonErrorRegistro.cantidadKilometros + " km");
                 $('#detalleProformaFechaSalida').html(jsonErrorRegistro.fechaSalida);
                 $('#detalleProformaFechaLlegada').html(jsonErrorRegistro.fechaLlegada);
                 $('#detalleProformaVehiculoAsignado').html(jsonErrorRegistro.vehiculoPatente);
                 $('#detalleProformaAcopladoAsignado').html(jsonErrorRegistro.acopladoPatente);
-                $('#detalleProformaTotal').html("$"+jsonErrorRegistro.total);
 
+                $('#detalleProformaTotal').html("$" + jsonErrorRegistro.total);
+
+
+                $('#botonVerPdfProforma').attr('href', '/pdfProforma?idChofer=' + jsonErrorRegistro.choferID + '&proformaID=' + jsonErrorRegistro.proformaId);
             }
         });
     });
-});
 
+
+    /************************AJAX MOSTRAR CLIENTE POR CUIT PROFORMA**********************************/
+    $("#clienteRegistradoCuit").keyup(function() {
+        var cuit = $("#clienteRegistradoCuit").val();
+        var post_url = "/crearProforma/mostrarClientesPorCuit";
+
+        $.ajax({
+            type: 'POST',
+            url: post_url,
+            data: {
+                'clienteCuit': cuit
+            }
+        }).done(function(datos) {
+            $("#nombreApellidoCliente").html(datos);
+        }).fail(function() {
+            console.log("error al traer clientes por cuit");
+        });
+    });
+
+    /************************AJAX MANDAR A SERIVICE*********************************/
+    $(".mandarAServiceBoton").click(function() {
+        var post_url = "/service/obtenerEmpleadosMecanicos";
+        var patente = $(this).data('patente');
+        $.ajax({
+            url: post_url
+        }).done(function(datos) {
+            $('#mecanicoDatos').html("");
+            $('.mandarAServiceFormulario .modal-footer #botonMandarAService').val(patente);
+            $("#mecanicosParaService").html(datos);
+        }).fail(function() {
+            console.log("error al traer empleados mecanicos");
+        });
+    });
+
+    $("#mecanicosParaService").on('change', function() {
+        var mecanicoId = $("#mecanicosParaService").val();
+        var post_url = "/service/obtenerDatosDelMecanicoPorID";
+        $.ajax({
+            type: 'POST',
+            url: post_url,
+            data: {
+                'mecanicoId': mecanicoId
+            }
+        }).done(function(datos) {
+            var jsonDatosEmpleado = jQuery.parseJSON(datos);
+            $('#mecanicoDatos').html("<h5>Datos de mecanico seleccionado:</h5><p>Apellido y nombre: " + jsonDatosEmpleado.apellido + " " + jsonDatosEmpleado.nombre + "</p>" +
+                "<p>DNI: " + jsonDatosEmpleado.dni + "</p>");
+        }).fail(function() {
+            alert("error al cargar datos mecanico");
+        });
+    });
+
+    $(document).on("click", ".botonFinalizarMantenimientoVehiculo", function() {
+        var patenteVehiculo = $(this).data('patente');
+        var idMecanico = $(this).data('idmecanico');
+        $('.modal-footer #botonFinalizarServiceDeUnVehiculoModal').val(patenteVehiculo);
+        $('.modal-footer #idMecanicoAFinalizarService').val(idMecanico);
+
+    });
+
+    /************************Tablas Nuevas ABM/VIAJES*********************************/
+
+    /***********Tabla Usuarios***********/
+
+    $('#mydatatableUsuarios').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+    /***********Tabla Empleados***********/
+
+    $('#mydatatableEmpleados').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+    /***********Tabla Clientes***********/
+
+    $('#mydatatableClientes').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+    /***********Tabla Vehiculos***********/
+
+    $('#mydatatableVehiculos').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+    /***********Tabla Viajes***********/
+    $('#mydatatableViajesA').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+    $('#mydatatableViajesP').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+    $('#mydatatableViajesF').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+    $('#mydatatableVehiculosService').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+
+    $('#mydatatableVehiculosEnService').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+
+    $('#mydatatableVehiculosProforma').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+
+    $('#mydatatableChoferProforma').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+
+    $('#mydatatableAcopladoProforma').DataTable({
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        }
+
+    });
+
+});
